@@ -4,95 +4,83 @@ theme: nobeamer
 class: lead
 paginate: true
 size: 16:9
-title: "Demonstração do Tema: nobeamer"
+title: "Theme Demo: nobeamer"
 ---
 
-# Demonstração do Tema
+# Theme Demo 
 
-O objetivo desse demo é mostrar os principais estilos do tema `nobeamer`.
+The goal of this demo is to showcase the main styles of the `nobeamer` theme.
 
 ---
 
-## Tipografia Padrão
+## Default Typography
 
-Texto normal para leitura. O design foca em **contraste** e _legibilidade_.
+Normal text for reading. The design focuses on **contrast** and _readability_.
 
-- Item de lista um
-- Item de lista dois
+- List item one
+- List item two
   - Subitem
-- Item de lista três
+- List item three
 
-1. Lista ordenada
-2. Segundo item
+1. Ordered list
+2. Second item
 
 ---
 
-## O Card Padrão ("Blockquote")
+## Standard Card ("Blockquote")
 
-> Este é o estilo **padrão** para citações ou _destaque geral_.
-> Ele serve para quebrar a monotonia e formalidade do slide e ser uma voz mais amigável (**voz do professor**).
+> This is the **standard** style for quotes or _general highlights_.
+> It serves to break the monotony and formality of the slide and be a friendlier voice (**teacher's voice**).
 
 ```html
-> Este é o estilo padrão...
+> This is the standard style...
 ```
 
 ---
 
-## Card de Informação (.card-info)
+## Info Card (.card-info)
 
-<div class="card-info">
-<h3>Dica Útil</h3>
-Use este card para fornecer informações adicionais ou dicas de contexto que não são críticas, mas ajudam no entendimento.
-</div>
+> [](#i) **Useful Tip**
+> Use this card to provide additional information...
 
-```html
-<div class="card-info">
-<h3>Dica Útil</h3>
-...
-</div>
+```markdown
+> [](#i) **Useful Tip**
+> Content...
 ```
 
 ---
 
-## Card de Alerta (.card-alert)
+## Alert Card (.card-alert)
 
-<div class="card-alert">
-<h3>Cuidado</h3>
-Use este estilo para avisos importantes, exceções ou erros comuns que os alunos devem evitar.
-</div>
+> [](#a) **Caution**
+> Use this style for important warnings...
 
-```html
-<div class="card-alert">
-<h3>Cuidado</h3>
-...
-</div>
+```markdown
+> [](#a) **Caution**
+> Content...
 ```
 
 ---
 
-## Card de Sucesso (.card-success)
+## Success Card (.card-success)
 
-<div class="card-success">
-<h3>Resultado Correto</h3>
-Perfeito para mostrar conclusões, respostas certas ou validações de hipóteses.
-</div>
+> [](#s) **Correct Result**
+> Perfect for showing conclusions...
 
-```html
-<div class="card-success">
-<h3>Resultado Correto</h3>
-...
-</div>
+```markdown
+> [](#s) **Correct Result**
+> Content...
 ```
 
 ---
 
-## Tabelas e Código
+## Tables and Code
 
-| Estatística | Valor (g) | Descrição |
+| Statistic | Value (g) | Description |
 | :--- | ---: | :--- |
-| Média | 100.0 | Valor esperado |
-| Desvio | 10.0 | Dispersão |
-| Z-Score | 2.5 | Significativo |
+| Mean | 100.0 | Expected value |
+| Deviation | 10.0 | Dispersion |
+| Z-Score | 2.5 | Significant |
 
 ```python
 def hello():
@@ -101,7 +89,7 @@ def hello():
 
 ---
 
-## Bloco de Resolução Matemática
+## Math Resolution Block
 
 <div class="math-resolution">
 

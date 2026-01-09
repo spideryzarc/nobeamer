@@ -1,23 +1,22 @@
 /* @theme nobeamer */
 
 @import 'default';
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@400;700;900&family=Josefin+Sans:wght@700&display=swap');
 
+/* ==========================================================================
+   1. VARIABLES & BASE SETTINGS
+   ========================================================================== */
 :root {
-    --bg: #F8FAFC;
-    /* Fundo suave, não ofuscante */
     --text: #0F172A;
-    /* Slate escuro para leitura perfeita */
-    --primary: #0D9488;
-    /* Teal moderno */
+    /* Dark slate for perfect readability */
     --secondary: #64748B;
-    --card-bg: #FFFFFF;
-    --radius: 24px;
+    --hcolor: #213a52;
 }
 
 section {
-    background-color: var(--bg);
+    background-color: #F8FAFC;
     color: var(--text);
-    /* Tenta carregar na ordem: Mac -> Windows -> Android -> Linux -> Genérica */
+    /* Load order: Mac -> Windows -> Android -> Linux -> Generic */
     font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-code: "Consolas", "Monaco", "Courier New", monospace;
     padding: 60px;
@@ -27,25 +26,36 @@ section {
     justify-content: center;
 }
 
+/* Discrete Pagination */
+section::after {
+    font-weight: 500;
+    color: var(--secondary);
+    font-size: 14px;
+}
 
+/* ==========================================================================
+   2. TYPOGRAPHY
+   ========================================================================== */
 h1,
 h2,
 h3 {
-    /* Títulos com Trebuchet MS dão um ar menos "acadêmico" */
-    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+    /* "Inter" supports black (900) weight */
+    font-family: "Inter", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+    color: var(--hcolor);
 }
 
 code {
     font-family: var(--font-code);
 }
 
-/* Títulos Elegantes */
+/* Elegant Titles */
 h1 {
-    font-weight: 600;
-    font-size: 50px;
-    color: #183e64;
-    margin-bottom: 10px;
-    letter-spacing: -0.02em;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 300;
+    font-size: 80px;
+    color: var(--hcolor);
+    margin-bottom: 5px;
+    letter-spacing: -0.06em;
 }
 
 h1::after {
@@ -53,123 +63,204 @@ h1::after {
     display: block;
     width: 100px;
     height: 6px;
-    background: var(--primary);
+    background: #0D9488;
     border-radius: 10px;
     margin-top: 5px;
 }
 
-/* Cartões para Conteúdo (Estilo Canva Moderno) */
+/* ==========================================================================
+   3. BLOCKQUOTES & PAPER CARDS
+   ========================================================================== */
+/* Standard Handwritten Paper Card */
 blockquote,
 .marp-card {
-    background: var(--card-bg);
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-    padding: 5px 25px;
-    margin: 5px 70px;
-    margin: 5px 70px;
+    background: url('nb_img/paper.jpg');
+    background-size: cover;
+    border: solid rgba(0, 0, 0, 0.05);
+    border-width: 1px 0;
+    /* Borders only top and bottom */
+    border-radius: 0;
+    box-shadow: inset 0 10px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px 60px;
+    margin: 20px -60px;
+    /* Negative margin to stretch to edge */
 }
 
 blockquote {
-    font-family: "Segoe Print", "Bradley Hand", "Chilanka", "TSCu_Comic", casual, cursive;
-    color: #1e3a8a;
-    /* Azul clássico de caneta esferográfica */
-    font-size: 0.95em;
+    font-family: "Caveat", "Segoe Print", "Bradley Hand", "Chalkboard SE", "Comic Sans MS", "Comic Sans", "Chilanka", "TSCu_Comic", "URW Chancery L", casual, cursive;
+    color: hsla(230, 90%, 30%, 0.85);
+    /* Vibrant translucent pen blue */
+    font-size: 1.2em;
 }
 
 blockquote strong {
-    color: #dc2626;
-    /* Caneta Vermelha */
+    color: hsla(355, 95%, 45%, 0.85);
+    /* Vibrant pen red */
 }
 
 blockquote em {
-    color: #1e293b;
-    /* Caneta Preta */
+    color: hsla(220, 60%, 15%, 0.85);
+    /* Intense ink black */
 }
 
-/* Variações de Cards */
+/* ==========================================================================
+   4. SPECIALIZED CARDS (Side Tabs)
+      Usage:
+      - .card-info OR > [](#i) Content
+      - .card-alert OR > [](#a) Content
+      - .card-success OR > [](#s) Content
+   ========================================================================== */
+
+/* Shared Base Styles for Specialized Cards */
 .card-info,
+blockquote:has(a[href="#i"]),
 .card-alert,
+blockquote:has(a[href="#a"]),
 .card-success,
-.math-resolution {
-    background: var(--card-bg);
-    border-radius: 10px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    padding: 1px 1px 1px 50px;
-    /* Mais espaço à esquerda para o ícone */
-    margin: 15px 60px;
-    border-left-width: 8px;
-    border-left-style: solid;
+blockquote:has(a[href="#s"]) {
+    width: 30%;
+    /* Occupies ~1/3 of screen and sticks to left */
+    min-width: 250px;
+    margin: 5px 0px 5px -60px;
+    padding: 5px 6px 10px 25px;
+    /* Right space for icon, left to compensate negative margin */
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 0 25px 25px 0;
+
+    /* Reset from standard blockquote */
+    background-image: none;
+    border: none;
+
+    /* Typography Overrides */
+    font-family: "Trebuchet MS", sans-serif;
+    /* Normal font, not handwritten */
+    font-size: 1.0em;
+    line-height: 1.4;
     position: relative;
-    font-size: 0.9em;
+    background-size: cover;
+    /* Ensure texture covers the card */
+    background-blend-mode: multiply;
+    /* Blend color with texture */
 }
 
-/* Ícones dos Cards */
+/* Hide Trigger Links */
+blockquote a[href="#i"],
+blockquote a[href="#a"],
+blockquote a[href="#s"] {
+    display: none;
+}
+
+/* Force Black Bold Text in Specialized Cards */
+.card-info strong,
+blockquote:has(a[href="#i"]) strong,
+.card-alert strong,
+blockquote:has(a[href="#a"]) strong,
+.card-success strong,
+blockquote:has(a[href="#s"]) strong {
+    color: #1e293b;
+    /* Slate 800 - Soft Black */
+    font-weight: 700;
+}
+
+/* --- Specific Colors & Icons --- */
+
+/* Info Card (#i) */
+.card-info,
+blockquote:has(a[href="#i"]) {
+    background-color: #fef08a;
+    /* Post-it Yellow */
+    background-image: url('nb_img/paper2.jpg');
+    color: #422006;
+}
+
 .card-info::after,
-.card-alert::after,
-.card-success::after,
-.math-resolution::after {
+blockquote:has(a[href="#i"])::after {
+    content: "💡";
     position: absolute;
-    top: 20px;
-    /* Alinha com a primeira linha de texto */
-    left: -3px;
-    /* Margem da borda esquerda */
-    font-size: 1.3em;
+    top: 15px;
+    right: 20px;
+    font-size: 1em;
     pointer-events: none;
     line-height: 1;
 }
 
-.card-info::after {
-    content: "💡";
+/* Alert Card (#a) */
+.card-alert,
+blockquote:has(a[href="#a"]) {
+    background-color: #fecaca;
+    /* Alert Pink/Red */
+    background-image: url('nb_img/paper2.jpg');
+    color: #450a0a;
 }
 
-.card-alert::after {
+.card-alert::after,
+blockquote:has(a[href="#a"])::after {
     content: "⚠️";
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1em;
+    pointer-events: none;
+    line-height: 1;
 }
 
-.card-success::after {
+/* Success Card (#s) */
+.card-success,
+blockquote:has(a[href="#s"]) {
+    background-color: #bbf7d0;
+    /* Success Green */
+    background-image: url('nb_img/paper2.jpg');
+    color: #052e16;
+}
+
+.card-success::after,
+blockquote:has(a[href="#s"])::after {
     content: "✅";
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1em;
+    pointer-events: none;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   5. MATH RESOLUTION BLOCK
+   ========================================================================== */
+.math-resolution {
+    background: #FFFFFF;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    padding: 20px 60px;
+    margin: 10px -60px 10px 0px;
+    border-left: 8px solid #7c3aed;
+    position: relative;
+    font-size: 0.9em;
+    border-radius: 15px 0px 0px 15px;
 }
 
 .math-resolution::after {
     content: "🧮";
-    font-size: 3em;
+    position: absolute;
+    top: 10px;
     left: 0px;
+    font-size: 2em;
     opacity: 0.5;
-    top: 0px;
+    pointer-events: none;
+    line-height: 1;
 }
 
-.card-info {
-    border-left-color: #3B82F6;
-    /* Blue 500 */
-}
-
-.card-alert {
-    border-left-color: #EF4444;
-    /* Red 500 */
-}
-
-.card-success {
-    border-left-color: #10B981;
-    /* Emerald 500 */
-}
-
-.math-resolution {
-    border-left-color: #7c3aed;
-    font-size: 0.7em;
-}
-
-/* Tabelas Estatísticas Limpas */
-/* Tabelas Acadêmicas (Estilo Científico/APA) */
+/* ==========================================================================
+   6. TABLES
+   ========================================================================== */
+/* Scientific/APA Style Tables */
 table {
     border-collapse: collapse;
     width: auto;
-    /* Ajusta ao conteúdo */
+    /* Adjust to content */
     margin: 20px auto;
     font-size: 0.7em;
     border-top: 2px solid var(--secondary);
     border-bottom: 2px solid var(--secondary);
-
 }
 
 th {
@@ -186,27 +277,16 @@ td {
     border-bottom: 1px solid #e2e8f0;
     color: var(--text);
     font-family: var(--font-code);
-    /* Fonte Monospace para dados */
+    /* Monospace for data */
     font-size: 0.9em;
-    /* Ajuste ótico para monospace */
+    /* Optical adjustment for monospace */
 }
 
-
-
-/* Zebra striping muito sutil para guiar o olhar em tabelas longas */
+/* Subtle Zebra Striping */
 tr:nth-child(even) {
     background-color: rgba(15, 23, 42, 0.03);
 }
 
 tr:first-of-type {
     border-top: 2px solid var(--secondary);
-}
-
-
-
-/* Paginação Discreta */
-section::after {
-    font-weight: 500;
-    color: var(--secondary);
-    font-size: 14px;
 }
