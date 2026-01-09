@@ -7,7 +7,7 @@ size: 16:9
 title: "Theme Demo: nobeamer"
 ---
 
-# Theme Demo 
+# THEME DEMO
 
 The goal of this demo is to showcase the main styles of the `nobeamer` theme.
 
