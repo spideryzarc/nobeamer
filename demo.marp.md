@@ -11,6 +11,8 @@ title: "Theme Demo: nobeamer"
 
 The goal of this demo is to showcase the main styles of the `nobeamer` theme.
 
+![bg left:56%](nb_img/paper2.jpg)
+
 ---
 
 ## Default Typography
@@ -24,6 +26,8 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 1. Ordered list
 2. Second item
+
+![bg left:10%](nb_img/paper2.jpg)
 
 ---
 
