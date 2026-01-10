@@ -7,15 +7,16 @@ size: 16:9
 title: "Theme Demo: nobeamer"
 ---
 
-# THEME DEMO
+# NOBEAMER GUIDELINES
 
-The goal of this demo is to showcase the main styles of the `nobeamer` theme.
+This document serves as both a demo and a guideline for the `nobeamer` theme.
+Follow these rules to create beautiful, handwritten-style presentations.
 
 ![bg left:56%](nb_img/paper2.jpg)
 
 ---
 
-## Default Typography
+## 1. Typography & Readability
 
 Normal text for reading. The design focuses on **contrast** and _readability_.
 
@@ -31,21 +32,21 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ---
 
-## Standard Card ("Blockquote")
+## 2. Using Standard Cards
 
-> This is the **standard** style for quotes or _general highlights_.
-> It serves to break the monotony and formality of the slide and be a friendlier voice (**teacher's voice**).
+> Use standard blockquotes for **informal remarks** or "teacher's voice".
+> This style mimics a handwritten note and should be used to break the flow of formal content.
 
-```html
+```markdown
 > This is the standard style...
 ```
 
 ---
 
-## Info Card (.card-info)
+## 3. Specialized Cards
 
-> [](#i) **Useful Tip**
-> Use this card to provide additional information...
+> [](#i) **Information**
+> Use the **Info Card** for tips, side notes, or context that isn't critical but helpful.
 
 ```markdown
 > [](#i) **Useful Tip**
@@ -54,10 +55,8 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ---
 
-## Alert Card (.card-alert)
-
-> [](#a) **Caution**
-> Use this style for important warnings...
+> [](#a) **Warning**
+> Use the **Alert Card** sparingly for critical warnings or common pitfalls.
 
 ```markdown
 > [](#a) **Caution**
@@ -66,10 +65,8 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ---
 
-## Success Card (.card-success)
-
-> [](#s) **Correct Result**
-> Perfect for showing conclusions...
+> [](#s) **Success / Solution**
+> Use the **Success Card** for correct answers, conclusions, or good practices.
 
 ```markdown
 > [](#s) **Correct Result**
@@ -78,7 +75,7 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ---
 
-## Tables and Code
+## 4. Data Presentation
 
 | Statistic | Value (g) | Description |
 | :--- | ---: | :--- |
@@ -86,14 +83,21 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 | Deviation | 10.0 | Dispersion |
 | Z-Score | 2.5 | Significant |
 
+---
+
+## 5. Code Presentation
+
 ```python
 def hello():
     print("Hello Marp!")
+
+if __name__ == "__main__":
+    hello()
 ```
 
 ---
 
-## Math Resolution Block
+## 6. Math & Formulas
 
 <div class="math-resolution">
 
@@ -111,3 +115,81 @@ $$
 $$ \begin{aligned} ... \end{aligned} $$
 </div>
 ```
+
+---
+
+## 7. Imagery Guidelines
+### Full Background
+
+- Use full backgrounds for **section breaks** or impactful openers.
+- Ensure the image has low contrast if you plan to place text over it (or let the theme handle it). 
+
+![bg](nb_img/paper2.jpg)
+
+```markdown
+![bg](nb_img/paper2.jpg)
+```
+
+
+
+---
+
+### Side background
+
+Choose a beautiful image to fill the side of the slide. 
+
+> [](#i) **Empty Space**
+> Use side background to avoid empty white spaces.
+
+```markdown
+![bg left:56%](nb_img/paper2.jpg)
+```
+
+![bg left:56%](nb_img/paper2.jpg)
+
+
+---
+
+### Side background
+
+... but right
+Content comes first 
+
+
+> [](#i) **Monotony**
+> Alter the position of the image to avoid monotony.
+
+
+```markdown
+![bg right:44%](nb_img/paper2.jpg)
+```
+
+![bg right:44%](nb_img/paper2.jpg)
+
+---
+
+### Framed figure
+
+Easy way to layout a figure that doesn't fit as as borderless figure. 
+
+```markdown
+![bg drop-shadow left:44% 80%](nb_img/paper2.jpg)
+```
+
+![bg drop-shadow left:44% 80%](nb_img/paper2.jpg)
+
+---
+
+## Inline figure
+
+Text flows naturally around inline figures. 
+
+![h:200 w:800 drop-shadow](nb_img/paper2.jpg)
+
+> [](#i) **Inline figure**
+> Use for panoramic images only.
+
+```markdown
+![h:200 w:800 drop-shadow](nb_img/paper2.jpg)
+```
+

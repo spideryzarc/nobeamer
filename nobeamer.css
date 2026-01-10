@@ -303,3 +303,32 @@ tr:first-of-type {
     border-top: 2px solid var(--secondary);
 }
 
+/* ==========================================================================
+   7. CODE BLOCKS
+   ========================================================================== */
+pre {
+    margin: var(--block-margin-y) -60px;
+    padding: var(--block-padding-y) 60px;
+    box-shadow: var(--shadow-internal);
+    width: auto;
+    border-radius: 0;
+    position: relative;
+}
+
+pre::before {
+    content: "💻";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 2em;
+    padding: 5px 10px;
+    opacity: 0.5;
+}
+
+/* ==========================================================================
+   8. IMAGES
+   ========================================================================== */
+img {
+    display: block;
+    margin: 0 auto;
+}
