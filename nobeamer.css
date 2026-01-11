@@ -233,6 +233,54 @@ blockquote:has(a[href="#s"])::after {
     line-height: 1;
 }
 
+
+/* Bento Dark Card (#d) 
+   Designed for multi-column layouts */
+.card-dark,
+blockquote:has(a[href="#d"]) {
+    /* Visuals */
+    background: #1e293b;
+    /* Slate 800 */
+    color: #f8fafc;
+    /* Slate 50 */
+    border-radius: 16px;
+    box-shadow: var(--shadow-external);
+
+    /* Layout & Reset */
+    width: auto;
+    margin: 10px -20px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-image: none;
+    /* No paper texture */
+
+    /* Typography */
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+/* Hide Trigger Link */
+blockquote a[href="#d"] {
+    display: none;
+}
+
+/* Bold text color override for dark background */
+.card-dark strong,
+blockquote:has(a[href="#d"]) strong {
+    color: #38bdf8;
+    /* Sky 400 */
+    font-weight: 700;
+}
+
+/* Code block inside dark card */
+.card-dark code,
+blockquote:has(a[href="#d"]) code {
+    background: rgba(0, 0, 0, 0.3);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 /* ==========================================================================
    5. MATH RESOLUTION BLOCK
    ========================================================================== */
@@ -331,4 +379,41 @@ pre::before {
 img {
     display: block;
     margin: 0 auto;
+}
+
+
+/* ==========================================================================
+   9. UTILITIES & LAYOUTS
+   ========================================================================== */
+
+/* Multi-column Layout */
+section.cols-2 {
+    display: block;
+    columns: 2;
+    column-gap: 60px;
+}
+
+section.cols-3 {
+    display: block;
+    columns: 3;
+    column-gap: 40px;
+}
+
+/* Make slide title span across columns */
+section.cols-2 h1,
+section.cols-3 h1 {
+    column-span: all;
+    margin-bottom: 0.8em;
+}
+
+/* Column Break Symbol: ![split]() 
+   Acts as a forced column break */
+section.cols-2 img[alt="split"],
+section.cols-3 img[alt="split"] {
+    break-after: column;
+    display: block;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    visibility: hidden;
 }

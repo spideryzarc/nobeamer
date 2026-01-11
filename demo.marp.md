@@ -75,6 +75,16 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ---
 
+> [](#d) **Dark Block**
+> Use the **Dark Block** for highlighted text.
+
+```markdown
+> [](#d) **Dark Block**
+> Content...
+```
+
+---
+
 ## 4. Data Presentation
 
 | Statistic | Value (g) | Description |
@@ -182,14 +192,122 @@ Easy way to layout a figure that doesn't fit as as borderless figure.
 
 ## Inline figure
 
-Text flows naturally around inline figures. 
+- Text flows naturally around inline figures. 
+- Use for panoramic images only.
 
 ![h:200 w:800 drop-shadow](nb_img/paper2.jpg)
 
-> [](#i) **Inline figure**
-> Use for panoramic images only.
 
 ```markdown
 ![h:200 w:800 drop-shadow](nb_img/paper2.jpg)
 ```
 
+
+---
+
+<!-- _class: cols-2 -->
+
+# Multi-column layout
+
+## Left Column 
+
+Template:
+
+```markdown
+<!-- _class: cols-2 -->
+# Title (spans both)
+Left content...
+![split]()
+Right content...
+```
+
+![split]()
+
+## Right Column
+- `h1` spans both columns.
+- Content flows automatically to the left column. 
+- Use `![split]()` to force a column break.
+
+
+
+---
+
+<!-- _class: cols-3 -->
+
+## 3-Column Layout
+
+## Col 1
+Starts here.
+
+- Item A
+- Item B
+
+> [](#i) **Compact**
+> `alert`, `info` and `success` blocks fits only on first column.
+
+![split]()
+
+## Col 2
+Middle column.
+
+
+![split]()
+
+## Col 3
+Right column.
+
+```markdown
+<!-- _class: cols-3 -->
+# Title
+Col 1
+![split]()
+Col 2
+![split]()
+Col 3
+```
+
+---
+
+<!-- _class: cols-3 -->
+
+## Proto-Bento Layout
+
+Some regular text in the column flow.
+
+
+> [](#d) **Feature A**
+>
+> Minimal dark block with `highlighted` text.
+
+More stuff here
+- stuff 1
+- stuff 2
+- stuff 3
+
+![split]()
+
+> [](#d) you don't need to use 
+> dark blocks, 
+> just for fun.
+
+<br>
+
+![image w:370 h:250 drop-shadow](nb_img/paper2.jpg)
+
+Look at the image above.
+What a mess!
+
+![split]()
+
+
+| Statistic | Value (g) | Description |
+| :--- | ---: | :--- |
+| Mean | 100.0 | Expected value |
+| Deviation | 10.0 | Dispersion |
+| Z-Score | 2.5 | Significant |
+
+
+Table above is definitely a **table**, it's a math resolution.
+I could kill minutes in this single slide.
+
+> [](#d) As long as you keep the blocks **misaligned**, it will look less like a grid.
