@@ -97,6 +97,8 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ## 5. Code Presentation
 
+I know we all love dark mode, but not for presentations.
+
 ```python
 def hello():
     print("Hello Marp!")
@@ -108,6 +110,9 @@ if __name__ == "__main__":
 ---
 
 ## 6. Math & Formulas
+
+- For long math resolutions, use the `math-resolution` class.
+- In this case, `div` tag is necessary. 
 
 <div class="math-resolution">
 
@@ -242,7 +247,7 @@ Starts here.
 - Item A
 - Item B
 
-> [](#i) **Compact**
+> [](#a) **Attention**
 > `alert`, `info` and `success` blocks fits only on first column.
 
 ![split]()

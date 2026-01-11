@@ -11,15 +11,17 @@
     /* Dark slate for perfect readability */
     --secondary: #64748B;
     --hcolor: #393631;
-    --shadow-external: 0 1px 1px hsl(270deg 0% 0% / 0.075),
-        0 2px 2px hsl(270deg 0% 0% / 0.075),
-        0 4px 4px hsl(270deg 0% 0% / 0.075),
-        0 8px 8px hsl(270deg 0% 0% / 0.075),
-        0 16px 16px hsl(270deg 0% 0% / 0.075);
-    --shadow-internal: rgb(204, 219, 232) 3px 3px 6px 0px inset,
-        rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    --shadow-external: 1px 1px 1px hsl(0deg 0% 0% / 0.075),
+        2px 2px 2px hsl(0deg 0% 0% / 0.075),
+        4px 4px 4px hsl(0deg 0% 0% / 0.075),
+        8px 8px 8px hsl(0deg 0% 0% / 0.075),
+        16px 16px 16px hsl(0deg 0% 0% / 0.075);
+    --shadow-internal: 0 1px 1px hsl(0deg 0% 0% / 0.075) inset,
+        0 16px 16px hsl(0deg 0% 0% / 0.075) inset;
     --block-padding-y: 20px;
     --block-margin-y: 20px;
+    --padding-general: 30px;
+    --almost-touch-margin: var(--block-margin-y) calc(var(--padding-general) * -1 + 8px);
 }
 
 section {
@@ -28,7 +30,7 @@ section {
     /* Load order: Mac -> Windows -> Android -> Linux -> Generic */
     font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-code: "Consolas", "Monaco", "Courier New", monospace;
-    padding: 60px;
+    padding: var(--padding-general);
     letter-spacing: -0.01em;
     display: flex;
     flex-direction: column;
@@ -85,14 +87,11 @@ blockquote,
 .marp-card {
     background: url('nb_img/paper.jpg');
     background-size: cover;
-    border: solid rgba(0, 0, 0, 0.05);
+    border: dashed rgb(71, 71, 71);
     border-width: 1px 0;
-    /* Borders only top and bottom */
-    border-radius: 0;
     box-shadow: var(--shadow-internal);
-    padding: var(--block-padding-y) 60px;
-    margin: var(--block-margin-y) -60px;
-    /* Negative margin to stretch to edge */
+    padding: var(--block-padding-y) 50px;
+    margin: var(--block-margin-y) calc(var(--padding-general) * -1);
 }
 
 blockquote {
@@ -127,11 +126,13 @@ blockquote:has(a[href="#i"]),
 blockquote:has(a[href="#a"]),
 .card-success,
 blockquote:has(a[href="#s"]) {
-    width: 30%;
+    width: 33%;
     /* Occupies ~1/3 of screen and sticks to left */
-    min-width: 250px;
-    margin: var(--block-margin-y) 0px var(--block-margin-y) -60px;
-    padding: var(--block-padding-y) 6px var(--block-padding-y) 25px;
+    min-width: 300px;
+    /* touch the left border of the slide*/
+    margin: var(--block-margin-y) calc(var(--padding-general) * -1);
+    /* preserve padding on the left */
+    padding: var(--block-padding-y) var(--padding-general);
     /* Right space for icon, left to compensate negative margin */
     box-shadow: var(--shadow-external);
     border-radius: 0 25px 25px 0;
@@ -143,7 +144,7 @@ blockquote:has(a[href="#s"]) {
     /* Typography Overrides */
     font-family: "Trebuchet MS", sans-serif;
     /* Normal font, not handwritten */
-    font-size: 1.0em;
+    font-size: 0.9em;
     line-height: 1.4;
     position: relative;
     background-size: cover;
@@ -243,21 +244,18 @@ blockquote:has(a[href="#d"]) {
     /* Slate 800 */
     color: #f8fafc;
     /* Slate 50 */
-    border-radius: 16px;
+    border-radius: 10px;
     box-shadow: var(--shadow-external);
 
     /* Layout & Reset */
     width: auto;
-    margin: 10px -20px;
-    padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-image: none;
-    /* No paper texture */
-
+    margin: var(--almost-touch-margin);
+    padding: var(--block-padding-y) var(--padding-general);
+    border: 3px solid rgb(0, 0, 0);
     /* Typography */
     font-family: "Inter", system-ui, sans-serif;
     font-size: 0.9em;
-    line-height: 1.5;
+    /* line-height: 1.5; */
 }
 
 /* Hide Trigger Link */
@@ -285,12 +283,12 @@ blockquote:has(a[href="#d"]) code {
    5. MATH RESOLUTION BLOCK
    ========================================================================== */
 .math-resolution {
-    padding: var(--block-padding-y) 60px;
-    margin: var(--block-margin-y) -60px var(--block-margin-y) 0px;
-    border-left: 8px solid #635e6b;
+    padding: var(--padding-general);
+    margin: var(--almost-touch-margin);
+    border-right: 8px solid #635e6b;
     position: relative;
-    font-size: 0.7em;
-    border-radius: 15px 0px 0px 15px;
+    font-size: 0.6em;
+    border-radius: 0px 15px 15px 0px;
     box-shadow: var(--shadow-external);
     background-image: url('nb_img/paper2.jpg');
     color: #635e6b
@@ -301,7 +299,7 @@ blockquote:has(a[href="#d"]) code {
     content: "🧮";
     position: absolute;
     top: 10px;
-    left: 0px;
+    right: 0px;
     font-size: 2em;
     opacity: 0.5;
     pointer-events: none;
@@ -355,12 +353,15 @@ tr:first-of-type {
    7. CODE BLOCKS
    ========================================================================== */
 pre {
-    margin: var(--block-margin-y) -60px;
-    padding: var(--block-padding-y) 60px;
+    margin: var(--almost-touch-margin);
+    padding: var(--padding-general);
     box-shadow: var(--shadow-internal);
+    border: 2px dotted #81a4e6;
     width: auto;
     border-radius: 0;
     position: relative;
+    /* background-image: url('nb_img/paper2.jpg'); */
+    background-color: #fdfdfd;
 }
 
 pre::before {
