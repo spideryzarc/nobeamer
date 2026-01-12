@@ -45,31 +45,45 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ## 3. Specialized Cards
 
-> [](#i) **Information**
+### Information
+
+Use emojis to call attention to the card. 
+Suggestions: (💡, 💁, ℹ️, 📝, 📚, 📖)
+
+> [](#i) ℹ️ **Information**
 > Use the **Info Card** for tips, side notes, or context that isn't critical but helpful.
 
 ```markdown
-> [](#i) **Useful Tip**
+> [](#i) 💁 **Useful Tip**
 > Content...
 ```
 
+
 ---
 
-> [](#a) **Warning**
+### Alert
+
+Emoji suggestions: (⚠️, 📢, 🚨, ‼️, ⛔, ☠️)
+
+> [](#a) ⚠️ **Warning**
 > Use the **Alert Card** sparingly for critical warnings or common pitfalls.
 
 ```markdown
-> [](#a) **Caution**
+> [](#a) 📢 **Caution**
 > Content...
 ```
 
 ---
 
-> [](#s) **Success / Solution**
+### Success
+
+Emoji suggestions: (✅, 🏆, ✔️, 🥇, )🎉, 🥳, 🚀)
+
+> [](#s) 🎉 **Success / Solution**
 > Use the **Success Card** for correct answers, conclusions, or good practices.
 
 ```markdown
-> [](#s) **Correct Result**
+> [](#s) 🎉 **Correct Result**
 > Content...
 ```
 

@@ -25,7 +25,7 @@
 }
 
 section {
-    background: #ffffff;
+    background: #e8eee4;
     color: var(--text);
     /* Load order: Mac -> Windows -> Android -> Linux -> Generic */
     font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -177,61 +177,30 @@ blockquote:has(a[href="#s"]) strong {
 /* Info Card (#i) */
 .card-info,
 blockquote:has(a[href="#i"]) {
+    /* Post-it Yellow */
     background-image: url('nb_img/paper2.jpg');
     background-color: #ffe627;
-    /* Post-it Yellow */
     color: #423c06;
 }
 
-.card-info::after,
-blockquote:has(a[href="#i"])::after {
-    content: "💡";
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 1em;
-    pointer-events: none;
-    line-height: 1;
-}
 
 /* Alert Card (#a) */
 .card-alert,
 blockquote:has(a[href="#a"]) {
-    background-color: #fecaca;
     /* Alert Pink/Red */
+    background-color: #fecaca;
     background-image: url('nb_img/paper2.jpg');
     color: #450a0a;
 }
 
-.card-alert::after,
-blockquote:has(a[href="#a"])::after {
-    content: "⚠️";
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 1em;
-    pointer-events: none;
-    line-height: 1;
-}
 
 /* Success Card (#s) */
 .card-success,
 blockquote:has(a[href="#s"]) {
-    background-color: #bbf7d0;
     /* Success Green */
+    background-color: #bbf7d0;
     background-image: url('nb_img/paper2.jpg');
     color: #052e16;
-}
-
-.card-success::after,
-blockquote:has(a[href="#s"])::after {
-    content: "✅";
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 1em;
-    pointer-events: none;
-    line-height: 1;
 }
 
 
@@ -239,19 +208,23 @@ blockquote:has(a[href="#s"])::after {
    Designed for multi-column layouts */
 .card-dark,
 blockquote:has(a[href="#d"]) {
-    /* Visuals */
-    background: #1e293b;
-    /* Slate 800 */
+    /* Visuals - Dark Glossy (High Contrast) */
+    background: linear-gradient(160deg, #1e293b 0%, #020617 100%);
     color: #f8fafc;
-    /* Slate 50 */
-    border-radius: 10px;
-    box-shadow: var(--shadow-external);
+    border-radius: 15px;
+
+    /* Reflection Highlights */
+    box-shadow:
+        var(--shadow-external),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+        inset 1px 0 0 0 rgba(255, 255, 255, 0.05),
+        inset -1px -1px 0 0 rgba(0, 0, 0, 0.8);
 
     /* Layout & Reset */
     width: auto;
     margin: var(--almost-touch-margin);
     padding: var(--block-padding-y) var(--padding-general);
-    border: 3px solid rgb(0, 0, 0);
+    border: 1px solid #1e293b;
     /* Typography */
     font-family: "Inter", system-ui, sans-serif;
     font-size: 0.9em;
@@ -355,31 +328,47 @@ tr:first-of-type {
 pre {
     margin: var(--almost-touch-margin);
     padding: var(--padding-general);
-    box-shadow: var(--shadow-internal);
-    border: 2px dotted #81a4e6;
+    box-shadow: var(--shadow-external);
     width: auto;
-    border-radius: 0;
+    border-radius: 15px;
     position: relative;
-    /* background-image: url('nb_img/paper2.jpg'); */
-    background-color: #fdfdfd;
+
+    /* Opaque Glossy Effect */
+    background: linear-gradient(160deg, #ffffff 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+
+    /* Strong reflective highlights (gloss) */
+    box-shadow:
+        var(--shadow-external),
+        inset 0 1px 0 0 rgba(255, 255, 255, 1),
+        inset 1px 0 0 0 rgba(255, 255, 255, 0.8),
+        inset -1px -1px 0 0 rgba(0, 0, 0, 0.05);
+    /* Soft depth */
 }
 
 pre::before {
     content: "💻";
     position: absolute;
-    top: 0px;
-    right: 0px;
-    font-size: 2em;
-    padding: 5px 10px;
-    opacity: 0.5;
+    top: 5px;
+    right: 5px;
+    font-size: 1em;
 }
 
 /* ==========================================================================
    8. IMAGES
    ========================================================================== */
-img {
+/* Default to block for "figure" images, but exclude emojis */
+img:not(.emoji) {
     display: block;
     margin: 0 auto;
+}
+
+/* Ensure emojis remain inline and properly aligned */
+img.emoji {
+    display: inline-block;
+    margin: 0 0.1em;
+    height: 1em;
+    vertical-align: -0.1em;
 }
 
 
