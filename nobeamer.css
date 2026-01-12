@@ -1,7 +1,7 @@
 /* @theme nobeamer */
 
 @import 'default';
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@400;700;900&family=Josefin+Sans:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@400;700;900&family=Josefin+Sans:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
 /* ==========================================================================
    1. VARIABLES & BASE SETTINGS
@@ -20,7 +20,7 @@
         0 16px 16px hsl(0deg 0% 0% / 0.075) inset;
     --block-padding-y: 20px;
     --block-margin-y: 20px;
-    --padding-general: 30px;
+    --padding-general: 40px;
     --almost-touch-margin: var(--block-margin-y) calc(var(--padding-general) * -1 + 8px);
 }
 
@@ -47,36 +47,57 @@ section::after {
 /* ==========================================================================
    2. TYPOGRAPHY
    ========================================================================== */
-h1,
-h2,
-h3 {
-    /* "Inter" supports black (900) weight */
-    font-family: "Inter", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
-    color: var(--hcolor);
-}
-
-code {
-    font-family: var(--font-code);
-}
-
-/* Elegant Titles */
+/* Titles Hierarchy */
 h1 {
     font-family: "Josefin Sans", sans-serif;
-    font-weight: 300;
-    font-size: 60px;
+    font-weight: 700;
+    font-size: 70px;
     color: var(--hcolor);
-    margin-bottom: 5px;
-    letter-spacing: -0.06em;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+h2 {
+    font-family: "Josefin Sans", sans-serif;
+    /* Consistent with H1 */
+    font-weight: 600;
+    font-size: 48px;
+    color: var(--hcolor);
+    margin-bottom: 25px;
+    border-bottom: 1px solid #d1d5db;
+    /* Subtle separator */
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+h3 {
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    /* Bold but not heavy black */
+    font-size: 36px;
+    color: #475569;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+h4 {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: #475569;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 h1::after {
     content: '';
     display: block;
-    width: 150px;
+    width: 120px;
     height: 6px;
     background: #b2b949;
     border-radius: 10px;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 /* ==========================================================================
@@ -256,7 +277,7 @@ blockquote:has(a[href="#d"]) code {
    5. MATH RESOLUTION BLOCK
    ========================================================================== */
 .math-resolution {
-    padding: var(--padding-general);
+    padding: var(--block-padding-y) var(--padding-general);
     margin: var(--almost-touch-margin);
     border-right: 8px solid #635e6b;
     position: relative;
@@ -264,7 +285,7 @@ blockquote:has(a[href="#d"]) code {
     border-radius: 0px 15px 15px 0px;
     box-shadow: var(--shadow-external);
     background-image: url('nb_img/paper2.jpg');
-    color: #635e6b
+    color: #474747
 }
 
 
@@ -274,8 +295,6 @@ blockquote:has(a[href="#d"]) code {
     top: 10px;
     right: 0px;
     font-size: 2em;
-    opacity: 0.5;
-    pointer-events: none;
     line-height: 1;
 }
 
@@ -327,7 +346,7 @@ tr:first-of-type {
    ========================================================================== */
 pre {
     margin: var(--almost-touch-margin);
-    padding: var(--padding-general);
+    padding: var(--block-padding-y) var(--padding-general);
     box-shadow: var(--shadow-external);
     width: auto;
     border-radius: 15px;
@@ -380,13 +399,13 @@ img.emoji {
 section.cols-2 {
     display: block;
     columns: 2;
-    column-gap: 60px;
+    column-gap: calc(var(--padding-general)*2);
 }
 
 section.cols-3 {
     display: block;
     columns: 3;
-    column-gap: 40px;
+    column-gap: calc(var(--padding-general)*2);
 }
 
 /* Make slide title span across columns */

@@ -32,6 +32,23 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ---
 
+# Titles
+
+## Subtitles
+
+### Sub-subtitles
+
+#### Sub-sub-subtitles
+
+```markdown
+# Title
+## Subtitle
+### Sub-subtitle
+#### Sub-sub-subtitle
+```
+
+---
+
 ## 2. Using Standard Cards
 
 > Use standard blockquotes for **informal remarks** or "teacher's voice".
@@ -100,6 +117,8 @@ Emoji suggestions: (✅, 🏆, ✔️, 🥇, )🎉, 🥳, 🚀)
 ---
 
 ## 4. Data Presentation
+
+The standard boring table...
 
 | Statistic | Value (g) | Description |
 | :--- | ---: | :--- |
@@ -226,9 +245,9 @@ Easy way to layout a figure that doesn't fit as as borderless figure.
 
 <!-- _class: cols-2 -->
 
-# Multi-column layout
+## Multi-column layout
 
-## Left Column 
+### Left Column 
 
 Template:
 
@@ -242,11 +261,14 @@ Right content...
 
 ![split]()
 
-## Right Column
+### Right Column
 - `h1` spans both columns.
 - Content flows automatically to the left column. 
 - Use `![split]()` to force a column break.
 
+> [](#d) **Feature A**
+>
+> Minimal dark block with `highlighted` text.
 
 
 ---
@@ -255,7 +277,7 @@ Right content...
 
 ## 3-Column Layout
 
-## Col 1
+### Col 1
 Starts here.
 
 - Item A
@@ -266,13 +288,17 @@ Starts here.
 
 ![split]()
 
-## Col 2
+### Col 2
 Middle column.
+
+> [](#d) **Feature B**
+>
+> Minimal dark block with `highlighted` text.
 
 
 ![split]()
 
-## Col 3
+### Col 3
 Right column.
 
 ```markdown
@@ -289,7 +315,7 @@ Col 3
 
 <!-- _class: cols-3 -->
 
-## Proto-Bento Layout
+### Proto-Bento Layout
 
 Some regular text in the column flow.
 
@@ -299,9 +325,12 @@ Some regular text in the column flow.
 > Minimal dark block with `highlighted` text.
 
 More stuff here
-- stuff 1
-- stuff 2
-- stuff 3
+
+```C
+int main() {
+    return 0;
+}
+```
 
 ![split]()
 
@@ -311,7 +340,7 @@ More stuff here
 
 <br>
 
-![image w:370 h:250 drop-shadow](nb_img/paper2.jpg)
+![image w:500 h:250 drop-shadow](nb_img/paper2.jpg)
 
 Look at the image above.
 What a mess!
@@ -326,7 +355,6 @@ What a mess!
 | Z-Score | 2.5 | Significant |
 
 
-Table above is definitely a **table**, it's a math resolution.
 I could kill minutes in this single slide.
 
 > [](#d) As long as you keep the blocks **misaligned**, it will look less like a grid.
