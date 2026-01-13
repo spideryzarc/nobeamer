@@ -64,7 +64,7 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ### Information
 
-Use emojis to call attention to the card. 
+Use emojis to call attention to the card.
 Suggestions: (💡, 💁, ℹ️, 📝, 📚, 📖)
 
 > [](#i) ℹ️ **Information**
@@ -74,7 +74,6 @@ Suggestions: (💡, 💁, ℹ️, 📝, 📚, 📖)
 > [](#i) 💁 **Useful Tip**
 > Content...
 ```
-
 
 ---
 
@@ -120,7 +119,7 @@ Emoji suggestions: (✅, 🏆, ✔️, 🥇, )🎉, 🥳, 🚀)
 
 The standard boring table...
 
-| Statistic | Value (g) | Description |
+| Statistic | Value(g) | Description |
 | :--- | ---: | :--- |
 | Mean | 100.0 | Expected value |
 | Deviation | 10.0 | Dispersion |
@@ -145,7 +144,7 @@ if __name__ == "__main__":
 ## 6. Math & Formulas
 
 - For long math resolutions, use the `math-resolution` class.
-- In this case, `div` tag is necessary. 
+- In this case, `div` tag is necessary.
 
 <div class="math-resolution">
 
@@ -167,10 +166,11 @@ $$ \begin{aligned} ... \end{aligned} $$
 ---
 
 ## 7. Imagery Guidelines
+
 ### Full Background
 
 - Use full backgrounds for **section breaks** or impactful openers.
-- Ensure the image has low contrast if you plan to place text over it (or let the theme handle it). 
+- Ensure the image has low contrast if you plan to place text over it (or let the theme handle it).
 
 ![bg](nb_img/paper2.jpg)
 
@@ -178,13 +178,11 @@ $$ \begin{aligned} ... \end{aligned} $$
 ![bg](nb_img/paper2.jpg)
 ```
 
-
-
 ---
 
 ### Side background
 
-Choose a beautiful image to fill the side of the slide. 
+Choose a beautiful image to fill the side of the slide.
 
 > [](#i) **Empty Space**
 > Use side background to avoid empty white spaces.
@@ -195,18 +193,15 @@ Choose a beautiful image to fill the side of the slide.
 
 ![bg left:56%](nb_img/paper2.jpg)
 
-
 ---
 
 ### Side background
 
 ... but right
-Content comes first 
-
+Content comes first
 
 > [](#i) **Monotony**
 > Alter the position of the image to avoid monotony.
-
 
 ```markdown
 ![bg right:44%](nb_img/paper2.jpg)
@@ -218,7 +213,7 @@ Content comes first
 
 ### Framed figure
 
-Easy way to layout a figure that doesn't fit as as borderless figure. 
+Easy way to layout a figure that doesn't fit as as borderless figure.
 
 ```markdown
 ![bg drop-shadow left:44% 80%](nb_img/paper2.jpg)
@@ -230,16 +225,14 @@ Easy way to layout a figure that doesn't fit as as borderless figure.
 
 ## Inline figure
 
-- Text flows naturally around inline figures. 
+- Text flows naturally around inline figures.
 - Use for panoramic images only.
 
 ![h:200 w:800 drop-shadow](nb_img/paper2.jpg)
 
-
 ```markdown
 ![h:200 w:800 drop-shadow](nb_img/paper2.jpg)
 ```
-
 
 ---
 
@@ -247,7 +240,7 @@ Easy way to layout a figure that doesn't fit as as borderless figure.
 
 ## Multi-column layout
 
-### Left Column 
+### Left Column
 
 Template:
 
@@ -259,17 +252,24 @@ Left content...
 Right content...
 ```
 
+table sample
+
+|Age|Weight|Name|
+|---:|---:|:---:|
+|20|80|John|
+|21|81|Jane|
+
 ![split]()
 
 ### Right Column
+
 - `h1` spans both columns.
-- Content flows automatically to the left column. 
+- Content flows automatically to the left column.
 - Use `![split]()` to force a column break.
 
 > [](#d) **Feature A**
 >
 > Minimal dark block with `highlighted` text.
-
 
 ---
 
@@ -278,6 +278,7 @@ Right content...
 ## 3-Column Layout
 
 ### Col 1
+
 Starts here.
 
 - Item A
@@ -289,16 +290,17 @@ Starts here.
 ![split]()
 
 ### Col 2
+
 Middle column.
 
 > [](#d) **Feature B**
 >
 > Minimal dark block with `highlighted` text.
 
-
 ![split]()
 
 ### Col 3
+
 Right column.
 
 ```markdown
@@ -319,7 +321,6 @@ Col 3
 
 Some regular text in the column flow.
 
-
 > [](#d) **Feature A**
 >
 > Minimal dark block with `highlighted` text.
@@ -334,8 +335,8 @@ int main() {
 
 ![split]()
 
-> [](#d) you don't need to use 
-> dark blocks, 
+> [](#d) you don't need to use
+> dark blocks,
 > just for fun.
 
 <br>
@@ -347,13 +348,11 @@ What a mess!
 
 ![split]()
 
-
-| Statistic | Value (g) | Description |
+| Statistic | Value(g) | Description |
 | :--- | ---: | :--- |
 | Mean | 100.0 | Expected value |
 | Deviation | 10.0 | Dispersion |
 | Z-Score | 2.5 | Significant |
-
 
 I could kill minutes in this single slide.
 

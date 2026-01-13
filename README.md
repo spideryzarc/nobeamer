@@ -2,19 +2,43 @@
 
 `nobeamer` is a presentation theme for Marp, designed for long presentations, lectures, and workshops where readability and visual engagement are key.
 
-## `nobeamer` is:
+## `nobeamer` is
 
 - Based on the default Marp theme
 - Modern and "Organic" (mix of paper and digital textures)
 - Aimed for classes and comprehensive decks
 - **High Contrast**: Optimized for low-quality projection environments (bright rooms, older projectors) where readability is critical
 
-## `nobeamer` is **not**:
+## `nobeamer` is **not**
 
 - LaTeX Beamer
 - Minimalist
 - Aimed for 5-minute sales pitches
 - Designed for rigid corporate environments (it prioritizes a friendly, organic vibe)
+
+## Installation & Setup
+
+To use this theme locally in VS Code with the Marp for VS Code extension:
+
+1. Ensure `nobeamer.css` is in your project root.
+2. Add the following configuration to your `.vscode/settings.json` file so Marp recognizes the custom theme:
+
+```json
+{
+    "markdown.marp.themes": [
+        "nobeamer.css"
+    ]
+}
+```
+
+1. Configure your Markdown file frontmatter to use the theme:
+
+```yaml
+---
+marp: true
+theme: nobeamer
+---
+```
 
 ---
 
@@ -32,6 +56,7 @@ Use specific links in standard blockquotes to trigger specialized card styles.
 | **Bento** | `> [](#d) **Title**` | Dark, digital style. Great for grids. |
 
 **Example:**
+
 ```markdown
 > [](#i) **Pro Tip**
 > This renders as a nice yellow card.
@@ -42,6 +67,7 @@ Use specific links in standard blockquotes to trigger specialized card styles.
 You can create 2 or 3 column layouts using section classes. Use the special image tag `![split]()` to force content into the next column.
 
 **2 Columns:**
+
 ```markdown
 <!-- _class: cols-2 -->
 
@@ -55,6 +81,7 @@ Content...
 ```
 
 **3 Columns:**
+
 ```markdown
 <!-- _class: cols-3 -->
 Column 1

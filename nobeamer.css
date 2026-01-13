@@ -1,7 +1,7 @@
 /* @theme nobeamer */
 
 @import 'default';
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@400;700;900&family=Josefin+Sans:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cousine:wght@400;700&family=Inter:wght@400;700;900&family=Josefin+Sans:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
 /* ==========================================================================
    1. VARIABLES & BASE SETTINGS
@@ -25,11 +25,11 @@
 }
 
 section {
-    background: #e8eee4;
+    background: #e4eeee;
     color: var(--text);
     /* Load order: Mac -> Windows -> Android -> Linux -> Generic */
     font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --font-code: "Consolas", "Monaco", "Courier New", monospace;
+    --font-code: "Liberation Mono", "Cousine", "Consolas", "Monaco", "Courier New", monospace;
     padding: var(--padding-general);
     letter-spacing: -0.01em;
     display: flex;
@@ -172,6 +172,7 @@ blockquote:has(a[href="#s"]) {
     /* Ensure texture covers the card */
     background-blend-mode: multiply;
     /* Blend color with texture */
+    background-image: url('nb_img/paper2.jpg');
 }
 
 /* Hide Trigger Links */
@@ -188,7 +189,7 @@ blockquote:has(a[href="#i"]) strong,
 blockquote:has(a[href="#a"]) strong,
 .card-success strong,
 blockquote:has(a[href="#s"]) strong {
-    color: #1e293b;
+    color: #000000;
     /* Slate 800 - Soft Black */
     font-weight: 700;
 }
@@ -199,8 +200,7 @@ blockquote:has(a[href="#s"]) strong {
 .card-info,
 blockquote:has(a[href="#i"]) {
     /* Post-it Yellow */
-    background-image: url('nb_img/paper2.jpg');
-    background-color: #ffe627;
+    background-color: #ffe627cc;
     color: #423c06;
 }
 
@@ -209,8 +209,7 @@ blockquote:has(a[href="#i"]) {
 .card-alert,
 blockquote:has(a[href="#a"]) {
     /* Alert Pink/Red */
-    background-color: #fecaca;
-    background-image: url('nb_img/paper2.jpg');
+    background-color: #ff4f4fcc;
     color: #450a0a;
 }
 
@@ -219,8 +218,7 @@ blockquote:has(a[href="#a"]) {
 .card-success,
 blockquote:has(a[href="#s"]) {
     /* Success Green */
-    background-color: #bbf7d0;
-    background-image: url('nb_img/paper2.jpg');
+    background-color: #58ff93cc;
     color: #052e16;
 }
 
@@ -260,8 +258,7 @@ blockquote a[href="#d"] {
 /* Bold text color override for dark background */
 .card-dark strong,
 blockquote:has(a[href="#d"]) strong {
-    color: #38bdf8;
-    /* Sky 400 */
+    color: #9ce1ff;
     font-weight: 700;
 }
 
@@ -285,6 +282,7 @@ blockquote:has(a[href="#d"]) code {
     border-radius: 0px 15px 15px 0px;
     box-shadow: var(--shadow-external);
     background-image: url('nb_img/paper2.jpg');
+    background-size: cover;
     color: #474747
 }
 
@@ -304,25 +302,27 @@ blockquote:has(a[href="#d"]) code {
 /* Scientific/APA Style Tables */
 table {
     border-collapse: collapse;
-    width: auto;
-    /* Adjust to content */
-    margin: var(--block-margin-y) auto;
+    margin: auto;
     font-size: 0.7em;
     border-top: 2px solid var(--secondary);
     border-bottom: 2px solid var(--secondary);
     box-shadow: var(--shadow-external);
+
 }
 
 th {
-    padding: 12px 15px;
+    padding: 2px 12px;
+    line-height: 1.1;
     text-align: center;
     font-weight: 700;
     color: var(--text);
-    letter-spacing: 0.05em;
+    letter-spacing: 0em;
+    font-family: var(--font-code);
 }
 
 td {
-    padding: 12px 15px;
+    padding: 2px 12px;
+    line-height: 1.1;
     text-align: center;
     border-bottom: 1px solid #e2e8f0;
     color: var(--text);
@@ -353,7 +353,7 @@ pre {
     position: relative;
 
     /* Opaque Glossy Effect */
-    background: linear-gradient(160deg, #ffffff 0%, #f1f5f9 100%);
+    background: linear-gradient(160deg, #ffffff 0%, #c9d1d8 100%);
     border: 1px solid #e2e8f0;
 
     /* Strong reflective highlights (gloss) */
