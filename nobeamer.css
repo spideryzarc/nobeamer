@@ -223,8 +223,8 @@ blockquote:has(a[href="#s"]) {
 .card-dark,
 blockquote:has(a[href="#d"]) {
     /* Visuals - Dark Glossy (High Contrast) */
-    background': linear-gradient(160deg, #142a36 0%, #020617 100%);
- color: #ffffff;
+    background: linear-gradient(160deg, #142a36 0%, #020617 100%);
+    color: #ffffff;
     border-radius: 15px;
 
     /* Reflection Highlights */
