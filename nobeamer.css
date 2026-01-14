@@ -1,7 +1,7 @@
 /* @theme nobeamer */
 
 @import 'default';
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cousine:wght@400;700&family=Inter:wght@400;700;900&family=Josefin+Sans:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cousine:wght@400;700&family=Inter:wght@300;400;700;900&family=Josefin+Sans:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
 /* ==========================================================================
    1. VARIABLES & BASE SETTINGS
@@ -63,7 +63,7 @@ h2 strong,
 h3 strong,
 h4 strong {
     font-weight: 700;
-    color: var(--secondary);
+    color: var(--tertiary);
 }
 
 h1 {
@@ -222,27 +222,40 @@ blockquote:has(a[href="#s"]) {
    Designed for multi-column layouts */
 .card-dark,
 blockquote:has(a[href="#d"]) {
-    /* Visuals - Dark Glossy (High Contrast) */
-    background: linear-gradient(160deg, #142a36 0%, #020617 100%);
+    /* Visuals - Dark Glossy (High Contrast Varnish) */
+    background-color: #020617;
+    background-image:
+        /* Top "wet" sheen that fades sharply */
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(255, 255, 255, 0) 50%),
+        /* Deep base gradient */
+        linear-gradient(160deg, #142a36 0%, #000000 100%);
+
     color: #ffffff;
     border-radius: 15px;
 
-    /* Reflection Highlights */
+    /* High Gloss Edges (Glassy/Wet look) */
     box-shadow:
         var(--shadow-external),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-        inset 1px 0 0 0 rgba(255, 255, 255, 0.05),
-        inset -1px -1px 0 0 rgba(0, 0, 0, 0.8);
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+        /* Sharp specular top edge */
+        inset 0 0 20px 0 rgba(0, 0, 0, 0.5);
+    /* Inner depth/absorption */
 
     /* Layout & Reset */
     width: auto;
     margin: var(--almost-touch-margin);
     padding: var(--block-padding-y) var(--padding-general);
-    border: 1px solid #1e293b;
+
+    /* Dark border that merges with shadow */
+    border: 1px solid rgba(0, 0, 0, 0.6);
+
     /* Typography */
-    font-family: "Inter", system-ui, sans-serif;
+    font-family: "Josefin Sans", sans-serif;
     font-size: 0.9em;
-    /* line-height: 1.5; */
+    font-weight: 300;
+    font-style: normal;
+
+    text-shadow: 0 0 4px var(--secondary);
 }
 
 /* Hide Trigger Link */
@@ -253,8 +266,9 @@ blockquote a[href="#d"] {
 /* Bold text color override for dark background */
 .card-dark strong,
 blockquote:has(a[href="#d"]) strong {
-    color: var(--secondary);
-    font-weight: 700;
+    color: var(--tertiary);
+    font-weight: 600;
+    text-shadow: none;
 }
 
 /* Code block inside dark card */

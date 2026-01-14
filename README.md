@@ -20,7 +20,7 @@
 
 To use this theme locally in VS Code with the Marp for VS Code extension:
 
-1. Ensure `nobeamer.css` is in your project root.
+1. Ensure `nobeamer.css` is in your project root as well as `nb_img` folder.
 2. Add the following configuration to your `.vscode/settings.json` file so Marp recognizes the custom theme:
 
 ```json
