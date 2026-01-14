@@ -12,7 +12,7 @@ title: "Theme Demo: nobeamer"
 This document serves as both a demo and a guideline for the `nobeamer` theme.
 Follow these rules to create beautiful, handwritten-style presentations.
 
-![bg left:56%](nb_img/paper2.jpg)
+![bg left:56%](images/blue_carnival.jpg)
 
 ---
 
@@ -28,17 +28,17 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 1. Ordered list
 2. Second item
 
-![bg left:10%](nb_img/paper2.jpg)
+![bg right:30%](images/dark_keyboard.jpg)
 
 ---
 
-# Titles
+# Titles **strong** _italics_
 
-## Subtitles
+## Subtitles **strong** _italics_
 
-### Sub-subtitles
+### Sub-subtitles **strong** _italics_
 
-#### Sub-sub-subtitles
+#### Sub-sub-subtitles **strong** _italics_
 
 ```markdown
 # Title
@@ -191,7 +191,7 @@ Choose a beautiful image to fill the side of the slide.
 ![bg left:56%](nb_img/paper2.jpg)
 ```
 
-![bg left:56%](nb_img/paper2.jpg)
+![bg left:56%](images/dark_curve.jpg)
 
 ---
 
@@ -204,10 +204,10 @@ Content comes first
 > Alter the position of the image to avoid monotony.
 
 ```markdown
-![bg right:44%](nb_img/paper2.jpg)
+![bg right:64%](nb_img/paper2.jpg)
 ```
 
-![bg right:44%](nb_img/paper2.jpg)
+![bg right:64%](images/dark_curve.jpg)
 
 ---
 
@@ -216,10 +216,10 @@ Content comes first
 Easy way to layout a figure that doesn't fit as as borderless figure.
 
 ```markdown
-![bg drop-shadow left:44% 80%](nb_img/paper2.jpg)
+![bg drop-shadow left:44% 95%](nb_img/paper2.jpg)
 ```
 
-![bg drop-shadow left:44% 80%](nb_img/paper2.jpg)
+![bg drop-shadow left:44% 95%](images/light_desk.jpg)
 
 ---
 
@@ -341,7 +341,7 @@ int main() {
 
 <br>
 
-![image w:500 h:250 drop-shadow](nb_img/paper2.jpg)
+![image w:500 drop-shadow](images/light_desk.jpg)
 
 Look at the image above.
 What a mess!

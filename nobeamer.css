@@ -7,10 +7,11 @@
    1. VARIABLES & BASE SETTINGS
    ========================================================================== */
 :root {
-    --text: #1d1d1d;
+    --text: #000000;
     /* Dark slate for perfect readability */
-    --secondary: #64748B;
-    --hcolor: #393631;
+    --primary: #204458;
+    --secondary: #d69500;
+    --tertiary: #0784ba;
     --shadow-external: 1px 1px 1px hsl(0deg 0% 0% / 0.075),
         2px 2px 2px hsl(0deg 0% 0% / 0.075),
         4px 4px 4px hsl(0deg 0% 0% / 0.075),
@@ -25,7 +26,7 @@
 }
 
 section {
-    background: #e4eeee;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4eeee 100%);
     color: var(--text);
     /* Load order: Mac -> Windows -> Android -> Linux -> Generic */
     font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -40,7 +41,7 @@ section {
 /* Discrete Pagination */
 section::after {
     font-weight: 500;
-    color: var(--secondary);
+    color: var(--primary);
     font-size: 14px;
 }
 
@@ -48,56 +49,50 @@ section::after {
    2. TYPOGRAPHY
    ========================================================================== */
 /* Titles Hierarchy */
-h1 {
+h1,
+h2,
+h3,
+h4 {
     font-family: "Josefin Sans", sans-serif;
+    color: var(--primary);
+    font-weight: 500;
+}
+
+h1 strong,
+h2 strong,
+h3 strong,
+h4 strong {
     font-weight: 700;
+    color: var(--secondary);
+}
+
+h1 {
     font-size: 70px;
-    color: var(--hcolor);
-    margin-bottom: 10px;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    letter-spacing: -0.05em;
+    text-shadow: var(--shadow-external);
 }
 
 h2 {
-    font-family: "Josefin Sans", sans-serif;
-    /* Consistent with H1 */
-    font-weight: 600;
     font-size: 48px;
-    color: var(--hcolor);
-    margin-bottom: 25px;
-    border-bottom: 1px solid #d1d5db;
-    /* Subtle separator */
-    padding-bottom: 5px;
-    width: 100%;
 }
 
 h3 {
-    font-family: "Inter", sans-serif;
-    font-weight: 700;
-    /* Bold but not heavy black */
     font-size: 36px;
-    color: #475569;
-    margin-top: 20px;
-    margin-bottom: 15px;
 }
 
 h4 {
-    font-family: "Inter", sans-serif;
-    font-weight: 600;
     font-size: 30px;
-    color: #475569;
-    margin-top: 15px;
-    margin-bottom: 10px;
 }
 
 h1::after {
     content: '';
     display: block;
     width: 120px;
-    height: 6px;
-    background: #b2b949;
+    height: 10px;
+    background: var(--secondary);
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: -10px;
+    box-shadow: var(--shadow-external);
 }
 
 /* ==========================================================================
@@ -228,8 +223,8 @@ blockquote:has(a[href="#s"]) {
 .card-dark,
 blockquote:has(a[href="#d"]) {
     /* Visuals - Dark Glossy (High Contrast) */
-    background: linear-gradient(160deg, #1e293b 0%, #020617 100%);
-    color: #f8fafc;
+    background': linear-gradient(160deg, #142a36 0%, #020617 100%);
+ color: #ffffff;
     border-radius: 15px;
 
     /* Reflection Highlights */
@@ -258,7 +253,7 @@ blockquote a[href="#d"] {
 /* Bold text color override for dark background */
 .card-dark strong,
 blockquote:has(a[href="#d"]) strong {
-    color: #9ce1ff;
+    color: var(--secondary);
     font-weight: 700;
 }
 
@@ -278,17 +273,17 @@ blockquote:has(a[href="#d"]) code {
     margin: var(--almost-touch-margin);
     border-right: 8px solid #635e6b;
     position: relative;
-    font-size: 0.6em;
+    font-size: 0.7em;
     border-radius: 0px 15px 15px 0px;
     box-shadow: var(--shadow-external);
     background-image: url('nb_img/paper2.jpg');
     background-size: cover;
-    color: #474747
+    color: #242524
 }
 
 
 .math-resolution::after {
-    content: "🧮";
+    content: "🤓";
     position: absolute;
     top: 10px;
     right: 0px;
@@ -302,7 +297,7 @@ blockquote:has(a[href="#d"]) code {
 /* Scientific/APA Style Tables */
 table {
     border-collapse: collapse;
-    margin: auto;
+    margin: var(--block-margin-y) auto;
     font-size: 0.7em;
     border-top: 2px solid var(--secondary);
     border-bottom: 2px solid var(--secondary);
