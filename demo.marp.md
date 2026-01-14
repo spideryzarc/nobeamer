@@ -12,7 +12,7 @@ title: "Theme Demo: nobeamer"
 This document serves as both a demo and a guideline for the `nobeamer` theme.
 Follow these rules to create beautiful, handwritten-style presentations.
 
-![bg left:56%](images/blue_carnival.jpg)
+![bg left:56%](images/pexels-pixabay-257092.jpg)
 
 ---
 
@@ -169,13 +169,15 @@ $$ \begin{aligned} ... \end{aligned} $$
 
 ### Full Background
 
-- Use full backgrounds for **section breaks** or impactful openers.
-- Ensure the image has low contrast if you plan to place text over it (or let the theme handle it).
+<!-- _backgroundImage: URL("images/light_desk.jpg") -->
+![bg right:40%](empty)
 
-![bg](nb_img/paper2.jpg)
+- Use full backgrounds for **section breaks** or impactful openers.
+- Here, `![bg right:40%](empty)` creates a fake margin, avoiding the one side of the image.
 
 ```markdown
-![bg](nb_img/paper2.jpg)
+<!-- backgroundImage: URL("images/image.jpg") -->
+![bg right:40%](empty)
 ```
 
 ---
@@ -188,14 +190,14 @@ Choose a beautiful image to fill the side of the slide.
 > Use side background to avoid empty white spaces.
 
 ```markdown
-![bg left:56%](nb_img/paper2.jpg)
+![bg left:56%](images/image.jpg)
 ```
 
-![bg left:56%](images/dark_curve.jpg)
+![bg left:56%](images/pexels-aronvisuals-1743165.jpg)
 
 ---
 
-### Side background
+### Side background (Right)
 
 ... but right
 Content comes first
@@ -204,19 +206,21 @@ Content comes first
 > Alter the position of the image to avoid monotony.
 
 ```markdown
-![bg right:64%](nb_img/paper2.jpg)
+![bg right:44%](images/image.jpg)
 ```
 
-![bg right:64%](images/dark_curve.jpg)
+>"The function of beauty is to be beautiful."
+
+![bg right:44%](images/pexels-hikaique-775201.jpg)
 
 ---
 
 ### Framed figure
 
-Easy way to layout a figure that doesn't fit as as borderless figure.
+Easy way to layout a figure that doesn't fit as a borderless figure.
 
 ```markdown
-![bg drop-shadow left:44% 95%](nb_img/paper2.jpg)
+![bg drop-shadow left:44% 95%](images/image.jpg)
 ```
 
 ![bg drop-shadow left:44% 95%](images/light_desk.jpg)
@@ -228,11 +232,11 @@ Easy way to layout a figure that doesn't fit as as borderless figure.
 - Text flows naturally around inline figures.
 - Use for panoramic images only.
 
-![h:200 w:800 drop-shadow](nb_img/paper2.jpg)
-
 ```markdown
-![h:200 w:800 drop-shadow](nb_img/paper2.jpg)
+![h:200 w:800 drop-shadow](images/image.jpg)
 ```
+
+![h:200 w:800 drop-shadow](nb_img/paper2.jpg)
 
 ---
 
@@ -285,7 +289,7 @@ Starts here.
 - Item B
 
 > [](#a) **Attention**
-> `alert`, `info` and `success` blocks fits only on first column.
+> `alert`, `info` and `success` blocks fit only on first column.
 
 ![split]()
 
