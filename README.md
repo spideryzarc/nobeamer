@@ -1,3 +1,5 @@
+> "Não os esconderemos dos seus filhos; contaremos à geração vindoura os louvores do Senhor, e o seu poder, e as maravilhas que fez." (Salmo 78:4)
+
 # nobeamer
 
 `nobeamer` stands as a lively alternative to the rigid sterility of **LaTeX Beamer** and the stark minimalism of the **standard Marp theme**.
@@ -20,11 +22,19 @@ Designed for the marathon rather than the sprint, it prioritizes visual warmth a
 - **Rigidly Corporate/Academic**: Trades the buttoned-up, standardized look for a friendly, approachable atmosphere
 - **Endlessly Configurable**: An opinionated, zero-config theme. No parameters or color schemes to fiddle with—it works perfectly out of the box (though you are free to fork)
 
+
+## Demos
+
+Check out the compiled HTML examples included in this repository:
+
+- **[Theme Features Tour](demo.marp.html)**
+- **[The Quadratic Formula](bhaskara.marp.html)** (Applied example: Making math visual)
+
 ## Installation & Setup
 
 To use this theme locally in VS Code with the Marp for VS Code extension:
 
-1. Ensure `nobeamer.css` is in your project root as well as `nb_img` folder.
+1. Ensure `nobeamer.css` is in your project root as well as `nb_img` folder. You don't need the `images` folder from the repo, it's just for sample slides.
 2. Add the following configuration to your `.vscode/settings.json` file so Marp recognizes the custom theme:
 
 ```json
