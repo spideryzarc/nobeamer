@@ -391,6 +391,7 @@ img:not(.emoji) {
     margin: 0 auto;
 }
 
+
 /* Ensure emojis remain inline and properly aligned */
 img.emoji {
     display: inline-block;
@@ -398,6 +399,8 @@ img.emoji {
     height: 1em;
     vertical-align: -0.1em;
 }
+
+
 
 
 /* ==========================================================================

@@ -30,6 +30,7 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ![bg right:30%](images/dark_keyboard.jpg)
 
+
 ---
 
 # Titles **strong** _italics_
@@ -46,6 +47,8 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 ### Sub-subtitle
 #### Sub-sub-subtitle
 ```
+
+![bg drop-shadow right:30% 90%](images/Beamer5ws1.png)
 
 ---
 
@@ -104,6 +107,8 @@ Emoji suggestions: (✅, 🏆, ✔️, 🥇, )🎉, 🥳, 🚀)
 ```
 
 ---
+
+### Dark Block
 
 > [](#d) **Dark Block**
 > Use the **Dark Block** for highlighted text.
