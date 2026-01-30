@@ -22,13 +22,12 @@ Designed for the marathon rather than the sprint, it prioritizes visual warmth a
 - **Rigidly Corporate/Academic**: Trades the buttoned-up, standardized look for a friendly, approachable atmosphere
 - **Endlessly Configurable**: An opinionated, zero-config theme. No parameters or color schemes to fiddle with—it works perfectly out of the box (though you are free to fork)
 
-
 ## Demos
 
 Check out the compiled HTML examples included in this repository:
 
-- **[Theme Features Tour](demo.marp.html)**
-- **[The Quadratic Formula](bhaskara.marp.html)** (Applied example: Making math visual)
+- **[Theme Features Tour](https://spideryzarc.github.io/nobeamer/demo.marp.html)**
+- **[The Quadratic Formula](https://spideryzarc.github.io/nobeamer/bhaskara.marp.html)** (Applied example: Making math visual)
 
 ## Installation & Setup
 
@@ -105,21 +104,49 @@ Column 2
 Column 3
 ```
 
+### Math & Formulas
+
+For extensive mathematical derivations, use the `.math-resolution` class. This creates a focused, paper-styled block distinct from standard slides.
+
+```html
+<div class="math-resolution">
+$$
+\begin{aligned}
+    P(X \le x) &= \sum_{i=0}^x \binom{n}{i} p^i (1-p)^{n-i}
+\end{aligned}
+$$
+</div>
+```
+
+### Scientific Tables
+
+Tables are automatically styled to resemble APA/Scientific publication standards—minimal vertical lines, strong horizontal delimiters, and monospaced data for precision.
+
+### Visual Code Blocks
+
+Code blocks (`pre`) are styled with a glossy, Mac-OS inspired aesthetic to pop against paper backgrounds. No special class is required.
+
 ## Guidelines
- 
+
 ### 1. The "Teacher's Voice"
+
 Use standard blockquotes (`>`) for informal remarks, anecdotes, or spoken-word emphasis. This mimics a handwritten note and helps break the robotic flow of formal content, re-engaging the audience's attention.
- 
+
 ### 2. Fight the White Space
+
 Empty white space is the enemy of engagement in long sessions.
+
 - **Visual Vibe Checks**: Images don't always need to be informative diagrams. Teaching matrix determinants? A side image of a perfectly aligned tray of apples captures the *vibe* of a matrix while giving the brain a break from formulas.
 - **Side Backgrounds**: Use `bg left:xxx` to fill voids with these thematic visuals.
 - **Mental Palette Cleansers**: Use full backgrounds to separate major sections.
- 
+
 ### 3. The "Proto-Bento" Grid
+
 When using multi-column layouts, avoid perfect alignment.
+
 - Use **Dark Blocks** (`#d`) with slight negative margins (builtin) to create organic, misaligned grids.
 - A slightly messy layout looks less like a spreadsheet and more like a scrapbook, which feels more human and less fatiguing over time.
- 
+
 ### 4. Contrast is King
+
 "Dark mode" is great for coding, but often terrible for cheap classroom projectors. `nobeamer` embraces high-contrast, light backgrounds to ensure that even the back row can read every word without squinting.
