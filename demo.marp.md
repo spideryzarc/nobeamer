@@ -30,7 +30,6 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ![bg right:30%](images/dark_keyboard.jpg)
 
-
 ---
 
 # Titles **strong** _italics_
@@ -96,7 +95,7 @@ Emoji suggestions: (⚠️, 📢, 🚨, ‼️, ⛔, ☠️)
 
 ### Success
 
-Emoji suggestions: (✅, 🏆, ✔️, 🥇, )🎉, 🥳, 🚀)
+Emoji suggestions: (✅, 🏆, ✔️, 🥇, 🎉, 🥳, 🚀)
 
 > [](#s) 🎉 **Success / Solution**
 > Use the **Success Card** for correct answers, conclusions, or good practices.
@@ -181,7 +180,7 @@ $$ \begin{aligned} ... \end{aligned} $$
 - Here, `![bg right:40%](empty)` creates a fake margin, avoiding the one side of the image.
 
 ```markdown
-<!-- backgroundImage: URL("images/image.jpg") -->
+<!-- _backgroundImage: URL("images/image.jpg") -->
 ![bg right:40%](empty)
 ```
 

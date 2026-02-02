@@ -98,6 +98,7 @@ h1::after {
 /* ==========================================================================
    3. BLOCKQUOTES & PAPER CARDS
    ========================================================================== */
+
 /* Standard Handwritten Paper Card */
 blockquote,
 .marp-card {
@@ -135,6 +136,19 @@ blockquote em {
       - .card-success OR > [](#s) Content
    ========================================================================== */
 
+/* Animação de Entrada Lateral (sem bounce) */
+@keyframes slide-in-left {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 /* Shared Base Styles for Specialized Cards */
 .card-info,
 blockquote:has(a[href="#i"]),
@@ -168,6 +182,9 @@ blockquote:has(a[href="#s"]) {
     background-blend-mode: multiply;
     /* Blend color with texture */
     background-image: url('nb_img/paper2.jpg');
+
+    /* Animação de entrada lateral */
+    animation: slide-in-left 0.7s ease-out both;
 }
 
 /* Hide Trigger Links */
@@ -218,6 +235,30 @@ blockquote:has(a[href="#s"]) {
 }
 
 
+/* ==========================================================================
+   Animação para o Bloco Dark
+   ========================================================================== */
+@keyframes slide-bounce {
+    0% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    60% {
+        transform: translateY(5px);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translateY(-2px);
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 /* Bento Dark Card (#d) 
    Designed for multi-column layouts */
 .card-dark,
@@ -256,6 +297,9 @@ blockquote:has(a[href="#d"]) {
     font-style: normal;
 
     text-shadow: 0 0 4px var(--secondary);
+
+    /* Animação única no carregamento */
+    animation: slide-bounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
 }
 
 /* Hide Trigger Link */
@@ -308,6 +352,20 @@ blockquote:has(a[href="#d"]) code {
 /* ==========================================================================
    6. TABLES
    ========================================================================== */
+
+/* Animação de Apresentação de Tabela */
+@keyframes slide-up-fade {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 /* Scientific/APA Style Tables */
 table {
     border-collapse: collapse;
@@ -317,6 +375,8 @@ table {
     border-bottom: 2px solid var(--primary);
     box-shadow: var(--shadow-external);
 
+    /* Animação de apresentação */
+    animation: slide-up-fade 0.8s ease-out both;
 }
 
 th {
@@ -353,6 +413,42 @@ tr:first-of-type {
 /* ==========================================================================
    7. CODE BLOCKS
    ========================================================================== */
+
+/* Varredura de Luz Tech (Scan Line Rápida) */
+@keyframes tech-scan {
+    0% {
+        left: -150%;
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+
+/* Monitor Ligando (Escuro → Claro) */
+@keyframes power-up {
+    0% {
+        filter: brightness(0.15) contrast(0.5);
+    }
+
+    100% {
+        filter: brightness(1) contrast(1);
+    }
+}
+
+/* Pulso de Glow Sutil ao Final */
+@keyframes glow-pulse {
+
+    0%,
+    100% {
+        filter: brightness(1) drop-shadow(0 0 0px rgba(7, 132, 186, 0));
+    }
+
+    50% {
+        filter: brightness(1.08) drop-shadow(0 0 6px rgba(7, 132, 186, 0.3));
+    }
+}
+
 pre {
     margin: var(--almost-touch-margin);
     padding: var(--block-padding-y) var(--padding-general);
@@ -372,14 +468,44 @@ pre {
         inset 1px 0 0 0 rgba(255, 255, 255, 0.8),
         inset -1px -1px 0 0 rgba(0, 0, 0, 0.05);
     /* Soft depth */
+
+    /* Monitor acendendo + pulso final */
+    animation:
+        power-up 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both,
+        glow-pulse 0.6s ease-in-out 0.9s both;
+    overflow: hidden;
 }
 
+/* Efeito de Varredura de Luz Tech */
+pre::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(7, 132, 186, 0.15) 10%,
+            rgba(255, 255, 255, 0.6) 45%,
+            rgba(255, 255, 255, 0.8) 50%,
+            rgba(255, 255, 255, 0.6) 55%,
+            rgba(7, 132, 186, 0.15) 90%,
+            transparent 100%);
+    box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.5);
+    animation: tech-scan 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Emoji de código (acima da camada de luz) */
 pre::before {
     content: "💻";
     position: absolute;
     top: 5px;
     right: 5px;
     font-size: 1em;
+    z-index: 2;
 }
 
 /* ==========================================================================
