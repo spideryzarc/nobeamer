@@ -3,7 +3,9 @@
         "date": "2026-01-30T15:23:00",
         "objective": "Update README",
         "result": "Updated README.md with Math, Tables, and Code Block documentation.",
-        "changed_files": ["README.md"],
+        "changed_files": [
+            "README.md"
+        ],
         "status": "success",
         "notes": "Reflected CSS features found in nobeamer.css and demo.marp.md into the Usage Guide."
     },
@@ -11,8 +13,21 @@
         "date": "2026-02-02T19:21:00",
         "objective": "Implement CSS animations for slide elements",
         "result": "Added animations for dark cards, lateral cards, code blocks, and tables; removed blockquote animation per user request",
-        "changed_files": ["nobeamer.css", "demo.marp.md"],
+        "changed_files": [
+            "nobeamer.css",
+            "demo.marp.md"
+        ],
         "status": "success",
         "notes": "Implemented slide-bounce for dark cards, slide-in for lateral cards, power-up + tech-scan for code blocks, slide-up-fade for tables. Removed automatic delay system and blockquote animation for simplicity."
+    },
+    {
+        "date": "2026-03-05T10:15:00",
+        "objective": "Translate syllabus content to English",
+        "result": "Fixed CSS layout breakage by removing block display from strong element inside #step component",
+        "changed_files": [
+            "/home/einstein/projects/nobeamer/demo.marp.md"
+        ],
+        "status": "success",
+        "notes": ""
     }
 ]

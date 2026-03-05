@@ -365,3 +365,25 @@ What a mess!
 I could kill minutes in this single slide.
 
 > [](#d) As long as you keep the blocks **misaligned**, it will look less like a grid.
+
+---
+<!-- _class: cols-2 -->
+
+## Syllabus
+
+Our course is divided into 4 main constructive axes.
+
+> [](#step) 🌐 **Unit I: Fundamentals**
+> Web fundamentals and concepts, Client-Server architecture, and APIs (Leveling up on the Internet).
+
+
+> [](#step) 🐍 **Unit II: Python APIs**
+> Practical development of RESTful APIs using Python frameworks (such as FastAPI/Flask).
+
+![split]()
+
+> [](#step) ⚡ **Unit III: Optimization**
+> Optimization in Python using the revolutionary **Google OR-Tools** library (Linear, Integer, and Constraint Programming).
+
+> [](#step) 🚀 **Unit IV: Integration**
+> We will unite the Web layer with the optimization super powers in our big final project.

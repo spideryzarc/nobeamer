@@ -564,3 +564,69 @@ section.cols-3 img[alt="split"] {
     padding: 0;
     visibility: hidden;
 }
+
+/* ==========================================================================
+   10. MODERN SYLLABUS / STEP CARDS (#step)
+   ========================================================================== */
+@keyframes slide-in-bottom {
+    0% {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+blockquote:has(a[href="#step"]) {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.05),
+        inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    padding: 12px 20px;
+    margin: 10px 0;
+    width: auto;
+    animation: slide-in-bottom 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    position: relative;
+    overflow: hidden;
+
+    /* Reset handwritten text */
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.85em;
+    color: #334155;
+    background-image: none;
+}
+
+/* Gradient line on the top */
+blockquote:has(a[href="#step"])::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--tertiary), var(--secondary));
+}
+
+blockquote a[href="#step"] {
+    display: none;
+}
+
+blockquote:has(a[href="#step"]) strong {
+    color: var(--primary);
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.25em;
+    font-weight: 700;
+    text-shadow: none;
+}
+
+blockquote:has(a[href="#step"]) p {
+    margin: 0;
+    line-height: 1.5;
+}
