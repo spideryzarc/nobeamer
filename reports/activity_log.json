@@ -29,5 +29,35 @@
         ],
         "status": "success",
         "notes": ""
+    },
+    {
+        "date": "2026-03-07T09:32:52",
+        "objective": "Aumentar um pouco o espaçamento vertical entre os blocos do tipo step",
+        "result": "Aumentada a margem vertical dos blocos #step de 10px para 18px",
+        "changed_files": [
+            "/home/einstein/projects/nobeamer/nobeamer.css"
+        ],
+        "status": "success",
+        "notes": ""
+    },
+    {
+        "date": "2026-03-07T09:37:05",
+        "objective": "Mover slide de Syllabus e adequar para demonstração de Step Cards",
+        "result": "Slide de currículo removido do final e recriado na seção Specialized Cards como um bloco genérico de demonstração do componente.",
+        "changed_files": [
+            "/home/einstein/projects/nobeamer/demo.marp.md"
+        ],
+        "status": "success",
+        "notes": ""
+    },
+    {
+        "date": "2026-03-07T09:39:18",
+        "objective": "Criar um slide de sumário/syllabus para a demonstração usando o bloco step",
+        "result": "Criado um novo slide 'Demo Syllabus' no início da apresentação utilizando os componentes de step block em um layout de duas colunas.",
+        "changed_files": [
+            "/home/einstein/projects/nobeamer/demo.marp.md"
+        ],
+        "status": "success",
+        "notes": ""
     }
 ]

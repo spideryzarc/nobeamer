@@ -590,7 +590,7 @@ blockquote:has(a[href="#step"]) {
         0 4px 15px rgba(0, 0, 0, 0.05),
         inset 0 1px 1px rgba(255, 255, 255, 0.9);
     padding: 12px 20px;
-    margin: 10px 0;
+    margin: 18px 0;
     width: auto;
     animation: slide-in-bottom 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
     position: relative;

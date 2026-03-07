@@ -16,6 +16,28 @@ Follow these rules to create beautiful, handwritten-style presentations.
 
 ---
 
+<!-- _class: cols-2 -->
+
+## Demo Syllabus
+
+Overview of what we'll cover in this demo:
+
+> [](#step) 📝 **1. Typography & Cards**
+> Fonts, lists, standard blockquotes, and specialized cards.
+
+> [](#step) 📊 **2. Data & Code**
+> Tables, technical code blocks, and mathematical formulas.
+
+![split]()
+
+> [](#step) 🖼️ **3. Imagery Guidelines**
+> Full backgrounds, side backgrounds, framed, and inline figures.
+
+> [](#step) 📐 **4. Layout & Utilities**
+> Multi-column grids and proto-bento layouts for complex content.
+
+---
+
 ## 1. Typography & Readability
 
 Normal text for reading. The design focuses on **contrast** and _readability_.
@@ -114,6 +136,21 @@ Emoji suggestions: (✅, 🏆, ✔️, 🥇, 🎉, 🥳, 🚀)
 
 ```markdown
 > [](#d) **Dark Block**
+> Content...
+```
+
+---
+
+### Step Cards
+
+> [](#step) 🎨 **Step 1: Planning**
+> Use the **Step Block** for timelines, processes, or syllabus elements.
+
+> [](#step) 🚀 **Step 2: Execution**
+> They stack neatly and feature modern glassmorphism styling.
+
+```markdown
+> [](#step) 🎨 **Step 1: Planning**
 > Content...
 ```
 
@@ -365,25 +402,3 @@ What a mess!
 I could kill minutes in this single slide.
 
 > [](#d) As long as you keep the blocks **misaligned**, it will look less like a grid.
-
----
-<!-- _class: cols-2 -->
-
-## Syllabus
-
-Our course is divided into 4 main constructive axes.
-
-> [](#step) 🌐 **Unit I: Fundamentals**
-> Web fundamentals and concepts, Client-Server architecture, and APIs (Leveling up on the Internet).
-
-
-> [](#step) 🐍 **Unit II: Python APIs**
-> Practical development of RESTful APIs using Python frameworks (such as FastAPI/Flask).
-
-![split]()
-
-> [](#step) ⚡ **Unit III: Optimization**
-> Optimization in Python using the revolutionary **Google OR-Tools** library (Linear, Integer, and Constraint Programming).
-
-> [](#step) 🚀 **Unit IV: Integration**
-> We will unite the Web layer with the optimization super powers in our big final project.
