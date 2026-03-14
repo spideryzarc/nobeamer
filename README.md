@@ -57,7 +57,7 @@ theme: nobeamer
 
 ## Usage Guide
 
-### specialized Cards (Blockquotes)
+### Specialized Cards (Blockquotes)
 
 Use specific links in standard blockquotes to trigger specialized card styles.
 
@@ -67,6 +67,8 @@ Use specific links in standard blockquotes to trigger specialized card styles.
 | **Alert** | `> [](#a) **Title**` | Red style for warnings. |
 | **Success** | `> [](#s) **Title**` | Green style for solutions/results. |
 | **Bento** | `> [](#d) **Title**` | Dark, digital style. Great for grids. |
+| **Step** | `> [](#step) **Title**` | Glassmorphism card for timelines/syllabus. |
+| **Definition** | `> [](#def) **Title**` | Glassmorphism card for definitions (purple-teal gradient). |
 
 **Example:**
 
@@ -125,6 +127,26 @@ Tables are automatically styled to resemble APA/Scientific publication standards
 ### Visual Code Blocks
 
 Code blocks (`pre`) are styled with a glossy, Mac-OS inspired aesthetic to pop against paper backgrounds. No special class is required.
+
+### Disabling Animations
+
+All theme animations (code blocks, tables, dark blocks, lateral cards) can be disabled via the `no-anim` class.
+
+**Globally** (all slides):
+
+```yaml
+---
+marp: true
+theme: nobeamer
+class: lead no-anim
+---
+```
+
+**Per slide:**
+
+```markdown
+<!-- _class: no-anim -->
+```
 
 ## Guidelines
 

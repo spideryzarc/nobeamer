@@ -565,6 +565,18 @@ section.cols-3 img[alt="split"] {
     visibility: hidden;
 }
 
+/* Disable All Animations
+   Usage in frontmatter:  class: lead no-anim
+   Usage per slide:       <!-- _class: no-anim --> */
+section.no-anim,
+section.no-anim *,
+section.no-anim::before,
+section.no-anim::after,
+section.no-anim *::before,
+section.no-anim *::after {
+    animation: none !important;
+}
+
 /* ==========================================================================
    10. MODERN SYLLABUS / STEP CARDS (#step) & DEFINITION CARDS (#def)
    ========================================================================== */
