@@ -22,23 +22,23 @@ Follow these rules to create beautiful, handwritten-style presentations.
 
 Overview of what we'll cover in this demo:
 
-> [](#step) 📝 **1. Typography & Cards**
+> [](#step) 📝 **Typography & Cards**
 > Fonts, lists, standard blockquotes, and specialized cards.
 
-> [](#step) 📊 **2. Data & Code**
+> [](#step) 📊 **Data & Code**
 > Tables, technical code blocks, and mathematical formulas.
 
 ![split]()
 
-> [](#step) 🖼️ **3. Imagery Guidelines**
+> [](#step) 🖼️ **Imagery Guidelines**
 > Full backgrounds, side backgrounds, framed, and inline figures.
 
-> [](#step) 📐 **4. Layout & Utilities**
+> [](#step) 📐 **Layout & Utilities**
 > Multi-column grids and proto-bento layouts for complex content.
 
 ---
 
-## 1. Typography & Readability
+## Typography & Readability
 
 Normal text for reading. The design focuses on **contrast** and _readability_.
 
@@ -73,7 +73,7 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ---
 
-## 2. Using Standard Cards
+## Using Standard Cards
 
 > Use standard blockquotes for **informal remarks** or "teacher's voice".
 > This style mimics a handwritten note and should be used to break the flow of formal content.
@@ -84,7 +84,7 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ---
 
-## 3. Specialized Cards
+## Specialized Cards
 
 ### Information
 
@@ -143,20 +143,35 @@ Emoji suggestions: (✅, 🏆, ✔️, 🥇, 🎉, 🥳, 🚀)
 
 ### Step Cards
 
-> [](#step) 🎨 **Step 1: Planning**
+> [](#step) 🎨 **Planning**
 > Use the **Step Block** for timelines, processes, or syllabus elements.
 
-> [](#step) 🚀 **Step 2: Execution**
+> [](#step) 🚀 **Execution**
 > They stack neatly and feature modern glassmorphism styling.
 
 ```markdown
-> [](#step) 🎨 **Step 1: Planning**
+> [](#step) 🎨 **Planning**
 > Content...
 ```
 
 ---
 
-## 4. Data Presentation
+### Definition Cards
+
+> [](#def) 📖 **Algorithm**
+> A finite sequence of well-defined instructions to solve a class of problems or perform a computation.
+
+> [](#def) 📖 **Complexity**
+> A measure of the resources (time, space) required by an algorithm as a function of input size.
+
+```markdown
+> [](#def) 📖 **Term**
+> Definition content...
+```
+
+---
+
+## Data Presentation
 
 The standard boring table...
 
@@ -168,7 +183,7 @@ The standard boring table...
 
 ---
 
-## 5. Code Presentation
+## Code Presentation
 
 I know we all love dark mode, but not for presentations.
 
@@ -182,7 +197,7 @@ if __name__ == "__main__":
 
 ---
 
-## 6. Math & Formulas
+## Math & Formulas
 
 - For long math resolutions, use the `math-resolution` class.
 - In this case, `div` tag is necessary.
@@ -206,7 +221,7 @@ $$ \begin{aligned} ... \end{aligned} $$
 
 ---
 
-## 7. Imagery Guidelines
+## Imagery Guidelines
 
 ### Full Background
 

@@ -128,11 +128,11 @@ Code blocks (`pre`) are styled with a glossy, Mac-OS inspired aesthetic to pop a
 
 ## Guidelines
 
-### 1. The "Teacher's Voice"
+### The "Teacher's Voice"
 
 Use standard blockquotes (`>`) for informal remarks, anecdotes, or spoken-word emphasis. This mimics a handwritten note and helps break the robotic flow of formal content, re-engaging the audience's attention.
 
-### 2. Fight the White Space
+### Fight the White Space
 
 Empty white space is the enemy of engagement in long sessions.
 
@@ -140,13 +140,13 @@ Empty white space is the enemy of engagement in long sessions.
 - **Side Backgrounds**: Use `bg left:xxx` to fill voids with these thematic visuals.
 - **Mental Palette Cleansers**: Use full backgrounds to separate major sections.
 
-### 3. The "Proto-Bento" Grid
+### The "Proto-Bento" Grid
 
 When using multi-column layouts, avoid perfect alignment.
 
 - Use **Dark Blocks** (`#d`) with slight negative margins (builtin) to create organic, misaligned grids.
 - A slightly messy layout looks less like a spreadsheet and more like a scrapbook, which feels more human and less fatiguing over time.
 
-### 4. Contrast is King
+### Contrast is King
 
 "Dark mode" is great for coding, but often terrible for cheap classroom projectors. `nobeamer` embraces high-contrast, light backgrounds to ensure that even the back row can read every word without squinting.

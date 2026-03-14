@@ -59,5 +59,27 @@
         ],
         "status": "success",
         "notes": ""
+    },
+    {
+        "date": "2026-03-14T10:10:25",
+        "objective": "Remover a numeração das seções da apresentação",
+        "result": "Removida a numeração manual dos cabeçalhos e itens do sumário em demo.marp.md e README.md",
+        "changed_files": [
+            "/home/einstein/projects/nobeamer/demo.marp.md",
+            "/home/einstein/projects/nobeamer/README.md"
+        ],
+        "status": "success",
+        "notes": ""
+    },
+    {
+        "date": "2026-03-14T10:17:54",
+        "objective": "Criar bloco #def para definições no estilo do #step",
+        "result": "Criado novo bloco #def com glassmorphism compartilhado com #step, gradiente roxo-para-teal e margem vertical maior (28px). Adicionado slide de demonstração no demo.marp.md.",
+        "changed_files": [
+            "/home/einstein/projects/nobeamer/nobeamer.css",
+            "/home/einstein/projects/nobeamer/demo.marp.md"
+        ],
+        "status": "success",
+        "notes": ""
     }
 ]
