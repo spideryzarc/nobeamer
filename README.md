@@ -128,25 +128,9 @@ Tables are automatically styled to resemble APA/Scientific publication standards
 
 Code blocks (`pre`) are styled with a glossy, Mac-OS inspired aesthetic to pop against paper backgrounds. No special class is required.
 
-### Disabling Animations
+### Print / PDF Export
 
-All theme animations (code blocks, tables, dark blocks, lateral cards) can be disabled via the `no-anim` class.
-
-**Globally** (all slides):
-
-```yaml
----
-marp: true
-theme: nobeamer
-class: lead no-anim
----
-```
-
-**Per slide:**
-
-```markdown
-<!-- _class: no-anim -->
-```
+All theme animations (code blocks, tables, dark blocks, lateral cards) are **automatically disabled** when exporting to PDF or printing. No manual class or configuration is needed — the theme uses `@media print` to strip animations, transitions, transforms, filters, and `backdrop-filter` globally, ensuring a clean static output.
 
 ## Guidelines
 

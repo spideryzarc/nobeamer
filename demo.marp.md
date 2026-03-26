@@ -395,9 +395,9 @@ int main() {
 
 ![split]()
 
-> [](#d) you don't need to use
-> dark blocks,
-> just for fun.
+> [](#step) **Step**
+> you don't need to use
+> dark blocks, just for fun.
 
 <br>
 
@@ -416,4 +416,5 @@ What a mess!
 
 I could kill minutes in this single slide.
 
-> [](#d) As long as you keep the blocks **misaligned**, it will look less like a grid.
+> [](#def) **Bento**
+>As long as you keep the blocks **misaligned**, it will look less like a grid.

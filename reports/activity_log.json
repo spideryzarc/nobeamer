@@ -73,11 +73,20 @@
     },
     {
         "date": "2026-03-14T10:17:54",
-        "objective": "Criar bloco #def para definições no estilo do #step",
-        "result": "Criado novo bloco #def com glassmorphism compartilhado com #step, gradiente roxo-para-teal e margem vertical maior (28px). Adicionado slide de demonstração no demo.marp.md.",
+        "objective": "Fix disappearance of #step and #def cards in PDF export",
+        "result": "Added an @media print rule to substitute backdrop-filter with a solid background color to fix PDF rendering bugs in Chromium",
         "changed_files": [
-            "/home/einstein/projects/nobeamer/nobeamer.css",
-            "/home/einstein/projects/nobeamer/demo.marp.md"
+            "/home/einstein/projects/nobeamer/nobeamer.css"
+        ],
+        "status": "success",
+        "notes": ""
+    },
+    {
+        "date": "2026-03-26T14:52:09",
+        "objective": "Fix math-resolution characters condensed in PDF",
+        "result": "Removed transform: none from global @media print rule — it was killing KaTeX transforms that position math characters. animation: none already handles animated transforms.",
+        "changed_files": [
+            "/home/einstein/projects/nobeamer/nobeamer.css"
         ],
         "status": "success",
         "notes": ""
