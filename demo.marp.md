@@ -131,8 +131,10 @@ Emoji suggestions: (✅, 🏆, ✔️, 🥇, 🎉, 🥳, 🚀)
 
 ### Dark Block
 
-> [](#d) **Dark Block**
-> Use the **Dark Block** for highlighted text.
+> [](#d) Use the Dark Block for highlighted *text*.
+> This is a **bold** text.
+> This is an *italic* text.
+> This is a `code` text.
 
 ```markdown
 > [](#d) **Dark Block**
@@ -146,8 +148,10 @@ Emoji suggestions: (✅, 🏆, ✔️, 🥇, 🎉, 🥳, 🚀)
 > [](#step) 🎨 **Planning**
 > Use the **Step Block** for timelines, processes, or syllabus elements.
 
-> [](#step) 🚀 **Execution**
-> They stack neatly and feature modern glassmorphism styling.
+> [](#step) 🚀 **Text**
+> This is a **bold** text.
+> This is an *italic* text.
+> This is a `code` text.
 
 ```markdown
 > [](#step) 🎨 **Planning**
@@ -161,8 +165,10 @@ Emoji suggestions: (✅, 🏆, ✔️, 🥇, 🎉, 🥳, 🚀)
 > [](#def) 📖 **Algorithm**
 > A finite sequence of well-defined instructions to solve a class of problems or perform a computation.
 
-> [](#def) 📖 **Complexity**
-> A measure of the resources (time, space) required by an algorithm as a function of input size.
+> [](#def) 📖 **Text**
+> This is a **bold** text.
+> This is an *italic* text.
+> This is a `code` text.
 
 ```markdown
 > [](#def) 📖 **Term**
