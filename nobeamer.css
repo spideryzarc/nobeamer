@@ -156,13 +156,13 @@ blockquote:has(a[href="#i"]),
 blockquote:has(a[href="#a"]),
 .card-success,
 blockquote:has(a[href="#s"]) {
-    width: 33%;
+    width: 37%;
     /* Occupies ~1/3 of screen and sticks to left */
-    min-width: 300px;
+    min-width: 350px;
     /* touch the left border of the slide*/
     margin: var(--block-margin-y) calc(var(--padding-general) * -1);
     /* preserve padding on the left */
-    padding: var(--block-padding-y) var(--padding-general);
+    padding: var(--block-padding-y) 15px var(--block-padding-y) var(--padding-general);
     /* Right space for icon, left to compensate negative margin */
     box-shadow: var(--shadow-external);
     border-radius: 0 25px 25px 0;
