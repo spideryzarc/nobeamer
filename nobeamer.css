@@ -293,10 +293,10 @@ blockquote:has(a[href="#d"]) {
     /* Typography */
     font-family: "Josefin Sans", sans-serif;
     font-size: 0.9em;
-    font-weight: 300;
+    font-weight: 400;
     font-style: normal;
 
-    text-shadow: 0 0 4px var(--secondary);
+    /* text-shadow: 0 0 4px var(--secondary); */
 
     /* Animação única no carregamento */
     animation: slide-bounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
@@ -310,7 +310,7 @@ blockquote a[href="#d"] {
 /* Bold text color override for dark background */
 .card-dark strong,
 blockquote:has(a[href="#d"]) strong {
-    color: var(--tertiary);
+    color: var(--secondary);
     font-weight: 600;
     text-shadow: none;
 }
