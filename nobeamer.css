@@ -272,7 +272,8 @@ blockquote:has(a[href="#d"]) {
         linear-gradient(160deg, #142a36 0%, #000000 100%);
 
     color: #ffffff;
-    border-radius: 15px;
+    border-radius: 50px;
+    corner-shape: squircle;
 
     /* High Gloss Edges (Glassy/Wet look) */
     box-shadow:
