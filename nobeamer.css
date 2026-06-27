@@ -685,3 +685,448 @@ blockquote:has(a[href="#def"]) p {
     margin: 0;
     line-height: 1.5;
 }
+
+/* ==========================================================================
+   11. VIEW TRANSITIONS — Per-Element Slide Animations ("Magic Move")
+   Each component (title, cards, code, tables, lists) transitions
+   independently during slide changes.
+   Works with any `transition:` directive; optimized for `transition: nobeamer`.
+   ========================================================================== */
+
+/* --- 11a. Custom Transition "nobeamer" — fast root crossfade ---
+   The root handles non-named content (background, misc text).
+   Keep it fast so named elements steal the show.              */
+@keyframes marp-outgoing-transition-nobeamer {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes marp-incoming-transition-nobeamer {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* --- 11b. View Transition Name Assignments ---
+   Each named element is extracted from the root snapshot and
+   transitions independently. Names MUST be unique per slide.  */
+
+section h1 {
+    view-transition-name: nb-hero;
+}
+
+section h2 {
+    view-transition-name: nb-title;
+}
+
+section::after {
+    view-transition-name: nb-page;
+}
+
+section h3:nth-of-type(1) {
+    view-transition-name: nb-sub-1;
+}
+
+section h3:nth-of-type(2) {
+    view-transition-name: nb-sub-2;
+}
+
+section h3:nth-of-type(3) {
+    view-transition-name: nb-sub-3;
+}
+
+section>blockquote:nth-of-type(1) {
+    view-transition-name: nb-card-1;
+}
+
+section>blockquote:nth-of-type(2) {
+    view-transition-name: nb-card-2;
+}
+
+section>blockquote:nth-of-type(3) {
+    view-transition-name: nb-card-3;
+}
+
+section>blockquote:nth-of-type(4) {
+    view-transition-name: nb-card-4;
+}
+
+section>pre:nth-of-type(1) {
+    view-transition-name: nb-code-1;
+}
+
+section>pre:nth-of-type(2) {
+    view-transition-name: nb-code-2;
+}
+
+section>table:nth-of-type(1) {
+    view-transition-name: nb-table-1;
+}
+
+section>ul:nth-of-type(1) {
+    view-transition-name: nb-list-1;
+}
+
+section>ul:nth-of-type(2) {
+    view-transition-name: nb-list-2;
+}
+
+section>ol:nth-of-type(1) {
+    view-transition-name: nb-olist-1;
+}
+
+section>.math-resolution:nth-of-type(1) {
+    view-transition-name: nb-math-1;
+}
+
+section>p:nth-of-type(1) {
+    view-transition-name: nb-text-1;
+}
+
+section>p:nth-of-type(2) {
+    view-transition-name: nb-text-2;
+}
+
+section>p:nth-of-type(3) {
+    view-transition-name: nb-text-3;
+}
+
+/* --- 11c. Exit Keyframes --- */
+
+/* Titles: fly upward and vanish */
+@keyframes nb-fly-up-out {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-80px);
+        opacity: 0;
+    }
+}
+
+/* Cards: slide fully off-screen to the left */
+@keyframes nb-card-exit {
+    0% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translateX(-120%) scale(0.97);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-150%) scale(0.95);
+        opacity: 0;
+    }
+}
+
+/* Tables / Math: sink downward */
+@keyframes nb-sink {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(50px) scale(0.96);
+        opacity: 0;
+    }
+}
+
+/* Lists: scatter to the left */
+@keyframes nb-scatter {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+}
+
+/* Code: monitor powering off */
+@keyframes nb-code-off {
+    0% {
+        filter: brightness(1);
+        transform: scaleY(1);
+        opacity: 1;
+    }
+
+    60% {
+        filter: brightness(0.15);
+        transform: scaleY(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        filter: brightness(0);
+        transform: scaleY(0.01);
+        opacity: 0;
+    }
+}
+
+@keyframes nb-fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* --- 11d. Enter Keyframes --- */
+
+/* Titles: rise from below */
+@keyframes nb-fly-up-in {
+    from {
+        transform: translateY(80px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Cards: slide in from the right, fully off-screen start */
+@keyframes nb-card-enter {
+    0% {
+        transform: translateX(150%) scale(0.95);
+        opacity: 0;
+    }
+
+    20% {
+        transform: translateX(120%) scale(0.97);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Tables / Math: rise upward */
+@keyframes nb-rise {
+    from {
+        transform: translateY(50px) scale(0.96);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Lists: gather from the right */
+@keyframes nb-gather {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes nb-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* --- 11e. Animation Assignments per Component --- */
+
+/* Hero Title (h1) — dramatic entrance */
+::view-transition-old(nb-hero) {
+    animation: 0.4s cubic-bezier(0.4, 0, 1, 1) both nb-fly-up-out;
+}
+
+::view-transition-new(nb-hero) {
+    animation: 0.55s cubic-bezier(0, 0, 0.2, 1) 0.1s both nb-fly-up-in;
+}
+
+/* Slide Title (h2) */
+::view-transition-old(nb-title) {
+    animation: 0.35s cubic-bezier(0.4, 0, 1, 1) both nb-fly-up-out;
+}
+
+::view-transition-new(nb-title) {
+    animation: 0.45s cubic-bezier(0, 0, 0.2, 1) 0.08s both nb-fly-up-in;
+}
+
+/* Subtitles (h3) — staggered */
+::view-transition-old(nb-sub-1) {
+    animation: 0.3s ease-in both nb-fly-up-out;
+}
+
+::view-transition-new(nb-sub-1) {
+    animation: 0.4s ease-out 0.1s both nb-fly-up-in;
+}
+
+::view-transition-old(nb-sub-2) {
+    animation: 0.3s ease-in 0.04s both nb-fly-up-out;
+}
+
+::view-transition-new(nb-sub-2) {
+    animation: 0.4s ease-out 0.16s both nb-fly-up-in;
+}
+
+::view-transition-old(nb-sub-3) {
+    animation: 0.3s ease-in 0.08s both nb-fly-up-out;
+}
+
+::view-transition-new(nb-sub-3) {
+    animation: 0.4s ease-out 0.22s both nb-fly-up-in;
+}
+
+/* Cards/Blockquotes — cascading with staggered delays */
+::view-transition-old(nb-card-1) {
+    animation: 0.3s ease-in both nb-card-exit;
+}
+
+::view-transition-new(nb-card-1) {
+    animation: 0.4s ease-out 0.1s both nb-card-enter;
+}
+
+::view-transition-old(nb-card-2) {
+    animation: 0.3s ease-in 0.05s both nb-card-exit;
+}
+
+::view-transition-new(nb-card-2) {
+    animation: 0.4s ease-out 0.18s both nb-card-enter;
+}
+
+::view-transition-old(nb-card-3) {
+    animation: 0.3s ease-in 0.1s both nb-card-exit;
+}
+
+::view-transition-new(nb-card-3) {
+    animation: 0.4s ease-out 0.26s both nb-card-enter;
+}
+
+::view-transition-old(nb-card-4) {
+    animation: 0.3s ease-in 0.15s both nb-card-exit;
+}
+
+::view-transition-new(nb-card-4) {
+    animation: 0.4s ease-out 0.34s both nb-card-enter;
+}
+
+/* Code Blocks — monitor power off / on */
+::view-transition-old(nb-code-1) {
+    animation: 0.4s ease-in both nb-code-off;
+}
+
+::view-transition-new(nb-code-1) {
+    animation: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.12s both power-up;
+}
+
+::view-transition-old(nb-code-2) {
+    animation: 0.4s ease-in 0.05s both nb-code-off;
+}
+
+::view-transition-new(nb-code-2) {
+    animation: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both power-up;
+}
+
+/* Tables — sink / rise */
+::view-transition-old(nb-table-1) {
+    animation: 0.35s ease-in both nb-sink;
+}
+
+::view-transition-new(nb-table-1) {
+    animation: 0.45s ease-out 0.1s both nb-rise;
+}
+
+/* Lists — scatter / gather */
+::view-transition-old(nb-list-1) {
+    animation: 0.3s ease-in both nb-scatter;
+}
+
+::view-transition-new(nb-list-1) {
+    animation: 0.4s ease-out 0.08s both nb-gather;
+}
+
+::view-transition-old(nb-list-2) {
+    animation: 0.3s ease-in 0.04s both nb-scatter;
+}
+
+::view-transition-new(nb-list-2) {
+    animation: 0.4s ease-out 0.14s both nb-gather;
+}
+
+::view-transition-old(nb-olist-1) {
+    animation: 0.3s ease-in both nb-scatter;
+}
+
+::view-transition-new(nb-olist-1) {
+    animation: 0.4s ease-out 0.08s both nb-gather;
+}
+
+/* Math Blocks */
+::view-transition-old(nb-math-1) {
+    animation: 0.35s ease-in both nb-sink;
+}
+
+::view-transition-new(nb-math-1) {
+    animation: 0.45s ease-out 0.15s both nb-rise;
+}
+
+/* Paragraphs — subtle fade */
+::view-transition-old(nb-text-1) {
+    animation: 0.25s ease-in both nb-fade-out;
+}
+
+::view-transition-new(nb-text-1) {
+    animation: 0.35s ease-out 0.06s both nb-fade-in;
+}
+
+::view-transition-old(nb-text-2) {
+    animation: 0.25s ease-in 0.03s both nb-fade-out;
+}
+
+::view-transition-new(nb-text-2) {
+    animation: 0.35s ease-out 0.1s both nb-fade-in;
+}
+
+::view-transition-old(nb-text-3) {
+    animation: 0.25s ease-in 0.06s both nb-fade-out;
+}
+
+::view-transition-new(nb-text-3) {
+    animation: 0.35s ease-out 0.14s both nb-fade-in;
+}
+
+/* Page Number — quiet crossfade */
+::view-transition-old(nb-page) {
+    animation: 0.2s ease both nb-fade-out;
+}
+
+::view-transition-new(nb-page) {
+    animation: 0.2s ease 0.1s both nb-fade-in;
+}

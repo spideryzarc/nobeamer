@@ -50,6 +50,7 @@ To use this theme locally in VS Code with the Marp for VS Code extension:
 ---
 marp: true
 theme: nobeamer
+transition: nobeamer
 ---
 ```
 
@@ -131,6 +132,28 @@ Code blocks (`pre`) are styled with a glossy, Mac-OS inspired aesthetic to pop a
 ### Print / PDF Export
 
 All theme animations (code blocks, tables, dark blocks, lateral cards) are **automatically disabled** when exporting to PDF or printing. No manual class or configuration is needed — the theme uses `@media print` to strip animations, transitions, transforms, filters, and `backdrop-filter` globally, ensuring a clean static output.
+
+### Slide Transitions — Per-Element "Magic Move"
+
+The theme provides a custom `nobeamer` transition that animates **each component independently** instead of transitioning the entire slide as one block. The background stays static while titles, cards, code blocks, tables, and lists animate in and out with their own motion.
+
+Enable it by adding `transition: nobeamer` to your frontmatter (or per-slide with `<!-- _transition: nobeamer -->`).
+
+| Component | Exit | Enter |
+| :--- | :--- | :--- |
+| **Titles** (h1, h2, h3) | Fly upward | Rise from below |
+| **Cards / Blockquotes** | Slide off-screen left | Slide in from right (staggered cascade) |
+| **Code Blocks** | "Monitor power off" (brightness collapse) | "Monitor power on" (brightness restore) |
+| **Tables / Math** | Sink downward | Rise upward |
+| **Lists** (ul, ol) | Scatter to the left | Gather from the right |
+| **Paragraphs** | Subtle fade | Subtle fade |
+| **Page Number** | Quiet crossfade | Quiet crossfade |
+
+Multiple cards on the same slide enter with **staggered delays**, creating a cascading effect.
+
+> **Requirements:** Transitions work in the HTML output (Marp CLI `bespoke` template) viewed in a browser supporting the [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API) (Chrome 111+, Edge 111+, Firefox 144+, Safari 18.2+). They have no effect on PDF export.
+
+You can also use any of Marp's [33 built-in transitions](https://github.com/marp-team/marp-cli/blob/main/docs/bespoke-transitions/README.md) (e.g., `fade`, `slide`, `cube`) — the per-element animations still apply on top of any directive.
 
 ## Guidelines
 

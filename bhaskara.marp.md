@@ -5,6 +5,7 @@ class: lead
 paginate: true
 size: 16:9
 title: "The Quadratic Formula"
+transition: nobeamer
 ---
 
 # The Quadratic Formula

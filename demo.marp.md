@@ -5,6 +5,7 @@ class: lead
 paginate: true
 size: 16:9
 title: "Theme Demo: nobeamer"
+transition: nobeamer
 ---
 
 # NOBEAMER GUIDELINES
