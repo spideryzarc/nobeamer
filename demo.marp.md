@@ -307,10 +307,12 @@ Easy way to layout a figure that doesn't fit as a borderless figure.
 
 - **Native Filters**: `opacity:50%`, `sepia`, `saturate:200%`, `grayscale`, `blur:5px`, `brightness:150%`, `contrast:150%`
 - **nobeamer Extensions**: `rounded`, `rounded-sm`, `rounded-lg`, `circle`
+- **Background Support**: `![bg left:45% fit 90% drop-shadow rounded](images/image.jpg)`
 
 ```markdown
 ![w:300 rounded](images/image.jpg)
 ![w:200 h:200 circle](images/image.jpg)
+![bg left:45% fit 90% drop-shadow rounded](images/image.jpg)
 ```
 
 ![w:200 rounded drop-shadow](images/dark_keyboard.jpg)
@@ -423,7 +425,7 @@ int main() {
 
 <br>
 
-![image w:500 drop-shadow](images/light_desk.jpg)
+![image w:500 drop-shadow rounded](images/light_desk.jpg)
 
 Look at the image above.
 What a mess!

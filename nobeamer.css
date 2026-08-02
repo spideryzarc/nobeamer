@@ -554,6 +554,17 @@ img[alt*="circle"] {
     object-fit: cover;
 }
 
+/* Background Image Modifiers via alt text (e.g. ![bg rounded](image.jpg)) */
+div[data-marpit-advanced-background-container] figure figcaption {
+    display: none !important;
+}
+
+div[data-marpit-advanced-background-container] figure:has(figcaption) {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+
 
 
 
