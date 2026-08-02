@@ -1163,3 +1163,14 @@ section>p:nth-of-type(3) {
 ::view-transition-new(nb-page) {
     animation: 0.2s ease 0.1s both nb-fade-in;
 }
+
+/* --- 11f. Hardware Acceleration & Glitch Prevention ---
+   Forces GPU compositor layer promotion, prevents sub-pixel font anti-aliasing jitter,
+   and prevents overflow clipping artifacts during View Transitions. */
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+    overflow: visible;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+}
