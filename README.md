@@ -107,6 +107,25 @@ Column 2
 Column 3
 ```
 
+### Image Modifiers & Formatting
+
+`nobeamer` supports Marp's native CSS filters alongside custom theme keywords for corner rounding within image tags (`![...]`).
+
+| Modifier | Example Syntax | Description |
+| :--- | :--- | :--- |
+| **Rounded** | `![w:300 rounded](image.jpg)` | Standard rounded corners (`16px`). |
+| **Small Round** | `![w:300 rounded-sm](image.jpg)` | Slightly rounded corners (`8px`). |
+| **Large Round** | `![w:300 rounded-lg](image.jpg)` | Pronounced rounded corners (`28px`). |
+| **Circle** | `![w:200 circle](image.jpg)` | Circular crop (`50%` border-radius). |
+| **Native Filters** | `![w:300 opacity:80% sepia:50%](image.jpg)` | Native Marp CSS filters (`opacity`, `sepia`, `saturate`, `grayscale`, `blur`, `brightness`, `contrast`). |
+
+**Example:**
+
+```markdown
+![w:250 rounded drop-shadow](images/photo.jpg)
+![w:200 circle](images/profile.jpg)
+```
+
 ### Math & Formulas
 
 For extensive mathematical derivations, use the `.math-resolution` class. This creates a focused, paper-styled block distinct from standard slides.

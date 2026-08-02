@@ -533,6 +533,28 @@ img.emoji {
     vertical-align: -0.1em;
 }
 
+/* Image Modifiers via alt text (e.g. ![w:300 rounded](image.jpg)) */
+img[alt*="rounded"],
+img[alt*="round"] {
+    border-radius: 16px;
+}
+
+img[alt*="rounded-sm"],
+img[alt*="rounded:sm"] {
+    border-radius: 8px;
+}
+
+img[alt*="rounded-lg"],
+img[alt*="rounded:lg"] {
+    border-radius: 28px;
+}
+
+img[alt*="circle"] {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
 
 
 

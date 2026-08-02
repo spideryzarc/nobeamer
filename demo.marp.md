@@ -32,7 +32,7 @@ Overview of what we'll cover in this demo:
 ![split]()
 
 > [](#step) 🖼️ **Imagery Guidelines**
-> Full backgrounds, side backgrounds, framed, and inline figures.
+> Backgrounds, inline figures, framing, and native CSS image filters.
 
 > [](#step) 📐 **Layout & Utilities**
 > Multi-column grids and proto-bento layouts for complex content.
@@ -300,6 +300,21 @@ Easy way to layout a figure that doesn't fit as a borderless figure.
 ```
 
 ![h:200 w:800 drop-shadow](nb_img/paper2.jpg)
+
+---
+<!-- _class: cols-2 -->
+### Image Filters & Modifiers
+
+- **Native Filters**: `opacity:50%`, `sepia`, `saturate:200%`, `grayscale`, `blur:5px`, `brightness:150%`, `contrast:150%`
+- **nobeamer Extensions**: `rounded`, `rounded-sm`, `rounded-lg`, `circle`
+
+```markdown
+![w:300 rounded](images/image.jpg)
+![w:200 h:200 circle](images/image.jpg)
+```
+
+![w:200 rounded drop-shadow](images/dark_keyboard.jpg)
+![w:200 h:200 circle drop-shadow](images/pexels-hikaique-775201.jpg)
 
 ---
 
