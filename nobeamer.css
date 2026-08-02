@@ -555,13 +555,109 @@ img[alt*="circle"] {
 }
 
 /* Background Image Modifiers via alt text (e.g. ![bg rounded](image.jpg)) */
-div[data-marpit-advanced-background-container] figure figcaption {
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure figcaption {
     display: none !important;
 }
 
-div[data-marpit-advanced-background-container] figure:has(figcaption) {
-    border-radius: 16px;
-    overflow: hidden;
+/* Base style for background images with alt text modifiers (e.g. rounded, drop-shadow) */
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption) {
+    border-radius: 16px !important;
+    overflow: hidden !important;
+}
+
+/* Fix for background images when fit / contain or percentage size (e.g. 90%) is used with rounded */
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size"]:has(figcaption) {
+    flex: none !important;
+    margin: auto !important;
+    width: 90% !important;
+    max-height: 85% !important;
+    aspect-ratio: 16 / 9 !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+/* Dynamically match requested percentage sizes to create exact margins around figure */
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:95%"]:has(figcaption),
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 95%"]:has(figcaption) {
+    width: 95% !important;
+    height: 95% !important;
+}
+
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:90%"]:has(figcaption),
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 90%"]:has(figcaption) {
+    width: 90% !important;
+    height: 90% !important;
+}
+
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:85%"]:has(figcaption),
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 85%"]:has(figcaption) {
+    width: 85% !important;
+    height: 85% !important;
+}
+
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:80%"]:has(figcaption),
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 80%"]:has(figcaption) {
+    width: 80% !important;
+    height: 80% !important;
+}
+
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:75%"]:has(figcaption),
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 75%"]:has(figcaption) {
+    width: 75% !important;
+    height: 75% !important;
+}
+
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:70%"]:has(figcaption),
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 70%"]:has(figcaption) {
+    width: 70% !important;
+    height: 70% !important;
+}
+
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:65%"]:has(figcaption),
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 65%"]:has(figcaption) {
+    width: 65% !important;
+    height: 65% !important;
+}
+
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:60%"]:has(figcaption),
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 60%"]:has(figcaption) {
+    width: 60% !important;
+    height: 60% !important;
+}
+
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:50%"]:has(figcaption),
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 50%"]:has(figcaption) {
+    width: 50% !important;
+    height: 50% !important;
+}
+
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:40%"]:has(figcaption),
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 40%"]:has(figcaption) {
+    width: 40% !important;
+    height: 40% !important;
+}
+
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:30%"]:has(figcaption),
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 30%"]:has(figcaption) {
+    width: 30% !important;
+    height: 30% !important;
+}
+
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:25%"]:has(figcaption),
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 25%"]:has(figcaption) {
+    width: 25% !important;
+    height: 25% !important;
+}
+
+/* Default for fit / contain without explicit percentage: inset 90% so image does not touch edges */
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:contain"]:has(figcaption),
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: contain"]:has(figcaption) {
+    width: 90% !important;
+    height: 90% !important;
 }
 
 

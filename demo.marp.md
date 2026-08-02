@@ -318,6 +318,17 @@ Easy way to layout a figure that doesn't fit as a borderless figure.
 ![w:200 rounded drop-shadow](images/dark_keyboard.jpg)
 ![w:200 h:200 circle drop-shadow](images/pexels-hikaique-775201.jpg)
 
+
+---
+
+##### Rounded background images
+
+```markdown
+![bg left:45% fit 85% drop-shadow rounded](images/image.jpg)
+```
+
+![bg left:45% fit 85% drop-shadow rounded](images/botanical_roots.png)
+
 ---
 
 <!-- _class: cols-2 -->
