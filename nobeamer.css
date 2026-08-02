@@ -569,25 +569,12 @@ section[data-marpit-advanced-background="background"] div[data-marpit-advanced-b
 section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size"]:has(figcaption) {
     flex: none !important;
     margin: auto !important;
-    max-height: 85% !important;
-    background-size: contain !important;
+    background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     border-radius: 16px !important;
     overflow: hidden !important;
     box-sizing: border-box !important;
-    -webkit-mask-image: radial-gradient(circle at 16px 16px, #000 99%, transparent 100%) 0 0 / 16px 16px no-repeat,
-                        radial-gradient(circle at 0 16px, #000 99%, transparent 100%) 100% 0 / 16px 16px no-repeat,
-                        radial-gradient(circle at 16px 0, #000 99%, transparent 100%) 0 100% / 16px 16px no-repeat,
-                        radial-gradient(circle at 0 0, #000 99%, transparent 100%) 100% 100% / 16px 16px no-repeat,
-                        linear-gradient(#000 0 0) 16px 0 / calc(100% - 32px) 100% no-repeat,
-                        linear-gradient(#000 0 0) 0 16px / 100% calc(100% - 32px) no-repeat !important;
-    mask-image: radial-gradient(circle at 16px 16px, #000 99%, transparent 100%) 0 0 / 16px 16px no-repeat,
-                radial-gradient(circle at 0 16px, #000 99%, transparent 100%) 100% 0 / 16px 16px no-repeat,
-                radial-gradient(circle at 16px 0, #000 99%, transparent 100%) 0 100% / 16px 16px no-repeat,
-                radial-gradient(circle at 0 0, #000 99%, transparent 100%) 100% 100% / 16px 16px no-repeat,
-                linear-gradient(#000 0 0) 16px 0 / calc(100% - 32px) 100% no-repeat,
-                linear-gradient(#000 0 0) 0 16px / 100% calc(100% - 32px) no-repeat !important;
 }
 
 /* Dynamically match requested percentage sizes to create exact margins around figure */
