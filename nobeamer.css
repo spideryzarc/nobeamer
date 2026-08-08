@@ -36,6 +36,7 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    isolation: isolate;
 }
 
 /* Discrete Pagination */
@@ -724,14 +725,11 @@ section.cols-3 img[alt="split"] {
    ========================================================================== */
 blockquote:has(a[href="#step"]),
 blockquote:has(a[href="#def"]) {
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
     border-radius: 12px;
     box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.05),
-        inset 0 1px 1px rgba(255, 255, 255, 0.9);
+        0 4px 15px rgba(0, 0, 0, 0.05);
     padding: 12px 20px;
     margin: 18px 0;
     width: auto;
@@ -1238,12 +1236,32 @@ section>p:nth-of-type(3) {
 }
 
 /* --- 11f. Hardware Acceleration & Glitch Prevention ---
-   Forces GPU compositor layer promotion, prevents sub-pixel font anti-aliasing jitter,
-   and prevents overflow clipping artifacts during View Transitions. */
-::view-transition-group(*),
+   Forces GPU compositor layer promotion, eliminates white-flash color blending artifacts (plus-lighter fix),
+   and suppresses double-triggering element animations during View Transitions. */
+::view-transition-image-pair(*) {
+    isolation: isolate;
+}
+
 ::view-transition-old(*),
 ::view-transition-new(*) {
+    mix-blend-mode: normal;
     overflow: visible;
     backface-visibility: hidden;
     will-change: transform, opacity;
+}
+
+::view-transition-group(*) {
+    overflow: visible;
+    backface-visibility: hidden;
+}
+
+/* Prevents element-level CSS animations from double-triggering concurrently with View Transitions
+   and disables backdrop-filter during transitions to prevent GPU blur caching ghost artifacts */
+html:has(::view-transition) section *,
+:root:has(::view-transition) section *,
+::view-transition-old(*),
+::view-transition-new(*) {
+    animation: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 }
