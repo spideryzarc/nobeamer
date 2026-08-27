@@ -651,13 +651,13 @@ section[data-marpit-advanced-background="background"] div[data-marpit-advanced-b
 section.cols-2 {
     display: block;
     columns: 2;
-    column-gap: calc(var(--padding-general)*2);
+    column-gap: var(--padding-general);
 }
 
 section.cols-3 {
     display: block;
     columns: 3;
-    column-gap: calc(var(--padding-general)*2);
+    column-gap: var(--padding-general);
 }
 
 /* Make slide title span across columns */
@@ -665,6 +665,54 @@ section.cols-2 h1,
 section.cols-3 h1 {
     column-span: all;
     margin-bottom: 0.8em;
+}
+
+/* Reset negative margins & containment inside multi-column layouts */
+section.cols-2 pre,
+section.cols-3 pre,
+section.cols-2 .card-dark,
+section.cols-3 .card-dark,
+section.cols-2 blockquote:has(a[href="#d"]),
+section.cols-3 blockquote:has(a[href="#d"]),
+section.cols-2 blockquote,
+section.cols-3 blockquote,
+section.cols-2 .marp-card,
+section.cols-3 .marp-card,
+section.cols-2 .math-resolution,
+section.cols-3 .math-resolution {
+    margin: var(--block-margin-y) 0;
+    padding: var(--block-padding-y) 20px;
+    width: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+section.cols-2 .card-dark,
+section.cols-3 .card-dark,
+section.cols-2 blockquote:has(a[href="#d"]),
+section.cols-3 blockquote:has(a[href="#d"]) {
+    border-radius: 16px;
+}
+
+section.cols-2 .card-info,
+section.cols-3 .card-info,
+section.cols-2 blockquote:has(a[href="#i"]),
+section.cols-3 blockquote:has(a[href="#i"]),
+section.cols-2 .card-alert,
+section.cols-3 .card-alert,
+section.cols-2 blockquote:has(a[href="#a"]),
+section.cols-3 blockquote:has(a[href="#a"]),
+section.cols-2 .card-success,
+section.cols-3 .card-success,
+section.cols-2 blockquote:has(a[href="#s"]),
+section.cols-3 blockquote:has(a[href="#s"]) {
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    margin: var(--block-margin-y) 0;
+    padding: var(--block-padding-y) 20px;
+    box-sizing: border-box;
+    border-radius: 12px;
 }
 
 /* Column Break Symbol: ![split]() 
