@@ -31,6 +31,9 @@ Check out the compiled HTML examples included in this repository:
 
 ## Installation & Setup
 
+> 💡 **Automated Setup with AI:** If you are using Antigravity, GitHub Copilot, Cursor, or similar tools, you can scaffold your entire presentation environment automatically by running the prompt in **[MARP_INIT.md](MARP_INIT.md)**.
+
+
 To use this theme locally in VS Code with the Marp for VS Code extension:
 
 1. Ensure `nobeamer.css` is in your project root as well as `nb_img` folder. You don't need the `images` folder from the repo, it's just for sample slides.
@@ -40,11 +43,12 @@ To use this theme locally in VS Code with the Marp for VS Code extension:
 {
     "markdown.marp.themes": [
         "nobeamer.css"
-    ]
+    ],
+    "markdown.marp.enableHtml": true
 }
 ```
 
-1. Configure your Markdown file frontmatter to use the theme:
+3. Configure your Markdown file frontmatter to use the theme:
 
 ```yaml
 ---
@@ -53,6 +57,7 @@ theme: nobeamer
 transition: nobeamer
 ---
 ```
+
 
 ---
 
