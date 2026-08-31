@@ -362,6 +362,8 @@ table sample
 >
 > Minimal dark block with `highlighted` text.
 
+> [](#i-r) Post it
+
 ---
 
 <!-- _class: cols-3 -->
@@ -403,6 +405,8 @@ Col 2
 ![split]()
 Col 3
 ```
+
+> [](#s-r) Post-it
 
 ---
 

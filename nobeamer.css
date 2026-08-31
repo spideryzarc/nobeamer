@@ -997,115 +997,146 @@ section.cols-2 blockquote:has(a[href="#sr"]),
 section.cols-3 blockquote:has(a[href="#sr"]),
 section.cols-2 blockquote:has(a[href="#s-right"]),
 section.cols-3 blockquote:has(a[href="#s-right"]) {
-    width: auto;
     min-width: 0;
-    max-width: 100%;
     box-sizing: border-box;
 }
 
-/* Left-Attached Cards in Multi-Column (touches slide left edge in col 1) */
+/* Left-Attached Cards in cols-2 (compact post-it touching slide left edge) */
 section.cols-2 .card-info,
-section.cols-3 .card-info,
 section.cols-2 .card-alert,
-section.cols-3 .card-alert,
 section.cols-2 .card-success,
-section.cols-3 .card-success,
 section.cols-2 .card-info-left,
-section.cols-3 .card-info-left,
 section.cols-2 .card-alert-left,
-section.cols-3 .card-alert-left,
 section.cols-2 .card-success-left,
-section.cols-3 .card-success-left,
 section.cols-2 .card-left,
-section.cols-3 .card-left,
 section.cols-2 blockquote:has(a[href="#i"]),
-section.cols-3 blockquote:has(a[href="#i"]),
 section.cols-2 blockquote:has(a[href="#i-l"]),
-section.cols-3 blockquote:has(a[href="#i-l"]),
 section.cols-2 blockquote:has(a[href="#il"]),
-section.cols-3 blockquote:has(a[href="#il"]),
 section.cols-2 blockquote:has(a[href="#i-left"]),
-section.cols-3 blockquote:has(a[href="#i-left"]),
 section.cols-2 blockquote:has(a[href="#a"]),
-section.cols-3 blockquote:has(a[href="#a"]),
 section.cols-2 blockquote:has(a[href="#a-l"]),
-section.cols-3 blockquote:has(a[href="#a-l"]),
 section.cols-2 blockquote:has(a[href="#al"]),
-section.cols-3 blockquote:has(a[href="#al"]),
 section.cols-2 blockquote:has(a[href="#a-left"]),
-section.cols-3 blockquote:has(a[href="#a-left"]),
 section.cols-2 blockquote:has(a[href="#s"]),
-section.cols-3 blockquote:has(a[href="#s"]),
 section.cols-2 blockquote:has(a[href="#s-l"]),
-section.cols-3 blockquote:has(a[href="#s-l"]),
 section.cols-2 blockquote:has(a[href="#sl"]),
+section.cols-2 blockquote:has(a[href="#s-left"]) {
+    width: calc(65% + var(--padding-general));
+    max-width: 420px;
+    min-width: 300px;
+    margin: var(--block-margin-y) auto var(--block-margin-y) calc(var(--padding-general) * -1);
+    padding: var(--block-padding-y) 15px var(--block-padding-y) var(--padding-general);
+    border-radius: 0 20px 20px 0;
+}
+
+/* Left-Attached Cards in cols-3 (fills column and touches slide left edge) */
+section.cols-3 .card-info,
+section.cols-3 .card-alert,
+section.cols-3 .card-success,
+section.cols-3 .card-info-left,
+section.cols-3 .card-alert-left,
+section.cols-3 .card-success-left,
+section.cols-3 .card-left,
+section.cols-3 blockquote:has(a[href="#i"]),
+section.cols-3 blockquote:has(a[href="#i-l"]),
+section.cols-3 blockquote:has(a[href="#il"]),
+section.cols-3 blockquote:has(a[href="#i-left"]),
+section.cols-3 blockquote:has(a[href="#a"]),
+section.cols-3 blockquote:has(a[href="#a-l"]),
+section.cols-3 blockquote:has(a[href="#al"]),
+section.cols-3 blockquote:has(a[href="#a-left"]),
+section.cols-3 blockquote:has(a[href="#s"]),
+section.cols-3 blockquote:has(a[href="#s-l"]),
 section.cols-3 blockquote:has(a[href="#sl"]),
-section.cols-2 blockquote:has(a[href="#s-left"]),
 section.cols-3 blockquote:has(a[href="#s-left"]) {
+    width: calc(100% + var(--padding-general));
+    max-width: calc(100% + var(--padding-general));
     margin: var(--block-margin-y) 0 var(--block-margin-y) calc(var(--padding-general) * -1);
     padding: var(--block-padding-y) 15px var(--block-padding-y) var(--padding-general);
     border-radius: 0 20px 20px 0;
 }
 
-/* Right-Attached Cards in Multi-Column (touches slide right edge in last col) */
+/* Right-Attached Cards in cols-2 (compact post-it touching slide right edge) */
 section.cols-2 .card-info-right,
-section.cols-3 .card-info-right,
 section.cols-2 .card-alert-right,
-section.cols-3 .card-alert-right,
 section.cols-2 .card-success-right,
-section.cols-3 .card-success-right,
 section.cols-2 .card-right,
-section.cols-3 .card-right,
 section.cols-2 blockquote:has(a[href="#i-r"]),
-section.cols-3 blockquote:has(a[href="#i-r"]),
 section.cols-2 blockquote:has(a[href="#ir"]),
-section.cols-3 blockquote:has(a[href="#ir"]),
 section.cols-2 blockquote:has(a[href="#i-right"]),
-section.cols-3 blockquote:has(a[href="#i-right"]),
 section.cols-2 blockquote:has(a[href="#a-r"]),
-section.cols-3 blockquote:has(a[href="#a-r"]),
 section.cols-2 blockquote:has(a[href="#ar"]),
-section.cols-3 blockquote:has(a[href="#ar"]),
 section.cols-2 blockquote:has(a[href="#a-right"]),
-section.cols-3 blockquote:has(a[href="#a-right"]),
 section.cols-2 blockquote:has(a[href="#s-r"]),
-section.cols-3 blockquote:has(a[href="#s-r"]),
 section.cols-2 blockquote:has(a[href="#sr"]),
+section.cols-2 blockquote:has(a[href="#s-right"]) {
+    width: calc(65% + var(--padding-general));
+    max-width: 420px;
+    min-width: 300px;
+    margin: var(--block-margin-y) calc(var(--padding-general) * -1) var(--block-margin-y) auto;
+    padding: var(--block-padding-y) var(--padding-general) var(--block-padding-y) 15px;
+    border-radius: 20px 0 0 20px;
+}
+
+/* Right-Attached Cards in cols-3 (fills column and touches slide right edge) */
+section.cols-3 .card-info-right,
+section.cols-3 .card-alert-right,
+section.cols-3 .card-success-right,
+section.cols-3 .card-right,
+section.cols-3 blockquote:has(a[href="#i-r"]),
+section.cols-3 blockquote:has(a[href="#ir"]),
+section.cols-3 blockquote:has(a[href="#i-right"]),
+section.cols-3 blockquote:has(a[href="#a-r"]),
+section.cols-3 blockquote:has(a[href="#ar"]),
+section.cols-3 blockquote:has(a[href="#a-right"]),
+section.cols-3 blockquote:has(a[href="#s-r"]),
 section.cols-3 blockquote:has(a[href="#sr"]),
-section.cols-2 blockquote:has(a[href="#s-right"]),
 section.cols-3 blockquote:has(a[href="#s-right"]) {
+    width: calc(100% + var(--padding-general));
+    max-width: calc(100% + var(--padding-general));
     margin: var(--block-margin-y) calc(var(--padding-general) * -1) var(--block-margin-y) 0;
     padding: var(--block-padding-y) var(--padding-general) var(--block-padding-y) 15px;
     border-radius: 20px 0 0 20px;
 }
 
-/* Centered Cards in Multi-Column (Fits neatly inside any column) */
+/* Centered Cards in cols-2 (compact centered post-it inside column) */
 section.cols-2 .card-info-center,
-section.cols-3 .card-info-center,
 section.cols-2 .card-alert-center,
-section.cols-3 .card-alert-center,
 section.cols-2 .card-success-center,
-section.cols-3 .card-success-center,
 section.cols-2 .card-center,
-section.cols-3 .card-center,
 section.cols-2 blockquote:has(a[href="#i-c"]),
-section.cols-3 blockquote:has(a[href="#i-c"]),
 section.cols-2 blockquote:has(a[href="#ic"]),
-section.cols-3 blockquote:has(a[href="#ic"]),
 section.cols-2 blockquote:has(a[href="#i-center"]),
-section.cols-3 blockquote:has(a[href="#i-center"]),
 section.cols-2 blockquote:has(a[href="#a-c"]),
-section.cols-3 blockquote:has(a[href="#a-c"]),
 section.cols-2 blockquote:has(a[href="#ac"]),
-section.cols-3 blockquote:has(a[href="#ac"]),
 section.cols-2 blockquote:has(a[href="#a-center"]),
-section.cols-3 blockquote:has(a[href="#a-center"]),
 section.cols-2 blockquote:has(a[href="#s-c"]),
-section.cols-3 blockquote:has(a[href="#s-c"]),
 section.cols-2 blockquote:has(a[href="#sc"]),
+section.cols-2 blockquote:has(a[href="#s-center"]) {
+    width: fit-content;
+    min-width: 280px;
+    max-width: 85%;
+    margin: var(--block-margin-y) auto;
+    padding: var(--block-padding-y) 20px;
+    border-radius: 16px;
+}
+
+/* Centered Cards in cols-3 (fits neatly inside column) */
+section.cols-3 .card-info-center,
+section.cols-3 .card-alert-center,
+section.cols-3 .card-success-center,
+section.cols-3 .card-center,
+section.cols-3 blockquote:has(a[href="#i-c"]),
+section.cols-3 blockquote:has(a[href="#ic"]),
+section.cols-3 blockquote:has(a[href="#i-center"]),
+section.cols-3 blockquote:has(a[href="#a-c"]),
+section.cols-3 blockquote:has(a[href="#ac"]),
+section.cols-3 blockquote:has(a[href="#a-center"]),
+section.cols-3 blockquote:has(a[href="#s-c"]),
 section.cols-3 blockquote:has(a[href="#sc"]),
-section.cols-2 blockquote:has(a[href="#s-center"]),
 section.cols-3 blockquote:has(a[href="#s-center"]) {
+    width: auto;
+    max-width: 100%;
     margin: var(--block-margin-y) 0;
     padding: var(--block-padding-y) 20px;
     border-radius: 16px;
