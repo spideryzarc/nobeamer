@@ -79,8 +79,8 @@ Use specific links in standard blockquotes to trigger specialized card styles. P
 | | Center | `> [](#s-c)` *(or `#sc`)* | Centered green post-it card. |
 | | Right | `> [](#s-r)` *(or `#sr`)* | Green post-it attached to right margin. |
 | **Bento** | Full / Auto | `> [](#d) **Title**` | Dark, digital style. Great for grids. |
-| **Step** | Full / Auto | `> [](#step) **Title**` | Glassmorphism card for timelines/syllabus. |
-| **Definition** | Full / Auto | `> [](#def) **Title**` | Glassmorphism card for definitions (purple-teal gradient). |
+| **Step** | Full / Auto | `> [](#step) **Title**` | Clean modern card with top accent for timelines/syllabus. |
+| **Definition** | Full / Auto | `> [](#def) **Title**` | Clean modern card with gradient accent for definitions. |
 
 **Examples:**
 

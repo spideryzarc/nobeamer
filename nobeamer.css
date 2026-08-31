@@ -488,7 +488,7 @@ blockquote:has(a[href="#d"]) {
     border-radius: 50px;
     corner-shape: squircle;
 
-    /* High Gloss Edges (Glassy/Wet look) */
+    /* Glossy Edges Highlight */
     box-shadow:
         var(--shadow-external),
         inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
@@ -1173,7 +1173,7 @@ section.cols-3 img[alt="split"] {
         -webkit-backdrop-filter: none !important;
     }
 
-    /* Solid background fallback for glassmorphism cards */
+    /* Solid background fallback for syllabus and definition cards */
     blockquote:has(a[href="#step"]),
     blockquote:has(a[href="#def"]) {
         background: #f1f5f9 !important;
