@@ -65,22 +65,34 @@ transition: nobeamer
 
 ### Specialized Cards (Blockquotes)
 
-Use specific links in standard blockquotes to trigger specialized card styles.
+Use specific links in standard blockquotes to trigger specialized card styles. Post-it cards (`#i`, `#a`, `#s`) can be aligned to the **left edge (default)**, **centered**, or **right edge**.
 
-| Type | Syntax | Description |
-| :--- | :--- | :--- |
-| **Info** | `> [](#i) **Title**` | Yellow "Post-it" style for tips/notes. |
-| **Alert** | `> [](#a) **Title**` | Red style for warnings. |
-| **Success** | `> [](#s) **Title**` | Green style for solutions/results. |
-| **Bento** | `> [](#d) **Title**` | Dark, digital style. Great for grids. |
-| **Step** | `> [](#step) **Title**` | Glassmorphism card for timelines/syllabus. |
-| **Definition** | `> [](#def) **Title**` | Glassmorphism card for definitions (purple-teal gradient). |
+| Type | Alignment | Syntax | Description |
+| :--- | :--- | :--- | :--- |
+| **Info** | Left *(default)* | `> [](#i)` *(or `#i-l`)* | Yellow post-it attached to left margin. |
+| | Center | `> [](#i-c)` *(or `#ic`)* | Centered yellow post-it card. |
+| | Right | `> [](#i-r)` *(or `#ir`)* | Yellow post-it attached to right margin. |
+| **Alert** | Left *(default)* | `> [](#a)` *(or `#a-l`)* | Red post-it attached to left margin. |
+| | Center | `> [](#a-c)` *(or `#ac`)* | Centered red post-it card. |
+| | Right | `> [](#a-r)` *(or `#ar`)* | Red post-it attached to right margin. |
+| **Success** | Left *(default)* | `> [](#s)` *(or `#s-l`)* | Green post-it attached to left margin. |
+| | Center | `> [](#s-c)` *(or `#sc`)* | Centered green post-it card. |
+| | Right | `> [](#s-r)` *(or `#sr`)* | Green post-it attached to right margin. |
+| **Bento** | Full / Auto | `> [](#d) **Title**` | Dark, digital style. Great for grids. |
+| **Step** | Full / Auto | `> [](#step) **Title**` | Glassmorphism card for timelines/syllabus. |
+| **Definition** | Full / Auto | `> [](#def) **Title**` | Glassmorphism card for definitions (purple-teal gradient). |
 
-**Example:**
+**Examples:**
 
 ```markdown
-> [](#i) **Pro Tip**
-> This renders as a nice yellow card.
+> [](#i) **Left Post-it**
+> Stuck to the left margin.
+
+> [](#i-c) **Centered Post-it**
+> Floating in the center.
+
+> [](#i-r) **Right Post-it**
+> Stuck to the right margin.
 ```
 
 ### Multi-Column Layouts

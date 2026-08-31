@@ -85,48 +85,42 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ---
 
-## Specialized Cards
+### Information Cards (Left, Center, Right)
 
-### Information
+> [](#i) ℹ️ **Left Post-it (`#i`)**
+> Attached to the left margin of the slide.
 
-Use emojis to call attention to the card.
-Suggestions: (💡, 💁, ℹ️, 📝, 📚, 📖)
+> [](#i-c) 💡 **Centered Post-it (`#i-c`)**
+> Centered floating card with balanced margin.
 
-> [](#i) ℹ️ **Information**
-> Use the **Info Card** for tips, side notes, or context that isn't critical but helpful.
-
-```markdown
-> [](#i) 💁 **Useful Tip**
-> Content...
-```
+> [](#i-r) 💁 **Right Post-it (`#i-r`)**
+> Attached to the right margin of the slide.
 
 ---
 
-### Alert
+### Alert Cards (Left, Center, Right)
 
-Emoji suggestions: (⚠️, 📢, 🚨, ‼️, ⛔, ☠️)
+> [](#a) ⚠️ **Left Alert (`#a`)**
+> Warning stuck to the left margin.
 
-> [](#a) ⚠️ **Warning**
-> Use the **Alert Card** sparingly for critical warnings or common pitfalls.
+> [](#a-c) 🚨 **Centered Alert (`#a-c`)**
+> Centered warning card.
 
-```markdown
-> [](#a) 📢 **Caution**
-> Content...
-```
+> [](#a-r) 📢 **Right Alert (`#a-r`)**
+> Caution stuck to the right margin.
 
 ---
 
-### Success
+### Success Cards (Left, Center, Right)
 
-Emoji suggestions: (✅, 🏆, ✔️, 🥇, 🎉, 🥳, 🚀)
+> [](#s) 🎉 **Left Success (`#s`)**
+> Solution stuck to the left margin.
 
-> [](#s) 🎉 **Success / Solution**
-> Use the **Success Card** for correct answers, conclusions, or good practices.
+> [](#s-c) 🚀 **Centered Success (`#s-c`)**
+> Centered solution card.
 
-```markdown
-> [](#s) 🎉 **Correct Result**
-> Content...
-```
+> [](#s-r) 🏆 **Right Success (`#s-r`)**
+> Achievement stuck to the right margin.
 
 ---
 
@@ -249,12 +243,14 @@ $$ \begin{aligned} ... \end{aligned} $$
 
 Choose a beautiful image to fill the side of the slide.
 
-> [](#i) **Empty Space**
-> Use side background to avoid empty white spaces.
-
 ```markdown
 ![bg left:56%](images/image.jpg)
 ```
+<br>
+
+> [](#i-r) **Empty Space**
+> Use side background to avoid empty white spaces.
+
 
 ![bg left:56%](images/pexels-aronvisuals-1743165.jpg)
 

@@ -130,14 +130,14 @@ blockquote em {
 }
 
 /* ==========================================================================
-   4. SPECIALIZED CARDS (Side Tabs)
+   4. SPECIALIZED CARDS (Side Tabs & Floating Cards)
       Usage:
-      - .card-info OR > [](#i) Content
-      - .card-alert OR > [](#a) Content
-      - .card-success OR > [](#s) Content
+      - Info:    Left: > [](#i) | Center: > [](#i-c) | Right: > [](#i-r)
+      - Alert:   Left: > [](#a) | Center: > [](#a-c) | Right: > [](#a-r)
+      - Success: Left: > [](#s) | Center: > [](#s-c) | Right: > [](#s-r)
    ========================================================================== */
 
-/* Animação de Entrada Lateral (sem bounce) */
+/* Keyframe Animations */
 @keyframes slide-in-left {
     0% {
         transform: translateX(-100%);
@@ -150,86 +150,298 @@ blockquote em {
     }
 }
 
-/* Shared Base Styles for Specialized Cards */
-.card-info,
-blockquote:has(a[href="#i"]),
-.card-alert,
-blockquote:has(a[href="#a"]),
-.card-success,
-blockquote:has(a[href="#s"]) {
-    width: 37%;
-    /* Occupies ~1/3 of screen and sticks to left */
-    min-width: 350px;
-    /* touch the left border of the slide*/
-    margin: var(--block-margin-y) calc(var(--padding-general) * -1);
-    /* preserve padding on the left */
-    padding: var(--block-padding-y) 15px var(--block-padding-y) var(--padding-general);
-    /* Right space for icon, left to compensate negative margin */
-    box-shadow: var(--shadow-external);
-    border-radius: 0 25px 25px 0;
+@keyframes slide-in-right {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
 
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Shared Base Styles for all Specialized Cards */
+.card-info,
+.card-alert,
+.card-success,
+.card-info-left,
+.card-alert-left,
+.card-success-left,
+.card-info-center,
+.card-alert-center,
+.card-success-center,
+.card-info-right,
+.card-alert-right,
+.card-success-right,
+.card-left,
+.card-center,
+.card-right,
+blockquote:has(a[href="#i"]),
+blockquote:has(a[href="#i-l"]),
+blockquote:has(a[href="#il"]),
+blockquote:has(a[href="#i-left"]),
+blockquote:has(a[href="#i-c"]),
+blockquote:has(a[href="#ic"]),
+blockquote:has(a[href="#i-center"]),
+blockquote:has(a[href="#i-r"]),
+blockquote:has(a[href="#ir"]),
+blockquote:has(a[href="#i-right"]),
+blockquote:has(a[href="#a"]),
+blockquote:has(a[href="#a-l"]),
+blockquote:has(a[href="#al"]),
+blockquote:has(a[href="#a-left"]),
+blockquote:has(a[href="#a-c"]),
+blockquote:has(a[href="#ac"]),
+blockquote:has(a[href="#a-center"]),
+blockquote:has(a[href="#a-r"]),
+blockquote:has(a[href="#ar"]),
+blockquote:has(a[href="#a-right"]),
+blockquote:has(a[href="#s"]),
+blockquote:has(a[href="#s-l"]),
+blockquote:has(a[href="#sl"]),
+blockquote:has(a[href="#s-left"]),
+blockquote:has(a[href="#s-c"]),
+blockquote:has(a[href="#sc"]),
+blockquote:has(a[href="#s-center"]),
+blockquote:has(a[href="#s-r"]),
+blockquote:has(a[href="#sr"]),
+blockquote:has(a[href="#s-right"]) {
     /* Reset from standard blockquote */
     background-image: none;
     border: none;
+    box-shadow: var(--shadow-external);
 
     /* Typography Overrides */
     font-family: "Trebuchet MS", sans-serif;
-    /* Normal font, not handwritten */
     font-size: 0.9em;
     line-height: 1.4;
-    /* position: relative; */
     background-size: cover;
-    /* Ensure texture covers the card */
     background-blend-mode: multiply;
-    /* Blend color with texture */
     background-image: url('nb_img/paper2.jpg');
+    box-sizing: border-box;
+}
 
-    /* Animação de entrada lateral */
+/* --- Layout Variations --- */
+
+/* Left-Attached Cards (Default) */
+.card-info,
+.card-alert,
+.card-success,
+.card-info-left,
+.card-alert-left,
+.card-success-left,
+.card-left,
+blockquote:has(a[href="#i"]),
+blockquote:has(a[href="#i-l"]),
+blockquote:has(a[href="#il"]),
+blockquote:has(a[href="#i-left"]),
+blockquote:has(a[href="#a"]),
+blockquote:has(a[href="#a-l"]),
+blockquote:has(a[href="#al"]),
+blockquote:has(a[href="#a-left"]),
+blockquote:has(a[href="#s"]),
+blockquote:has(a[href="#s-l"]),
+blockquote:has(a[href="#sl"]),
+blockquote:has(a[href="#s-left"]) {
+    width: 37%;
+    min-width: 350px;
+    margin: var(--block-margin-y) auto var(--block-margin-y) calc(var(--padding-general) * -1);
+    align-self: flex-start;
+    padding: var(--block-padding-y) 15px var(--block-padding-y) var(--padding-general);
+    border-radius: 0 25px 25px 0;
     animation: slide-in-left 0.7s ease-out both;
+}
+
+/* Right-Attached Cards */
+.card-info-right,
+.card-alert-right,
+.card-success-right,
+.card-right,
+blockquote:has(a[href="#i-r"]),
+blockquote:has(a[href="#ir"]),
+blockquote:has(a[href="#i-right"]),
+blockquote:has(a[href="#a-r"]),
+blockquote:has(a[href="#ar"]),
+blockquote:has(a[href="#a-right"]),
+blockquote:has(a[href="#s-r"]),
+blockquote:has(a[href="#sr"]),
+blockquote:has(a[href="#s-right"]) {
+    width: 37%;
+    min-width: 350px;
+    margin: var(--block-margin-y) calc(var(--padding-general) * -1) var(--block-margin-y) auto;
+    align-self: flex-end;
+    padding: var(--block-padding-y) var(--padding-general) var(--block-padding-y) 15px;
+    border-radius: 25px 0 0 25px;
+    animation: slide-in-right 0.7s ease-out both;
+}
+
+/* Centered Cards */
+.card-info-center,
+.card-alert-center,
+.card-success-center,
+.card-center,
+blockquote:has(a[href="#i-c"]),
+blockquote:has(a[href="#ic"]),
+blockquote:has(a[href="#i-center"]),
+blockquote:has(a[href="#a-c"]),
+blockquote:has(a[href="#ac"]),
+blockquote:has(a[href="#a-center"]),
+blockquote:has(a[href="#s-c"]),
+blockquote:has(a[href="#sc"]),
+blockquote:has(a[href="#s-center"]) {
+    width: 48%;
+    min-width: 350px;
+    max-width: 85%;
+    margin: var(--block-margin-y) auto;
+    align-self: center;
+    padding: var(--block-padding-y) 25px;
+    border-radius: 20px;
+    animation: slide-up-fade 0.7s ease-out both;
 }
 
 /* Hide Trigger Links */
 blockquote a[href="#i"],
+blockquote a[href="#i-l"],
+blockquote a[href="#il"],
+blockquote a[href="#i-left"],
+blockquote a[href="#i-c"],
+blockquote a[href="#ic"],
+blockquote a[href="#i-center"],
+blockquote a[href="#i-r"],
+blockquote a[href="#ir"],
+blockquote a[href="#i-right"],
 blockquote a[href="#a"],
-blockquote a[href="#s"] {
+blockquote a[href="#a-l"],
+blockquote a[href="#al"],
+blockquote a[href="#a-left"],
+blockquote a[href="#a-c"],
+blockquote a[href="#ac"],
+blockquote a[href="#a-center"],
+blockquote a[href="#a-r"],
+blockquote a[href="#ar"],
+blockquote a[href="#a-right"],
+blockquote a[href="#s"],
+blockquote a[href="#s-l"],
+blockquote a[href="#sl"],
+blockquote a[href="#s-left"],
+blockquote a[href="#s-c"],
+blockquote a[href="#sc"],
+blockquote a[href="#s-center"],
+blockquote a[href="#s-r"],
+blockquote a[href="#sr"],
+blockquote a[href="#s-right"] {
     display: none;
 }
 
 /* Force Black Bold Text in Specialized Cards */
 .card-info strong,
-blockquote:has(a[href="#i"]) strong,
 .card-alert strong,
-blockquote:has(a[href="#a"]) strong,
 .card-success strong,
-blockquote:has(a[href="#s"]) strong {
+.card-info-left strong,
+.card-alert-left strong,
+.card-success-left strong,
+.card-info-center strong,
+.card-alert-center strong,
+.card-success-center strong,
+.card-info-right strong,
+.card-alert-right strong,
+.card-success-right strong,
+.card-left strong,
+.card-center strong,
+.card-right strong,
+blockquote:has(a[href="#i"]) strong,
+blockquote:has(a[href="#i-l"]) strong,
+blockquote:has(a[href="#il"]) strong,
+blockquote:has(a[href="#i-left"]) strong,
+blockquote:has(a[href="#i-c"]) strong,
+blockquote:has(a[href="#ic"]) strong,
+blockquote:has(a[href="#i-center"]) strong,
+blockquote:has(a[href="#i-r"]) strong,
+blockquote:has(a[href="#ir"]) strong,
+blockquote:has(a[href="#i-right"]) strong,
+blockquote:has(a[href="#a"]) strong,
+blockquote:has(a[href="#a-l"]) strong,
+blockquote:has(a[href="#al"]) strong,
+blockquote:has(a[href="#a-left"]) strong,
+blockquote:has(a[href="#a-c"]) strong,
+blockquote:has(a[href="#ac"]) strong,
+blockquote:has(a[href="#a-center"]) strong,
+blockquote:has(a[href="#a-r"]) strong,
+blockquote:has(a[href="#ar"]) strong,
+blockquote:has(a[href="#a-right"]) strong,
+blockquote:has(a[href="#s"]) strong,
+blockquote:has(a[href="#s-l"]) strong,
+blockquote:has(a[href="#sl"]) strong,
+blockquote:has(a[href="#s-left"]) strong,
+blockquote:has(a[href="#s-c"]) strong,
+blockquote:has(a[href="#sc"]) strong,
+blockquote:has(a[href="#s-center"]) strong,
+blockquote:has(a[href="#s-r"]) strong,
+blockquote:has(a[href="#sr"]) strong,
+blockquote:has(a[href="#s-right"]) strong {
     color: #000000;
-    /* Slate 800 - Soft Black */
     font-weight: 700;
 }
 
-/* --- Specific Colors & Icons --- */
+/* --- Specific Colors --- */
 
-/* Info Card (#i) */
+/* Info Card (#i, Yellow) */
 .card-info,
-blockquote:has(a[href="#i"]) {
+.card-info-left,
+.card-info-center,
+.card-info-right,
+blockquote:has(a[href="#i"]),
+blockquote:has(a[href="#i-l"]),
+blockquote:has(a[href="#il"]),
+blockquote:has(a[href="#i-left"]),
+blockquote:has(a[href="#i-c"]),
+blockquote:has(a[href="#ic"]),
+blockquote:has(a[href="#i-center"]),
+blockquote:has(a[href="#i-r"]),
+blockquote:has(a[href="#ir"]),
+blockquote:has(a[href="#i-right"]) {
     /* Post-it Yellow */
     background-color: #ffe627cc;
     color: #423c06;
 }
 
-
-/* Alert Card (#a) */
+/* Alert Card (#a, Pink/Red) */
 .card-alert,
-blockquote:has(a[href="#a"]) {
+.card-alert-left,
+.card-alert-center,
+.card-alert-right,
+blockquote:has(a[href="#a"]),
+blockquote:has(a[href="#a-l"]),
+blockquote:has(a[href="#al"]),
+blockquote:has(a[href="#a-left"]),
+blockquote:has(a[href="#a-c"]),
+blockquote:has(a[href="#ac"]),
+blockquote:has(a[href="#a-center"]),
+blockquote:has(a[href="#a-r"]),
+blockquote:has(a[href="#ar"]),
+blockquote:has(a[href="#a-right"]) {
     /* Alert Pink/Red */
     background-color: #ff4f4fcc;
     color: #450a0a;
 }
 
-
-/* Success Card (#s) */
+/* Success Card (#s, Green) */
 .card-success,
-blockquote:has(a[href="#s"]) {
+.card-success-left,
+.card-success-center,
+.card-success-right,
+blockquote:has(a[href="#s"]),
+blockquote:has(a[href="#s-l"]),
+blockquote:has(a[href="#sl"]),
+blockquote:has(a[href="#s-left"]),
+blockquote:has(a[href="#s-c"]),
+blockquote:has(a[href="#sc"]),
+blockquote:has(a[href="#s-center"]),
+blockquote:has(a[href="#s-r"]),
+blockquote:has(a[href="#sr"]),
+blockquote:has(a[href="#s-right"]) {
     /* Success Green */
     background-color: #58ff93cc;
     color: #052e16;
@@ -694,25 +906,209 @@ section.cols-3 blockquote:has(a[href="#d"]) {
     border-radius: 16px;
 }
 
+/* Base resets for all specialized cards in multi-column */
 section.cols-2 .card-info,
 section.cols-3 .card-info,
-section.cols-2 blockquote:has(a[href="#i"]),
-section.cols-3 blockquote:has(a[href="#i"]),
 section.cols-2 .card-alert,
 section.cols-3 .card-alert,
-section.cols-2 blockquote:has(a[href="#a"]),
-section.cols-3 blockquote:has(a[href="#a"]),
 section.cols-2 .card-success,
 section.cols-3 .card-success,
+section.cols-2 .card-info-left,
+section.cols-3 .card-info-left,
+section.cols-2 .card-alert-left,
+section.cols-3 .card-alert-left,
+section.cols-2 .card-success-left,
+section.cols-3 .card-success-left,
+section.cols-2 .card-info-center,
+section.cols-3 .card-info-center,
+section.cols-2 .card-alert-center,
+section.cols-3 .card-alert-center,
+section.cols-2 .card-success-center,
+section.cols-3 .card-success-center,
+section.cols-2 .card-info-right,
+section.cols-3 .card-info-right,
+section.cols-2 .card-alert-right,
+section.cols-3 .card-alert-right,
+section.cols-2 .card-success-right,
+section.cols-3 .card-success-right,
+section.cols-2 .card-left,
+section.cols-3 .card-left,
+section.cols-2 .card-center,
+section.cols-3 .card-center,
+section.cols-2 .card-right,
+section.cols-3 .card-right,
+section.cols-2 blockquote:has(a[href="#i"]),
+section.cols-3 blockquote:has(a[href="#i"]),
+section.cols-2 blockquote:has(a[href="#i-l"]),
+section.cols-3 blockquote:has(a[href="#i-l"]),
+section.cols-2 blockquote:has(a[href="#il"]),
+section.cols-3 blockquote:has(a[href="#il"]),
+section.cols-2 blockquote:has(a[href="#i-left"]),
+section.cols-3 blockquote:has(a[href="#i-left"]),
+section.cols-2 blockquote:has(a[href="#i-c"]),
+section.cols-3 blockquote:has(a[href="#i-c"]),
+section.cols-2 blockquote:has(a[href="#ic"]),
+section.cols-3 blockquote:has(a[href="#ic"]),
+section.cols-2 blockquote:has(a[href="#i-center"]),
+section.cols-3 blockquote:has(a[href="#i-center"]),
+section.cols-2 blockquote:has(a[href="#i-r"]),
+section.cols-3 blockquote:has(a[href="#i-r"]),
+section.cols-2 blockquote:has(a[href="#ir"]),
+section.cols-3 blockquote:has(a[href="#ir"]),
+section.cols-2 blockquote:has(a[href="#i-right"]),
+section.cols-3 blockquote:has(a[href="#i-right"]),
+section.cols-2 blockquote:has(a[href="#a"]),
+section.cols-3 blockquote:has(a[href="#a"]),
+section.cols-2 blockquote:has(a[href="#a-l"]),
+section.cols-3 blockquote:has(a[href="#a-l"]),
+section.cols-2 blockquote:has(a[href="#al"]),
+section.cols-3 blockquote:has(a[href="#al"]),
+section.cols-2 blockquote:has(a[href="#a-left"]),
+section.cols-3 blockquote:has(a[href="#a-left"]),
+section.cols-2 blockquote:has(a[href="#a-c"]),
+section.cols-3 blockquote:has(a[href="#a-c"]),
+section.cols-2 blockquote:has(a[href="#ac"]),
+section.cols-3 blockquote:has(a[href="#ac"]),
+section.cols-2 blockquote:has(a[href="#a-center"]),
+section.cols-3 blockquote:has(a[href="#a-center"]),
+section.cols-2 blockquote:has(a[href="#a-r"]),
+section.cols-3 blockquote:has(a[href="#a-r"]),
+section.cols-2 blockquote:has(a[href="#ar"]),
+section.cols-3 blockquote:has(a[href="#ar"]),
+section.cols-2 blockquote:has(a[href="#a-right"]),
+section.cols-3 blockquote:has(a[href="#a-right"]),
 section.cols-2 blockquote:has(a[href="#s"]),
-section.cols-3 blockquote:has(a[href="#s"]) {
+section.cols-3 blockquote:has(a[href="#s"]),
+section.cols-2 blockquote:has(a[href="#s-l"]),
+section.cols-3 blockquote:has(a[href="#s-l"]),
+section.cols-2 blockquote:has(a[href="#sl"]),
+section.cols-3 blockquote:has(a[href="#sl"]),
+section.cols-2 blockquote:has(a[href="#s-left"]),
+section.cols-3 blockquote:has(a[href="#s-left"]),
+section.cols-2 blockquote:has(a[href="#s-c"]),
+section.cols-3 blockquote:has(a[href="#s-c"]),
+section.cols-2 blockquote:has(a[href="#sc"]),
+section.cols-3 blockquote:has(a[href="#sc"]),
+section.cols-2 blockquote:has(a[href="#s-center"]),
+section.cols-3 blockquote:has(a[href="#s-center"]),
+section.cols-2 blockquote:has(a[href="#s-r"]),
+section.cols-3 blockquote:has(a[href="#s-r"]),
+section.cols-2 blockquote:has(a[href="#sr"]),
+section.cols-3 blockquote:has(a[href="#sr"]),
+section.cols-2 blockquote:has(a[href="#s-right"]),
+section.cols-3 blockquote:has(a[href="#s-right"]) {
     width: auto;
     min-width: 0;
     max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Left-Attached Cards in Multi-Column (touches slide left edge in col 1) */
+section.cols-2 .card-info,
+section.cols-3 .card-info,
+section.cols-2 .card-alert,
+section.cols-3 .card-alert,
+section.cols-2 .card-success,
+section.cols-3 .card-success,
+section.cols-2 .card-info-left,
+section.cols-3 .card-info-left,
+section.cols-2 .card-alert-left,
+section.cols-3 .card-alert-left,
+section.cols-2 .card-success-left,
+section.cols-3 .card-success-left,
+section.cols-2 .card-left,
+section.cols-3 .card-left,
+section.cols-2 blockquote:has(a[href="#i"]),
+section.cols-3 blockquote:has(a[href="#i"]),
+section.cols-2 blockquote:has(a[href="#i-l"]),
+section.cols-3 blockquote:has(a[href="#i-l"]),
+section.cols-2 blockquote:has(a[href="#il"]),
+section.cols-3 blockquote:has(a[href="#il"]),
+section.cols-2 blockquote:has(a[href="#i-left"]),
+section.cols-3 blockquote:has(a[href="#i-left"]),
+section.cols-2 blockquote:has(a[href="#a"]),
+section.cols-3 blockquote:has(a[href="#a"]),
+section.cols-2 blockquote:has(a[href="#a-l"]),
+section.cols-3 blockquote:has(a[href="#a-l"]),
+section.cols-2 blockquote:has(a[href="#al"]),
+section.cols-3 blockquote:has(a[href="#al"]),
+section.cols-2 blockquote:has(a[href="#a-left"]),
+section.cols-3 blockquote:has(a[href="#a-left"]),
+section.cols-2 blockquote:has(a[href="#s"]),
+section.cols-3 blockquote:has(a[href="#s"]),
+section.cols-2 blockquote:has(a[href="#s-l"]),
+section.cols-3 blockquote:has(a[href="#s-l"]),
+section.cols-2 blockquote:has(a[href="#sl"]),
+section.cols-3 blockquote:has(a[href="#sl"]),
+section.cols-2 blockquote:has(a[href="#s-left"]),
+section.cols-3 blockquote:has(a[href="#s-left"]) {
+    margin: var(--block-margin-y) 0 var(--block-margin-y) calc(var(--padding-general) * -1);
+    padding: var(--block-padding-y) 15px var(--block-padding-y) var(--padding-general);
+    border-radius: 0 20px 20px 0;
+}
+
+/* Right-Attached Cards in Multi-Column (touches slide right edge in last col) */
+section.cols-2 .card-info-right,
+section.cols-3 .card-info-right,
+section.cols-2 .card-alert-right,
+section.cols-3 .card-alert-right,
+section.cols-2 .card-success-right,
+section.cols-3 .card-success-right,
+section.cols-2 .card-right,
+section.cols-3 .card-right,
+section.cols-2 blockquote:has(a[href="#i-r"]),
+section.cols-3 blockquote:has(a[href="#i-r"]),
+section.cols-2 blockquote:has(a[href="#ir"]),
+section.cols-3 blockquote:has(a[href="#ir"]),
+section.cols-2 blockquote:has(a[href="#i-right"]),
+section.cols-3 blockquote:has(a[href="#i-right"]),
+section.cols-2 blockquote:has(a[href="#a-r"]),
+section.cols-3 blockquote:has(a[href="#a-r"]),
+section.cols-2 blockquote:has(a[href="#ar"]),
+section.cols-3 blockquote:has(a[href="#ar"]),
+section.cols-2 blockquote:has(a[href="#a-right"]),
+section.cols-3 blockquote:has(a[href="#a-right"]),
+section.cols-2 blockquote:has(a[href="#s-r"]),
+section.cols-3 blockquote:has(a[href="#s-r"]),
+section.cols-2 blockquote:has(a[href="#sr"]),
+section.cols-3 blockquote:has(a[href="#sr"]),
+section.cols-2 blockquote:has(a[href="#s-right"]),
+section.cols-3 blockquote:has(a[href="#s-right"]) {
+    margin: var(--block-margin-y) calc(var(--padding-general) * -1) var(--block-margin-y) 0;
+    padding: var(--block-padding-y) var(--padding-general) var(--block-padding-y) 15px;
+    border-radius: 20px 0 0 20px;
+}
+
+/* Centered Cards in Multi-Column (Fits neatly inside any column) */
+section.cols-2 .card-info-center,
+section.cols-3 .card-info-center,
+section.cols-2 .card-alert-center,
+section.cols-3 .card-alert-center,
+section.cols-2 .card-success-center,
+section.cols-3 .card-success-center,
+section.cols-2 .card-center,
+section.cols-3 .card-center,
+section.cols-2 blockquote:has(a[href="#i-c"]),
+section.cols-3 blockquote:has(a[href="#i-c"]),
+section.cols-2 blockquote:has(a[href="#ic"]),
+section.cols-3 blockquote:has(a[href="#ic"]),
+section.cols-2 blockquote:has(a[href="#i-center"]),
+section.cols-3 blockquote:has(a[href="#i-center"]),
+section.cols-2 blockquote:has(a[href="#a-c"]),
+section.cols-3 blockquote:has(a[href="#a-c"]),
+section.cols-2 blockquote:has(a[href="#ac"]),
+section.cols-3 blockquote:has(a[href="#ac"]),
+section.cols-2 blockquote:has(a[href="#a-center"]),
+section.cols-3 blockquote:has(a[href="#a-center"]),
+section.cols-2 blockquote:has(a[href="#s-c"]),
+section.cols-3 blockquote:has(a[href="#s-c"]),
+section.cols-2 blockquote:has(a[href="#sc"]),
+section.cols-3 blockquote:has(a[href="#sc"]),
+section.cols-2 blockquote:has(a[href="#s-center"]),
+section.cols-3 blockquote:has(a[href="#s-center"]) {
     margin: var(--block-margin-y) 0;
     padding: var(--block-padding-y) 20px;
-    box-sizing: border-box;
-    border-radius: 12px;
+    border-radius: 16px;
 }
 
 /* Column Break Symbol: ![split]() 
