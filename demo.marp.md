@@ -198,6 +198,8 @@ if __name__ == "__main__":
 
 ---
 
+<!-- _class: cols-2 -->
+
 ## Long Code with Scroll
 
 - For long code requiring vertical scrolling and automatic line wrapping, wrap in `<div class="code-scroll">`.
