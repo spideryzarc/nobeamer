@@ -1,4 +1,5 @@
 /* @theme nobeamer */
+/* @auto-scaling fittingHeader,math */
 
 @import 'default';
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cousine:wght@400;700&family=Inter:wght@300;400;700;900&family=Josefin+Sans:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
@@ -729,6 +730,125 @@ pre::before {
 }
 
 /* ==========================================================================
+   7b. SCROLLABLE CODE CARDS (.code-scroll)
+   Alternative to standard code blocks for long code requiring scroll & auto-wrap.
+   Usage:
+   <div class="code-scroll">
+   ```python
+   # Your long code here without '>'
+   ```
+   </div>
+   ========================================================================== */
+
+.code-scroll {
+    max-height: 460px;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 14px;
+    box-shadow: var(--shadow-external);
+    margin: var(--block-margin-y) 0;
+    position: relative;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+/* Sticky top accent line matching nobeamer identity */
+.code-scroll::before {
+    content: '';
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--tertiary), var(--secondary));
+    z-index: 10;
+}
+
+/* Custom sleek scrollbar for WebKit */
+.code-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.code-scroll::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 0 14px 14px 0;
+}
+
+.code-scroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.code-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--tertiary);
+}
+
+/* Code block reset & uncompressed font preservation inside .code-scroll */
+.code-scroll pre {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 18px 24px !important;
+    margin: 0 !important;
+    animation: none !important;
+    overflow: visible !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    --marp-auto-scaling-white-space: pre-wrap !important;
+}
+
+/* Remove short-code decorations that clash with long-code card */
+.code-scroll pre::before,
+.code-scroll pre::after {
+    display: none !important;
+}
+
+.code-scroll pre code {
+    font-family: var(--font-code) !important;
+    font-size: inherit !important;
+    line-height: 1.5 !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Optional dark variant: <div class="code-scroll dark"> */
+.code-scroll.dark {
+    background: #0f172a;
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #f8fafc;
+    scrollbar-color: #475569 #1e293b;
+}
+
+.code-scroll.dark::before {
+    background: linear-gradient(90deg, var(--secondary), var(--tertiary));
+}
+
+.code-scroll.dark::-webkit-scrollbar-track {
+    background: #1e293b;
+}
+
+.code-scroll.dark::-webkit-scrollbar-thumb {
+    background: #475569;
+}
+
+.code-scroll.dark::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+}
+
+.code-scroll.dark pre code {
+    color: #e2e8f0 !important;
+}
+
+/* ==========================================================================
    8. IMAGES
    ========================================================================== */
 /* Default to block for "figure" images, but exclude emojis */
@@ -891,12 +1011,19 @@ section.cols-3 blockquote,
 section.cols-2 .marp-card,
 section.cols-3 .marp-card,
 section.cols-2 .math-resolution,
-section.cols-3 .math-resolution {
+section.cols-3 .math-resolution,
+section.cols-2 .code-scroll,
+section.cols-3 .code-scroll {
     margin: var(--block-margin-y) 0;
     padding: var(--block-padding-y) 20px;
     width: auto;
     max-width: 100%;
     box-sizing: border-box;
+}
+
+section.cols-2 .code-scroll,
+section.cols-3 .code-scroll {
+    padding: 0;
 }
 
 section.cols-2 .card-dark,
@@ -1192,6 +1319,21 @@ section.cols-3 img[alt="split"] {
 
     blockquote:has(a[href="#def"]) {
         border-top: 4px solid #7c3aed !important;
+    }
+
+    /* Code scroll card: hide scrollbar & replace sticky ::before with stable border-top */
+    .code-scroll {
+        overflow: hidden !important;
+        scrollbar-width: none !important;
+        border-top: 4px solid var(--tertiary) !important;
+    }
+
+    .code-scroll::before {
+        content: none !important;
+    }
+
+    .code-scroll::-webkit-scrollbar {
+        display: none !important;
     }
 }
 

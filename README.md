@@ -165,6 +165,29 @@ Tables are automatically styled to resemble APA/Scientific publication standards
 
 Code blocks (`pre`) are styled with a glossy, Mac-OS inspired aesthetic to pop against paper backgrounds. No special class is required.
 
+### Scrollable Long Code Blocks (`<div class="code-scroll">`)
+
+For exceptionally long code snippets that need to be presented without being compressed or scaled down by Marp, wrap your standard code block inside a `<div class="code-scroll">` container.
+
+- **Uncompressed Font**: Neutralizes automatic downscaling, keeping the font 100% sharp and readable.
+- **Automatic Line Wrapping**: Long lines wrap naturally within the card boundaries (`word-break: break-word`), eliminating unwanted horizontal scrolling.
+- **Dedicated Vertical Scrollbar**: Styled scrollbar allowing mouse/trackpad scrolling during interactive presentations without changing slides.
+- **Full Syntax Highlighting**: Fully preserves Marp's native syntax highlighting (`highlight.js`).
+
+```html
+<div class="code-scroll">
+
+```python
+# Extended code snippet (paste directly without any '>' prefix)
+def process_data(records: list[dict]) -> dict:
+    ...
+```
+
+</div>
+```
+
+*(Tip: Add class `dark` — `<div class="code-scroll dark">` — for a dark terminal-style card).*
+
 ### Print / PDF Export
 
 All theme animations (code blocks, tables, dark blocks, lateral cards) are **automatically disabled** when exporting to PDF or printing. No manual class or configuration is needed — the theme uses `@media print` to strip animations, transitions, transforms, filters, and `backdrop-filter` globally, ensuring a clean static output.

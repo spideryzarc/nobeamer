@@ -198,6 +198,43 @@ if __name__ == "__main__":
 
 ---
 
+## Long Code with Scroll
+
+- For long code requiring vertical scrolling and automatic line wrapping, wrap in `<div class="code-scroll">`.
+- Keeps the font completely uncompressed, readable, with native syntax highlighting.
+
+<div class="code-scroll">
+
+```python
+# Extended pipeline processor demonstration
+def execute_pipeline(batch_data: list[dict], max_workers: int = 4) -> dict:
+    """
+    Linha longa para demonstrar a quebra automatica: todas as linhas compridas quebram sem achatar a fonte nem gerar rolagem horizontal indesejada.
+    """
+    processed = []
+    for item in batch_data:
+        key = item.get("id", "N/A")
+        val = str(item.get("payload", "")).strip().lower()
+        if not val:
+            continue
+        processed.append({"id": key, "result": val, "status": "COMPLETED"})
+        print(f"Record {key} successfully processed with status COMPLETED")
+    return {"total": len(processed), "success": True}
+
+# Additional configuration parameters to trigger the scrollbar
+pipeline_config = {
+    "endpoint": "https://api.internal.service/v2/stream",
+    "timeout": 45,
+    "retry_policy": {"max_retries": 3, "backoff_factor": 1.5},
+    "buffer_size": 1024 * 1024,
+    "ssl_verification": True
+}
+```
+
+</div>
+
+---
+
 ## Math & Formulas
 
 - For long math resolutions, use the `math-resolution` class.
