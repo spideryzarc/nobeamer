@@ -1,5 +1,5 @@
 /* @theme nobeamer */
-/* @auto-scaling fittingHeader,math */
+/* @auto-scaling true */
 
 @import 'default';
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cousine:wght@400;700&family=Inter:wght@300;400;700;900&family=Josefin+Sans:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
@@ -802,13 +802,29 @@ pre::before {
     --marp-auto-scaling-white-space: pre-wrap !important;
 }
 
+/* Neutralize Marp auto-scaling height ceiling so tall code scrolls without shrinking font */
+.code-scroll :is(pre, marp-pre)::part(auto-scaling) {
+    max-height: none !important;
+}
+
 /* Remove short-code decorations that clash with long-code card */
-.code-scroll pre::before,
-.code-scroll pre::after {
+.code-scroll :is(pre, marp-pre)::before,
+.code-scroll :is(pre, marp-pre)::after {
     display: none !important;
 }
 
-.code-scroll pre code {
+/*
+ * Dynamic width resolution for ANY arbitrary layout:
+ * container-type: inline-size enables 100cqw to evaluate to the exact width
+ * of the card — whether full-width, 2-cols, 3-cols, or alongside arbitrary
+ * background splits (e.g. ![bg left:35%], ![bg right:40%]).
+ * This prevents Marp auto-scaling from detecting horizontal overflow and downscaling.
+ */
+.code-scroll {
+    container-type: inline-size;
+}
+
+.code-scroll :is(pre, marp-pre) code {
     font-family: var(--font-code) !important;
     font-size: inherit !important;
     line-height: 1.5 !important;
@@ -816,7 +832,8 @@ pre::before {
     word-break: break-word !important;
     overflow-wrap: anywhere !important;
     display: block !important;
-    width: 100% !important;
+    width: calc(100cqw - 48px) !important;
+    max-width: calc(100cqw - 48px) !important;
     box-sizing: border-box !important;
 }
 
