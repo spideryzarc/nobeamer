@@ -5,20 +5,23 @@ paginate: true
 size: 16:9
 title: "nobeamer-swiss: International Typographic Style"
 transition: swiss
+style: ":root { --accent: #ee251a; }"
 ---
 
 <!-- _class: lead -->
 
+![bg right:46%](images/scholar_portrait.jpg)
+
 # NOBEAMER **SWISS**
 
-International Typographic Style for Academic & Technical Presentations
+### LECTURE 02 : EMPIRICAL METHODS & EPISTEMOLOGY
 
-<div class="meta-grid">
-  <span>SERIES</span><span>01 / SPECIFICATION</span>
-  <span>AUTHOR</span><span>DR. J. MÜLLER & TEAM</span>
-  <span>INSTITUTE</span><span>ETH ZÜRICH // NOBEAMER</span>
-  <span>YEAR</span><span>2026</span>
-</div>
+- **INSTITUTE**: ETH ZÜRICH
+- **COURSE**: SCI-204
+- **PROF**: DR. E. VOGEL
+- **YEAR**: 2026
+
+
 
 ---
 
@@ -171,6 +174,35 @@ grid_spec = compute_modular_grid()
 print(f"Computed Swiss Grid: {grid_spec['column_width']}px per module")
 ```
 
+</div>
+
+---
+
+<!-- _class: cols-2 -->
+<!-- _style: "--accent: #0066CC;" -->
+
+## Theme Parameterization & Accent Colors
+
+### Dynamic Semantic Palette
+
+The primary accent color (default Swiss Red `#E30613`) is controlled directly by the single CSS custom property `--accent`:
+
+- **Global Frontmatter Override**:
+  `style: ":root { --accent: #FF5500; }"`
+- **Single Slide Override**:
+  `<!-- _style: "--accent: #0066CC;" -->`
+
+Zero helper classes, zero layout conflicts — everything inherits from `--accent` directly.
+
+![split]()
+
+> [](#a) **Single Variable Control**
+> This slide sets `<!-- _style: "--accent: #0066CC;" -->`. The alert card, headline strong text, and rules inherit `#0066CC` automatically.
+
+<div class="callout-specs">
+VARIABLE: --accent<br>
+SLIDE OVERRIDE: #0066CC<br>
+ARCHITECTURE: PURE CSS VARIABLE
 </div>
 
 ---

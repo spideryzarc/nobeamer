@@ -8,9 +8,13 @@
    1. DESIGN TOKENS & SYSTEM VARIABLES (Swiss Modernism)
    ========================================================================== */
 :root {
+    /* Theme Parameter: Accent Color (Default: Swiss Red #E30613) */
+    --accent: #E30613;
+    --accent-dark: color-mix(in srgb, var(--accent) 80%, black);
+
     /* Palette: Authentic International Typographic Style */
-    --swiss-red: #E30613;          /* Traditional Swiss Vermilion */
-    --swiss-red-dark: #B8040F;
+    --swiss-red: var(--accent);
+    --swiss-red-dark: var(--accent-dark);
     --swiss-black: #111111;        /* Deep graphic black */
     --swiss-charcoal: #222222;
     --swiss-gray-800: #333333;
@@ -55,7 +59,10 @@
    2. SLIDE BASE & STRUCTURAL GRID
    ========================================================================== */
 section {
-    background: var(--bg-main);
+    background-color: #f7f7f5;
+    background-image: url('nb_img/paper2.jpg');
+    background-size: cover;
+    background-position: center;
     color: var(--text);
     font-family: var(--font-sans);
     padding: var(--padding-general);
@@ -323,7 +330,7 @@ blockquote:has(a[href^="#i"]),
 /* Alert Card: Stark Red Theme */
 blockquote:has(a[href^="#a"]),
 .card-alert {
-    background-color: #FFF5F5;
+    background-color: color-mix(in srgb, var(--accent) 5%, var(--swiss-white));
     color: var(--swiss-black);
     border-color: var(--swiss-red);
     border-top: 4px solid var(--swiss-red);
@@ -776,56 +783,150 @@ section.invert .metric {
     color: var(--swiss-white);
 }
 
-/* Slide Variant: Lead / Title Slide (Mockup 1) */
+/* ==========================================================================
+   Slide Variant: Lead / Title Slide (Proposta B: Swiss Duotone Photomontage)
+   ========================================================================== */
 section.lead {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: var(--swiss-white);
-    padding: 72px var(--padding-general);
+    background-color: #f7f7f5;
+    background-image: url('nb_img/paper2.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 48px var(--padding-general) 72px var(--padding-general);
+    box-sizing: border-box;
+    position: relative;
 }
 
+/* Subtle architectural registration marks (+) on the top-left */
 section.lead::before {
+    content: '+';
+    position: absolute;
+    top: 20px;
+    left: var(--padding-general);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--swiss-gray-400);
+    line-height: 1;
+    z-index: 5;
+    display: block !important;
+}
+
+/* Vertical dividing hairline separating text from photo in split mode */
+section.lead[data-marpit-advanced-background="content"] {
+    border-right: 1px solid var(--swiss-black) !important;
+    padding: 48px 36px 72px 48px;
+    box-sizing: border-box;
+    background: transparent !important;
+}
+
+/* Ensure the background image container is strictly positioned on the right */
+section.lead[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] {
+    position: relative !important;
+}
+
+/* Duotone Multiply Accent Field: CONSTRAINED TO THE PHOTO ONLY */
+section.lead[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container]::after {
+    content: '';
+    position: absolute;
+    bottom: 52px;
+    left: 0;
+    right: 0;
+    height: 42%;
+    background-color: var(--accent);
+    mix-blend-mode: multiply;
+    opacity: 0.92;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Bottom hairline divider across photo container */
+section.lead[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container]::before {
+    content: '';
+    position: absolute;
+    bottom: 52px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--swiss-black);
+    z-index: 6;
+}
+
+/* Title: Monumental Neo-Grotesque Typography */
+section.lead h1 {
+    font-size: 68px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--swiss-black);
+    margin: 0 0 20px 0;
+}
+
+section.lead h1 strong {
+    color: var(--swiss-black);
+}
+
+/* Remove old arbitrary geometric square */
+section.lead h1::after {
     display: none !important;
 }
 
-section.lead h1 {
-    font-size: 78px;
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    line-height: 0.9;
-    margin-bottom: 18px;
-}
-
-section.lead h1::after {
-    width: 64px;
-    height: 64px;
-    background: var(--swiss-red);
-    margin-top: 32px;
-}
-
+/* Subtitle / Lecture details */
+section.lead h2,
+section.lead h3,
 section.lead p {
-    font-size: 1.45rem;
-    font-weight: 500;
+    font-size: 1.18rem;
+    font-weight: 700;
     letter-spacing: -0.02em;
-    color: var(--swiss-charcoal);
-    max-width: 75%;
+    line-height: 1.35;
+    text-transform: uppercase;
+    color: var(--swiss-black);
+    max-width: 95%;
     margin: 0;
 }
 
+/* Bottom Metadata Bar: Pure Markdown list (- **KEY**: Value) */
+section.lead ul,
 section.lead .meta-grid {
     position: absolute;
-    bottom: 40px;
-    left: var(--padding-general);
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 4px 18px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 52px;
+    list-style: none;
+    padding: 0 48px;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 20px;
+    border-top: 1px solid var(--swiss-black);
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.62rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--swiss-black);
+    z-index: 10;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+section.lead ul li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    white-space: nowrap;
+}
+
+section.lead ul li strong {
+    color: var(--swiss-gray-600);
+    margin-right: 6px;
+    font-weight: 700;
 }
 
 /* Slide Variant: Stat / Giant Metric (Mockup 3) */
