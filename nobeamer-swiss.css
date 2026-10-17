@@ -1,0 +1,963 @@
+/* @theme nobeamer-swiss */
+/* @auto-scaling true */
+
+@import 'default';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* ==========================================================================
+   1. DESIGN TOKENS & SYSTEM VARIABLES (Swiss Modernism)
+   ========================================================================== */
+:root {
+    /* Palette: Authentic International Typographic Style */
+    --swiss-red: #E30613;          /* Traditional Swiss Vermilion */
+    --swiss-red-dark: #B8040F;
+    --swiss-black: #111111;        /* Deep graphic black */
+    --swiss-charcoal: #222222;
+    --swiss-gray-800: #333333;
+    --swiss-gray-600: #666666;     /* Neutral secondary / captions */
+    --swiss-gray-400: #999999;
+    --swiss-gray-200: #DCDCDC;     /* Hairline dividers */
+    --swiss-gray-100: #F0F0F2;     /* Subtle module backgrounds */
+    --swiss-gray-50:  #F7F7F9;     /* Code / block backgrounds */
+    --swiss-white: #FFFFFF;
+
+    /* Semantic bindings */
+    --text: var(--swiss-black);
+    --primary: var(--swiss-black);
+    --secondary: var(--swiss-red);
+    --tertiary: var(--swiss-gray-600);
+    --bg-main: var(--swiss-white);
+
+    /* Zero ornament: flat constructivist geometry */
+    --shadow-external: none;
+    --shadow-internal: none;
+    --radius-none: 0px;
+
+    /* Hairlines */
+    --border-hairline: 1px solid var(--swiss-black);
+    --border-hairline-light: 1px solid var(--swiss-gray-200);
+    --border-thick: 2px solid var(--swiss-black);
+    --border-accent: 3px solid var(--swiss-red);
+
+    /* Spatial & modular rhythm */
+    --padding-general: 56px;
+    --block-padding-y: 18px;
+    --block-margin-y: 18px;
+    --gutter: 48px;
+
+    /* Typography Stacks */
+    --font-sans: "Inter", -apple-system, "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    --font-mono: "JetBrains Mono", "Liberation Mono", "Cousine", "Consolas", monospace;
+    --font-code: var(--font-mono);
+}
+
+/* ==========================================================================
+   2. SLIDE BASE & STRUCTURAL GRID
+   ========================================================================== */
+section {
+    background: var(--bg-main);
+    color: var(--text);
+    font-family: var(--font-sans);
+    padding: var(--padding-general);
+    letter-spacing: -0.015em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+/* Structural Top Hairline Rule (Swiss Architectural Grid) */
+section::before {
+    content: '';
+    position: absolute;
+    top: 48px;
+    left: var(--padding-general);
+    right: var(--padding-general);
+    height: 1px;
+    background: var(--swiss-black);
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+/* Clean, Discrete Technical Pagination (01 / 24) */
+section::after {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--swiss-gray-600);
+    letter-spacing: 0.08em;
+    position: absolute;
+    bottom: 24px;
+    right: var(--padding-general);
+}
+
+/* ==========================================================================
+   3. TYPOGRAPHY & HEADING HIERARCHY
+   ========================================================================== */
+h1, h2, h3, h4 {
+    font-family: var(--font-sans);
+    color: var(--primary);
+    margin: 0;
+    text-align: left;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Slide Main Title (H1) — Massive Neo-Grotesque */
+h1 {
+    font-size: 58px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.0;
+    text-transform: uppercase;
+    margin-top: 14px;
+    margin-bottom: 28px;
+}
+
+h1 strong, h2 strong, h3 strong, h4 strong {
+    font-weight: 800;
+    color: var(--swiss-red);
+}
+
+/* Rectangular Solid Red Accent Bar for H1 */
+h1::after {
+    content: '';
+    display: block;
+    width: 54px;
+    height: 8px;
+    background: var(--swiss-red);
+    margin-top: 16px;
+}
+
+/* Slide Section Title (H2) */
+h2 {
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-top: 10px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--swiss-black);
+    padding-bottom: 12px;
+}
+
+/* Sub-headers */
+h3 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-top: 16px;
+    margin-bottom: 12px;
+}
+
+h4 {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--swiss-gray-600);
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+/* Paragraphs & Text: Flush-Left, Ragged-Right */
+p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0.6em 0;
+    color: var(--swiss-black);
+    text-align: left;
+}
+
+strong {
+    font-weight: 700;
+    color: var(--swiss-black);
+}
+
+em {
+    font-style: italic;
+    color: var(--swiss-gray-800);
+}
+
+/* Lists */
+ul, ol {
+    margin: 0.6em 0;
+    padding-left: 1.4em;
+    line-height: 1.6;
+}
+
+li {
+    margin-bottom: 0.4em;
+}
+
+ul li::marker {
+    color: var(--swiss-red);
+}
+
+ol li::marker {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--swiss-black);
+}
+
+/* ==========================================================================
+   4. MODULAR BLOCKQUOTES & SWISS CARDS
+   ========================================================================== */
+
+/* Standard Quote Block: Minimalist Red Margin Line */
+blockquote,
+.marp-card {
+    background: var(--swiss-gray-50);
+    border: none;
+    border-left: 4px solid var(--swiss-red);
+    padding: 18px 24px;
+    margin: var(--block-margin-y) 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: var(--font-sans);
+    font-size: 1.05em;
+    color: var(--swiss-black);
+}
+
+blockquote strong {
+    color: var(--swiss-black);
+}
+
+blockquote em {
+    color: var(--swiss-gray-800);
+}
+
+/* Shared Resets for All Specialized Cards */
+.card-info,
+.card-alert,
+.card-success,
+.card-info-left,
+.card-alert-left,
+.card-success-left,
+.card-info-center,
+.card-alert-center,
+.card-success-center,
+.card-info-right,
+.card-alert-right,
+.card-success-right,
+.card-left,
+.card-center,
+.card-right,
+blockquote:has(a[href^="#i"]),
+blockquote:has(a[href^="#a"]),
+blockquote:has(a[href^="#s"]) {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    border: 1.5px solid var(--swiss-black);
+    padding: 16px 20px;
+    font-family: var(--font-sans);
+    font-size: 0.95em;
+    line-height: 1.5;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Hide trigger anchors */
+blockquote a[href^="#i"],
+blockquote a[href^="#a"],
+blockquote a[href^="#s"],
+blockquote a[href="#d"],
+blockquote a[href="#step"],
+blockquote a[href="#def"] {
+    display: none !important;
+}
+
+/* Layout Variations (Left, Center, Right) */
+blockquote:has(a[href="#i"]),
+blockquote:has(a[href="#i-l"]),
+blockquote:has(a[href="#a"]),
+blockquote:has(a[href="#a-l"]),
+blockquote:has(a[href="#s"]),
+blockquote:has(a[href="#s-l"]),
+.card-info-left,
+.card-alert-left,
+.card-success-left {
+    width: 48%;
+    min-width: 340px;
+    margin: var(--block-margin-y) auto var(--block-margin-y) 0;
+    align-self: flex-start;
+}
+
+blockquote:has(a[href="#i-r"]),
+blockquote:has(a[href="#a-r"]),
+blockquote:has(a[href="#s-r"]),
+.card-info-right,
+.card-alert-right,
+.card-success-right {
+    width: 48%;
+    min-width: 340px;
+    margin: var(--block-margin-y) 0 var(--block-margin-y) auto;
+    align-self: flex-end;
+}
+
+blockquote:has(a[href="#i-c"]),
+blockquote:has(a[href="#a-c"]),
+blockquote:has(a[href="#s-c"]),
+.card-info-center,
+.card-alert-center,
+.card-success-center {
+    width: 60%;
+    min-width: 340px;
+    margin: var(--block-margin-y) auto;
+    align-self: center;
+}
+
+/* Card Themes */
+/* Info Card: Architectural Neutral with Solid Top Edge */
+blockquote:has(a[href^="#i"]),
+.card-info {
+    background-color: var(--swiss-gray-50);
+    color: var(--swiss-black);
+    border-top: 4px solid var(--swiss-black);
+}
+
+/* Alert Card: Stark Red Theme */
+blockquote:has(a[href^="#a"]),
+.card-alert {
+    background-color: #FFF5F5;
+    color: var(--swiss-black);
+    border-color: var(--swiss-red);
+    border-top: 4px solid var(--swiss-red);
+}
+
+blockquote:has(a[href^="#a"]) strong,
+.card-alert strong {
+    color: var(--swiss-red);
+}
+
+/* Success Card: Forest Accent */
+blockquote:has(a[href^="#s"]),
+.card-success {
+    background-color: #F4FBF7;
+    color: var(--swiss-black);
+    border-color: #0F5132;
+    border-top: 4px solid #0F5132;
+}
+
+/* ==========================================================================
+   5. BENTO DARK CARD (#d)
+   ========================================================================== */
+.card-dark,
+blockquote:has(a[href="#d"]) {
+    background: var(--swiss-black) !important;
+    background-image: none !important;
+    color: var(--swiss-white) !important;
+    border: 2px solid var(--swiss-black) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 22px 28px !important;
+    margin: var(--block-margin-y) 0 !important;
+    font-family: var(--font-sans) !important;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.card-dark strong,
+blockquote:has(a[href="#d"]) strong {
+    color: var(--swiss-red) !important;
+    font-weight: 700;
+}
+
+.card-dark code,
+blockquote:has(a[href="#d"]) code {
+    background: #252525 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #444444 !important;
+    border-radius: 0 !important;
+}
+
+/* ==========================================================================
+   6. STEP CARDS (#step) & ACADEMIC DEFINITION CARDS (#def)
+   Exact translation of Swiss Mockup 2
+   ========================================================================== */
+
+/* Step Card: Process & Syllabus */
+blockquote:has(a[href="#step"]) {
+    background: var(--swiss-white);
+    border: 1.5px solid var(--swiss-black);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 16px 22px;
+    margin: 16px 0;
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-sans);
+    font-size: 0.9em;
+    color: var(--swiss-black);
+}
+
+blockquote:has(a[href="#step"])::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--swiss-red);
+}
+
+blockquote:has(a[href="#step"]) strong {
+    font-size: 1.1em;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+    color: var(--swiss-black);
+}
+
+/* Definition Card: Swiss Academic Theorem Box */
+blockquote:has(a[href="#def"]) {
+    background: var(--swiss-white);
+    border: 2px solid var(--swiss-black);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 30px 24px 20px 24px;
+    margin: 24px 0;
+    position: relative;
+    overflow: visible;
+    font-family: var(--font-sans);
+    font-size: 0.95em;
+    color: var(--swiss-black);
+}
+
+/* Solid Swiss Red "DEFINITION" badge in top-left corner */
+blockquote:has(a[href="#def"])::before {
+    content: 'DEFINITION';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--swiss-red);
+    color: var(--swiss-white);
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 4px 14px;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+
+blockquote:has(a[href="#def"]) strong {
+    font-size: 1.15em;
+    font-weight: 800;
+    color: var(--swiss-black);
+    display: block;
+    margin-bottom: 6px;
+}
+
+/* ==========================================================================
+   7. MATHEMATICAL RESOLUTION BLOCK (.math-resolution)
+   ========================================================================== */
+.math-resolution {
+    background: var(--swiss-white);
+    border: 2px solid var(--swiss-black);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 24px 36px;
+    margin: 20px auto;
+    position: relative;
+    color: var(--swiss-black);
+    font-size: 0.8em;
+}
+
+.math-resolution::after {
+    content: 'FORMULA // RESOLUTION';
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--swiss-gray-600);
+}
+
+/* ==========================================================================
+   8. TABULAR DATA (Swiss Grid Precision)
+   ========================================================================== */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: var(--block-margin-y) 0;
+    font-size: 0.85em;
+    border-top: 2.5px solid var(--swiss-black);
+    border-bottom: 2.5px solid var(--swiss-black);
+    box-shadow: none;
+}
+
+th {
+    padding: 10px 16px;
+    text-align: left;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1.5px solid var(--swiss-black);
+    color: var(--swiss-black);
+    font-family: var(--font-sans);
+}
+
+td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--swiss-gray-200);
+    color: var(--swiss-black);
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+}
+
+tr:nth-child(even) {
+    background-color: var(--swiss-gray-50);
+}
+
+/* ==========================================================================
+   9. CODE BLOCKS & MONOSPACE
+   ========================================================================== */
+pre {
+    background: var(--swiss-gray-50);
+    border: 1.5px solid var(--swiss-gray-200);
+    border-left: 4px solid var(--swiss-black);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 18px 24px;
+    margin: var(--block-margin-y) 0;
+    position: relative;
+    overflow: hidden;
+    width: auto;
+}
+
+pre::before {
+    content: 'CODE';
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--swiss-gray-600);
+    z-index: 2;
+}
+
+pre::after {
+    display: none !important; /* Neutralize skeuomorphic scanlines */
+}
+
+pre code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    line-height: 1.55;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Inline Code */
+code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: var(--swiss-gray-100);
+    color: var(--swiss-black);
+    padding: 2px 6px;
+    border: 1px solid var(--swiss-gray-200);
+    border-radius: 0;
+}
+
+/* Scrollable Code Cards (.code-scroll) */
+.code-scroll {
+    max-height: 440px;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    background: var(--swiss-white);
+    border: 1.5px solid var(--swiss-black);
+    border-radius: 0;
+    box-shadow: none;
+    margin: var(--block-margin-y) 0;
+    position: relative;
+    box-sizing: border-box;
+    container-type: inline-size;
+}
+
+.code-scroll::before {
+    content: '';
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 4px;
+    background: var(--swiss-red);
+    z-index: 10;
+}
+
+.code-scroll pre {
+    background: transparent !important;
+    border: none !important;
+    padding: 18px 24px !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.code-scroll pre::before {
+    display: none !important;
+}
+
+.code-scroll pre code {
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    display: block !important;
+    width: calc(100cqw - 48px) !important;
+    max-width: calc(100cqw - 48px) !important;
+    box-sizing: border-box !important;
+}
+
+/* ==========================================================================
+   10. IMAGES & FIGURES (Mockup 4 Integration)
+   ========================================================================== */
+img:not(.emoji) {
+    display: block;
+    margin: 0 auto;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+/* Remove rounding overrides from nobeamer legacy */
+img[alt*="rounded"],
+img[alt*="circle"] {
+    border-radius: 0 !important;
+}
+
+figure {
+    margin: 16px 0;
+    text-align: left;
+}
+
+figcaption {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--swiss-gray-600);
+    margin-top: 8px;
+    border-left: 2px solid var(--swiss-red);
+    padding-left: 8px;
+    line-height: 1.3;
+}
+
+/* Technical Specification Callout (as in Mockup 4) */
+.callout-specs,
+.swiss-callout {
+    border-left: 4px solid var(--swiss-red);
+    padding-left: 14px;
+    margin: 20px 0;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--swiss-black);
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   11. MULTI-COLUMN & ASYMMETRICAL MODULAR GRIDS
+   ========================================================================== */
+section.cols-2 {
+    display: block;
+    columns: 2;
+    column-gap: var(--gutter);
+}
+
+section.cols-3 {
+    display: block;
+    columns: 3;
+    column-gap: 36px;
+}
+
+section.cols-2 h1,
+section.cols-3 h1 {
+    column-span: all;
+    margin-bottom: 24px;
+}
+
+section.cols-2 blockquote,
+section.cols-3 blockquote,
+section.cols-2 pre,
+section.cols-3 pre,
+section.cols-2 table,
+section.cols-3 table,
+section.cols-2 .math-resolution,
+section.cols-3 .math-resolution,
+section.cols-2 .code-scroll,
+section.cols-3 .code-scroll {
+    width: auto;
+    max-width: 100%;
+    margin: 12px 0;
+    box-sizing: border-box;
+    border-radius: 0;
+}
+
+/* Prevent unwanted fragmentation across columns */
+section.cols-2 blockquote,
+section.cols-3 blockquote,
+section.cols-2 figure,
+section.cols-3 figure,
+section.cols-2 .callout-specs,
+section.cols-3 .callout-specs {
+    break-inside: avoid;
+}
+
+/* Compact step cards inside multi-column */
+section.cols-2 blockquote:has(a[href="#step"]),
+section.cols-3 blockquote:has(a[href="#step"]) {
+    margin: 6px 0;
+    padding: 8px 14px;
+    font-size: 0.82em;
+}
+
+/* Column Break Symbol: ![split]() 
+   Forces break on both img and its wrapping paragraph */
+section.cols-2 p:has(> img[alt="split"]),
+section.cols-3 p:has(> img[alt="split"]),
+section.cols-2 img[alt="split"],
+section.cols-3 img[alt="split"],
+section img[alt="split"] {
+    break-after: column !important;
+    display: block !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    visibility: hidden !important;
+}
+
+/* ==========================================================================
+   12. SPECIALIZED SLIDE VARIANTS & COMPONENTS
+   ========================================================================== */
+
+/* Universal Metric Component (Mockup 3) */
+.metric {
+    font-family: var(--font-sans);
+    font-size: 110px;
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 0.85;
+    color: var(--swiss-black);
+    margin: 0;
+}
+
+.metric-label {
+    background: var(--swiss-red);
+    color: var(--swiss-white);
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    display: inline-block;
+    margin-top: 12px;
+}
+
+section.invert .metric {
+    color: var(--swiss-white);
+}
+
+/* Slide Variant: Lead / Title Slide (Mockup 1) */
+section.lead {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--swiss-white);
+    padding: 72px var(--padding-general);
+}
+
+section.lead::before {
+    display: none !important;
+}
+
+section.lead h1 {
+    font-size: 78px;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    margin-bottom: 18px;
+}
+
+section.lead h1::after {
+    width: 64px;
+    height: 64px;
+    background: var(--swiss-red);
+    margin-top: 32px;
+}
+
+section.lead p {
+    font-size: 1.45rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--swiss-charcoal);
+    max-width: 75%;
+    margin: 0;
+}
+
+section.lead .meta-grid {
+    position: absolute;
+    bottom: 40px;
+    left: var(--padding-general);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 18px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--swiss-black);
+}
+
+/* Slide Variant: Stat / Giant Metric (Mockup 3) */
+section.stat .metric {
+    font-family: var(--font-sans);
+    font-size: 130px;
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 0.85;
+    color: var(--swiss-black);
+    margin: 0;
+}
+
+section.stat .metric-label {
+    background: var(--swiss-red);
+    color: var(--swiss-white);
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    display: inline-block;
+    margin-top: 14px;
+}
+
+/* Slide Variant: Invert (Stark Black Modernist Slide) */
+section.invert {
+    background: var(--swiss-black) !important;
+    color: var(--swiss-white) !important;
+}
+
+section.invert::before {
+    background: var(--swiss-white);
+    opacity: 0.2;
+}
+
+section.invert::after {
+    color: var(--swiss-gray-400);
+}
+
+section.invert h1,
+section.invert h2,
+section.invert h3,
+section.invert h4,
+section.invert strong,
+section.invert p,
+section.invert li {
+    color: var(--swiss-white);
+}
+
+section.invert h2 {
+    border-bottom-color: var(--swiss-white);
+}
+
+section.invert table {
+    border-color: var(--swiss-white);
+}
+
+section.invert th {
+    color: var(--swiss-white);
+    border-bottom-color: var(--swiss-white);
+}
+
+section.invert td {
+    color: var(--swiss-white);
+    border-bottom-color: #333333;
+}
+
+section.invert tr:nth-child(even) {
+    background-color: #1a1a1a;
+}
+
+section.invert pre {
+    background: #1a1a1a;
+    border-color: #333333;
+    border-left-color: var(--swiss-red);
+}
+
+section.invert code {
+    background: #262626;
+    color: var(--swiss-white);
+    border-color: #444444;
+}
+
+section.invert blockquote {
+    background: #1C1C1C !important;
+    border-left-color: var(--swiss-red) !important;
+    color: var(--swiss-white) !important;
+}
+
+section.invert blockquote strong {
+    color: var(--swiss-white) !important;
+}
+
+section.invert blockquote em {
+    color: #DDDDDD !important;
+}
+
+section.invert blockquote:has(a[href="#d"]) {
+    background: #181818 !important;
+    border: 1.5px solid var(--swiss-gray-600) !important;
+    color: var(--swiss-white) !important;
+}
+
+section.invert blockquote:has(a[href="#d"]) strong {
+    color: var(--swiss-red) !important;
+}
+
+section.invert blockquote:has(a[href="#d"]) em {
+    color: #DDDDDD !important;
+}
+
+/* ==========================================================================
+   13. SMOOTH TRANSITIONS
+   ========================================================================== */
+@keyframes swiss-fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes swiss-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes marp-outgoing-transition-swiss {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes marp-incoming-transition-swiss {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
