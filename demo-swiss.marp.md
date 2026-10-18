@@ -5,21 +5,21 @@ paginate: true
 size: 16:9
 title: "nobeamer-swiss: International Typographic Style"
 transition: swiss
-style: ":root { --accent: #ee251a; }"
+style: ":root { --accent: #e85951; }"
 ---
 
 <!-- _class: lead -->
 
-![bg right:46%](images/scholar_portrait.jpg)
+![bg right:46% saturate:0](images/scholar_portrait.jpg)
 
-# NOBEAMER **SWISS**
+# <!--fit--> NOBEAMER <br> **SWISS**
 
 ### LECTURE 02 : EMPIRICAL METHODS & EPISTEMOLOGY
 
-- **INSTITUTE**: ETH ZÜRICH
-- **COURSE**: SCI-204
-- **PROF**: DR. E. VOGEL
-- **YEAR**: 2026
+- *INSTITUTE*: ETH ZÜRICH
+- *COURSE*: SCI-204
+- *PROF*: DR. E. VOGEL
+- *YEAR*: 2026
 
 
 

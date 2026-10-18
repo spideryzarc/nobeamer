@@ -786,10 +786,25 @@ section.invert .metric {
 /* ==========================================================================
    Slide Variant: Lead / Title Slide (Proposta B: Swiss Duotone Photomontage)
    ========================================================================== */
+/* Layout contract (robust to any title/subtitle size or length):
+     - Row 1 (title zone) ends exactly at --lead-split-y; h1 is bottom-anchored in it.
+     - Rows 2+ (subtitle zone) start at --lead-split-y and flow downward.
+     - The red accent field starts at the same --lead-split-y.
+   Override per slide with e.g. <!-- _style: "section.lead { --lead-title-size: 52px; --lead-split-y: 400px; }" --> */
 section.lead {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    --lead-split-y: 344px;       /* shared line: title above, red field + subtitles below */
+    --lead-pad-left: 48px;       /* left edge of the red field */
+    --lead-text-w: 691.2px;      /* width of the text column in split mode (54% of 1280) */
+    --lead-title-size: 68px;
+    --lead-title-gap: 16px;      /* gap between title baseline box and split line */
+    --lead-sub-size: 1.18rem;
+    --lead-sub-gap: 24px;        /* gap between split line and first subtitle */
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: calc(var(--lead-split-y) - 48px) auto;
+    grid-auto-rows: auto;
+    align-content: start;
     background-color: #f7f7f5;
     background-image: url('nb_img/paper2.jpg');
     background-size: cover;
@@ -822,24 +837,50 @@ section.lead[data-marpit-advanced-background="content"] {
     background: transparent !important;
 }
 
-/* Ensure the background image container is strictly positioned on the right */
-section.lead[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] {
-    position: relative !important;
+section.lead[data-marpit-advanced-background="content"] ul,
+section.lead[data-marpit-advanced-background="content"] .meta-grid {
+    padding: 0 36px 0 48px;
+    gap: 16px;
 }
 
-/* Duotone Multiply Accent Field: CONSTRAINED TO THE PHOTO ONLY */
+/* Ensure the background image container allows horizontal transpass */
+section.lead[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container] {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* Duotone Multiply Accent Field: Transpasses across from left margin (x=48px) to right edge.
+   Top edge is the shared --lead-split-y, the same line the title/subtitle are anchored to. */
 section.lead[data-marpit-advanced-background="background"] > div[data-marpit-advanced-background-container]::after {
     content: '';
     position: absolute;
+    top: var(--lead-split-y);
     bottom: 52px;
-    left: 0;
+    left: calc(var(--lead-pad-left) - var(--lead-text-w));
     right: 0;
-    height: 42%;
     background-color: var(--accent);
     mix-blend-mode: multiply;
     opacity: 0.92;
     pointer-events: none;
     z-index: 5;
+}
+
+/* No background image (plain lead): same red field drawn behind the text, full width */
+section.lead:not([data-marpit-advanced-background]) {
+    isolation: isolate;
+}
+
+section.lead:not([data-marpit-advanced-background])::after {
+    content: '';
+    position: absolute;
+    top: var(--lead-split-y);
+    bottom: 52px;
+    left: var(--lead-pad-left);
+    right: 0;
+    background-color: var(--accent);
+    opacity: 0.92;
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* Bottom hairline divider across photo container */
@@ -854,19 +895,46 @@ section.lead[data-marpit-advanced-background="background"] > div[data-marpit-adv
     z-index: 6;
 }
 
-/* Title: Monumental Neo-Grotesque Typography */
+/* Title: Monumental Neo-Grotesque Typography.
+   Lives in the title zone (row 1) and is anchored to its bottom edge,
+   i.e. always sits just above the split line regardless of line count. */
 section.lead h1 {
-    font-size: 68px;
+    grid-row: 1;
+    align-self: end;
+    min-width: 0;
+    font-size: var(--lead-title-size);
     font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 0.95;
     text-transform: uppercase;
     color: var(--swiss-black);
-    margin: 0 0 20px 0;
+    margin: 0;
+    padding: 0 0 var(--lead-title-gap) 0;
+    text-align: right;
+    overflow-wrap: break-word;
 }
 
+/* Bold text: bold and accent color */
+section.lead strong,
 section.lead h1 strong {
-    color: var(--swiss-black);
+    font-weight: 900;
+    color: var(--accent);
+}
+
+section.lead h2 strong,
+section.lead h3 strong {
+    font-weight: 900;
+    color: var(--swiss-white);
+}
+
+/* Italic text: upright (roman) but thin/light */
+section.lead em,
+section.lead h1 em,
+section.lead h2 em,
+section.lead h3 em,
+section.lead p em {
+    font-style: normal;
+    font-weight: 300;
 }
 
 /* Remove old arbitrary geometric square */
@@ -874,19 +942,58 @@ section.lead h1::after {
     display: none !important;
 }
 
-/* Subtitle / Lecture details */
+/* Subtitle zone (below --lead-split-y): h2, h3, p stack from the split line downward.
+   h2/h3 are white because the red field always sits behind them (split and plain lead). */
 section.lead h2,
 section.lead h3,
 section.lead p {
-    font-size: 1.18rem;
+    font-size: var(--lead-sub-size);
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.35;
     text-transform: uppercase;
     color: var(--swiss-black);
-    max-width: 95%;
     margin: 0;
+    text-align: right;
+    min-width: 0;
+    overflow-wrap: break-word;
 }
+
+section.lead h2,
+section.lead h3 {
+    color: var(--swiss-white);
+}
+
+section.lead h2 strong,
+section.lead h3 strong {
+    color: var(--swiss-white);
+}
+
+/* Breathing room between the split line and the first subtitle element.
+   Without an h1, the first element must still start in the subtitle zone (row 2). */
+section.lead > h1 + :not(ul):not(.meta-grid) {
+    margin-top: var(--lead-sub-gap);
+}
+
+/* Marp core forces margin-top: 0 on the first child, so use padding instead.
+   Scoped away from the background/pseudo layers, whose first child is the photo container. */
+section.lead:not([data-marpit-advanced-background="background"]):not([data-marpit-advanced-background="pseudo"]) > :first-child:not(h1):not(ul):not(.meta-grid) {
+    grid-row: 2;
+    padding-top: var(--lead-sub-gap);
+}
+
+/* Background/pseudo layers are plain containers, not text grids */
+section.lead[data-marpit-advanced-background="background"],
+section.lead[data-marpit-advanced-background="pseudo"] {
+    display: block;
+}
+
+/* Subtitles inherit no theme rules (e.g. h2 underline) inside the lead block */
+section.lead h2,
+section.lead h3 {
+    border: 0;
+}
+
 
 /* Bottom Metadata Bar: Pure Markdown list (- **KEY**: Value) */
 section.lead ul,
@@ -906,7 +1013,7 @@ section.lead .meta-grid {
     gap: 20px;
     border-top: 1px solid var(--swiss-black);
     font-family: var(--font-mono);
-    font-size: 0.62rem;
+    font-size: 11.5px;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -924,7 +1031,7 @@ section.lead ul li {
 }
 
 section.lead ul li strong {
-    color: var(--swiss-gray-600);
+    color: var(--accent);
     margin-right: 6px;
     font-weight: 700;
 }
