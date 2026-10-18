@@ -14,7 +14,7 @@ style: ":root { --accent: #e85951; }"
 
 # <!--fit--> NOBEAMER <br> **SWISS**
 
-### LECTURE 02 : EMPIRICAL METHODS & EPISTEMOLOGY
+### *LECTURE 02 :* EMPIRICAL METHODS & EPISTEMOLOGY
 
 - *INSTITUTE*: ETH ZÜRICH
 - *COURSE*: SCI-204
@@ -175,6 +175,34 @@ print(f"Computed Swiss Grid: {grid_spec['column_width']}px per module")
 ```
 
 </div>
+
+---
+
+<!-- _class: cols-2 -->
+
+## Definitive Swiss Typographic Stack
+
+| Layer | Font Family | Role & Execution |
+| :--- | :--- | :--- |
+| **Display & Titles** | **Geist** (800 / 900 Black) | Monumental impact, uppercase, tight tracking ($-4\%$) |
+| **Body & Content** | **Geist** (Regular / 400) | Maximum on-screen neutrality and optical balance |
+| **Grid & Metadata** | **IBM Plex Mono** (600 / 700) | Slide numbers, tabular data, tags (`01 // INTRO`) |
+
+<div class="callout-specs" style="margin-top: 24px;">
+TRACKING: -2% TO -4% FOR TITLES<br>
+TABULAR NUMS: LINING NUMERICS<br>
+PRIMARY: GEIST SANS (VERCEL)
+</div>
+
+![split]()
+
+### Architectural Principles
+
+The International Typographic Style eliminates arbitrary ornaments in favor of structural clarity:
+
+- **Objective Neutrality**: Sem serifas neo-grotescas puras desenhadas para legibilidade máxima em telas e apresentações.
+- **Hierarchical Tension**: Contraste monumental entre títulos em caixa-alta e corpo de texto corrido.
+- **Mathematical Precision**: Numeração técnica, tags de metadados e dados tabulares estritamente alinhados ao grid modular.
 
 ---
 
