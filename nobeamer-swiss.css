@@ -15,11 +15,11 @@
     /* Palette: Authentic International Typographic Style */
     --swiss-red: var(--accent);
     --swiss-red-dark: var(--accent-dark);
-    --swiss-black: #111111;        /* Deep graphic black */
-    --swiss-charcoal: #222222;
-    --swiss-gray-800: #333333;
-    --swiss-gray-600: #666666;     /* Neutral secondary / captions */
-    --swiss-gray-400: #999999;
+    --swiss-black: #161514;        /* Warm carbon print black */
+    --swiss-charcoal: #242221;
+    --swiss-gray-800: #363433;
+    --swiss-gray-600: #686563;     /* Neutral secondary / captions */
+    --swiss-gray-400: #9c9996;
     --swiss-gray-200: #DCDCDC;     /* Hairline dividers */
     --swiss-gray-100: #F0F0F2;     /* Subtle module backgrounds */
     --swiss-gray-50:  #F7F7F9;     /* Code / block backgrounds */
@@ -65,6 +65,7 @@ section {
     background-image: url('nb_img/paper2.jpg');
     background-size: cover;
     background-position: center;
+    background-blend-mode: multiply;
     color: var(--text);
     font-family: var(--font-sans);
     padding: var(--padding-general);
@@ -76,19 +77,25 @@ section {
     position: relative;
     overflow: hidden;
     line-height: 1.5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Structural Top Hairline Rule (Swiss Architectural Grid) */
-section::before {
+/* Structural Top Hairline Rule & Surface Paper Grain Overlay (Swiss Architectural Grid) */
+section:not(.invert):not(.lead)::before {
     content: '';
     position: absolute;
-    top: 48px;
-    left: var(--padding-general);
-    right: var(--padding-general);
-    height: 1px;
-    background: var(--swiss-black);
-    opacity: 0.15;
+    inset: 0;
+    background-image: 
+        linear-gradient(to right, transparent var(--padding-general), rgba(22, 21, 20, 0.15) var(--padding-general), rgba(22, 21, 20, 0.15) calc(100% - var(--padding-general)), transparent calc(100% - var(--padding-general))),
+        url('nb_img/paper2.jpg');
+    background-size: 100% 1px, cover;
+    background-position: center 48px, center;
+    background-repeat: no-repeat, no-repeat;
+    mix-blend-mode: multiply;
+    opacity: 0.28;
     pointer-events: none;
+    z-index: 20;
 }
 
 /* Clean, Discrete Technical Pagination (01 / 24) */
@@ -212,6 +219,39 @@ ol li::marker {
     font-family: var(--font-mono);
     font-weight: 700;
     color: var(--swiss-black);
+}
+
+/* ==========================================================================
+   PHYSICAL PRINT INTEGRATION (Ink & Paper Texture Synthesis)
+   ========================================================================== */
+
+/* 1. Multiply blend mode: ink absorbs and interacts with paper fibers */
+section:not(.invert) :is(
+    h1, h2, h3, h4,
+    p, li,
+    td, th,
+    strong, em,
+    .metric, .metric-label,
+    .callout-specs,
+    .badge
+) {
+    mix-blend-mode: multiply;
+}
+
+section:not(.invert)::after {
+    mix-blend-mode: multiply;
+}
+
+/* 2. Micro ink bleed (capillary diffusion into cotton fibers) */
+section:not(.invert) :is(h1, .metric) {
+    text-shadow: 0 0 0.35px rgba(22, 21, 20, 0.4);
+}
+
+/* 3. Exempt white text and inverted components from multiply */
+section.invert *,
+section:not(.invert) :is(.card-dark, blockquote:has(a[href="#d"])) *,
+section.lead :is(h2, h3, p, h2 *, h3 *, p *) {
+    mix-blend-mode: normal !important;
 }
 
 /* ==========================================================================
@@ -815,6 +855,7 @@ section.lead {
     background-image: url('nb_img/paper2.jpg');
     background-size: cover;
     background-position: center;
+    background-blend-mode: multiply;
     padding: 48px var(--padding-general) 72px var(--padding-general);
     box-sizing: border-box;
     position: relative;
@@ -1079,8 +1120,15 @@ section.invert {
 }
 
 section.invert::before {
+    content: '';
+    position: absolute;
+    top: 48px;
+    left: var(--padding-general);
+    right: var(--padding-general);
+    height: 1px;
     background: var(--swiss-white);
     opacity: 0.2;
+    pointer-events: none;
 }
 
 section.invert::after {
@@ -1095,6 +1143,11 @@ section.invert strong,
 section.invert p,
 section.invert li {
     color: var(--swiss-white);
+}
+
+section.invert .callout-specs,
+section.invert .swiss-callout {
+    color: var(--swiss-gray-200);
 }
 
 section.invert h2 {
