@@ -29,7 +29,7 @@ style: ":root { --accent: #e85951; }"
 
 ## Modular Grid Systems in Typography
 
-> [](#def) **Grid Topology**
+> [test](#def) **Grid Topology**
 > Let $G = (V, E)$ denote an orthogonal modular grid where interval $\delta$ is invariant across subdivisions:
 > $$\delta(x, y) = \kappa \cdot \sqrt{\Delta x^2 + \Delta y^2}$$
 

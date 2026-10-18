@@ -250,6 +250,7 @@ section:not(.invert) :is(h1, .metric) {
 /* 3. Exempt white text and inverted components from multiply */
 section.invert *,
 section:not(.invert) :is(.card-dark, blockquote:has(a[href="#d"])) *,
+section:not(.invert) blockquote a[href="#def"]:not(:empty),
 section.lead :is(h2, h3, p, h2 *, h3 *, p *) {
     mix-blend-mode: normal !important;
 }
@@ -318,7 +319,7 @@ blockquote a[href^="#a"],
 blockquote a[href^="#s"],
 blockquote a[href="#d"],
 blockquote a[href="#step"],
-blockquote a[href="#def"] {
+blockquote a[href="#def"]:empty {
     display: none !important;
 }
 
@@ -472,29 +473,30 @@ blockquote:has(a[href="#def"]) {
     border: 2px solid var(--swiss-black);
     border-radius: 0;
     box-shadow: none;
-    padding: 30px 24px 20px 24px;
-    margin: 24px 0;
+    padding: 20px 24px;
+    margin: 20px 0;
     position: relative;
-    overflow: visible;
     font-family: var(--font-sans);
     font-size: 0.95em;
     color: var(--swiss-black);
+    line-height: 1.5;
 }
 
-/* Solid Swiss Red "DEFINITION" badge in top-left corner */
-blockquote:has(a[href="#def"])::before {
-    content: 'DEFINITION';
-    position: absolute;
-    top: 0;
-    left: 0;
+/* Optional Custom Badge from Markdown: > [LABEL](#def) */
+blockquote a[href="#def"]:not(:empty) {
+    display: inline-block;
     background: var(--swiss-red);
-    color: var(--swiss-white);
+    color: var(--swiss-white) !important;
     font-family: var(--font-sans);
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 800;
     letter-spacing: 0.08em;
-    padding: 4px 14px;
     text-transform: uppercase;
+    text-decoration: none;
+    padding: 2px 7px;
+    margin-right: 8px;
+    vertical-align: 2px;
+    line-height: 1.2;
     border-radius: 0;
 }
 
@@ -502,8 +504,7 @@ blockquote:has(a[href="#def"]) strong {
     font-size: 1.15em;
     font-weight: 800;
     color: var(--swiss-black);
-    display: block;
-    margin-bottom: 6px;
+    display: inline;
 }
 
 /* ==========================================================================
