@@ -28,18 +28,22 @@ transition: swiss
 
 Overview of the design tokens, layout primitives, and specialized components:
 
-> [](#step) **01 / Typography & Grid Hierarchy**
+> [01](#card)
+> ### Typography & Grid
 > Strict baseline alignments, Neo-Grotesque scale, and column-spanning headers.
 
-> [](#step) **02 / Information Architecture**
-> The auto-scaling `#card`, step workflows, and semantic status blocks.
+> [02](#card)
+> ### Architecture
+> Unified `#card` anatomy, auto-scaling titles, and semantic status blocks.
 
 ![split]()
 
-> [](#step) **03 / Technical Data & Logic**
+> [03](#card)
+> ### Technical Data & Logic
 > Tabular numeric tables, container-scroll code, and formula resolution.
 
-> [](#step) **04 / Color Variables & Inversion**
+> [04](#card)
+> ### Color & Inversion
 > Single-property `--accent` customization and high-contrast `invert` mode.
 
 ---
@@ -129,7 +133,7 @@ Left column markdown content...
 Right column markdown content...
 ```
 
-> [](#step) **No CSS Hacks Needed**
+> [GRID](#card) **No CSS Hacks Needed**
 > Native CSS multi-columns keep your markdown pristine and portable.
 
 ---
@@ -192,28 +196,31 @@ The tag paragraph **must precede** the `### <!-- fit -->` heading so the tag flo
 
 <!-- _class: cols-2 -->
 
-## Step Cards (`#step`)
+## Flexible Card Workflows
 
-Designed for sequential workflows, lecture syllabi, and methodology steps:
+The unified `#card` primitive flexibly replaces specialized step blocks for sequential workflows, syllabi, and methodology:
 
-> [](#step) **01 / Rational Layout**
+> [01](#card)
+> ### Rational Layout
 > Establish orthogonal baseline and horizontal margin bounds.
 
-> [](#step) **02 / Typographic Tension**
+> [02](#card)
+> ### Typographic Tension
 > Set monumental title contrast against high-density data.
 
 ![split]()
 
-### Step Card Syntax
+### Workflow Syntax
 
 ```markdown
-> [](#step) **01 / Step Identifier**
+> [01](#card)
+> ### Step Identifier
 > Action description or methodology narrative.
 ```
 
-- **Top Rule**: 3px Swiss Red hairline accent across the entire block width.
-- **Uppercase Title**: `**Title**` renders as prominent bold heading.
-- **Compact Spacing**: Automatically adapts inside multi-column slides.
+- **Unified Primitive**: Eliminates redundant card styles in favor of one robust component.
+- **Custom Badges**: Use `[01](#card)`, `[STEP 02](#card)`, or any semantic token.
+- **Header Flexibility**: Choose auto-scaling `### <!-- fit -->`, standard `###`, or `**Bold**`.
 
 ---
 
@@ -275,7 +282,7 @@ A high-contrast carbon black module (`#161514`) for primary theorems, core axiom
 > `Inline code` renders in a dark pill.
 ```
 
-> [](#step) **Contrast Strategy**
+> [TIP](#card) **Contrast Strategy**
 > Use at most one `#d` module per slide to maintain visual weight and avoid overpowering the light paper surface.
 
 ---
@@ -512,7 +519,7 @@ Key conventions to keep in mind when authoring in `nobeamer-swiss`:
 | **3-Column Layout** | `<!-- _class: cols-3 -->` + `![split]()` |
 | **Swiss Card** | `> [TAG](#card)` + `### <!-- fit --> Title` |
 | **Dark Module** | `> [](#d) **Title**` |
-| **Step Workflow** | `> [](#step) **01 / Name**` |
+| **Workflow Card** | `> [01](#card)` + `### Title` |
 
 ![split]()
 
