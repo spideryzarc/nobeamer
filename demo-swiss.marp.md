@@ -52,7 +52,7 @@ The baseline grid dictates alignment, scale, and spatial tension:
 <div style="padding-top: 10px;">
   <div class="metric">99.4%</div>
   <div class="metric-label">READABILITY INDEX</div>
-  <p style="margin-top: 28px; font-size: 0.95rem; line-height: 1.5; color: #555;">
+  <p style="margin-top: 10px; font-size: 0.95rem; line-height: 1.28; color: #555;">
     Quantitative evaluation across technical seminars, peer defense sessions, and mathematical lecture environments.
   </p>
 </div>
