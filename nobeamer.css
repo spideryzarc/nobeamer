@@ -1011,7 +1011,9 @@ section.cols-3 {
 
 /* Make slide title span across columns */
 section.cols-2 h1,
-section.cols-3 h1 {
+section.cols-2 h2,
+section.cols-3 h1,
+section.cols-3 h2 {
     column-span: all;
     margin-bottom: 0.8em;
 }

@@ -5,7 +5,7 @@ paginate: true
 size: 16:9
 title: "nobeamer-swiss: International Typographic Style"
 transition: swiss
-style: ":root { --accent: #e85951; }"
+style: ":root { --accent: #f47a1c; }"
 ---
 
 <!-- _class: lead -->
@@ -27,9 +27,10 @@ style: ":root { --accent: #e85951; }"
 
 <!-- _class: cols-2 -->
 
-## Modular Grid Systems in Typography
+## <!--fit--> Modular Grid Systems in Typography
 
-> [CONCEPT 01](#card) **Grid Topology**
+> [CONCEPT 01](#card)
+> ### <!-- fit --> Grid Topology
 > Let $G = (V, E)$ denote an orthogonal modular grid where interval $\delta$ is invariant across subdivisions:
 > $$\delta(x, y) = \kappa \cdot \sqrt{\Delta x^2 + \Delta y^2}$$
 
