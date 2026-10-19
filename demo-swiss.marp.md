@@ -190,7 +190,7 @@ The tag paragraph **must precede** the `### <!-- fit -->` heading so the tag flo
 ```
 
 > [](#a) **Authoring Rule**
-> Always write the tag anchor as `[TAG](#card)` as the first line of the blockquote. If omitted, the card renders without the badge.
+> Always write the tag anchor as `[TAG](#card)` (or `[TAG](#card-r)` for right alignment) as the first line of the blockquote. If omitted, the card renders without the badge.
 
 ---
 
@@ -245,16 +245,18 @@ Modular status callouts for architectural and technical feedback:
 
 Append `-l`, `-c`, or `-r` to set card width and alignment:
 
-- **Left (48% width)**: `[](#i)`, `[](#a)`, `[](#s)`
-- **Centered (60% width)**: `[](#i-c)`, `[](#a-c)`, `[](#s-c)`
-- **Right (48% width)**: `[](#i-r)`, `[](#a-r)`, `[](#s-r)`
+- **Left (48% width)**: `[](#i)`, `[](#a)`, `[](#s)`, `[TAG](#card-l)`
+- **Centered (60% width)**: `[](#i-c)`, `[](#a-c)`, `[](#s-c)`, `[TAG](#card-c)`
+- **Right (48% width)**: `[](#i-r)`, `[](#a-r)`, `[](#s-r)`, `[TAG](#card-r)`
 
 ```markdown
-> [](#i) **Left Notice**
-> Content...
+> [TAG](#card-l)
+> ### Left Card (48%)
+> Aligned flush-left to the margin datum.
 
-> [](#a-c) **Centered Alert**
-> Content...
+> [TAG](#card-r)
+> ### Right Card (48%)
+> Aligned flush-right to the margin datum.
 ```
 
 ---
@@ -518,6 +520,7 @@ Key conventions to keep in mind when authoring in `nobeamer-swiss`:
 | **2-Column Layout** | `<!-- _class: cols-2 -->` + `![split]()` |
 | **3-Column Layout** | `<!-- _class: cols-3 -->` + `![split]()` |
 | **Swiss Card** | `> [TAG](#card)` + `### <!-- fit --> Title` |
+| **Right Card** | `> [TAG](#card-r)` + `### Title` |
 | **Dark Module** | `> [](#d) **Title**` |
 | **Workflow Card** | `> [01](#card)` + `### Title` |
 
