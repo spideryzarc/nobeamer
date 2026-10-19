@@ -228,7 +228,7 @@ style: |
 
 ![split]()
 
-> [](#def) **Rigor Construtivista**
+> [](#card) **Rigor Construtivista**
 > Tipografia neutra com terminação reta nos caracteres, tracking condensado e escala monumental.
 
 | Camada | Amostra ($N$) | Avaliação |
@@ -257,7 +257,7 @@ IMPACTO DISPLAY: ⭐⭐⭐⭐⭐ (MÁXIMO)
 
 ![split]()
 
-> [](#def) **Estabilidade Geométrica**
+> [](#card) **Estabilidade Geométrica**
 > Desenho híbrido com toques monoespaçados, garantindo separação nítida de glifos em slides densos.
 
 | Camada | Amostra ($N$) | Avaliação |
@@ -286,7 +286,7 @@ IMPACTO DISPLAY: ⭐⭐⭐⭐☆ (MUITO FORTE)
 
 ![split]()
 
-> [](#def) **Proporção Equilibrada**
+> [](#card) **Proporção Equilibrada**
 > Proporções suaves ideais para leitura contínua, interfaces e corpos de texto editoriais.
 
 | Camada | Amostra ($N$) | Avaliação |
@@ -315,7 +315,7 @@ IMPACTO DISPLAY: ⭐⭐☆☆☆ (SUAVE)
 
 ![split]()
 
-> [](#def) **Curvatura Circular**
+> [](#card) **Curvatura Circular**
 > Formas circulares nos caracteres e ritmo aberto, gerando uma atmosfera mais amigável e menos brutalista.
 
 | Camada | Amostra ($N$) | Avaliação |
