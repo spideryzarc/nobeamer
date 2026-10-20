@@ -24,33 +24,39 @@ transition: swiss
 
 <!-- _class: cols-2 -->
 
-## Swiss Meta-Guide Syllabus
+## <!--fit--> Swiss Meta-Guide Syllabus
 
 Overview of the design tokens, layout primitives, and specialized components:
 
 > [01](#card)
-> ### Typography & Grid
+> ### <!--fit--> Typography & Grid
 > Strict baseline alignments, Neo-Grotesque scale, and column-spanning headers.
 
+<br>
+
 > [02](#card)
-> ### Architecture
+> ### <!--fit--> Architecture
 > Unified `#card` anatomy, auto-scaling titles, and semantic status blocks.
 
 ![split]()
 
+<br><br>
+
 > [03](#card)
-> ### Technical Data & Logic
+> ### <!--fit--> Technical Data & Logic
 > Tabular numeric tables, container-scroll code, and formula resolution.
 
+<br>
+
 > [04](#card)
-> ### Color & Inversion
+> ### <!--fit--> Color & Inversion
 > Single-property `--accent` customization and high-contrast `invert` mode.
 
 ---
 
 <!-- _class: cols-2 -->
 
-## Design Philosophy & Typography
+## <!--fit-->  Design Philosophy & Typography
 
 The Swiss Style (International Typographic Style) rejects arbitrary decoration in favor of structural clarity, objective legibility, and geometric order:
 
@@ -60,7 +66,7 @@ The Swiss Style (International Typographic Style) rejects arbitrary decoration i
 
 ![split]()
 
-### Basic Markdown Hierarchy
+### <!--fit--> Basic Markdown Hierarchy
 
 ```markdown
 Normal body text with **bold emphasis** in dark carbon black, 
@@ -78,7 +84,7 @@ Normal body text with **bold emphasis** in dark carbon black,
 
 <!-- _class: cols-2 -->
 
-## Heading Hierarchy & Spanning
+## <!--fit--> Heading Hierarchy & Spanning
 
 Live hierarchy rendered on the grid:
 
