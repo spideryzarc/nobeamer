@@ -330,50 +330,21 @@ blockquote a[href^="#card"]:empty {
     display: none !important;
 }
 
-/* Layout Variations (Left, Center, Right) */
-blockquote:has(a[href="#i"]),
-blockquote:has(a[href="#i-l"]),
-blockquote:has(a[href="#a"]),
-blockquote:has(a[href="#a-l"]),
-blockquote:has(a[href="#s"]),
-blockquote:has(a[href="#s-l"]),
-blockquote:has(a[href="#card-l"]),
-.card-info-left,
-.card-alert-left,
-.card-success-left,
-.card-left {
-    width: 48%;
-    min-width: 340px;
-    margin: var(--block-margin-y) auto var(--block-margin-y) 0;
-    align-self: flex-start;
+/* Content Alignment Variants (-l, -c, -r)
+   Cards always fill the full width of their column; the suffix only sets content alignment.
+   -l is the default (flush-left) and needs no rule. */
+blockquote:is(:has(a[href="#i-c"]), :has(a[href="#a-c"]), :has(a[href="#s-c"]), :has(a[href="#card-c"])),
+blockquote:is(:has(a[href="#i-c"]), :has(a[href="#a-c"]), :has(a[href="#s-c"]), :has(a[href="#card-c"])) p,
+:is(.card-info-center, .card-alert-center, .card-success-center, .card-center),
+:is(.card-info-center, .card-alert-center, .card-success-center, .card-center) p {
+    text-align: center;
 }
 
-blockquote:has(a[href="#i-r"]),
-blockquote:has(a[href="#a-r"]),
-blockquote:has(a[href="#s-r"]),
-blockquote:has(a[href="#card-r"]),
-.card-info-right,
-.card-alert-right,
-.card-success-right,
-.card-right {
-    width: 48%;
-    min-width: 340px;
-    margin: var(--block-margin-y) 0 var(--block-margin-y) auto;
-    align-self: flex-end;
-}
-
-blockquote:has(a[href="#i-c"]),
-blockquote:has(a[href="#a-c"]),
-blockquote:has(a[href="#s-c"]),
-blockquote:has(a[href="#card-c"]),
-.card-info-center,
-.card-alert-center,
-.card-success-center,
-.card-center {
-    width: 60%;
-    min-width: 340px;
-    margin: var(--block-margin-y) auto;
-    align-self: center;
+blockquote:is(:has(a[href="#i-r"]), :has(a[href="#a-r"]), :has(a[href="#s-r"]), :has(a[href="#card-r"])),
+blockquote:is(:has(a[href="#i-r"]), :has(a[href="#a-r"]), :has(a[href="#s-r"]), :has(a[href="#card-r"])) p,
+:is(.card-info-right, .card-alert-right, .card-success-right, .card-right),
+:is(.card-info-right, .card-alert-right, .card-success-right, .card-right) p {
+    text-align: right;
 }
 
 /* Card Themes */
@@ -461,8 +432,9 @@ blockquote:has(a[href^="#card"]) {
     line-height: 1.36;
 }
 
-/* Float tag paragraph to the right when preceded before headings */
-blockquote:has(a[href^="#card"]) p:has(> a[href^="#card"]:not(:empty)) {
+/* Float tag paragraph to the right when preceded before headings.
+   Bold-header pattern (tag + **Title** + body in one paragraph) keeps the paragraph in flow; only the tag floats. */
+blockquote:has(a[href^="#card"]) p:has(> a[href^="#card"]:not(:empty)):not(:has(> strong)) {
     float: right;
     margin: 0 0 6px 12px;
     line-height: 1;
@@ -544,6 +516,46 @@ blockquote:has(a[href^="#card"]) p:has(mjx-container[display="true"]) {
 /* Compact display math container inside card */
 blockquote:has(a[href^="#card"]) mjx-container[display="true"] {
     margin: 6px 0 2px 0 !important;
+}
+
+/* Right-aligned card (#card-r): mirrored anatomy, accent rule on the right, tag on the left */
+blockquote:has(a[href="#card-r"]) {
+    border-left: 1px solid var(--swiss-gray-200);
+    border-right: 5px solid var(--swiss-red);
+}
+
+blockquote:has(a[href="#card-r"]) p:has(> a[href^="#card"]:not(:empty)):not(:has(> strong)),
+blockquote:has(a[href="#card-r"]) a[href^="#card"]:not(:empty) {
+    float: left;
+    margin-left: 0;
+    margin-right: 12px;
+}
+
+blockquote:has(a[href="#card-r"]) :is(h3, marp-h3),
+blockquote:has(a[href="#card-r"]) strong {
+    text-align: right;
+    margin-left: auto;
+}
+
+blockquote:has(a[href="#card-r"]) p {
+    text-align-last: right;
+}
+
+/* Centered card (#card-c): symmetric anatomy, accent rule on top */
+blockquote:has(a[href="#card-c"]) {
+    border-left: 1px solid var(--swiss-gray-200);
+    border-top: 5px solid var(--swiss-red);
+}
+
+blockquote:has(a[href="#card-c"]) :is(h3, marp-h3),
+blockquote:has(a[href="#card-c"]) strong {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+blockquote:has(a[href="#card-c"]) p {
+    text-align-last: center;
 }
 
 /* ==========================================================================

@@ -243,20 +243,20 @@ Modular status callouts for architectural and technical feedback:
 
 ### Alignment Anchors
 
-Append `-l`, `-c`, or `-r` to set card width and alignment:
+Append `-l`, `-c`, or `-r` to set content alignment (cards always fill the column):
 
-- **Left (48% width)**: `[](#i)`, `[](#a)`, `[](#s)`, `[TAG](#card-l)`
-- **Centered (60% width)**: `[](#i-c)`, `[](#a-c)`, `[](#s-c)`, `[TAG](#card-c)`
-- **Right (48% width)**: `[](#i-r)`, `[](#a-r)`, `[](#s-r)`, `[TAG](#card-r)`
+- **Left (default)**: `[](#i)`, `[](#a)`, `[](#s)`, `[TAG](#card-l)`
+- **Centered (accent rule on top)**: `[](#i-c)`, `[](#a-c)`, `[](#s-c)`, `[TAG](#card-c)`
+- **Right (mirrored, accent rule on the right)**: `[](#i-r)`, `[](#a-r)`, `[](#s-r)`, `[TAG](#card-r)`
 
 ```markdown
 > [TAG](#card-l)
-> ### Left Card (48%)
-> Aligned flush-left to the margin datum.
+> ### Left Card
+> Content flush-left, accent rule on the left.
 
 > [TAG](#card-r)
-> ### Right Card (48%)
-> Aligned flush-right to the margin datum.
+> ### Right Card
+> Content flush-right, accent rule on the right.
 ```
 
 ---
