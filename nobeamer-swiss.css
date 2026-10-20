@@ -9,13 +9,13 @@
    ========================================================================== */
 :root {
     /* Theme Parameter: Accent Color (Default: Swiss Red #E30613) */
-    --accent: #E30613;
+    --accent: #e30615d3;
     --accent-dark: color-mix(in srgb, var(--accent) 80%, black);
 
     /* Palette: Authentic International Typographic Style */
     --swiss-red: var(--accent);
     --swiss-red-dark: var(--accent-dark);
-    --swiss-black: #161514;        /* Warm carbon print black */
+    --swiss-black: #2b2927df;        /* Warm carbon print black */
     --swiss-charcoal: #242221;
     --swiss-gray-800: #363433;
     --swiss-gray-600: #686563;     /* Neutral secondary / captions */
@@ -245,7 +245,7 @@ section:not(.invert)::after {
 
 /* 2. Micro ink bleed (capillary diffusion into cotton fibers) */
 section:not(.invert) :is(h1, .metric) {
-    text-shadow: 0 0 0.35px rgba(22, 21, 20, 0.4);
+    text-shadow: 0 0 0.35px rgba(43, 41, 39, 0.4);
 }
 
 /* 3. Exempt white text and inverted components from multiply */
