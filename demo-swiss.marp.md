@@ -3,9 +3,13 @@ marp: true
 theme: nobeamer-swiss
 paginate: true
 size: 16:9
-title: "Theme Meta-Guide: nobeamer-swiss"
+math: mathjax
+title: "nobeamer-swiss: Feature Guide & Test Deck"
 transition: swiss
 ---
+
+<!-- Single source for the theme: every feature rendered live next to its syntax, plus stress cases at the end.
+     Doubles as the lab/swiss_lab.py test deck. Append new slides at the end to keep diff baselines aligned. -->
 
 <!-- _class: lead -->
 
@@ -13,142 +17,199 @@ transition: swiss
 
 # <!--fit--> NOBEAMER <br> **SWISS**
 
-### *GUIDELINES &* META-SPECIFICATION
+### *FEATURE GUIDE &* TEST DECK
 
 - *THEME*: NOBEAMER-SWISS
 - *STYLE*: INTERNATIONAL TYPOGRAPHIC
 - *VERSION*: 2.0
-- *STATUS*: PRODUCTION-READY
 
 ---
 
 <!-- _class: cols-2 -->
 
-## <!--fit--> Swiss Meta-Guide Syllabus
-
-Overview of the design tokens, layout primitives, and specialized components:
+## Contents
 
 > [01](#card)
-> ### <!--fit--> Typography & Grid
-> Strict baseline alignments, Neo-Grotesque scale, and column-spanning headers.
-
-<br>
+> ### <!--fit--> Typography
+> Headings, body text, lists, and the paper-ink surface.
 
 > [02](#card)
-> ### <!--fit--> Architecture
-> Unified `#card` anatomy, auto-scaling titles, and semantic status blocks.
+> ### <!--fit--> Grids
+> Symmetric and asymmetric columns with `![split]()`.
 
 ![split]()
-
-<br><br>
 
 > [03](#card)
-> ### <!--fit--> Technical Data & Logic
-> Tabular numeric tables, container-scroll code, and formula resolution.
-
-<br>
+> ### <!--fit--> Cards
+> `#card`, status cards, alignment, and the dark module.
 
 > [04](#card)
-> ### <!--fit--> Color & Inversion
-> Single-property `--accent` customization and high-contrast `invert` mode.
+> ### <!--fit--> Data & Variants
+> Tables, code, math, metrics, figures, accent, and invert.
+
+---
+
+## Heading Hierarchy
+
+# Title H1 **strong**
+
+## Section H2 **strong**
+
+### Subsection H3
+
+#### Micro-Label H4
+
+Body text follows the heading stack with flush-left, ragged-right rhythm. Markdown: `#` to `####`; `**strong**` inside a heading takes the accent.
 
 ---
 
 <!-- _class: cols-2 -->
 
-## <!--fit-->  Design Philosophy & Typography
+## Body Text & Lists
 
-The Swiss Style (International Typographic Style) rejects arbitrary decoration in favor of structural clarity, objective legibility, and geometric order:
+Running text with **bold**, *italic*, `inline code`, and a [link](https://example.com). Long sentences wrap to expose the leading and measure.
 
-- **Asymmetry**: Flush-left, ragged-right typography establishes dynamic balance without optical centering.
-- **Extreme Contrast**: Monumental uppercase titles paired with crisp body text and technical monospace.
-- **Physical Integration**: Ink-bleed synthesis and multiply blend on warm uncoated paper texture (`nb_img/paper2.jpg`).
+- Unordered item with accent bullet
+- Item that wraps onto a second line to check the hanging indent
+  - Nested sub-item
+
+1. Ordered step one
+2. Ordered step two
 
 ![split]()
 
-### <!--fit--> Basic Markdown Hierarchy
+### Syntax
 
 ```markdown
-Normal body text with **bold emphasis** in dark carbon black, 
-*italicized nuances*, and `inline code`.
+Text with **bold**, *italic*, `code`, [link](url).
 
-- Unordered list item with Swiss Red bullet
-- Second hierarchical item
-  - Indented technical sub-item
+- Item
+  - Nested item
 
-1. Tabular ordered sequence
-2. Monospace-numbered step
+1. Ordered step
 ```
+
+---
+
+<!-- _class: lead -->
+
+# <!--fit--> **GRIDS**
+
+### *SECTION DIVIDER:* LEAD WITHOUT IMAGE
+
+![bg right:46% saturate:0](images/blue_carnival.jpg)
 
 ---
 
 <!-- _class: cols-2 -->
 
-## <!--fit--> Heading Hierarchy & Spanning
+## Two Columns (`cols-2`)
 
-Live hierarchy rendered on the grid:
+Equal columns of **560px** with a **48px** gutter. Headings `h1` and `h2` span all columns.
 
-# Title (H1) **strong**
-
-## Section (H2) **strong**
-
-### Subsection (H3)
-
-#### Micro-Label (H4)
+Each `![split]()` starts the next column. Content that is too tall spills **downward**, never into a hidden column.
 
 ![split]()
 
-### Heading Markdown Syntax
+### Syntax
 
 ```markdown
-# Title (Uppercase + Red Accent Block)
-## Section (Solid Black Underline)
-### Subsection (Uppercase Sub-header)
-#### Micro-Label (Uppercase Monospace Tag)
-```
+<!-- _class: cols-2 -->
 
-> [](#i) **Multi-Column Column Spanning**
-> In both `cols-2` and `cols-3`, `h1` and `h2` automatically span across all columns (`column-span: all;`).
+## Title (spans all columns)
+
+Left column...
+
+![split]()
+
+Right column...
+```
 
 ---
 
-<!-- _class: cols-2 -->
+<!-- _class: cols-3 -->
 
-## Multi-Column Modular Grids
+## Three Columns (`cols-3`)
 
-Slide layouts are divided into rational columns using standard classes:
-
-- **Two Columns**: `<!-- _class: cols-2 -->`
-- **Three Columns**: `<!-- _class: cols-3 -->`
-- **Clean Column Break**: Use `![split]()` to force a column break with zero vertical whitespace artifacts.
-- **Balanced Gutter**: Set to `48px` on `cols-2` and `36px` on `cols-3` for disciplined rhythmic breathing room.
+> [01](#card)
+> ### Column One
+> Equal columns of 365.33px with a 36px gutter.
 
 ![split]()
 
-### Multi-Column Authoring Template
-
-```markdown
-<!-- _class: cols-2 -->
-
-## Section Title (Spans All Columns)
-
-Left column markdown content...
+> [02](#card)
+> ### Column Two
+> Two `![split]()` markers define three columns.
 
 ![split]()
 
-Right column markdown content...
-```
+> [03](#card)
+> ### Column Three
+> Use `<!-- _class: cols-3 -->` on the slide.
 
-> [GRID](#card) **No CSS Hacks Needed**
-> Native CSS multi-columns keep your markdown pristine and portable.
+---
+
+<!-- _class: cols-2-a -->
+
+## Asymmetric Two Columns (`cols-2-a`)
+
+> [2 PARTS](#card)
+> ### Narrow Lead
+> Short framing text or a key definition.
+
+`<!-- _class: cols-2-a -->`
+
+![split]()
+
+### Wide Column: 3 Parts
+
+Room for tables, code, and denser running text.
+
+| Column | Ratio | Width |
+| :--- | ---: | ---: |
+| **1** | 2 | 448px |
+| **2** | 3 | 672px |
+
+---
+
+<!-- _class: cols-3-a -->
+
+## Asymmetric Three Columns (`cols-3-a`)
+
+> [3 PARTS](#card)
+> ### Narrow
+> 274px.
+
+![split]()
+
+> [4 PARTS](#card)
+> ### Medium
+> 365.33px.
+
+![split]()
+
+> [5 PARTS](#card)
+> ### Wide
+> 456.67px: the widest module, for the main content.
+
+`<!-- _class: cols-3-a -->`
+
+---
+
+<!-- _class: lead -->
+
+# <!--fit--> **CARDS**
+
+### *SECTION DIVIDER:* LEAD WITHOUT IMAGE
+
+
+![bg right:46% saturate:0](images/pexels-hikaique-775201.jpg)
 
 ---
 
 <!-- _class: cols-2 -->
 
 ## The Swiss Card (`#card`)
-
-The signature component for definitions, theorems, and core concepts:
 
 > [DEF 01](#card)
 > ### <!-- fit --> Grid Topology
@@ -157,244 +218,225 @@ The signature component for definitions, theorems, and core concepts:
 
 ![split]()
 
-### Architectural Features
+### Syntax
 
-- **Transparent Ground**: No floating SaaS card; paper texture breathes through naturally.
-- **Anchor Border**: 5px Swiss Red left rule + 1px hairline perimeter.
-- **Right Tag**: Floating uppercase badge (`> [TAG](#card)`).
-- **Auto-Scaling Title**: `### <!-- fit --> Title` scales horizontally to fill the gap up to the tag margin.
-- **Academic Serif Body**: Justified Literata serif with automatic hyphenation.
-- **Centered Math**: Display equations stay centered.
+```markdown
+> [DEF 01](#card)
+> ### <!-- fit --> Grid Topology
+> Body in justified serif.
+> $$ ...centered math... $$
+```
+
+- **Tag first**: `[TAG](#card)` must open the card.
+- **Fit title**: `### <!-- fit -->` fills the width up to the tag.
+- **No tag**: `[](#card)` renders without the badge.
 
 ---
 
 <!-- _class: cols-2 -->
 
-## Authoring `#card` Modules
+## Card Headers
 
-Two supported header patterns for Swiss Cards:
+> [THM 02](#card)
+> ### <!-- fit --> Auto-Scaling Header
+> `### <!-- fit -->` title with a hairline underneath.
 
-### 1. Dynamic Auto-Scaling (Recommended)
-
-```markdown
-> [THEOREM 01](#card)
-> ### <!-- fit --> Modular Invariance
-> Formal proof body text in academic serif.
-> $$\oint_{\Gamma} \vec{F} \cdot d\vec{r} = 0$$
-```
-
-The tag paragraph **must precede** the `### <!-- fit -->` heading so the tag floats right and the title fills the remaining gap.
+> [DEF 03](#card)
+> **Static Bold Header**
+> `**Title**` fallback: tag, title, and body in one paragraph.
 
 ![split]()
 
-### 2. Static Bold Header (Fallback)
+### Syntax
 
 ```markdown
-> [DEF 02](#card)
-> **Coordinate Projection**
-> Standard bold heading with an architectural hairline divider underneath.
-```
+> [THM 02](#card)
+> ### <!-- fit --> Auto-Scaling Header
+> Body text.
 
-> [](#a) **Authoring Rule**
-> Always write the tag anchor as `[TAG](#card)` (or `[TAG](#card-r)` for right alignment) as the first line of the blockquote. If omitted, the card renders without the badge.
+> [DEF 03](#card)
+> **Static Bold Header**
+> Body text.
+```
 
 ---
 
 <!-- _class: cols-2 -->
 
-## Flexible Card Workflows
+## Content Alignment (`-l`, `-c`, `-r`)
 
-The unified `#card` primitive flexibly replaces specialized step blocks for sequential workflows, syllabi, and methodology:
+> [LEFT](#card-l)
+> ### Left (default)
+> Accent rule on the left.
 
-> [01](#card)
-> ### Rational Layout
-> Establish orthogonal baseline and horizontal margin bounds.
+> [CENTER](#card-c)
+> ### Centered
+> Accent rule on top.
 
-> [02](#card)
-> ### Typographic Tension
-> Set monumental title contrast against high-density data.
-
-![split]()
-
-### Workflow Syntax
-
-```markdown
-> [01](#card)
-> ### Step Identifier
-> Action description or methodology narrative.
-```
-
-- **Unified Primitive**: Eliminates redundant card styles in favor of one robust component.
-- **Custom Badges**: Use `[01](#card)`, `[STEP 02](#card)`, or any semantic token.
-- **Header Flexibility**: Choose auto-scaling `### <!-- fit -->`, standard `###`, or `**Bold**`.
-
----
-
-<!-- _class: cols-2 -->
-
-## Semantic Status Cards (`#i`, `#a`, `#s`)
-
-Modular status callouts for architectural and technical feedback:
-
-> [](#i) **Informational Bulletin (`#i`)**
-> Neutral notice framed with a 4px solid black top border.
-
-> [](#a) **Critical Constraint (`#a`)**
-> High-priority warning with Swiss Red border and tinted ground.
-
-> [](#s) **Empirical Validation (`#s`)**
-> Verified result marked with a deep forest green border.
+> [RIGHT](#card-r)
+> **Right, Mirrored**
+> Accent rule on the right, tag on the left.
 
 ![split]()
 
-### Alignment Anchors
+### Syntax
 
-Append `-l`, `-c`, or `-r` to set content alignment (cards always fill the column):
-
-- **Left (default)**: `[](#i)`, `[](#a)`, `[](#s)`, `[TAG](#card-l)`
-- **Centered (accent rule on top)**: `[](#i-c)`, `[](#a-c)`, `[](#s-c)`, `[TAG](#card-c)`
-- **Right (mirrored, accent rule on the right)**: `[](#i-r)`, `[](#a-r)`, `[](#s-r)`, `[TAG](#card-r)`
+Cards always fill the column; the suffix only aligns the content.
 
 ```markdown
-> [TAG](#card-l)
-> ### Left Card
-> Content flush-left, accent rule on the left.
-
+> [TAG](#card-l)    > [TAG](#card-c)
 > [TAG](#card-r)
-> ### Right Card
-> Content flush-right, accent rule on the right.
+> [](#i-r)  > [](#a-c)  > [](#s-l)
 ```
+
+> [](#i-r) **Status Right (`#i-r`)**
+> The suffix works on status cards too.
 
 ---
 
 <!-- _class: cols-2 -->
 
-## Bento Dark Module (`#d`)
+## Status Cards (`#i`, `#a`, `#s`)
 
-A high-contrast carbon black module (`#161514`) for primary theorems, core axioms, or dramatic callouts:
+> [](#i) **Information (`#i`)**
+> Neutral notice with a solid black top border.
+
+> [](#a) **Alert (`#a`)**
+> Warning with accent border and tinted ground.
+
+> [](#s) **Success (`#s`)**
+> Verified result with a forest green border.
+
+![split]()
+
+### Syntax
+
+```markdown
+> [](#i) **Title**
+> Body text.
+```
+
+> [](#a-c) **Alert Centered (`#a-c`)**
+> Centered content.
+
+> [](#s-r) **Success Right (`#s-r`)**
+> Right-aligned content.
+
+---
+
+<!-- _class: cols-2 -->
+
+## Dark Module (`#d`)
 
 > [](#d) **The Axiom of Form & Content**
-> *"Design is the method of putting form and content together. Design is so simple, that's why it is so complicated."*
+> *"Design is the method of putting form and content together."*
 > — Paul Rand
-> 
-> Inline parameters like `grid_ratio = 1.618` use dark monospace pills, while **bold emphasis** automatically inherits Swiss Red.
+>
+> Inline `grid_ratio = 1.618` in a dark pill; **bold** takes the accent.
 
 ![split]()
 
-### Markdown Syntax
+### Syntax
 
 ```markdown
 > [](#d) **Module Title**
-> Body text with high contrast.
-> **Bold text** appears in Swiss Red.
-> `Inline code` renders in a dark pill.
+> Body with `code` and **accent bold**.
 ```
 
-> [TIP](#card) **Contrast Strategy**
-> Use at most one `#d` module per slide to maintain visual weight and avoid overpowering the light paper surface.
+> [TIP](#card) **One Per Slide**
+> Use at most one `#d` module per slide to keep visual weight.
+
+Paragraph after a card, to check spacing after blockquotes.
 
 ---
 
-## Data Presentation (Grid Precision)
+<!-- _class: lead -->
 
-Tables embody Swiss precision: bold uppercase sans-serif headers, tabular monospace figures in `IBM Plex Mono`, and alternating row shading:
+# <!--fit--> **DATA &** VARIANTS
 
-| Benchmark Identifier | Sample Size ($N$) | Latency (ms) | Efficiency Ratio | Status |
-| :--- | :--- | :--- | :--- | :--- |
+### *SECTION DIVIDER:* LEAD WITHOUT IMAGE
+
+![bg right:46% saturate:0](images/pexels-aronvisuals-1743165.jpg)
+
+---
+
+## Tables
+
+| Benchmark | Sample ($N$) | Latency (ms) | Efficiency | Status |
+| :--- | ---: | ---: | ---: | :--- |
 | **MODULAR-GRID-A** | $12,500$ | $1.42 \pm 0.04$ | $0.984$ | **VERIFIED** |
 | **ASYM-HIERARCHY-B** | $28,400$ | $2.15 \pm 0.08$ | $0.961$ | **VERIFIED** |
 | **GROTESQUE-TYPE-C** | $45,000$ | $0.88 \pm 0.02$ | $0.997$ | **OPTIMAL** |
 
+Uppercase headers, tabular monospace figures, and row shading. Align numbers right with `---:`:
+
 ```markdown
-| Parameter | Value | Status |
-| :--- | ---: | :--- |
-| **Sample A** | $1,250$ | **VERIFIED** |
+| Parameter | Value |
+| :--- | ---: |
+| **Sample A** | $1,250$ |
 ```
 
 ---
 
 <!-- _class: cols-2 -->
 
-## Code Presentation & Architecture
+## Code Blocks
 
-- **Clean Monospace**: High-legibility `IBM Plex Mono` with zero skeuomorphic scanlines or glow.
-- **Structural Left Rule**: 4px black accent rule with a top-right `CODE` metadata indicator.
-- **Scrollable Containers**: Wrap long code in `<div class="code-scroll">` for uncompressed scrolling.
+Standard fenced block, auto-shrunk to fit:
+
+```python
+def modular_bounds(canvas_w=1280, cols=12):
+    usable = canvas_w - 2 * 56
+    return (usable - (cols - 1) * 48) / cols
+```
+
+Wrap long code in `<div class="code-scroll">` to keep full size; long lines wrap instead of clipping.
+
+![split]()
 
 <div class="code-scroll">
 
 ```python
-# Swiss Layout Computation Engine
-def calculate_modular_bounds(canvas_w: int = 1920, cols: int = 12) -> dict:
-    """Calculates column widths adhering to Swiss grid discipline."""
+# Long block inside .code-scroll: lines wrap, not clip
+def calculate_modular_bounds_with_a_long_name(canvas_width: int = 1280, columns: int = 12, gutter: int = 48) -> dict:
     margin_x = 56
-    gutter = 48
-    usable = canvas_w - (2 * margin_x)
-    col_w = (usable - (cols - 1) * gutter) / cols
+    usable = canvas_width - 2 * margin_x
+    col_w = (usable - (columns - 1) * gutter) / columns
     return {"col_width": round(col_w, 2), "gutter": gutter}
 ```
 
 </div>
 
-![split]()
-
-### Scrollable Code Syntax
-
-```html
-<div class="code-scroll">
-
-```python
-# Long source code here...
-# Wrapped with sticky Swiss Red header bar
-```
-
-</div>
-```
-
-> [](#i) **Automatic Line Wrapping**
-> Uses CSS Container Queries (`cqw`) to wrap lines without distorting the font scale or causing unwanted horizontal clipping.
-
 ---
 
-## Mathematical Formulas & Proofs
+## Math
 
-For dedicated mathematical deductions and prominent formal equations, wrap display math inside `<div class="math-resolution">`:
+Inline math $e^{i\pi} + 1 = 0$ in running text. Wrap key equations in `<div class="math-resolution">`:
 
 <div class="math-resolution">
 
 $$
-\mathcal{L}_{\text{swiss}}(\theta) = \sum_{k=1}^K \left[ \alpha \cdot \log \left( 1 + \frac{\text{Contrast}(k)}{\text{Noise}(k)} \right) - \beta \cdot \|\nabla_{\text{grid}} \Phi(k)\|_2^2 \right]
+\mathcal{L}(\theta) = \sum_{k=1}^K \left[ \alpha \log \left( 1 + \frac{C(k)}{N(k)} \right) - \beta \|\nabla \Phi(k)\|_2^2 \right]
 $$
 
 </div>
 
-```html
-<div class="math-resolution">
+Plain display math stays unframed:
 
 $$
-\mathcal{L}_{\text{swiss}}(\theta) = \sum_{k=1}^K \left[ \dots \right]
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 $$
-
-</div>
-```
-
-Framed in a sharp 2px black container with the technical indicator `FORMULA // RESOLUTION` pinned to the upper-right corner.
 
 ---
 
 <!-- _class: cols-2 -->
 
-## Universal Metrics & 'stat' Slides
+## Metrics
 
-### 1. Inline Metric Callout
+<div class="metric">99.4%</div>
+<div class="metric-label">READABILITY INDEX</div>
 
-<div style="padding-top: 10px;">
-  <div class="metric">99.4%</div>
-  <div class="metric-label">READABILITY INDEX</div>
-  <p style="margin-top: 12px; font-size: 0.92rem; color: #555;">
-    Monumental Geist Black numbers for quantitative impact inside standard slides.
-  </p>
-</div>
+Monumental numbers inside a standard slide.
 
 ```html
 <div class="metric">99.4%</div>
@@ -403,51 +445,46 @@ Framed in a sharp 2px black container with the technical indicator `FORMULA // R
 
 ![split]()
 
-### 2. Standalone Stat Slide (`class: stat`)
-
-For keynote transitions centered entirely around a single massive figure:
-
-```markdown
-<!-- _class: stat -->
-
 <div class="metric">4.2×</div>
 <div class="metric-label">THROUGHPUT RATIO</div>
 
-Quantitative benchmark outcome across full deployment clusters.
-```
+For a full-slide figure, use `<!-- _class: stat -->` (next slide).
 
-The `stat` class expands the metric font size to **130px** for dramatic stage visibility.
+---
+
+<!-- _class: stat -->
+
+<div class="metric">4.2×</div>
+<div class="metric-label">STAT SLIDE</div>
+
+`<!-- _class: stat -->` centers a single massive figure.
 
 ---
 
 <!-- _class: cols-2 -->
 
-## Objective Imagery Guidelines
-
-In Swiss Modernism, imagery is documentation, not ornament. All rounded corners and drop shadows are strictly prohibited (`border-radius: 0; box-shadow: none;`):
+## Figures & Specs
 
 <figure>
-  <img src="images/helvetica_poster.jpg" alt="Helvetica Specimen" style="height: 240px; width: 100%; object-fit: cover;">
-  <figcaption>FIG. 01 / HELVETICA SPECIMEN & MODULAR SPATIAL EQUILIBRIUM</figcaption>
+  <img src="images/helvetica_poster.jpg" alt="Helvetica Specimen" style="height: 220px; width: 100%; object-fit: cover;">
+  <figcaption>FIG. 01 / HELVETICA SPECIMEN</figcaption>
 </figure>
 
 ![split]()
 
-### Technical Captions & Specs
+### Syntax
 
 ```html
 <figure>
-  <img src="path/to/image.jpg" alt="...">
-  <figcaption>FIG. 01 / TECHNICAL CAPTION</figcaption>
+  <img src="image.jpg" alt="...">
+  <figcaption>FIG. 01 / CAPTION</figcaption>
 </figure>
 ```
 
-Use `<div class="callout-specs">` for technical metadata:
-
 <div class="callout-specs">
 ASPECT: 16:9 RATIO<br>
-GRID: 12-UNIT ORTHOGONAL MODULE<br>
-GRAIN: UNCOATED COTTON FIBER
+GRID: 12-UNIT MODULE<br>
+CLASS: CALLOUT-SPECS
 </div>
 
 ---
@@ -455,87 +492,156 @@ GRAIN: UNCOATED COTTON FIBER
 <!-- _class: cols-2 -->
 <!-- _style: "--accent: #0066CC;" -->
 
-## Theme Parameterization (`--accent`)
+## Accent Override (`--accent`)
 
-The entire theme color identity is parameterized by a single CSS custom property `--accent` (default Swiss Red `#E30613`):
+- Bullets, **bold**, and borders inherit `--accent`.
+- This slide sets `--accent: #0066CC`.
 
-- **Global Override (Frontmatter)**:
-  ```yaml
-  style: ":root { --accent: #0066CC; }"
-  ```
-- **Per-Slide Override (Slide Directive)**:
-  ```markdown
-  <!-- _style: "--accent: #0066CC;" -->
-  ```
-
-Zero utility classes required. All primary highlights inherit `--accent` dynamically.
+> [TAG](#card)
+> ### Accent Card
+> Tag and rule follow the accent.
 
 ![split]()
 
-### Live Accent Override Demo
+### Syntax
 
-This slide executes `<!-- _style: "--accent: #0066CC;" -->`:
+```markdown
+<!-- per slide -->
+<!-- _style: "--accent: #0066CC;" -->
 
-> [](#a) **Dynamic Inheritance**
-> Alert borders, headline bold color, list bullets, and card indicators immediately adapt to `#0066CC`.
+# front matter, whole deck
+style: ":root { --accent: #0066CC; }"
+```
 
-<div class="callout-specs">
-VARIABLE: --accent<br>
-CURRENT VALUE: #0066CC<br>
-STATUS: ACTIVE OVERRIDE
-</div>
+> [](#a) **Accent Alert**
+> Alert border follows the accent.
 
 ---
 
 <!-- _class: invert cols-2 -->
 
-## Inverted Contrast Mode (`invert`)
+## Inverted Mode (`invert`)
 
-### High-Contrast Editorial Authority
+### Subsection on Dark
 
-The `invert` class provides an uncompromising deep black (`#161514`) environment engineered for keynote openers, section dividers, or evening defenses:
+- White type with accent highlights.
+- `inline code` and **bold** on dark ground.
 
-- **Typography**: Seamlessly flips to crisp white with Swiss Red accents.
-- **Tables & Code**: Borders adjust to subtle dark hairlines without manual class overrides.
+> [TAG](#card)
+> ### Card on Dark
+> Hairlines adapt to the inverted ground.
 
 ![split]()
 
-> [](#d) **Core Tenet of Swiss Modernism**
-> *"Order in design is not the absence of chaos, but the mastery of structural relationships."*
-> — Josef Müller-Brockmann
+> [](#d) **Dark Module on Dark**
+> Must stay distinguishable from the ground.
 
-```markdown
-<!-- _class: invert cols-2 -->
-
-## Inverted Section Title
-
-Inverted slide content...
-```
+| Key | Value |
+| :--- | ---: |
+| **class** | `invert cols-2` |
 
 ---
 
 <!-- _class: cols-2 -->
 
-## Quick Authoring Reference
+## Quick Reference
 
-Key conventions to keep in mind when authoring in `nobeamer-swiss`:
-
-| Objective | Syntax / Directive |
+| Feature | Syntax |
 | :--- | :--- |
-| **Title Slide** | `<!-- _class: lead -->` with `![bg right:46% ...]` |
-| **2-Column Layout** | `<!-- _class: cols-2 -->` + `![split]()` |
-| **3-Column Layout** | `<!-- _class: cols-3 -->` + `![split]()` |
-| **Swiss Card** | `> [TAG](#card)` + `### <!-- fit --> Title` |
-| **Right Card** | `> [TAG](#card-r)` + `### Title` |
+| **Title / Divider** | `_class: lead` (+ `![bg right:46%]`) |
+| **Columns** | `cols-2`, `cols-3` + `![split]()` |
+| **Asymmetric** | `cols-2-a`, `cols-3-a` |
+| **Card** | `> [TAG](#card)` + `### <!-- fit -->` |
+| **Alignment** | `#card-c`, `#card-r`, `#i-r` |
+| **Status** | `> [](#i)`, `[](#a)`, `[](#s)` |
 | **Dark Module** | `> [](#d) **Title**` |
-| **Workflow Card** | `> [01](#card)` + `### Title` |
+| **Variants** | `stat`, `invert`, `--accent` |
 
 ![split]()
 
-### Strict Design Guidelines
+### Design Rules
 
-- **No decorative icons or emojis**: Swiss modernism relies strictly on typography and numerical identifiers (`01 / STEP`, `[DEF]`).
-- **No rounded corners or drop shadows**: Flat geometry respects the physical sheet with zero skeuomorphism.
-- **No centered body text**: Maintain disciplined flush-left, ragged-right rhythm for maximum legibility.
-- **Controlled bold emphasis**: Contrast relies on monumental scale differential rather than pervasive bolding.
+- **No icons or emojis**: Typography and numeric identifiers only.
+- **No rounded corners or shadows**: Flat geometry.
+- **No centered body text**: Flush-left, ragged-right.
+- **Controlled bold**: Contrast comes from scale.
 
+---
+
+<!-- _class: lead -->
+
+# <!--fit--> **STRESS** TESTS
+
+### *EDGE CASES FOR* LAB/SWISS_LAB.PY
+
+![bg right:60% saturate:0](images/light_desk.jpg)
+
+---
+
+## Stress: A Deliberately Long Section Title That Must Wrap Gracefully Across Two Lines
+
+The heading underline and the spacing to the body must stay consistent when the title wraps.
+
+- First point with moderately long text to fill the measure of the line.
+- Second point with moderately long text to fill the measure of the line.
+- Third point with moderately long text to fill the measure of the line.
+
+---
+
+<!-- _class: cols-3 -->
+
+## Stress: Dense Three Columns
+
+> [A](#card)
+> ### Alpha
+> Short body text for the first card in column one.
+
+> [](#i) **Note**
+> Information card stacked under a card.
+
+![split]()
+
+| K | V |
+| :--- | ---: |
+| **a** | 1.00 |
+| **b** | 2.50 |
+| **c** | 3.75 |
+
+```python
+x = [i * 2 for i in range(9)]
+```
+
+![split]()
+
+- Item one in a narrow column
+- Item two wraps across lines in a narrow column
+
+> [](#a) **Limit**
+> Last block near the bottom edge.
+
+---
+
+<!-- _class: cols-2 lab-expect -->
+
+## Stress: Column Overflow (expected)
+
+> [](#i) **Overfull Column**
+> This column is deliberately taller than the slide.
+
+> [](#a) **Second Card**
+> Excess must spill downward and stay visible.
+
+> [](#s) **Third Card**
+> Keeps pushing past the bottom edge.
+
+> [](#i) **Fourth Card**
+> Still in the first column.
+
+> [](#a) **Fifth Card**
+> Past the bottom edge.
+
+![split]()
+
+### Second Column
+
+Must stay in place next to the first one. `lab-expect` tells the lab that the overflow on this slide is intentional.
