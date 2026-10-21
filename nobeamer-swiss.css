@@ -780,123 +780,119 @@ figcaption {
 /* ==========================================================================
    11. MULTI-COLUMN & ASYMMETRICAL MODULAR GRIDS
    ========================================================================== */
-/* // math-verified: W_usable=1168px; cols-2 (G=48px, ratio=2:3, shift=20%): col1=448.00px, col2=672.00px, sum=1168.00px; cols-3 (G=36px, ratio=3:4:5, shift=25%): col1=274.00px, col2=365.33px, col3=456.67px, sum=1168.00px */
-section.cols-2 {
-    --cols2-shift: 20%;          /* 2:3 asymmetric split (40% : 60%, 448px : 672px) */
+/* Symmetric grids: cols-2, cols-3. Asymmetric grids: cols-2-a (2:3), cols-3-a (3:4:5).
+   The -a variants are standalone classes sharing the same multi-column base. */
+/* // math-verified: W_usable=1168px; cols-2 (G=48px): 560.00px x2, sum=1168.00px; cols-3 (G=36px): 365.33px x3, sum=1168.00px; cols-2-a (ratio=2:3, shift=20%): col1=448.00px, col2=672.00px, sum=1168.00px; cols-3-a (ratio=3:4:5, shift=25%): col1=274.00px, col2=365.33px, col3=456.67px, sum=1168.00px */
+/* Overflow-safe columns: auto height + balance makes each ![split]() segment exactly one column,
+   so excess content spills downward (visible, clipped at the slide edge) instead of creating
+   invisible overflow columns off the right edge. min-height keeps the slide frame for pagination;
+   align-content: start cancels the default theme's vertical centering of the shorter balanced columns. */
+section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) {
     display: block;
+    height: auto !important;
+    min-height: 100%;
+    column-fill: balance;
+    align-content: start;
+}
+
+section:is(.cols-2, .cols-2-a) {
     columns: 2;
     column-gap: var(--gutter);
-    column-fill: auto;
 }
 
-section.cols-3 {
-    --cols3-s1: 25%;             /* 3:4:5 asymmetric progression on 12-unit grid (274px : 365.33px : 456.67px) */
-    --cols3-s3: 25%;
-    display: block;
+section:is(.cols-3, .cols-3-a) {
     columns: 3;
     column-gap: 36px;
-    column-fill: auto;
 }
 
-section.cols-2 h1,
-section.cols-2 h2,
-section.cols-3 h1,
-section.cols-3 h2 {
+section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) :is(h1, h2) {
     column-span: all;
 }
 
-section.cols-2 h1,
-section.cols-3 h1 {
+section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) h1 {
     margin-bottom: 24px;
 }
 
-section.cols-2 h2,
-section.cols-3 h2 {
+section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) h2 {
     margin-bottom: 16px;
 }
 
-section.cols-2 blockquote,
-section.cols-3 blockquote,
-section.cols-2 pre,
-section.cols-3 pre,
-section.cols-2 table,
-section.cols-3 table,
-section.cols-2 .math-resolution,
-section.cols-3 .math-resolution,
-section.cols-2 .code-scroll,
-section.cols-3 .code-scroll {
+section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) :is(blockquote, pre, table, .math-resolution, .code-scroll) {
     width: auto;
-    max-width: none;
+    max-width: 100%;
     margin-block: 12px;
     box-sizing: border-box;
     border-radius: 0;
 }
 
-/* Asymmetric column geometry for cols-2 (Column 1 vs Column 2 after ![split]()) */
-section.cols-2 > :not(h1):not(h2):not(p:has(> img[alt="split"])) {
+/* Asymmetric column geometry for cols-2-a (Column 1 vs Column 2 after ![split]()) */
+section.cols-2-a {
+    --cols2-shift: 20%;          /* 2:3 asymmetric split (40% : 60%, 448px : 672px) */
+}
+
+section.cols-2-a > :not(h1):not(h2):not(p:has(> img[alt="split"])) {
     margin-left: 0 !important;
     margin-right: var(--cols2-shift) !important;
     max-width: none !important;
 }
 
-section.cols-2 > table:not(p:has(> img[alt="split"]) ~ *) {
+section.cols-2-a > table:not(p:has(> img[alt="split"]) ~ *) {
     width: calc(100% - var(--cols2-shift)) !important;
 }
 
-section.cols-2 > p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(p:has(> img[alt="split"])) {
+section.cols-2-a > p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(p:has(> img[alt="split"])) {
     margin-left: calc(-1 * var(--cols2-shift)) !important;
     margin-right: 0 !important;
     max-width: none !important;
 }
 
-section.cols-2 > p:has(> img[alt="split"]) ~ table {
+section.cols-2-a > p:has(> img[alt="split"]) ~ table {
     width: calc(100% + var(--cols2-shift)) !important;
 }
 
-/* Asymmetric column geometry for cols-3 (Columns 1, 2, 3 separated by ![split]()) */
-section.cols-3 > :not(h1):not(h2):not(p:has(> img[alt="split"])) {
+/* Asymmetric column geometry for cols-3-a (Columns 1, 2, 3 separated by ![split]()) */
+section.cols-3-a {
+    --cols3-s1: 25%;             /* 3:4:5 asymmetric progression on 12-unit grid (274px : 365.33px : 456.67px) */
+    --cols3-s3: 25%;
+}
+
+section.cols-3-a > :not(h1):not(h2):not(p:has(> img[alt="split"])) {
     margin-left: 0 !important;
     margin-right: var(--cols3-s1) !important;
     max-width: none !important;
 }
 
-section.cols-3 > table:not(p:has(> img[alt="split"]) ~ *) {
+section.cols-3-a > table:not(p:has(> img[alt="split"]) ~ *) {
     width: calc(100% - var(--cols3-s1)) !important;
 }
 
-section.cols-3 > p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(p:has(> img[alt="split"])) {
+section.cols-3-a > p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(p:has(> img[alt="split"])) {
     margin-left: calc(-1 * var(--cols3-s1)) !important;
     margin-right: var(--cols3-s3) !important;
     max-width: none !important;
 }
 
-section.cols-3 > p:has(> img[alt="split"]) ~ table {
+section.cols-3-a > p:has(> img[alt="split"]) ~ table {
     width: calc(100% + var(--cols3-s1) - var(--cols3-s3)) !important;
 }
 
-section.cols-3 > p:has(> img[alt="split"]) ~ p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(p:has(> img[alt="split"])) {
+section.cols-3-a > p:has(> img[alt="split"]) ~ p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(p:has(> img[alt="split"])) {
     margin-left: calc(-1 * var(--cols3-s3)) !important;
     margin-right: 0 !important;
     max-width: none !important;
 }
 
-section.cols-3 > p:has(> img[alt="split"]) ~ p:has(> img[alt="split"]) ~ table {
+section.cols-3-a > p:has(> img[alt="split"]) ~ p:has(> img[alt="split"]) ~ table {
     width: calc(100% + var(--cols3-s3)) !important;
 }
 
 /* Prevent unwanted fragmentation across columns */
-section.cols-2 blockquote,
-section.cols-3 blockquote,
-section.cols-2 figure,
-section.cols-3 figure,
-section.cols-2 .callout-specs,
-section.cols-3 .callout-specs {
+section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) :is(blockquote, figure, .callout-specs) {
     break-inside: avoid;
 }
 
 /* Compact cards inside multi-column */
-section.cols-2 blockquote:has(a[href^="#card"]),
-section.cols-3 blockquote:has(a[href^="#card"]) {
+section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) blockquote:has(a[href^="#card"]) {
     width: auto !important;
     min-width: 0 !important;
     margin-block: 8px !important;
@@ -904,12 +900,9 @@ section.cols-3 blockquote:has(a[href^="#card"]) {
     font-size: 0.88em;
 }
 
-/* Column Break Symbol: ![split]() 
+/* Column Break Symbol: ![split]()
    Forces break on both img and its wrapping paragraph */
-section.cols-2 p:has(> img[alt="split"]),
-section.cols-3 p:has(> img[alt="split"]),
-section.cols-2 img[alt="split"],
-section.cols-3 img[alt="split"],
+section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) p:has(> img[alt="split"]),
 section img[alt="split"] {
     break-after: column !important;
     display: block !important;
