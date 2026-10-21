@@ -5,13 +5,13 @@
 """Design lab for Marp themes: render, contact sheets, layout lint, visual diff, A/B variants.
 
 Usage (from the project root):
-    uv run lab/swiss_lab.py sheet                      # render fixtures, lint, write contact sheet
+    uv run lab/swiss_lab.py sheet                      # render the deck, lint, write contact sheet
     uv run lab/swiss_lab.py lint [--json]              # numeric layout checks, no images
     uv run lab/swiss_lab.py baseline                   # freeze current renders as reference
     uv run lab/swiss_lab.py diff                       # compare with baseline, sheet of changed slides
     uv run lab/swiss_lab.py ab -s 4,5 -v tight=":root{--gutter:32px}" -v wide=lab/wide.css
 
-Common options: --deck FILE (default fixtures-swiss.marp.md), --theme FILE, -s/--slides "1,3-5".
+Common options: --deck FILE (default demo-swiss.marp.md), --theme FILE, -s/--slides "1,3-5".
 A variant value is inline CSS or a path to a .css file; it is injected as a global <style> into the deck,
 so `:root { ... }` overrides theme tokens exactly like a deck-level style would.
 Outputs go to lab/out/<deck>/ and baselines to lab/baseline/<deck>/ (both git-ignored).
@@ -26,7 +26,7 @@ import sys
 from pathlib import Path
 
 from PIL import Image, ImageChops, ImageDraw, ImageFont
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import TimeoutError as PlaywrightTimeout, sync_playwright
 
 ROOT = Path(__file__).resolve().parent.parent
 LAB = ROOT / "lab"
@@ -44,7 +44,8 @@ LINT_JS = """
   };
   return [...document.querySelectorAll('svg[data-marpit-svg]')].map((svg, i) => {
     const sec = svg.querySelector('foreignObject:not([data-marpit-advanced-background]) > section, foreignObject[data-marpit-advanced-background="content"] > section');
-    const sr = sec.getBoundingClientRect();
+    // Bounds come from the slide frame (svg), not the section box, which may grow past the frame
+    const sr = svg.getBoundingClientRect();
     const cs = getComputedStyle(sec);
     const box = {
       l: sr.left + parseFloat(cs.paddingLeft), r: sr.right - parseFloat(cs.paddingRight),
@@ -137,7 +138,7 @@ def build_html(deck: Path, theme: Path, out_dir: Path, css: str | None) -> Path:
     html = out_dir / "deck.html"
     subprocess.run(
         ["marp", str(src), "--html", "--template", "bare", "--theme-set", str(theme), "-o", str(html)],
-        check=True, capture_output=True, cwd=ROOT,
+        check=True, capture_output=True, cwd=ROOT, stdin=subprocess.DEVNULL, timeout=60,
     )
     text = html.read_text().replace("<head>", f'<head><base href="{deck.parent.as_uri()}/">', 1)
     html.write_text(text)
@@ -150,6 +151,7 @@ class Lab:
         self.theme = (ROOT / args.theme).resolve()
         self.slides = parse_slides(args.slides)
         self.min_font = args.min_font
+        self.offline = args.offline
         self.out = LAB / "out" / self.deck.name.split(".")[0]
         self._pw = sync_playwright().start()
         self.browser = self._pw.chromium.launch(executable_path=CHROME, headless=True, args=["--no-sandbox"])
@@ -162,8 +164,15 @@ class Lab:
         vdir = self.out / variant
         html = build_html(self.deck, self.theme, vdir, css)
         page = self.browser.new_page(viewport={"width": W, "height": H})
+        if self.offline:
+            # Simulate previews that block remote resources (e.g. VS Code): web fonts fall back to local fonts
+            page.route(re.compile(r"^https?://"), lambda route: route.abort())
+        page.set_default_timeout(30_000)
         page.goto(html.as_uri())
-        page.wait_for_load_state("networkidle")
+        try:
+            page.wait_for_load_state("networkidle", timeout=15_000)
+        except PlaywrightTimeout:
+            print(f"warning: network not idle after 15s ({variant}), rendering anyway", file=sys.stderr)
         page.evaluate("document.fonts.ready")
         report = page.evaluate(LINT_JS, self.min_font)
         pngs = {}
@@ -232,15 +241,20 @@ def diff_image(a: Path, b: Path, threshold: int = 24) -> tuple[float, Image.Imag
 
 # ---------- reporting ----------
 
+def is_bad(r: dict) -> bool:
+    """Slide has layout errors, unless the deck marks them as intentional with the `lab-expect` class."""
+    return "lab-expect" not in r["classes"].split() and any(i["kind"] != "small-font" for i in r["issues"])
+
+
 def print_lint(report: list[dict]) -> int:
     errors = 0
     for r in report:
         cls = r["classes"] or "-"
-        state = "ok" if not r["issues"] else f"{len(r['issues'])} issue(s)"
+        state = "ok" if not r["issues"] else f"{len(r['issues'])} issue(s)" + ("" if is_bad(r) else " (expected)")
         print(f"#{r['slide']:02d} {cls:<16} fill {r['fill']:>3}%  {state}")
         for it in r["issues"]:
-            errors += it["kind"] != "small-font"
             print(f"      {it['kind']:<16} {it['px']:>4}px  {it['el']}")
+        errors += is_bad(r)
     return errors
 
 
@@ -254,7 +268,7 @@ def cmd_lint(lab: Lab, args) -> int:
 
 def cmd_sheet(lab: Lab, args) -> int:
     report, pngs = lab.render()
-    bad = {r["slide"] for r in report if any(i["kind"] != "small-font" for i in r["issues"])}
+    bad = {r["slide"] for r in report if is_bad(r)}
     tiles = [tag(thumb(p, args.width), f"#{i:02d}", i in bad) for i, p in pngs.items()]
     path = lab.out / "sheet.png"
     grid(tiles, args.cols).save(path)
@@ -305,7 +319,7 @@ def cmd_ab(lab: Lab, args) -> int:
     columns = []
     for name, css in variants:
         report, pngs = lab.render(variant=f"ab-{name}", css=css)
-        bad = {r["slide"] for r in report if r["issues"]}
+        bad = {r["slide"] for r in report if is_bad(r)}
         columns.append([tag(thumb(p, args.width), f"#{i:02d} {name}", i in bad) for i, p in pngs.items()])
         print(f"== {name}")
         print_lint(report)
@@ -319,7 +333,7 @@ def cmd_ab(lab: Lab, args) -> int:
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("command", choices=["sheet", "lint", "baseline", "diff", "ab"])
-    p.add_argument("--deck", default="fixtures-swiss.marp.md")
+    p.add_argument("--deck", default="demo-swiss.marp.md")
     p.add_argument("--theme", default="nobeamer-swiss.css")
     p.add_argument("-s", "--slides", help='subset, e.g. "1,3-5"')
     p.add_argument("-v", "--variant", action="append", default=[], help="ab: NAME=CSS or NAME=path.css (repeatable)")
@@ -329,6 +343,7 @@ def main() -> int:
     p.add_argument("--threshold", type=int, default=24, help="diff: per-pixel luminance tolerance (0-255)")
     p.add_argument("--min-change", type=float, default=0.05, help="diff: ignore slides with less %% changed")
     p.add_argument("--json", action="store_true", help="lint: machine-readable output")
+    p.add_argument("--offline", action="store_true", help="block remote requests (web fonts), like the VS Code preview")
     args = p.parse_args()
 
     lab = Lab(args)

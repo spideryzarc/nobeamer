@@ -3,19 +3,22 @@
 Fast feedback loop for refining `nobeamer-swiss.css` without manual screenshot hunting.
 
 ```bash
-uv run lab/swiss_lab.py sheet       # render fixtures + lint + contact sheet -> lab/out/<deck>/sheet.png
+uv run lab/swiss_lab.py sheet       # render deck + lint + contact sheet -> lab/out/<deck>/sheet.png
 uv run lab/swiss_lab.py lint        # numeric layout checks only (exit 1 on layout errors)
 uv run lab/swiss_lab.py baseline    # freeze current renders as reference
 uv run lab/swiss_lab.py diff        # changed slides only: before | after | diff -> diff.png
 uv run lab/swiss_lab.py ab -s 4,18 -v tight=":root{--gutter:24px}" -v wide=lab/wide.css   # -> ab.png
 ```
 
-Options: `--deck` (default `fixtures-swiss.marp.md`), `-s "1,3-5"` slide subset, `--cols`, `--width`.
+Options: `--deck` (default `demo-swiss.marp.md`), `--offline` (block web fonts like the VS Code preview), `-s "1,3-5"` slide subset, `--cols`, `--width`.
 
-## Fixture deck
+## Test deck
 
-[`fixtures-swiss.marp.md`](../fixtures-swiss.marp.md) holds one slide per component plus stress cases.
-Baselines are keyed by slide number: append new fixtures at the end, then re-run `baseline`.
+[`demo-swiss.marp.md`](../demo-swiss.marp.md) is both the feature guide and the test deck: every feature rendered live,
+plus stress cases at the end. Baselines are keyed by slide number: append new slides at the end, then re-run `baseline`.
+
+Add the class `lab-expect` to a slide whose issues are intentional (e.g. the overflow stress test):
+they are still listed but do not fail `lint` or mark the slide red.
 
 ## Lint checks
 
