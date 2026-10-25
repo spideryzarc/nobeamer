@@ -1288,6 +1288,14 @@ section.cols-3 blockquote:has(a[href="#s-center"]) {
 
 /* Column Break Symbol: ![split]() 
    Acts as a forced column break */
+section.cols-2 p:has(> img[alt="split"]),
+section.cols-3 p:has(> img[alt="split"]) {
+    margin: 0;
+    padding: 0;
+    height: 0;
+    line-height: 0;
+}
+
 section.cols-2 img[alt="split"],
 section.cols-3 img[alt="split"] {
     break-after: column;
@@ -1526,16 +1534,20 @@ section>.math-resolution:nth-of-type(1) {
     view-transition-name: nb-math-1;
 }
 
-section>p:nth-of-type(1) {
+section>p:not(:has(> img:not(.emoji))):nth-of-type(1) {
     view-transition-name: nb-text-1;
 }
 
-section>p:nth-of-type(2) {
+section>p:not(:has(> img:not(.emoji))):nth-of-type(2) {
     view-transition-name: nb-text-2;
 }
 
-section>p:nth-of-type(3) {
+section>p:not(:has(> img:not(.emoji))):nth-of-type(3) {
     view-transition-name: nb-text-3;
+}
+
+section>p:has(> img[alt="split"]) {
+    view-transition-name: none !important;
 }
 
 /* --- 11c. Exit Keyframes --- */
