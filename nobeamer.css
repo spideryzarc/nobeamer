@@ -2,7 +2,7 @@
 /* @auto-scaling true */
 
 @import 'default';
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cousine:wght@400;700&family=Josefin+Sans:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cousine:wght@400;700&family=Josefin+Sans:wght@300;400;600;700&display=swap');
 
 /* ==========================================================================
    1. VARIABLES & BASE SETTINGS
@@ -20,8 +20,9 @@
         16px 16px 16px hsl(0deg 0% 0% / 0.075);
     --shadow-internal: 0 1px 1px hsl(0deg 0% 0% / 0.075) inset,
         0 16px 16px hsl(0deg 0% 0% / 0.075) inset;
-    --block-padding-y: 20px;
-    --block-margin-y: 20px;
+    --line-height: 1.2;
+    --block-padding-y: 14px;
+    --block-margin-y: 28px;
     --padding-general: 40px;
     --almost-touch-margin: var(--block-margin-y) calc(var(--padding-general) * -1 + 8px);
 }
@@ -86,6 +87,38 @@ h4 {
     font-size: 30px;
 }
 
+/* Compact vertical rhythm (overrides the default theme's generous spacing) */
+section {
+    line-height: var(--line-height);
+}
+
+section p {
+    margin: 0.5em 0 0;
+}
+
+section ul,
+section ol {
+    margin: 0.4em 0 0;
+}
+
+section li {
+    margin: 0.15em 0;
+}
+
+section li > p {
+    margin: 0;
+}
+
+section h1,
+section h2,
+section h3,
+section h4,
+section h5,
+section h6 {
+    margin: 0 0 0.4em;
+    line-height: calc(var(--line-height) - 0.1);
+}
+
 h1::after {
     content: '';
     display: block;
@@ -114,6 +147,7 @@ blockquote,
 }
 
 blockquote {
+    line-height: calc(var(--line-height) - 0.1);
     font-family: "Caveat", "Segoe Print", "Bradley Hand", "Chalkboard SE", "Comic Sans MS", "Comic Sans", "Chilanka", "TSCu_Comic", "URW Chancery L", casual, cursive;
     color: hsla(230, 90%, 30%, 0.85);
     /* Vibrant translucent pen blue */
@@ -217,7 +251,7 @@ blockquote:has(a[href="#s-right"]) {
     /* Typography Overrides */
     font-family: "Trebuchet MS", sans-serif;
     font-size: 0.9em;
-    line-height: 1.4;
+    line-height: var(--line-height);
     background-size: cover;
     background-blend-mode: multiply;
     background-image: url('nb_img/paper2.jpg');
@@ -1372,8 +1406,8 @@ blockquote:has(a[href="#def"]) {
     border-radius: 12px;
     box-shadow:
         0 4px 15px rgba(0, 0, 0, 0.05);
-    padding: 12px 20px;
-    margin: 18px 0;
+    padding: var(--block-padding-y) 20px;
+    margin: var(--block-margin-y) 0;
     width: auto;
     position: relative;
     overflow: hidden;
@@ -1387,7 +1421,7 @@ blockquote:has(a[href="#def"]) {
 
 /* Definition cards: more vertical breathing room */
 blockquote:has(a[href="#def"]) {
-    margin: 28px 0;
+    margin: calc(var(--block-margin-y) * 1.3) 0;
 }
 
 /* Gradient line on the top — Step */
@@ -1417,19 +1451,26 @@ blockquote a[href="#def"] {
     display: none;
 }
 
+/* Inline bold: subtle, keeps the card's own font and size */
 blockquote:has(a[href="#step"]) strong,
 blockquote:has(a[href="#def"]) strong {
     color: var(--primary);
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 1.25em;
-    font-weight: 700;
+    font-weight: 600;
     text-shadow: none;
+}
+
+/* Card title (first bold of the paragraph): slightly larger, semi-bold */
+blockquote:has(a[href="#step"]) p > strong:first-of-type,
+blockquote:has(a[href="#def"]) p > strong:first-of-type {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.1em;
+    font-weight: 600;
 }
 
 blockquote:has(a[href="#step"]) p,
 blockquote:has(a[href="#def"]) p {
     margin: 0;
-    line-height: 1.5;
+    line-height: var(--line-height);
 }
 
 /* ==========================================================================
