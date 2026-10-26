@@ -5,14 +5,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cousine:wght@400;700&family=Josefin+Sans:wght@300;400;600;700&display=swap');
 
 /* ==========================================================================
-   1. VARIABLES & BASE SETTINGS
+   CONTENTS
+    1. Tokens
+    2. Base slide
+    3. Typography
+    4. Entrance keyframes
+    5. Paper blockquote
+    6. Post-it cards (#i / #a / #s)
+    7. Dark card (#d)
+    8. Math resolution block
+    9. Tables
+   10. Code blocks
+   11. Scrollable code cards (.code-scroll)
+   12. Images
+   13. Background image modifiers
+   14. Multi-column layouts
+   15. Step (#step) & definition (#def) cards
+   16. View transitions
+   17. Print / PDF export
+
+   Cascade note: sections 14 and 15 must stay in this order. The column
+   resets in 14 share specificity with the card rules in 6-7 and win by
+   coming later; the step/def cards in 15 intentionally win over them.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. TOKENS
    ========================================================================== */
 :root {
     --text: #000000;
-    /* Dark slate for perfect readability */
     --primary: #204458;
     --secondary: #d69500;
     --tertiary: #0784ba;
+
+    /* Load order: Mac -> Windows -> Android -> Linux -> Generic */
+    --font-body: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-heading: "Josefin Sans", sans-serif;
+    --font-code: "Liberation Mono", "Cousine", "Consolas", "Monaco", "Courier New", monospace;
+    --font-hand: "Caveat", "Segoe Print", "Bradley Hand", "Chalkboard SE", "Comic Sans MS", "Comic Sans", "Chilanka", "TSCu_Comic", "URW Chancery L", casual, cursive;
+
     --shadow-external: 1px 1px 1px hsl(0deg 0% 0% / 0.075),
         2px 2px 2px hsl(0deg 0% 0% / 0.075),
         4px 4px 4px hsl(0deg 0% 0% / 0.075),
@@ -20,43 +51,49 @@
         16px 16px 16px hsl(0deg 0% 0% / 0.075);
     --shadow-internal: 0 1px 1px hsl(0deg 0% 0% / 0.075) inset,
         0 16px 16px hsl(0deg 0% 0% / 0.075) inset;
+
     --line-height: 1.2;
     --block-padding-y: 14px;
     --block-margin-y: 28px;
     --padding-general: 40px;
+    /* Block that bleeds almost to the slide edges (8px short) */
     --almost-touch-margin: var(--block-margin-y) calc(var(--padding-general) * -1 + 8px);
+    --accent-gradient: linear-gradient(90deg, var(--tertiary), var(--secondary));
 }
 
+/* ==========================================================================
+   2. BASE SLIDE
+   ========================================================================== */
 section {
     background: linear-gradient(135deg, #f5f7fa 0%, #e4eeee 100%);
     color: var(--text);
-    /* Load order: Mac -> Windows -> Android -> Linux -> Generic */
-    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --font-code: "Liberation Mono", "Cousine", "Consolas", "Monaco", "Courier New", monospace;
+    font-family: var(--font-body);
     padding: var(--padding-general);
     letter-spacing: -0.01em;
+    /* Compact vertical rhythm (overrides the default theme's generous spacing) */
+    line-height: var(--line-height);
     display: flex;
     flex-direction: column;
     justify-content: center;
     isolation: isolate;
 }
 
-/* Discrete Pagination */
+/* Discrete pagination */
 section::after {
     font-weight: 500;
     color: var(--primary);
     font-size: 14px;
+    view-transition-name: nb-page;
 }
 
 /* ==========================================================================
-   2. TYPOGRAPHY
+   3. TYPOGRAPHY
    ========================================================================== */
-/* Titles Hierarchy */
 h1,
 h2,
 h3,
 h4 {
-    font-family: "Josefin Sans", sans-serif;
+    font-family: var(--font-heading);
     color: var(--primary);
     font-weight: 500;
 }
@@ -87,9 +124,16 @@ h4 {
     font-size: 30px;
 }
 
-/* Compact vertical rhythm (overrides the default theme's generous spacing) */
-section {
-    line-height: var(--line-height);
+/* Accent bar under the hero title */
+h1::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 10px;
+    background: var(--secondary);
+    border-radius: 10px;
+    margin-top: -10px;
+    box-shadow: var(--shadow-external);
 }
 
 section p {
@@ -119,60 +163,11 @@ section h6 {
     line-height: calc(var(--line-height) - 0.1);
 }
 
-h1::after {
-    content: '';
-    display: block;
-    width: 120px;
-    height: 10px;
-    background: var(--secondary);
-    border-radius: 10px;
-    margin-top: -10px;
-    box-shadow: var(--shadow-external);
-}
-
 /* ==========================================================================
-   3. BLOCKQUOTES & PAPER CARDS
+   4. ENTRANCE KEYFRAMES (played once when a slide is shown)
    ========================================================================== */
 
-/* Standard Handwritten Paper Card */
-blockquote,
-.marp-card {
-    background: url('nb_img/paper.jpg');
-    background-size: cover;
-    border: dashed rgb(71, 71, 71);
-    border-width: 1px 0;
-    box-shadow: var(--shadow-internal);
-    padding: var(--block-padding-y) 50px;
-    margin: var(--block-margin-y) calc(var(--padding-general) * -1);
-}
-
-blockquote {
-    line-height: calc(var(--line-height) - 0.1);
-    font-family: "Caveat", "Segoe Print", "Bradley Hand", "Chalkboard SE", "Comic Sans MS", "Comic Sans", "Chilanka", "TSCu_Comic", "URW Chancery L", casual, cursive;
-    color: hsla(230, 90%, 30%, 0.85);
-    /* Vibrant translucent pen blue */
-    font-size: 1.2em;
-}
-
-blockquote strong {
-    color: hsla(355, 95%, 45%, 0.85);
-    /* Vibrant pen red */
-}
-
-blockquote em {
-    color: hsla(220, 60%, 15%, 0.85);
-    /* Intense ink black */
-}
-
-/* ==========================================================================
-   4. SPECIALIZED CARDS (Side Tabs & Floating Cards)
-      Usage:
-      - Info:    Left: > [](#i) | Center: > [](#i-c) | Right: > [](#i-r)
-      - Alert:   Left: > [](#a) | Center: > [](#a-c) | Right: > [](#a-r)
-      - Success: Left: > [](#s) | Center: > [](#s-c) | Right: > [](#s-r)
-   ========================================================================== */
-
-/* Keyframe Animations */
+/* Post-it cards (left / right) */
 @keyframes slide-in-left {
     0% {
         transform: translateX(-100%);
@@ -197,295 +192,20 @@ blockquote em {
     }
 }
 
-/* Shared Base Styles for all Specialized Cards */
-.card-info,
-.card-alert,
-.card-success,
-.card-info-left,
-.card-alert-left,
-.card-success-left,
-.card-info-center,
-.card-alert-center,
-.card-success-center,
-.card-info-right,
-.card-alert-right,
-.card-success-right,
-.card-left,
-.card-center,
-.card-right,
-blockquote:has(a[href="#i"]),
-blockquote:has(a[href="#i-l"]),
-blockquote:has(a[href="#il"]),
-blockquote:has(a[href="#i-left"]),
-blockquote:has(a[href="#i-c"]),
-blockquote:has(a[href="#ic"]),
-blockquote:has(a[href="#i-center"]),
-blockquote:has(a[href="#i-r"]),
-blockquote:has(a[href="#ir"]),
-blockquote:has(a[href="#i-right"]),
-blockquote:has(a[href="#a"]),
-blockquote:has(a[href="#a-l"]),
-blockquote:has(a[href="#al"]),
-blockquote:has(a[href="#a-left"]),
-blockquote:has(a[href="#a-c"]),
-blockquote:has(a[href="#ac"]),
-blockquote:has(a[href="#a-center"]),
-blockquote:has(a[href="#a-r"]),
-blockquote:has(a[href="#ar"]),
-blockquote:has(a[href="#a-right"]),
-blockquote:has(a[href="#s"]),
-blockquote:has(a[href="#s-l"]),
-blockquote:has(a[href="#sl"]),
-blockquote:has(a[href="#s-left"]),
-blockquote:has(a[href="#s-c"]),
-blockquote:has(a[href="#sc"]),
-blockquote:has(a[href="#s-center"]),
-blockquote:has(a[href="#s-r"]),
-blockquote:has(a[href="#sr"]),
-blockquote:has(a[href="#s-right"]) {
-    /* Reset from standard blockquote */
-    background-image: none;
-    border: none;
-    box-shadow: var(--shadow-external);
+/* Centered post-it cards and tables */
+@keyframes slide-up-fade {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
 
-    /* Typography Overrides */
-    font-family: "Trebuchet MS", sans-serif;
-    font-size: 0.9em;
-    line-height: var(--line-height);
-    background-size: cover;
-    background-blend-mode: multiply;
-    background-image: url('nb_img/paper2.jpg');
-    box-sizing: border-box;
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-/* --- Layout Variations --- */
-
-/* Left-Attached Cards (Default) */
-.card-info,
-.card-alert,
-.card-success,
-.card-info-left,
-.card-alert-left,
-.card-success-left,
-.card-left,
-blockquote:has(a[href="#i"]),
-blockquote:has(a[href="#i-l"]),
-blockquote:has(a[href="#il"]),
-blockquote:has(a[href="#i-left"]),
-blockquote:has(a[href="#a"]),
-blockquote:has(a[href="#a-l"]),
-blockquote:has(a[href="#al"]),
-blockquote:has(a[href="#a-left"]),
-blockquote:has(a[href="#s"]),
-blockquote:has(a[href="#s-l"]),
-blockquote:has(a[href="#sl"]),
-blockquote:has(a[href="#s-left"]) {
-    width: 37%;
-    min-width: 350px;
-    margin: var(--block-margin-y) auto var(--block-margin-y) calc(var(--padding-general) * -1);
-    align-self: flex-start;
-    padding: var(--block-padding-y) 15px var(--block-padding-y) var(--padding-general);
-    border-radius: 0 25px 25px 0;
-    animation: slide-in-left 0.7s ease-out both;
-}
-
-/* Right-Attached Cards */
-.card-info-right,
-.card-alert-right,
-.card-success-right,
-.card-right,
-blockquote:has(a[href="#i-r"]),
-blockquote:has(a[href="#ir"]),
-blockquote:has(a[href="#i-right"]),
-blockquote:has(a[href="#a-r"]),
-blockquote:has(a[href="#ar"]),
-blockquote:has(a[href="#a-right"]),
-blockquote:has(a[href="#s-r"]),
-blockquote:has(a[href="#sr"]),
-blockquote:has(a[href="#s-right"]) {
-    width: 37%;
-    min-width: 350px;
-    margin: var(--block-margin-y) calc(var(--padding-general) * -1) var(--block-margin-y) auto;
-    align-self: flex-end;
-    padding: var(--block-padding-y) var(--padding-general) var(--block-padding-y) 15px;
-    border-radius: 25px 0 0 25px;
-    animation: slide-in-right 0.7s ease-out both;
-}
-
-/* Centered Cards */
-.card-info-center,
-.card-alert-center,
-.card-success-center,
-.card-center,
-blockquote:has(a[href="#i-c"]),
-blockquote:has(a[href="#ic"]),
-blockquote:has(a[href="#i-center"]),
-blockquote:has(a[href="#a-c"]),
-blockquote:has(a[href="#ac"]),
-blockquote:has(a[href="#a-center"]),
-blockquote:has(a[href="#s-c"]),
-blockquote:has(a[href="#sc"]),
-blockquote:has(a[href="#s-center"]) {
-    width: 48%;
-    min-width: 350px;
-    max-width: 85%;
-    margin: var(--block-margin-y) auto;
-    align-self: center;
-    padding: var(--block-padding-y) 25px;
-    border-radius: 20px;
-    animation: slide-up-fade 0.7s ease-out both;
-}
-
-/* Hide Trigger Links */
-blockquote a[href="#i"],
-blockquote a[href="#i-l"],
-blockquote a[href="#il"],
-blockquote a[href="#i-left"],
-blockquote a[href="#i-c"],
-blockquote a[href="#ic"],
-blockquote a[href="#i-center"],
-blockquote a[href="#i-r"],
-blockquote a[href="#ir"],
-blockquote a[href="#i-right"],
-blockquote a[href="#a"],
-blockquote a[href="#a-l"],
-blockquote a[href="#al"],
-blockquote a[href="#a-left"],
-blockquote a[href="#a-c"],
-blockquote a[href="#ac"],
-blockquote a[href="#a-center"],
-blockquote a[href="#a-r"],
-blockquote a[href="#ar"],
-blockquote a[href="#a-right"],
-blockquote a[href="#s"],
-blockquote a[href="#s-l"],
-blockquote a[href="#sl"],
-blockquote a[href="#s-left"],
-blockquote a[href="#s-c"],
-blockquote a[href="#sc"],
-blockquote a[href="#s-center"],
-blockquote a[href="#s-r"],
-blockquote a[href="#sr"],
-blockquote a[href="#s-right"] {
-    display: none;
-}
-
-/* Force Black Bold Text in Specialized Cards */
-.card-info strong,
-.card-alert strong,
-.card-success strong,
-.card-info-left strong,
-.card-alert-left strong,
-.card-success-left strong,
-.card-info-center strong,
-.card-alert-center strong,
-.card-success-center strong,
-.card-info-right strong,
-.card-alert-right strong,
-.card-success-right strong,
-.card-left strong,
-.card-center strong,
-.card-right strong,
-blockquote:has(a[href="#i"]) strong,
-blockquote:has(a[href="#i-l"]) strong,
-blockquote:has(a[href="#il"]) strong,
-blockquote:has(a[href="#i-left"]) strong,
-blockquote:has(a[href="#i-c"]) strong,
-blockquote:has(a[href="#ic"]) strong,
-blockquote:has(a[href="#i-center"]) strong,
-blockquote:has(a[href="#i-r"]) strong,
-blockquote:has(a[href="#ir"]) strong,
-blockquote:has(a[href="#i-right"]) strong,
-blockquote:has(a[href="#a"]) strong,
-blockquote:has(a[href="#a-l"]) strong,
-blockquote:has(a[href="#al"]) strong,
-blockquote:has(a[href="#a-left"]) strong,
-blockquote:has(a[href="#a-c"]) strong,
-blockquote:has(a[href="#ac"]) strong,
-blockquote:has(a[href="#a-center"]) strong,
-blockquote:has(a[href="#a-r"]) strong,
-blockquote:has(a[href="#ar"]) strong,
-blockquote:has(a[href="#a-right"]) strong,
-blockquote:has(a[href="#s"]) strong,
-blockquote:has(a[href="#s-l"]) strong,
-blockquote:has(a[href="#sl"]) strong,
-blockquote:has(a[href="#s-left"]) strong,
-blockquote:has(a[href="#s-c"]) strong,
-blockquote:has(a[href="#sc"]) strong,
-blockquote:has(a[href="#s-center"]) strong,
-blockquote:has(a[href="#s-r"]) strong,
-blockquote:has(a[href="#sr"]) strong,
-blockquote:has(a[href="#s-right"]) strong {
-    color: #000000;
-    font-weight: 700;
-}
-
-/* --- Specific Colors --- */
-
-/* Info Card (#i, Yellow) */
-.card-info,
-.card-info-left,
-.card-info-center,
-.card-info-right,
-blockquote:has(a[href="#i"]),
-blockquote:has(a[href="#i-l"]),
-blockquote:has(a[href="#il"]),
-blockquote:has(a[href="#i-left"]),
-blockquote:has(a[href="#i-c"]),
-blockquote:has(a[href="#ic"]),
-blockquote:has(a[href="#i-center"]),
-blockquote:has(a[href="#i-r"]),
-blockquote:has(a[href="#ir"]),
-blockquote:has(a[href="#i-right"]) {
-    /* Post-it Yellow */
-    background-color: #ffe627cc;
-    color: #423c06;
-}
-
-/* Alert Card (#a, Pink/Red) */
-.card-alert,
-.card-alert-left,
-.card-alert-center,
-.card-alert-right,
-blockquote:has(a[href="#a"]),
-blockquote:has(a[href="#a-l"]),
-blockquote:has(a[href="#al"]),
-blockquote:has(a[href="#a-left"]),
-blockquote:has(a[href="#a-c"]),
-blockquote:has(a[href="#ac"]),
-blockquote:has(a[href="#a-center"]),
-blockquote:has(a[href="#a-r"]),
-blockquote:has(a[href="#ar"]),
-blockquote:has(a[href="#a-right"]) {
-    /* Alert Pink/Red */
-    background-color: #ff4f4fcc;
-    color: #450a0a;
-}
-
-/* Success Card (#s, Green) */
-.card-success,
-.card-success-left,
-.card-success-center,
-.card-success-right,
-blockquote:has(a[href="#s"]),
-blockquote:has(a[href="#s-l"]),
-blockquote:has(a[href="#sl"]),
-blockquote:has(a[href="#s-left"]),
-blockquote:has(a[href="#s-c"]),
-blockquote:has(a[href="#sc"]),
-blockquote:has(a[href="#s-center"]),
-blockquote:has(a[href="#s-r"]),
-blockquote:has(a[href="#sr"]),
-blockquote:has(a[href="#s-right"]) {
-    /* Success Green */
-    background-color: #58ff93cc;
-    color: #052e16;
-}
-
-
-/* ==========================================================================
-   Animação para o Bloco Dark
-   ========================================================================== */
+/* Dark card */
 @keyframes slide-bounce {
     0% {
         transform: translateY(-30px);
@@ -507,180 +227,7 @@ blockquote:has(a[href="#s-right"]) {
     }
 }
 
-/* Bento Dark Card (#d) 
-   Designed for multi-column layouts */
-.card-dark,
-blockquote:has(a[href="#d"]) {
-    /* Visuals - Dark Glossy (High Contrast Varnish) */
-    background-color: #020617;
-    background-image:
-        /* Top "wet" sheen that fades sharply */
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(255, 255, 255, 0) 50%),
-        /* Deep base gradient */
-        linear-gradient(160deg, #142a36 0%, #000000 100%);
-
-    color: #ffffff;
-    border-radius: 50px;
-    corner-shape: squircle;
-
-    /* Glossy Edges Highlight */
-    box-shadow:
-        var(--shadow-external),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
-        /* Sharp specular top edge */
-        inset 0 0 20px 0 rgba(0, 0, 0, 0.5);
-    /* Inner depth/absorption */
-
-    /* Layout & Reset */
-    width: auto;
-    margin: var(--almost-touch-margin);
-    padding: var(--block-padding-y) var(--padding-general);
-
-    /* Dark border that merges with shadow */
-    border: 1px solid rgba(0, 0, 0, 0.6);
-
-    /* Typography */
-    font-family: "Josefin Sans", sans-serif;
-    font-size: 0.9em;
-    font-weight: 400;
-    font-style: normal;
-
-    /* text-shadow: 0 0 4px var(--secondary); */
-
-    /* Animação única no carregamento */
-    animation: slide-bounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
-}
-
-/* Hide Trigger Link */
-blockquote a[href="#d"] {
-    display: none;
-}
-
-/* Bold text color override for dark background */
-.card-dark strong,
-blockquote:has(a[href="#d"]) strong {
-    color: var(--secondary);
-    font-weight: 600;
-    text-shadow: none;
-}
-
-/* Code block inside dark card */
-.card-dark code,
-blockquote:has(a[href="#d"]) code {
-    background: rgba(0, 0, 0, 0.3);
-    color: #e2e8f0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Italic text color override for dark background */
-.card-dark em,
-blockquote:has(a[href="#d"]) em {
-    color: var(--secondary);
-}
-
-/* ==========================================================================
-   5. MATH RESOLUTION BLOCK
-   ========================================================================== */
-.math-resolution {
-    padding: var(--block-padding-y) 60px;
-    margin: var(--block-padding-y) auto;
-    border: 4px solid var(--primary);
-    position: relative;
-    font-size: 0.7em;
-    border-radius: 0px 15px 0px 15px;
-    box-shadow: var(--shadow-external);
-    background-image: url('nb_img/paper2.jpg');
-    background-size: cover;
-    color: #242524
-}
-
-
-.math-resolution::after {
-    content: "🤓";
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    font-size: 1em;
-    line-height: 1;
-}
-
-/* ==========================================================================
-   6. TABLES
-   ========================================================================== */
-
-/* Animação de Apresentação de Tabela */
-@keyframes slide-up-fade {
-    0% {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* Scientific/APA Style Tables */
-table {
-    border-collapse: collapse;
-    margin: var(--block-margin-y) auto;
-    font-size: 0.7em;
-    border-top: 2px solid var(--primary);
-    border-bottom: 2px solid var(--primary);
-    box-shadow: var(--shadow-external);
-
-    /* Animação de apresentação */
-    animation: slide-up-fade 0.8s ease-out both;
-}
-
-th {
-    padding: 2px 12px;
-    line-height: 1.1;
-    text-align: center;
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: 0em;
-    font-family: var(--font-code);
-}
-
-td {
-    padding: 2px 12px;
-    line-height: 1.1;
-    text-align: center;
-    border-bottom: 1px solid var(--primary);
-    color: var(--text);
-    font-family: var(--font-code);
-    /* Monospace for data */
-    font-size: 0.9em;
-    /* Optical adjustment for monospace */
-}
-
-/* Subtle Zebra Striping */
-tr:nth-child(even) {
-    background-color: rgba(15, 23, 42, 0.03);
-}
-
-tr:first-of-type {
-    border-top: 2px solid var(--primary);
-}
-
-/* ==========================================================================
-   7. CODE BLOCKS
-   ========================================================================== */
-
-/* Varredura de Luz Tech (Scan Line Rápida) */
-@keyframes tech-scan {
-    0% {
-        left: -150%;
-    }
-
-    100% {
-        left: 150%;
-    }
-}
-
-/* Monitor Ligando (Escuro → Claro) */
+/* Code blocks: monitor powering on (dark -> bright) */
 @keyframes power-up {
     0% {
         filter: brightness(0.15) contrast(0.5);
@@ -691,7 +238,7 @@ tr:first-of-type {
     }
 }
 
-/* Pulso de Glow Sutil ao Final */
+/* Code blocks: subtle glow pulse after power-up */
 @keyframes glow-pulse {
 
     0%,
@@ -704,34 +251,352 @@ tr:first-of-type {
     }
 }
 
+/* Code blocks: fast tech light scan */
+@keyframes tech-scan {
+    0% {
+        left: -150%;
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+
+/* ==========================================================================
+   5. PAPER BLOCKQUOTE (handwritten note)
+   ========================================================================== */
+blockquote,
+.marp-card {
+    background: url('nb_img/paper.jpg');
+    background-size: cover;
+    border: dashed rgb(71, 71, 71);
+    border-width: 1px 0;
+    box-shadow: var(--shadow-internal);
+    padding: var(--block-padding-y) 50px;
+    margin: var(--block-margin-y) calc(var(--padding-general) * -1);
+}
+
+blockquote {
+    line-height: calc(var(--line-height) - 0.1);
+    font-family: var(--font-hand);
+    /* Vibrant translucent pen blue */
+    color: hsla(230, 90%, 30%, 0.85);
+    font-size: 1.2em;
+}
+
+/* Vibrant pen red */
+blockquote strong {
+    color: hsla(355, 95%, 45%, 0.85);
+}
+
+/* Intense ink black */
+blockquote em {
+    color: hsla(220, 60%, 15%, 0.85);
+}
+
+/* ==========================================================================
+   6. POST-IT CARDS
+      Markdown trigger: an empty link as the first thing in a blockquote.
+      Equivalent HTML classes are listed on the right.
+
+                Left (default)            Center               Right
+      Info      #i  #i-l  #il  #i-left    #i-c  #ic  #i-center  #i-r  #ir  #i-right
+      Alert     #a  #a-l  #al  #a-left    #a-c  #ac  #a-center  #a-r  #ar  #a-right
+      Success   #s  #s-l  #sl  #s-left    #s-c  #sc  #s-center  #s-r  #sr  #s-right
+
+      Classes:  .card-{info|alert|success}[-left|-center|-right]
+                .card-{left|center|right}  (position only, no color)
+
+      Each selector group below repeats the relevant subset of this matrix;
+      keep them in sync when adding an alias.
+   ========================================================================== */
+
+/* Shared base.
+   Plain selector list on purpose: Marpit's root font-size plugin mangles
+   comma lists nested in :is() for rules that declare font-size. */
+.card-info, .card-alert, .card-success,
+.card-info-left, .card-alert-left, .card-success-left,
+.card-info-center, .card-alert-center, .card-success-center,
+.card-info-right, .card-alert-right, .card-success-right,
+.card-left, .card-center, .card-right,
+blockquote:has(a[href="#i"]), blockquote:has(a[href="#i-l"]), blockquote:has(a[href="#il"]), blockquote:has(a[href="#i-left"]),
+blockquote:has(a[href="#i-c"]), blockquote:has(a[href="#ic"]), blockquote:has(a[href="#i-center"]),
+blockquote:has(a[href="#i-r"]), blockquote:has(a[href="#ir"]), blockquote:has(a[href="#i-right"]),
+blockquote:has(a[href="#a"]), blockquote:has(a[href="#a-l"]), blockquote:has(a[href="#al"]), blockquote:has(a[href="#a-left"]),
+blockquote:has(a[href="#a-c"]), blockquote:has(a[href="#ac"]), blockquote:has(a[href="#a-center"]),
+blockquote:has(a[href="#a-r"]), blockquote:has(a[href="#ar"]), blockquote:has(a[href="#a-right"]),
+blockquote:has(a[href="#s"]), blockquote:has(a[href="#s-l"]), blockquote:has(a[href="#sl"]), blockquote:has(a[href="#s-left"]),
+blockquote:has(a[href="#s-c"]), blockquote:has(a[href="#sc"]), blockquote:has(a[href="#s-center"]),
+blockquote:has(a[href="#s-r"]), blockquote:has(a[href="#sr"]), blockquote:has(a[href="#s-right"]) {
+    /* Reset the paper blockquote */
+    border: none;
+    box-shadow: var(--shadow-external);
+    background-image: url('nb_img/paper2.jpg');
+    background-size: cover;
+    background-blend-mode: multiply;
+    box-sizing: border-box;
+
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 0.9em;
+    line-height: var(--line-height);
+}
+
+/* Left-attached (default) */
+:is(.card-info, .card-alert, .card-success,
+    .card-info-left, .card-alert-left, .card-success-left, .card-left),
+blockquote:has(a:is([href="#i"], [href="#i-l"], [href="#il"], [href="#i-left"],
+        [href="#a"], [href="#a-l"], [href="#al"], [href="#a-left"],
+        [href="#s"], [href="#s-l"], [href="#sl"], [href="#s-left"])) {
+    width: 37%;
+    min-width: 350px;
+    margin: var(--block-margin-y) auto var(--block-margin-y) calc(var(--padding-general) * -1);
+    align-self: flex-start;
+    padding: var(--block-padding-y) 15px var(--block-padding-y) var(--padding-general);
+    border-radius: 0 25px 25px 0;
+    animation: slide-in-left 0.7s ease-out both;
+}
+
+/* Right-attached */
+:is(.card-info-right, .card-alert-right, .card-success-right, .card-right),
+blockquote:has(a:is([href="#i-r"], [href="#ir"], [href="#i-right"],
+        [href="#a-r"], [href="#ar"], [href="#a-right"],
+        [href="#s-r"], [href="#sr"], [href="#s-right"])) {
+    width: 37%;
+    min-width: 350px;
+    margin: var(--block-margin-y) calc(var(--padding-general) * -1) var(--block-margin-y) auto;
+    align-self: flex-end;
+    padding: var(--block-padding-y) var(--padding-general) var(--block-padding-y) 15px;
+    border-radius: 25px 0 0 25px;
+    animation: slide-in-right 0.7s ease-out both;
+}
+
+/* Centered */
+:is(.card-info-center, .card-alert-center, .card-success-center, .card-center),
+blockquote:has(a:is([href="#i-c"], [href="#ic"], [href="#i-center"],
+        [href="#a-c"], [href="#ac"], [href="#a-center"],
+        [href="#s-c"], [href="#sc"], [href="#s-center"])) {
+    width: 48%;
+    min-width: 350px;
+    max-width: 85%;
+    margin: var(--block-margin-y) auto;
+    align-self: center;
+    padding: var(--block-padding-y) 25px;
+    border-radius: 20px;
+    animation: slide-up-fade 0.7s ease-out both;
+}
+
+/* Hide trigger links */
+blockquote a:is([href="#i"], [href="#i-l"], [href="#il"], [href="#i-left"],
+    [href="#i-c"], [href="#ic"], [href="#i-center"],
+    [href="#i-r"], [href="#ir"], [href="#i-right"],
+    [href="#a"], [href="#a-l"], [href="#al"], [href="#a-left"],
+    [href="#a-c"], [href="#ac"], [href="#a-center"],
+    [href="#a-r"], [href="#ar"], [href="#a-right"],
+    [href="#s"], [href="#s-l"], [href="#sl"], [href="#s-left"],
+    [href="#s-c"], [href="#sc"], [href="#s-center"],
+    [href="#s-r"], [href="#sr"], [href="#s-right"]) {
+    display: none;
+}
+
+/* Black bold text */
+:is(.card-info, .card-alert, .card-success,
+    .card-info-left, .card-alert-left, .card-success-left,
+    .card-info-center, .card-alert-center, .card-success-center,
+    .card-info-right, .card-alert-right, .card-success-right,
+    .card-left, .card-center, .card-right) strong,
+blockquote:has(a:is([href="#i"], [href="#i-l"], [href="#il"], [href="#i-left"],
+        [href="#i-c"], [href="#ic"], [href="#i-center"],
+        [href="#i-r"], [href="#ir"], [href="#i-right"],
+        [href="#a"], [href="#a-l"], [href="#al"], [href="#a-left"],
+        [href="#a-c"], [href="#ac"], [href="#a-center"],
+        [href="#a-r"], [href="#ar"], [href="#a-right"],
+        [href="#s"], [href="#s-l"], [href="#sl"], [href="#s-left"],
+        [href="#s-c"], [href="#sc"], [href="#s-center"],
+        [href="#s-r"], [href="#sr"], [href="#s-right"])) strong {
+    color: #000000;
+    font-weight: 700;
+}
+
+/* Info: post-it yellow */
+:is(.card-info, .card-info-left, .card-info-center, .card-info-right),
+blockquote:has(a:is([href="#i"], [href="#i-l"], [href="#il"], [href="#i-left"],
+        [href="#i-c"], [href="#ic"], [href="#i-center"],
+        [href="#i-r"], [href="#ir"], [href="#i-right"])) {
+    background-color: #ffe627cc;
+    color: #423c06;
+}
+
+/* Alert: pink/red */
+:is(.card-alert, .card-alert-left, .card-alert-center, .card-alert-right),
+blockquote:has(a:is([href="#a"], [href="#a-l"], [href="#al"], [href="#a-left"],
+        [href="#a-c"], [href="#ac"], [href="#a-center"],
+        [href="#a-r"], [href="#ar"], [href="#a-right"])) {
+    background-color: #ff4f4fcc;
+    color: #450a0a;
+}
+
+/* Success: green */
+:is(.card-success, .card-success-left, .card-success-center, .card-success-right),
+blockquote:has(a:is([href="#s"], [href="#s-l"], [href="#sl"], [href="#s-left"],
+        [href="#s-c"], [href="#sc"], [href="#s-center"],
+        [href="#s-r"], [href="#sr"], [href="#s-right"])) {
+    background-color: #58ff93cc;
+    color: #052e16;
+}
+
+/* ==========================================================================
+   7. DARK CARD (#d) — designed for multi-column layouts
+   ========================================================================== */
+.card-dark,
+blockquote:has(a[href="#d"]) {
+    /* Dark glossy varnish: top "wet" sheen fading sharply over a deep base */
+    background-color: #020617;
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(255, 255, 255, 0) 50%),
+        linear-gradient(160deg, #142a36 0%, #000000 100%);
+
+    color: #ffffff;
+    border-radius: 50px;
+    corner-shape: squircle;
+
+    /* Sharp specular top edge + inner depth/absorption */
+    box-shadow:
+        var(--shadow-external),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+        inset 0 0 20px 0 rgba(0, 0, 0, 0.5);
+
+    width: auto;
+    margin: var(--almost-touch-margin);
+    padding: var(--block-padding-y) var(--padding-general);
+
+    /* Dark border that merges with the shadow */
+    border: 1px solid rgba(0, 0, 0, 0.6);
+
+    font-family: var(--font-heading);
+    font-size: 0.9em;
+    font-weight: 400;
+    font-style: normal;
+
+    animation: slide-bounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+}
+
+blockquote a[href="#d"] {
+    display: none;
+}
+
+.card-dark strong,
+blockquote:has(a[href="#d"]) strong {
+    color: var(--secondary);
+    font-weight: 600;
+    text-shadow: none;
+}
+
+.card-dark em,
+blockquote:has(a[href="#d"]) em {
+    color: var(--secondary);
+}
+
+.card-dark code,
+blockquote:has(a[href="#d"]) code {
+    background: rgba(0, 0, 0, 0.3);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   8. MATH RESOLUTION BLOCK
+   ========================================================================== */
+.math-resolution {
+    padding: var(--block-padding-y) 60px;
+    margin: var(--block-padding-y) auto;
+    border: 4px solid var(--primary);
+    position: relative;
+    font-size: 0.7em;
+    border-radius: 0px 15px 0px 15px;
+    box-shadow: var(--shadow-external);
+    background-image: url('nb_img/paper2.jpg');
+    background-size: cover;
+    color: #242524;
+}
+
+.math-resolution::after {
+    content: "🤓";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1em;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   9. TABLES (scientific / APA style)
+   ========================================================================== */
+table {
+    border-collapse: collapse;
+    margin: var(--block-margin-y) auto;
+    font-size: 0.7em;
+    border-top: 2px solid var(--primary);
+    border-bottom: 2px solid var(--primary);
+    box-shadow: var(--shadow-external);
+    animation: slide-up-fade 0.8s ease-out both;
+}
+
+th,
+td {
+    padding: 2px 12px;
+    line-height: 1.1;
+    text-align: center;
+    color: var(--text);
+    font-family: var(--font-code);
+}
+
+th {
+    font-weight: 700;
+    letter-spacing: 0em;
+}
+
+td {
+    border-bottom: 1px solid var(--primary);
+    /* Optical adjustment for monospace */
+    font-size: 0.9em;
+}
+
+/* Subtle zebra striping */
+tr:nth-child(even) {
+    background-color: rgba(15, 23, 42, 0.03);
+}
+
+tr:first-of-type {
+    border-top: 2px solid var(--primary);
+}
+
+/* ==========================================================================
+   10. CODE BLOCKS
+   ========================================================================== */
 pre {
     margin: var(--almost-touch-margin);
     padding: var(--block-padding-y) var(--padding-general);
-    box-shadow: var(--shadow-external);
     width: auto;
     border-radius: 15px;
     position: relative;
+    overflow: hidden;
 
-    /* Opaque Glossy Effect */
+    /* Opaque glossy surface with strong reflective highlights */
     background: linear-gradient(160deg, #ffffff 0%, #c9d1d8 100%);
     border: 1px solid #e2e8f0;
-
-    /* Strong reflective highlights (gloss) */
     box-shadow:
         var(--shadow-external),
         inset 0 1px 0 0 rgba(255, 255, 255, 1),
         inset 1px 0 0 0 rgba(255, 255, 255, 0.8),
         inset -1px -1px 0 0 rgba(0, 0, 0, 0.05);
-    /* Soft depth */
 
-    /* Monitor acendendo + pulso final */
+    /* Monitor powering on + final pulse */
     animation:
         power-up 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both,
         glow-pulse 0.6s ease-in-out 0.9s both;
-    overflow: hidden;
 }
 
-/* Efeito de Varredura de Luz Tech */
+/* Light scan sweep */
 pre::after {
     content: '';
     position: absolute;
@@ -753,7 +618,7 @@ pre::after {
     z-index: 1;
 }
 
-/* Emoji de código (acima da camada de luz) */
+/* Code badge (above the scan layer) */
 pre::before {
     content: "💻";
     position: absolute;
@@ -764,7 +629,7 @@ pre::before {
 }
 
 /* ==========================================================================
-   7b. SCROLLABLE CODE CARDS (.code-scroll)
+   11. SCROLLABLE CODE CARDS (.code-scroll)
    Alternative to standard code blocks for long code requiring scroll & auto-wrap.
    Usage:
    <div class="code-scroll">
@@ -773,7 +638,6 @@ pre::before {
    ```
    </div>
    ========================================================================== */
-
 .code-scroll {
     max-height: 460px;
     overflow-y: auto !important;
@@ -788,9 +652,15 @@ pre::before {
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: #cbd5e1 #f1f5f9;
+    /*
+     * Lets 100cqw resolve to the card's exact width in any layout (full width,
+     * cols-2/cols-3, ![bg left:35%] splits...), so Marp auto-scaling never
+     * detects horizontal overflow and downscales the code.
+     */
+    container-type: inline-size;
 }
 
-/* Sticky top accent line matching nobeamer identity */
+/* Sticky top accent line */
 .code-scroll::before {
     content: '';
     position: sticky;
@@ -799,11 +669,11 @@ pre::before {
     display: block;
     width: 100%;
     height: 4px;
-    background: linear-gradient(90deg, var(--tertiary), var(--secondary));
+    background: var(--accent-gradient);
     z-index: 10;
 }
 
-/* Custom sleek scrollbar for WebKit */
+/* Sleek WebKit scrollbar */
 .code-scroll::-webkit-scrollbar {
     width: 8px;
 }
@@ -822,7 +692,7 @@ pre::before {
     background: var(--tertiary);
 }
 
-/* Code block reset & uncompressed font preservation inside .code-scroll */
+/* Reset the regular code block look inside the card */
 .code-scroll pre {
     background: transparent !important;
     border: none !important;
@@ -836,28 +706,18 @@ pre::before {
     --marp-auto-scaling-white-space: pre-wrap !important;
 }
 
-/* Neutralize Marp auto-scaling height ceiling so tall code scrolls without shrinking font */
+/* Neutralize Marp auto-scaling height ceiling so tall code scrolls without shrinking */
 .code-scroll :is(pre, marp-pre)::part(auto-scaling) {
     max-height: none !important;
 }
 
-/* Remove short-code decorations that clash with long-code card */
+/* Drop short-code decorations (badge, scan) */
 .code-scroll :is(pre, marp-pre)::before,
 .code-scroll :is(pre, marp-pre)::after {
     display: none !important;
 }
 
-/*
- * Dynamic width resolution for ANY arbitrary layout:
- * container-type: inline-size enables 100cqw to evaluate to the exact width
- * of the card — whether full-width, 2-cols, 3-cols, or alongside arbitrary
- * background splits (e.g. ![bg left:35%], ![bg right:40%]).
- * This prevents Marp auto-scaling from detecting horizontal overflow and downscaling.
- */
-.code-scroll {
-    container-type: inline-size;
-}
-
+/* Wrap at the card width (48px = horizontal padding of the inner pre) */
 .code-scroll :is(pre, marp-pre) code {
     font-family: var(--font-code) !important;
     font-size: inherit !important;
@@ -871,7 +731,7 @@ pre::before {
     box-sizing: border-box !important;
 }
 
-/* Optional dark variant: <div class="code-scroll dark"> */
+/* Dark variant: <div class="code-scroll dark"> */
 .code-scroll.dark {
     background: #0f172a;
     border-color: rgba(255, 255, 255, 0.12);
@@ -900,16 +760,14 @@ pre::before {
 }
 
 /* ==========================================================================
-   8. IMAGES
+   12. IMAGES
    ========================================================================== */
-/* Default to block for "figure" images, but exclude emojis */
+/* Figure images are blocks; emojis stay inline */
 img:not(.emoji) {
     display: block;
     margin: 0 auto;
 }
 
-
-/* Ensure emojis remain inline and properly aligned */
 img.emoji {
     display: inline-block;
     margin: 0 0.1em;
@@ -917,8 +775,7 @@ img.emoji {
     vertical-align: -0.1em;
 }
 
-/* Image Modifiers via alt text (e.g. ![w:300 rounded](image.jpg)) */
-img[alt*="rounded"],
+/* Modifiers via alt text (e.g. ![w:300 rounded](image.jpg)); "round" also covers "rounded" */
 img[alt*="round"] {
     border-radius: 16px;
 }
@@ -938,99 +795,80 @@ img[alt*="circle"] {
     object-fit: cover;
 }
 
-/* Background Image Modifiers via alt text (e.g. ![bg rounded](image.jpg)) */
+/* ==========================================================================
+   13. BACKGROUND IMAGE MODIFIERS (e.g. ![bg rounded](image.jpg))
+   Any extra alt text becomes a <figcaption>, which marks the figure as modified.
+   ========================================================================== */
 section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure figcaption {
     display: none !important;
 }
 
-/* Base style for background images with alt text modifiers (e.g. rounded, drop-shadow) */
 section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption) {
     border-radius: 16px !important;
     overflow: hidden !important;
 }
 
-/* When a percentage or fit/contain is used with rounded, border-radius alone
-   has no visual effect because the image doesn't touch the figure's edges.
-   Instead, use clip-path to clip the figure at the image's boundaries with
-   rounded corners. This preserves the original image proportions (no crop)
-   while adding visible rounded corners.
-   Horizontal inset = (100 - percentage) / 2   */
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:95%"]:has(figcaption),
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 95%"]:has(figcaption) {
+/* With a percentage or fit/contain the image doesn't touch the figure's edges,
+   so border-radius alone is invisible. Clip the figure at the image's bounds
+   instead, keeping the original proportions (no crop).
+   Inset = (100 - percentage) / 2 */
+/* math-verified: 95→2.5 90→5 85→7.5 80→10 75→12.5 70→15 65→17.5 60→20 50→25 40→30 30→35 25→37.5 */
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:95%"], [style*="background-size: 95%"]) {
     clip-path: inset(2.5% round 16px) !important;
 }
 
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:90%"]:has(figcaption),
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 90%"]:has(figcaption) {
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:90%"], [style*="background-size: 90%"]) {
     clip-path: inset(5% round 16px) !important;
 }
 
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:85%"]:has(figcaption),
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 85%"]:has(figcaption) {
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:85%"], [style*="background-size: 85%"]) {
     clip-path: inset(7.5% round 16px) !important;
 }
 
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:80%"]:has(figcaption),
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 80%"]:has(figcaption) {
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:80%"], [style*="background-size: 80%"]) {
     clip-path: inset(10% round 16px) !important;
 }
 
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:75%"]:has(figcaption),
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 75%"]:has(figcaption) {
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:75%"], [style*="background-size: 75%"]) {
     clip-path: inset(12.5% round 16px) !important;
 }
 
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:70%"]:has(figcaption),
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 70%"]:has(figcaption) {
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:70%"], [style*="background-size: 70%"]) {
     clip-path: inset(15% round 16px) !important;
 }
 
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:65%"]:has(figcaption),
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 65%"]:has(figcaption) {
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:65%"], [style*="background-size: 65%"]) {
     clip-path: inset(17.5% round 16px) !important;
 }
 
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:60%"]:has(figcaption),
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 60%"]:has(figcaption) {
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:60%"], [style*="background-size: 60%"]) {
     clip-path: inset(20% round 16px) !important;
 }
 
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:50%"]:has(figcaption),
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 50%"]:has(figcaption) {
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:50%"], [style*="background-size: 50%"]) {
     clip-path: inset(25% round 16px) !important;
 }
 
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:40%"]:has(figcaption),
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 40%"]:has(figcaption) {
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:40%"], [style*="background-size: 40%"]) {
     clip-path: inset(30% round 16px) !important;
 }
 
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:30%"]:has(figcaption),
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 30%"]:has(figcaption) {
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:30%"], [style*="background-size: 30%"]) {
     clip-path: inset(35% round 16px) !important;
 }
 
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:25%"]:has(figcaption),
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: 25%"]:has(figcaption) {
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:25%"], [style*="background-size: 25%"]) {
     clip-path: inset(37.5% round 16px) !important;
 }
 
-/* fit/contain without explicit percentage */
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size:contain"]:has(figcaption),
-section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure[style*="background-size: contain"]:has(figcaption) {
+/* fit/contain without an explicit percentage */
+section[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:contain"], [style*="background-size: contain"]) {
     clip-path: inset(5% round 16px) !important;
 }
 
-
-
-
-
-
 /* ==========================================================================
-   9. UTILITIES & LAYOUTS
+   14. MULTI-COLUMN LAYOUTS (<!-- _class: cols-2 --> / cols-3)
    ========================================================================== */
-
-/* Multi-column Layout */
 section.cols-2 {
     display: block;
     columns: 2;
@@ -1043,28 +881,16 @@ section.cols-3 {
     column-gap: var(--padding-general);
 }
 
-/* Make slide title span across columns */
-section.cols-2 h1,
-section.cols-3 h1 {
+/* Slide title spans all columns */
+section:is(.cols-2, .cols-3) h1 {
     column-span: all;
     margin-bottom: 0.8em;
 }
 
-/* Reset negative margins & containment inside multi-column layouts */
-section.cols-2 pre,
-section.cols-3 pre,
-section.cols-2 .card-dark,
-section.cols-3 .card-dark,
-section.cols-2 blockquote:has(a[href="#d"]),
-section.cols-3 blockquote:has(a[href="#d"]),
-section.cols-2 blockquote,
-section.cols-3 blockquote,
-section.cols-2 .marp-card,
-section.cols-3 .marp-card,
-section.cols-2 .math-resolution,
-section.cols-3 .math-resolution,
-section.cols-2 .code-scroll,
-section.cols-3 .code-scroll {
+/* Contain full-bleed blocks inside their column */
+section:is(.cols-2, .cols-3) :is(pre, blockquote),
+section:is(.cols-2, .cols-3) :is(.card-dark, .marp-card, .math-resolution, .code-scroll),
+section:is(.cols-2, .cols-3) blockquote:has(a[href="#d"]) {
     margin: var(--block-margin-y) 0;
     padding: var(--block-padding-y) 20px;
     width: auto;
@@ -1072,133 +898,40 @@ section.cols-3 .code-scroll {
     box-sizing: border-box;
 }
 
-section.cols-2 .code-scroll,
-section.cols-3 .code-scroll {
+section:is(.cols-2, .cols-3) .code-scroll {
     padding: 0;
 }
 
-section.cols-2 .card-dark,
-section.cols-3 .card-dark,
-section.cols-2 blockquote:has(a[href="#d"]),
-section.cols-3 blockquote:has(a[href="#d"]) {
+section:is(.cols-2, .cols-3) .card-dark,
+section:is(.cols-2, .cols-3) blockquote:has(a[href="#d"]) {
     border-radius: 16px;
 }
 
-/* Base resets for all specialized cards in multi-column */
-section.cols-2 .card-info,
-section.cols-3 .card-info,
-section.cols-2 .card-alert,
-section.cols-3 .card-alert,
-section.cols-2 .card-success,
-section.cols-3 .card-success,
-section.cols-2 .card-info-left,
-section.cols-3 .card-info-left,
-section.cols-2 .card-alert-left,
-section.cols-3 .card-alert-left,
-section.cols-2 .card-success-left,
-section.cols-3 .card-success-left,
-section.cols-2 .card-info-center,
-section.cols-3 .card-info-center,
-section.cols-2 .card-alert-center,
-section.cols-3 .card-alert-center,
-section.cols-2 .card-success-center,
-section.cols-3 .card-success-center,
-section.cols-2 .card-info-right,
-section.cols-3 .card-info-right,
-section.cols-2 .card-alert-right,
-section.cols-3 .card-alert-right,
-section.cols-2 .card-success-right,
-section.cols-3 .card-success-right,
-section.cols-2 .card-left,
-section.cols-3 .card-left,
-section.cols-2 .card-center,
-section.cols-3 .card-center,
-section.cols-2 .card-right,
-section.cols-3 .card-right,
-section.cols-2 blockquote:has(a[href="#i"]),
-section.cols-3 blockquote:has(a[href="#i"]),
-section.cols-2 blockquote:has(a[href="#i-l"]),
-section.cols-3 blockquote:has(a[href="#i-l"]),
-section.cols-2 blockquote:has(a[href="#il"]),
-section.cols-3 blockquote:has(a[href="#il"]),
-section.cols-2 blockquote:has(a[href="#i-left"]),
-section.cols-3 blockquote:has(a[href="#i-left"]),
-section.cols-2 blockquote:has(a[href="#i-c"]),
-section.cols-3 blockquote:has(a[href="#i-c"]),
-section.cols-2 blockquote:has(a[href="#ic"]),
-section.cols-3 blockquote:has(a[href="#ic"]),
-section.cols-2 blockquote:has(a[href="#i-center"]),
-section.cols-3 blockquote:has(a[href="#i-center"]),
-section.cols-2 blockquote:has(a[href="#i-r"]),
-section.cols-3 blockquote:has(a[href="#i-r"]),
-section.cols-2 blockquote:has(a[href="#ir"]),
-section.cols-3 blockquote:has(a[href="#ir"]),
-section.cols-2 blockquote:has(a[href="#i-right"]),
-section.cols-3 blockquote:has(a[href="#i-right"]),
-section.cols-2 blockquote:has(a[href="#a"]),
-section.cols-3 blockquote:has(a[href="#a"]),
-section.cols-2 blockquote:has(a[href="#a-l"]),
-section.cols-3 blockquote:has(a[href="#a-l"]),
-section.cols-2 blockquote:has(a[href="#al"]),
-section.cols-3 blockquote:has(a[href="#al"]),
-section.cols-2 blockquote:has(a[href="#a-left"]),
-section.cols-3 blockquote:has(a[href="#a-left"]),
-section.cols-2 blockquote:has(a[href="#a-c"]),
-section.cols-3 blockquote:has(a[href="#a-c"]),
-section.cols-2 blockquote:has(a[href="#ac"]),
-section.cols-3 blockquote:has(a[href="#ac"]),
-section.cols-2 blockquote:has(a[href="#a-center"]),
-section.cols-3 blockquote:has(a[href="#a-center"]),
-section.cols-2 blockquote:has(a[href="#a-r"]),
-section.cols-3 blockquote:has(a[href="#a-r"]),
-section.cols-2 blockquote:has(a[href="#ar"]),
-section.cols-3 blockquote:has(a[href="#ar"]),
-section.cols-2 blockquote:has(a[href="#a-right"]),
-section.cols-3 blockquote:has(a[href="#a-right"]),
-section.cols-2 blockquote:has(a[href="#s"]),
-section.cols-3 blockquote:has(a[href="#s"]),
-section.cols-2 blockquote:has(a[href="#s-l"]),
-section.cols-3 blockquote:has(a[href="#s-l"]),
-section.cols-2 blockquote:has(a[href="#sl"]),
-section.cols-3 blockquote:has(a[href="#sl"]),
-section.cols-2 blockquote:has(a[href="#s-left"]),
-section.cols-3 blockquote:has(a[href="#s-left"]),
-section.cols-2 blockquote:has(a[href="#s-c"]),
-section.cols-3 blockquote:has(a[href="#s-c"]),
-section.cols-2 blockquote:has(a[href="#sc"]),
-section.cols-3 blockquote:has(a[href="#sc"]),
-section.cols-2 blockquote:has(a[href="#s-center"]),
-section.cols-3 blockquote:has(a[href="#s-center"]),
-section.cols-2 blockquote:has(a[href="#s-r"]),
-section.cols-3 blockquote:has(a[href="#s-r"]),
-section.cols-2 blockquote:has(a[href="#sr"]),
-section.cols-3 blockquote:has(a[href="#sr"]),
-section.cols-2 blockquote:has(a[href="#s-right"]),
-section.cols-3 blockquote:has(a[href="#s-right"]) {
+/* Post-it cards: drop the full-width min-width */
+section:is(.cols-2, .cols-3) :is(.card-info, .card-alert, .card-success,
+    .card-info-left, .card-alert-left, .card-success-left,
+    .card-info-center, .card-alert-center, .card-success-center,
+    .card-info-right, .card-alert-right, .card-success-right,
+    .card-left, .card-center, .card-right),
+section:is(.cols-2, .cols-3) blockquote:has(a:is([href="#i"], [href="#i-l"], [href="#il"], [href="#i-left"],
+        [href="#i-c"], [href="#ic"], [href="#i-center"],
+        [href="#i-r"], [href="#ir"], [href="#i-right"],
+        [href="#a"], [href="#a-l"], [href="#al"], [href="#a-left"],
+        [href="#a-c"], [href="#ac"], [href="#a-center"],
+        [href="#a-r"], [href="#ar"], [href="#a-right"],
+        [href="#s"], [href="#s-l"], [href="#sl"], [href="#s-left"],
+        [href="#s-c"], [href="#sc"], [href="#s-center"],
+        [href="#s-r"], [href="#sr"], [href="#s-right"])) {
     min-width: 0;
     box-sizing: border-box;
 }
 
-/* Left-Attached Cards in cols-2 (compact post-it touching slide left edge) */
-section.cols-2 .card-info,
-section.cols-2 .card-alert,
-section.cols-2 .card-success,
-section.cols-2 .card-info-left,
-section.cols-2 .card-alert-left,
-section.cols-2 .card-success-left,
-section.cols-2 .card-left,
-section.cols-2 blockquote:has(a[href="#i"]),
-section.cols-2 blockquote:has(a[href="#i-l"]),
-section.cols-2 blockquote:has(a[href="#il"]),
-section.cols-2 blockquote:has(a[href="#i-left"]),
-section.cols-2 blockquote:has(a[href="#a"]),
-section.cols-2 blockquote:has(a[href="#a-l"]),
-section.cols-2 blockquote:has(a[href="#al"]),
-section.cols-2 blockquote:has(a[href="#a-left"]),
-section.cols-2 blockquote:has(a[href="#s"]),
-section.cols-2 blockquote:has(a[href="#s-l"]),
-section.cols-2 blockquote:has(a[href="#sl"]),
-section.cols-2 blockquote:has(a[href="#s-left"]) {
+/* cols-2 left: compact post-it touching the slide's left edge */
+section.cols-2 :is(.card-info, .card-alert, .card-success,
+    .card-info-left, .card-alert-left, .card-success-left, .card-left),
+section.cols-2 blockquote:has(a:is([href="#i"], [href="#i-l"], [href="#il"], [href="#i-left"],
+        [href="#a"], [href="#a-l"], [href="#al"], [href="#a-left"],
+        [href="#s"], [href="#s-l"], [href="#sl"], [href="#s-left"])) {
     width: calc(65% + var(--padding-general));
     max-width: 420px;
     min-width: 300px;
@@ -1207,26 +940,12 @@ section.cols-2 blockquote:has(a[href="#s-left"]) {
     border-radius: 0 20px 20px 0;
 }
 
-/* Left-Attached Cards in cols-3 (fills column and touches slide left edge) */
-section.cols-3 .card-info,
-section.cols-3 .card-alert,
-section.cols-3 .card-success,
-section.cols-3 .card-info-left,
-section.cols-3 .card-alert-left,
-section.cols-3 .card-success-left,
-section.cols-3 .card-left,
-section.cols-3 blockquote:has(a[href="#i"]),
-section.cols-3 blockquote:has(a[href="#i-l"]),
-section.cols-3 blockquote:has(a[href="#il"]),
-section.cols-3 blockquote:has(a[href="#i-left"]),
-section.cols-3 blockquote:has(a[href="#a"]),
-section.cols-3 blockquote:has(a[href="#a-l"]),
-section.cols-3 blockquote:has(a[href="#al"]),
-section.cols-3 blockquote:has(a[href="#a-left"]),
-section.cols-3 blockquote:has(a[href="#s"]),
-section.cols-3 blockquote:has(a[href="#s-l"]),
-section.cols-3 blockquote:has(a[href="#sl"]),
-section.cols-3 blockquote:has(a[href="#s-left"]) {
+/* cols-3 left: fills the column and touches the slide's left edge */
+section.cols-3 :is(.card-info, .card-alert, .card-success,
+    .card-info-left, .card-alert-left, .card-success-left, .card-left),
+section.cols-3 blockquote:has(a:is([href="#i"], [href="#i-l"], [href="#il"], [href="#i-left"],
+        [href="#a"], [href="#a-l"], [href="#al"], [href="#a-left"],
+        [href="#s"], [href="#s-l"], [href="#sl"], [href="#s-left"])) {
     width: calc(100% + var(--padding-general));
     max-width: calc(100% + var(--padding-general));
     margin: var(--block-margin-y) 0 var(--block-margin-y) calc(var(--padding-general) * -1);
@@ -1234,20 +953,11 @@ section.cols-3 blockquote:has(a[href="#s-left"]) {
     border-radius: 0 20px 20px 0;
 }
 
-/* Right-Attached Cards in cols-2 (compact post-it touching slide right edge) */
-section.cols-2 .card-info-right,
-section.cols-2 .card-alert-right,
-section.cols-2 .card-success-right,
-section.cols-2 .card-right,
-section.cols-2 blockquote:has(a[href="#i-r"]),
-section.cols-2 blockquote:has(a[href="#ir"]),
-section.cols-2 blockquote:has(a[href="#i-right"]),
-section.cols-2 blockquote:has(a[href="#a-r"]),
-section.cols-2 blockquote:has(a[href="#ar"]),
-section.cols-2 blockquote:has(a[href="#a-right"]),
-section.cols-2 blockquote:has(a[href="#s-r"]),
-section.cols-2 blockquote:has(a[href="#sr"]),
-section.cols-2 blockquote:has(a[href="#s-right"]) {
+/* cols-2 right: compact post-it touching the slide's right edge */
+section.cols-2 :is(.card-info-right, .card-alert-right, .card-success-right, .card-right),
+section.cols-2 blockquote:has(a:is([href="#i-r"], [href="#ir"], [href="#i-right"],
+        [href="#a-r"], [href="#ar"], [href="#a-right"],
+        [href="#s-r"], [href="#sr"], [href="#s-right"])) {
     width: calc(65% + var(--padding-general));
     max-width: 420px;
     min-width: 300px;
@@ -1256,20 +966,11 @@ section.cols-2 blockquote:has(a[href="#s-right"]) {
     border-radius: 20px 0 0 20px;
 }
 
-/* Right-Attached Cards in cols-3 (fills column and touches slide right edge) */
-section.cols-3 .card-info-right,
-section.cols-3 .card-alert-right,
-section.cols-3 .card-success-right,
-section.cols-3 .card-right,
-section.cols-3 blockquote:has(a[href="#i-r"]),
-section.cols-3 blockquote:has(a[href="#ir"]),
-section.cols-3 blockquote:has(a[href="#i-right"]),
-section.cols-3 blockquote:has(a[href="#a-r"]),
-section.cols-3 blockquote:has(a[href="#ar"]),
-section.cols-3 blockquote:has(a[href="#a-right"]),
-section.cols-3 blockquote:has(a[href="#s-r"]),
-section.cols-3 blockquote:has(a[href="#sr"]),
-section.cols-3 blockquote:has(a[href="#s-right"]) {
+/* cols-3 right: fills the column and touches the slide's right edge */
+section.cols-3 :is(.card-info-right, .card-alert-right, .card-success-right, .card-right),
+section.cols-3 blockquote:has(a:is([href="#i-r"], [href="#ir"], [href="#i-right"],
+        [href="#a-r"], [href="#ar"], [href="#a-right"],
+        [href="#s-r"], [href="#sr"], [href="#s-right"])) {
     width: calc(100% + var(--padding-general));
     max-width: calc(100% + var(--padding-general));
     margin: var(--block-margin-y) calc(var(--padding-general) * -1) var(--block-margin-y) 0;
@@ -1277,20 +978,11 @@ section.cols-3 blockquote:has(a[href="#s-right"]) {
     border-radius: 20px 0 0 20px;
 }
 
-/* Centered Cards in cols-2 (compact centered post-it inside column) */
-section.cols-2 .card-info-center,
-section.cols-2 .card-alert-center,
-section.cols-2 .card-success-center,
-section.cols-2 .card-center,
-section.cols-2 blockquote:has(a[href="#i-c"]),
-section.cols-2 blockquote:has(a[href="#ic"]),
-section.cols-2 blockquote:has(a[href="#i-center"]),
-section.cols-2 blockquote:has(a[href="#a-c"]),
-section.cols-2 blockquote:has(a[href="#ac"]),
-section.cols-2 blockquote:has(a[href="#a-center"]),
-section.cols-2 blockquote:has(a[href="#s-c"]),
-section.cols-2 blockquote:has(a[href="#sc"]),
-section.cols-2 blockquote:has(a[href="#s-center"]) {
+/* cols-2 center: compact post-it centered in the column */
+section.cols-2 :is(.card-info-center, .card-alert-center, .card-success-center, .card-center),
+section.cols-2 blockquote:has(a:is([href="#i-c"], [href="#ic"], [href="#i-center"],
+        [href="#a-c"], [href="#ac"], [href="#a-center"],
+        [href="#s-c"], [href="#sc"], [href="#s-center"])) {
     width: fit-content;
     min-width: 280px;
     max-width: 85%;
@@ -1299,20 +991,11 @@ section.cols-2 blockquote:has(a[href="#s-center"]) {
     border-radius: 16px;
 }
 
-/* Centered Cards in cols-3 (fits neatly inside column) */
-section.cols-3 .card-info-center,
-section.cols-3 .card-alert-center,
-section.cols-3 .card-success-center,
-section.cols-3 .card-center,
-section.cols-3 blockquote:has(a[href="#i-c"]),
-section.cols-3 blockquote:has(a[href="#ic"]),
-section.cols-3 blockquote:has(a[href="#i-center"]),
-section.cols-3 blockquote:has(a[href="#a-c"]),
-section.cols-3 blockquote:has(a[href="#ac"]),
-section.cols-3 blockquote:has(a[href="#a-center"]),
-section.cols-3 blockquote:has(a[href="#s-c"]),
-section.cols-3 blockquote:has(a[href="#sc"]),
-section.cols-3 blockquote:has(a[href="#s-center"]) {
+/* cols-3 center: fills the column */
+section.cols-3 :is(.card-info-center, .card-alert-center, .card-success-center, .card-center),
+section.cols-3 blockquote:has(a:is([href="#i-c"], [href="#ic"], [href="#i-center"],
+        [href="#a-c"], [href="#ac"], [href="#a-center"],
+        [href="#s-c"], [href="#sc"], [href="#s-center"])) {
     width: auto;
     max-width: 100%;
     margin: var(--block-margin-y) 0;
@@ -1320,18 +1003,15 @@ section.cols-3 blockquote:has(a[href="#s-center"]) {
     border-radius: 16px;
 }
 
-/* Column Break Symbol: ![split]() 
-   Acts as a forced column break */
-section.cols-2 p:has(> img[alt="split"]),
-section.cols-3 p:has(> img[alt="split"]) {
+/* Column break marker: ![split]() */
+section:is(.cols-2, .cols-3) p:has(> img[alt="split"]) {
     margin: 0;
     padding: 0;
     height: 0;
     line-height: 0;
 }
 
-section.cols-2 img[alt="split"],
-section.cols-3 img[alt="split"] {
+section:is(.cols-2, .cols-3) img[alt="split"] {
     break-after: column;
     display: block;
     height: 0;
@@ -1341,71 +1021,16 @@ section.cols-3 img[alt="split"] {
 }
 
 /* ==========================================================================
-   PRINT / PDF EXPORT — Disable everything dynamic
+   15. STEP CARDS (#step) & DEFINITION CARDS (#def) — syllabus / timelines
+   Must stay after section 14 (see cascade note at the top).
    ========================================================================== */
-@media print {
-
-    /* Kill animations, transitions, transforms and filters globally */
-    section,
-    section *,
-    section::before,
-    section::after,
-    section *::before,
-    section *::after {
-        animation: none !important;
-        transition: none !important;
-        filter: none !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-    }
-
-    /* Solid background fallback for syllabus and definition cards */
-    blockquote:has(a[href="#step"]),
-    blockquote:has(a[href="#def"]) {
-        background: #f1f5f9 !important;
-        overflow: visible !important;
-    }
-
-    /* Replace absolute-positioned ::before gradient with a stable border-top */
-    blockquote:has(a[href="#step"])::before,
-    blockquote:has(a[href="#def"])::before {
-        content: none !important;
-    }
-
-    blockquote:has(a[href="#step"]) {
-        border-top: 4px solid var(--tertiary) !important;
-    }
-
-    blockquote:has(a[href="#def"]) {
-        border-top: 4px solid #7c3aed !important;
-    }
-
-    /* Code scroll card: hide scrollbar & replace sticky ::before with stable border-top */
-    .code-scroll {
-        overflow: hidden !important;
-        scrollbar-width: none !important;
-        border-top: 4px solid var(--tertiary) !important;
-    }
-
-    .code-scroll::before {
-        content: none !important;
-    }
-
-    .code-scroll::-webkit-scrollbar {
-        display: none !important;
-    }
-}
-
-/* ==========================================================================
-   10. MODERN SYLLABUS / STEP CARDS (#step) & DEFINITION CARDS (#def)
-   ========================================================================== */
+/* Plain selector list: see the Marpit note in section 6 */
 blockquote:has(a[href="#step"]),
 blockquote:has(a[href="#def"]) {
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
-    box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     padding: var(--block-padding-y) 20px;
     margin: var(--block-margin-y) 0;
     width: auto;
@@ -1413,10 +1038,9 @@ blockquote:has(a[href="#def"]) {
     overflow: hidden;
 
     /* Reset handwritten text */
-    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.85em;
     color: #334155;
-    background-image: none;
 }
 
 /* Definition cards: more vertical breathing room */
@@ -1424,65 +1048,59 @@ blockquote:has(a[href="#def"]) {
     margin: calc(var(--block-margin-y) * 1.3) 0;
 }
 
-/* Gradient line on the top — Step */
-blockquote:has(a[href="#step"])::before {
+/* Top gradient line */
+blockquote:has(a:is([href="#step"], [href="#def"]))::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 4px;
-    background: linear-gradient(90deg, var(--tertiary), var(--secondary));
+    background: var(--accent-gradient);
 }
 
-/* Gradient line on the top — Definition */
 blockquote:has(a[href="#def"])::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
     background: linear-gradient(90deg, #7c3aed, #0d9488);
 }
 
-blockquote a[href="#step"],
-blockquote a[href="#def"] {
+blockquote a:is([href="#step"], [href="#def"]) {
     display: none;
 }
 
 /* Inline bold: subtle, keeps the card's own font and size */
-blockquote:has(a[href="#step"]) strong,
-blockquote:has(a[href="#def"]) strong {
+blockquote:has(a:is([href="#step"], [href="#def"])) strong {
     color: var(--primary);
     font-weight: 600;
     text-shadow: none;
 }
 
-/* Card title (first bold of the paragraph): slightly larger, semi-bold */
+/* Card title (first bold of the paragraph) */
 blockquote:has(a[href="#step"]) p > strong:first-of-type,
 blockquote:has(a[href="#def"]) p > strong:first-of-type {
-    font-family: "Josefin Sans", sans-serif;
+    font-family: var(--font-heading);
     font-size: 1.1em;
     font-weight: 600;
 }
 
-blockquote:has(a[href="#step"]) p,
-blockquote:has(a[href="#def"]) p {
+blockquote:has(a:is([href="#step"], [href="#def"])) p {
     margin: 0;
     line-height: var(--line-height);
 }
 
 /* ==========================================================================
-   11. VIEW TRANSITIONS — Per-Element Slide Animations ("Magic Move")
-   Each component (title, cards, code, tables, lists) transitions
-   independently during slide changes.
+   16. VIEW TRANSITIONS — per-element morphing ("magic move")
+   Named components (title, cards, code, tables, lists) morph between
+   slides; Marp's bespoke runtime animates them with its own crossfade.
    Works with any `transition:` directive; optimized for `transition: nobeamer`.
+
+   Note: Marpit scopes every theme selector under `section`, so
+   ::view-transition-old/new(...) rules in a theme never match (those
+   pseudo-elements live on the document root). Don't add them here.
    ========================================================================== */
 
-/* --- 11a. Custom Transition "nobeamer" — fast root crossfade ---
+/* --- 16a. Custom transition "nobeamer": fast root crossfade ---
    The root handles non-named content (background, misc text).
-   Keep it fast so named elements steal the show.              */
+   Keep it fast so named elements steal the show. */
 @keyframes marp-outgoing-transition-nobeamer {
     from {
         opacity: 1;
@@ -1503,20 +1121,15 @@ blockquote:has(a[href="#def"]) p {
     }
 }
 
-/* --- 11b. View Transition Name Assignments ---
-   Each named element is extracted from the root snapshot and
-   transitions independently. Names MUST be unique per slide.  */
-
+/* --- 16b. View transition names ---
+   Each named element is extracted from the root snapshot and transitions
+   independently. Names MUST be unique per slide. (nb-page is set in section 2.) */
 section h1 {
     view-transition-name: nb-hero;
 }
 
 section h2 {
     view-transition-name: nb-title;
-}
-
-section::after {
-    view-transition-name: nb-page;
 }
 
 section h3:nth-of-type(1) {
@@ -1531,424 +1144,115 @@ section h3:nth-of-type(3) {
     view-transition-name: nb-sub-3;
 }
 
-section>blockquote:nth-of-type(1) {
+section > blockquote:nth-of-type(1) {
     view-transition-name: nb-card-1;
 }
 
-section>blockquote:nth-of-type(2) {
+section > blockquote:nth-of-type(2) {
     view-transition-name: nb-card-2;
 }
 
-section>blockquote:nth-of-type(3) {
+section > blockquote:nth-of-type(3) {
     view-transition-name: nb-card-3;
 }
 
-section>blockquote:nth-of-type(4) {
+section > blockquote:nth-of-type(4) {
     view-transition-name: nb-card-4;
 }
 
-section>pre:nth-of-type(1) {
+section > pre:nth-of-type(1) {
     view-transition-name: nb-code-1;
 }
 
-section>pre:nth-of-type(2) {
+section > pre:nth-of-type(2) {
     view-transition-name: nb-code-2;
 }
 
-section>table:nth-of-type(1) {
+section > table:nth-of-type(1) {
     view-transition-name: nb-table-1;
 }
 
-section>ul:nth-of-type(1) {
+section > ul:nth-of-type(1) {
     view-transition-name: nb-list-1;
 }
 
-section>ul:nth-of-type(2) {
+section > ul:nth-of-type(2) {
     view-transition-name: nb-list-2;
 }
 
-section>ol:nth-of-type(1) {
+section > ol:nth-of-type(1) {
     view-transition-name: nb-olist-1;
 }
 
-section>.math-resolution:nth-of-type(1) {
+section > .math-resolution:nth-of-type(1) {
     view-transition-name: nb-math-1;
 }
 
-section>p:not(:has(> img:not(.emoji))):nth-of-type(1) {
+section > p:not(:has(> img:not(.emoji))):nth-of-type(1) {
     view-transition-name: nb-text-1;
 }
 
-section>p:not(:has(> img:not(.emoji))):nth-of-type(2) {
+section > p:not(:has(> img:not(.emoji))):nth-of-type(2) {
     view-transition-name: nb-text-2;
 }
 
-section>p:not(:has(> img:not(.emoji))):nth-of-type(3) {
+section > p:not(:has(> img:not(.emoji))):nth-of-type(3) {
     view-transition-name: nb-text-3;
 }
 
-section>p:has(> img[alt="split"]) {
+section > p:has(> img[alt="split"]) {
     view-transition-name: none !important;
 }
 
-/* --- 11c. Exit Keyframes --- */
+/* ==========================================================================
+   17. PRINT / PDF EXPORT — disable everything dynamic
+   ========================================================================== */
+@media print {
 
-/* Titles: fly upward and vanish */
-@keyframes nb-fly-up-out {
-    from {
-        transform: translateY(0);
-        opacity: 1;
+    /* Kill animations, transitions and filters globally */
+    section,
+    section *,
+    section::before,
+    section::after,
+    section *::before,
+    section *::after {
+        animation: none !important;
+        transition: none !important;
+        filter: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
     }
 
-    to {
-        transform: translateY(-80px);
-        opacity: 0;
-    }
-}
-
-/* Cards: slide fully off-screen to the left */
-@keyframes nb-card-exit {
-    0% {
-        transform: translateX(0) scale(1);
-        opacity: 1;
+    /* Step/def cards: solid background, stable border-top instead of ::before */
+    blockquote:has(a:is([href="#step"], [href="#def"])) {
+        background: #f1f5f9 !important;
+        overflow: visible !important;
     }
 
-    80% {
-        transform: translateX(-120%) scale(0.97);
-        opacity: 1;
+    blockquote:has(a:is([href="#step"], [href="#def"]))::before {
+        content: none !important;
     }
 
-    100% {
-        transform: translateX(-150%) scale(0.95);
-        opacity: 0;
-    }
-}
-
-/* Tables / Math: sink downward */
-@keyframes nb-sink {
-    from {
-        transform: translateY(0);
-        opacity: 1;
+    blockquote:has(a[href="#step"]) {
+        border-top: 4px solid var(--tertiary) !important;
     }
 
-    to {
-        transform: translateY(50px) scale(0.96);
-        opacity: 0;
-    }
-}
-
-/* Lists: scatter to the left */
-@keyframes nb-scatter {
-    from {
-        transform: translateX(0);
-        opacity: 1;
+    blockquote:has(a[href="#def"]) {
+        border-top: 4px solid #7c3aed !important;
     }
 
-    to {
-        transform: translateX(-50px);
-        opacity: 0;
-    }
-}
-
-/* Code: monitor powering off */
-@keyframes nb-code-off {
-    0% {
-        filter: brightness(1);
-        transform: scaleY(1);
-        opacity: 1;
+    /* Code scroll card: no scrollbar, stable border-top instead of sticky ::before */
+    .code-scroll {
+        overflow: hidden !important;
+        scrollbar-width: none !important;
+        border-top: 4px solid var(--tertiary) !important;
     }
 
-    60% {
-        filter: brightness(0.15);
-        transform: scaleY(1);
-        opacity: 0.6;
+    .code-scroll::before {
+        content: none !important;
     }
 
-    100% {
-        filter: brightness(0);
-        transform: scaleY(0.01);
-        opacity: 0;
+    .code-scroll::-webkit-scrollbar {
+        display: none !important;
     }
-}
-
-@keyframes nb-fade-out {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
-}
-
-/* --- 11d. Enter Keyframes --- */
-
-/* Titles: rise from below */
-@keyframes nb-fly-up-in {
-    from {
-        transform: translateY(80px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* Cards: slide in from the right, fully off-screen start */
-@keyframes nb-card-enter {
-    0% {
-        transform: translateX(150%) scale(0.95);
-        opacity: 0;
-    }
-
-    20% {
-        transform: translateX(120%) scale(0.97);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateX(0) scale(1);
-        opacity: 1;
-    }
-}
-
-/* Tables / Math: rise upward */
-@keyframes nb-rise {
-    from {
-        transform: translateY(50px) scale(0.96);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-}
-
-/* Lists: gather from the right */
-@keyframes nb-gather {
-    from {
-        transform: translateX(50px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes nb-fade-in {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-/* --- 11e. Animation Assignments per Component --- */
-
-/* Hero Title (h1) — dramatic entrance */
-::view-transition-old(nb-hero) {
-    animation: 0.4s cubic-bezier(0.4, 0, 1, 1) both nb-fly-up-out;
-}
-
-::view-transition-new(nb-hero) {
-    animation: 0.55s cubic-bezier(0, 0, 0.2, 1) 0.1s both nb-fly-up-in;
-}
-
-/* Slide Title (h2) */
-::view-transition-old(nb-title) {
-    animation: 0.35s cubic-bezier(0.4, 0, 1, 1) both nb-fly-up-out;
-}
-
-::view-transition-new(nb-title) {
-    animation: 0.45s cubic-bezier(0, 0, 0.2, 1) 0.08s both nb-fly-up-in;
-}
-
-/* Subtitles (h3) — staggered */
-::view-transition-old(nb-sub-1) {
-    animation: 0.3s ease-in both nb-fly-up-out;
-}
-
-::view-transition-new(nb-sub-1) {
-    animation: 0.4s ease-out 0.1s both nb-fly-up-in;
-}
-
-::view-transition-old(nb-sub-2) {
-    animation: 0.3s ease-in 0.04s both nb-fly-up-out;
-}
-
-::view-transition-new(nb-sub-2) {
-    animation: 0.4s ease-out 0.16s both nb-fly-up-in;
-}
-
-::view-transition-old(nb-sub-3) {
-    animation: 0.3s ease-in 0.08s both nb-fly-up-out;
-}
-
-::view-transition-new(nb-sub-3) {
-    animation: 0.4s ease-out 0.22s both nb-fly-up-in;
-}
-
-/* Cards/Blockquotes — cascading with staggered delays */
-::view-transition-old(nb-card-1) {
-    animation: 0.3s ease-in both nb-card-exit;
-}
-
-::view-transition-new(nb-card-1) {
-    animation: 0.4s ease-out 0.1s both nb-card-enter;
-}
-
-::view-transition-old(nb-card-2) {
-    animation: 0.3s ease-in 0.05s both nb-card-exit;
-}
-
-::view-transition-new(nb-card-2) {
-    animation: 0.4s ease-out 0.18s both nb-card-enter;
-}
-
-::view-transition-old(nb-card-3) {
-    animation: 0.3s ease-in 0.1s both nb-card-exit;
-}
-
-::view-transition-new(nb-card-3) {
-    animation: 0.4s ease-out 0.26s both nb-card-enter;
-}
-
-::view-transition-old(nb-card-4) {
-    animation: 0.3s ease-in 0.15s both nb-card-exit;
-}
-
-::view-transition-new(nb-card-4) {
-    animation: 0.4s ease-out 0.34s both nb-card-enter;
-}
-
-/* Code Blocks — monitor power off / on */
-::view-transition-old(nb-code-1) {
-    animation: 0.4s ease-in both nb-code-off;
-}
-
-::view-transition-new(nb-code-1) {
-    animation: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.12s both power-up;
-}
-
-::view-transition-old(nb-code-2) {
-    animation: 0.4s ease-in 0.05s both nb-code-off;
-}
-
-::view-transition-new(nb-code-2) {
-    animation: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both power-up;
-}
-
-/* Tables — sink / rise */
-::view-transition-old(nb-table-1) {
-    animation: 0.35s ease-in both nb-sink;
-}
-
-::view-transition-new(nb-table-1) {
-    animation: 0.45s ease-out 0.1s both nb-rise;
-}
-
-/* Lists — scatter / gather */
-::view-transition-old(nb-list-1) {
-    animation: 0.3s ease-in both nb-scatter;
-}
-
-::view-transition-new(nb-list-1) {
-    animation: 0.4s ease-out 0.08s both nb-gather;
-}
-
-::view-transition-old(nb-list-2) {
-    animation: 0.3s ease-in 0.04s both nb-scatter;
-}
-
-::view-transition-new(nb-list-2) {
-    animation: 0.4s ease-out 0.14s both nb-gather;
-}
-
-::view-transition-old(nb-olist-1) {
-    animation: 0.3s ease-in both nb-scatter;
-}
-
-::view-transition-new(nb-olist-1) {
-    animation: 0.4s ease-out 0.08s both nb-gather;
-}
-
-/* Math Blocks */
-::view-transition-old(nb-math-1) {
-    animation: 0.35s ease-in both nb-sink;
-}
-
-::view-transition-new(nb-math-1) {
-    animation: 0.45s ease-out 0.15s both nb-rise;
-}
-
-/* Paragraphs — subtle fade */
-::view-transition-old(nb-text-1) {
-    animation: 0.25s ease-in both nb-fade-out;
-}
-
-::view-transition-new(nb-text-1) {
-    animation: 0.35s ease-out 0.06s both nb-fade-in;
-}
-
-::view-transition-old(nb-text-2) {
-    animation: 0.25s ease-in 0.03s both nb-fade-out;
-}
-
-::view-transition-new(nb-text-2) {
-    animation: 0.35s ease-out 0.1s both nb-fade-in;
-}
-
-::view-transition-old(nb-text-3) {
-    animation: 0.25s ease-in 0.06s both nb-fade-out;
-}
-
-::view-transition-new(nb-text-3) {
-    animation: 0.35s ease-out 0.14s both nb-fade-in;
-}
-
-/* Page Number — quiet crossfade */
-::view-transition-old(nb-page) {
-    animation: 0.2s ease both nb-fade-out;
-}
-
-::view-transition-new(nb-page) {
-    animation: 0.2s ease 0.1s both nb-fade-in;
-}
-
-/* --- 11f. Hardware Acceleration & Glitch Prevention ---
-   Forces GPU compositor layer promotion, eliminates white-flash color blending artifacts (plus-lighter fix),
-   and suppresses double-triggering element animations during View Transitions. */
-::view-transition-image-pair(*) {
-    isolation: isolate;
-}
-
-::view-transition-old(*),
-::view-transition-new(*) {
-    mix-blend-mode: normal;
-    overflow: visible;
-    backface-visibility: hidden;
-    will-change: transform, opacity;
-}
-
-::view-transition-group(*) {
-    overflow: visible;
-    backface-visibility: hidden;
-}
-
-/* Prevents element-level CSS animations from double-triggering concurrently with View Transitions
-   and disables backdrop-filter during transitions to prevent GPU blur caching ghost artifacts */
-html:has(::view-transition) section *,
-:root:has(::view-transition) section *,
-::view-transition-old(*),
-::view-transition-new(*) {
-    animation: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
 }
