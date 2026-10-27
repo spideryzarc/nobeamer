@@ -15,13 +15,13 @@ transition: swiss
 
 ![bg right:46% saturate:0](images/scholar_portrait.jpg)
 
-# <!--fit--> NOBEAMER <br> **SWISS**
+# <!--fit--> NoBeamer <br> **SWISS**
 
-### *FEATURE GUIDE &* TEST DECK
+### *Feature Guide &* TEST DECK
 
-- *THEME*: NOBEAMER-SWISS
-- *STYLE*: INTERNATIONAL TYPOGRAPHIC
-- *VERSION*: 2.0
+- **Theme**: NOBEAMER-SWISS
+- **Style**: International Typographic
+- **Version**: 2.0
 
 ---
 
@@ -29,11 +29,11 @@ transition: swiss
 
 ## Contents
 
-> [01](#card)
+> [01](#card-r)
 > ### <!--fit--> Typography
 > Headings, body text, lists, and the paper-ink surface.
 
-> [02](#card)
+> [02](#card-r)
 > ### <!--fit--> Grids
 > Symmetric and asymmetric columns with `![split]()`.
 
