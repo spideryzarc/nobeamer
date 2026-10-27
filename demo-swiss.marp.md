@@ -267,15 +267,15 @@ Room for tables, code, and denser running text.
 
 > [LEFT](#card-l)
 > ### Left (default)
-> Accent rule on the left.
+> Flush-left header, tag on the right.
 
 > [CENTER](#card-c)
 > ### Centered
-> Accent rule on top.
+> Centered header and last line.
 
 > [RIGHT](#card-r)
 > **Right, Mirrored**
-> Accent rule on the right, tag on the left.
+> Right-aligned header, tag on the left.
 
 ![split]()
 
@@ -299,13 +299,13 @@ Cards always fill the column; the suffix only aligns the content.
 ## Status Cards (`#i`, `#a`, `#s`)
 
 > [](#i) **Information (`#i`)**
-> Neutral notice with a solid black top border.
+> Neutral notice as a translucent carbon ink wash.
 
 > [](#a) **Alert (`#a`)**
-> Warning with accent border and tinted ground.
+> Warning as a translucent accent ink wash.
 
 > [](#s) **Success (`#s`)**
-> Verified result with a forest green border.
+> Verified result as a translucent forest ink wash.
 
 ![split]()
 
@@ -514,7 +514,7 @@ style: ":root { --accent: #0066CC; }"
 ```
 
 > [](#a) **Accent Alert**
-> Alert border follows the accent.
+> Alert tint follows the accent.
 
 ---
 

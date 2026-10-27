@@ -266,7 +266,7 @@ blockquote,
     background: var(--swiss-gray-50);
     border: none;
     border-left: 4px solid var(--swiss-red);
-    padding: 18px 24px;
+    padding: 12px 16px;
     margin: var(--block-margin-y) 0;
     border-radius: 0;
     box-shadow: none;
@@ -312,8 +312,8 @@ blockquote:has(a[href^="#s"]) {
     border-radius: 0 !important;
     box-shadow: none !important;
     background-image: none !important;
-    border: 1.5px solid var(--swiss-black);
-    padding: 16px 20px;
+    border: none !important;
+    padding: 10px 14px;
     font-family: var(--font-sans);
     font-size: 0.95em;
     line-height: 1.25;
@@ -347,22 +347,20 @@ blockquote:is(:has(a[href="#i-r"]), :has(a[href="#a-r"]), :has(a[href="#s-r"]), 
     text-align: right;
 }
 
-/* Card Themes */
-/* Info Card: Architectural Neutral with Solid Top Edge */
+/* Card Themes: translucent ink washes, no borders.
+   A solid tint with alpha reads as ink soaked into paper; the grain beneath stays visible. */
+/* Info Card: carbon ink wash */
 blockquote:has(a[href^="#i"]),
 .card-info {
-    background-color: var(--swiss-gray-50);
+    background-color: color-mix(in srgb, var(--swiss-black) 9%, transparent);
     color: var(--swiss-black);
-    border-top: 4px solid var(--swiss-black);
 }
 
-/* Alert Card: Stark Red Theme */
+/* Alert Card: accent ink wash */
 blockquote:has(a[href^="#a"]),
 .card-alert {
-    background-color: color-mix(in srgb, var(--accent) 5%, var(--swiss-white));
+    background-color: color-mix(in srgb, var(--accent) 14%, transparent);
     color: var(--swiss-black);
-    border-color: var(--swiss-red);
-    border-top: 4px solid var(--swiss-red);
 }
 
 blockquote:has(a[href^="#a"]) strong,
@@ -370,13 +368,16 @@ blockquote:has(a[href^="#a"]) strong,
     color: var(--swiss-red);
 }
 
-/* Success Card: Forest Accent */
+/* Success Card: forest ink wash */
 blockquote:has(a[href^="#s"]),
 .card-success {
-    background-color: #F4FBF7;
+    background-color: rgba(15, 81, 50, 0.14);
     color: var(--swiss-black);
-    border-color: #0F5132;
-    border-top: 4px solid #0F5132;
+}
+
+blockquote:has(a[href^="#s"]) strong,
+.card-success strong {
+    color: #0F5132;
 }
 
 /* ==========================================================================
@@ -389,7 +390,7 @@ blockquote:has(a[href="#d"]) {
     border: 2px solid var(--swiss-black) !important;
     border-radius: 0 !important;
     box-shadow: none !important;
-    padding: 22px 28px !important;
+    padding: 14px 20px !important;
     margin: var(--block-margin-y) 0 !important;
     font-family: var(--font-sans) !important;
     font-size: 0.95em;
@@ -418,11 +419,10 @@ blockquote:has(a[href="#d"]) code {
 /* Swiss Card: Structural Grid Box (Variant B3: Compact Structural Grid) */
 blockquote:has(a[href^="#card"]) {
     background: transparent;
-    border: 1px solid var(--swiss-gray-200);
-    border-left: 5px solid var(--swiss-red);
+    border: none;
     border-radius: 0;
     box-shadow: none;
-    padding: 12px 18px;
+    padding: 8px 14px;
     margin: 14px 0;
     position: relative;
     font-family: var(--font-serif);
@@ -516,12 +516,7 @@ blockquote:has(a[href^="#card"]) mjx-container[display="true"] {
     margin: 6px 0 2px 0 !important;
 }
 
-/* Right-aligned card (#card-r): mirrored anatomy, accent rule on the right, tag on the left */
-blockquote:has(a[href="#card-r"]) {
-    border-left: 1px solid var(--swiss-gray-200);
-    border-right: 5px solid var(--swiss-red);
-}
-
+/* Right-aligned card (#card-r): mirrored anatomy, tag on the left */
 blockquote:has(a[href="#card-r"]) p:has(> a[href^="#card"]:not(:empty)):not(:has(> strong)),
 blockquote:has(a[href="#card-r"]) a[href^="#card"]:not(:empty) {
     float: left;
@@ -539,12 +534,7 @@ blockquote:has(a[href="#card-r"]) p {
     text-align-last: right;
 }
 
-/* Centered card (#card-c): symmetric anatomy, accent rule on top */
-blockquote:has(a[href="#card-c"]) {
-    border-left: 1px solid var(--swiss-gray-200);
-    border-top: 5px solid var(--swiss-red);
-}
-
+/* Centered card (#card-c): symmetric anatomy */
 blockquote:has(a[href="#card-c"]) :is(h3, marp-h3),
 blockquote:has(a[href="#card-c"]) strong {
     text-align: center;
@@ -626,8 +616,7 @@ tr:nth-child(even) {
    ========================================================================== */
 pre {
     background: var(--swiss-gray-50);
-    border: 1.5px solid var(--swiss-gray-200);
-    border-left: 4px solid var(--swiss-black);
+    border: none;
     border-radius: 0;
     box-shadow: none;
     padding: 18px 24px;
@@ -637,16 +626,18 @@ pre {
     width: auto;
 }
 
+/* Code glyph in the top-right corner: sits inside the padding, takes no layout space */
 pre::before {
-    content: 'CODE';
+    content: '</>';
     position: absolute;
-    top: 6px;
-    right: 12px;
+    top: 5px;
+    right: 10px;
     font-family: var(--font-mono);
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--swiss-gray-600);
+    letter-spacing: -0.02em;
+    color: var(--swiss-red);
+    opacity: 0.85;
     z-index: 2;
 }
 
@@ -679,26 +670,14 @@ code {
     max-height: 440px;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    background: var(--swiss-white);
-    border: 1.5px solid var(--swiss-black);
+    background: var(--swiss-gray-50);
+    border: none;
     border-radius: 0;
     box-shadow: none;
     margin: var(--block-margin-y) 0;
     position: relative;
     box-sizing: border-box;
     container-type: inline-size;
-}
-
-.code-scroll::before {
-    content: '';
-    position: sticky;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 4px;
-    background: var(--swiss-red);
-    z-index: 10;
 }
 
 .code-scroll pre {
@@ -1260,8 +1239,6 @@ section.invert tr:nth-child(even) {
 
 section.invert pre {
     background: #1a1a1a;
-    border-color: #333333;
-    border-left-color: var(--swiss-red);
 }
 
 section.invert code {
@@ -1281,8 +1258,7 @@ section.invert blockquote strong {
 }
 
 section.invert blockquote:has(a[href^="#card"]) {
-    border-color: #333333 !important;
-    border-left-color: var(--swiss-red) !important;
+    border: none !important;
 }
 
 section.invert blockquote:has(a[href^="#card"]) strong {
@@ -1291,6 +1267,18 @@ section.invert blockquote:has(a[href^="#card"]) strong {
 
 section.invert blockquote em {
     color: #DDDDDD !important;
+}
+
+section.invert blockquote:has(a[href^="#i"]) {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+
+section.invert blockquote:has(a[href^="#s"]) {
+    background-color: rgba(60, 190, 120, 0.18);
+}
+
+section.invert blockquote:has(a[href^="#s"]) strong {
+    color: #6fdba0 !important;
 }
 
 section.invert blockquote:has(a[href="#d"]) {
