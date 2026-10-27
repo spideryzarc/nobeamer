@@ -41,7 +41,7 @@ transition: swiss
 
 > [03](#card)
 > ### <!--fit--> Cards
-> `#card`, status cards, alignment, and the dark module.
+> `#card`, status cards (`#i`, `#a`, `#s`, `#d`), and alignment.
 
 > [04](#card)
 > ### <!--fit--> Data & Variants
@@ -296,16 +296,19 @@ Cards always fill the column; the suffix only aligns the content.
 
 <!-- _class: cols-2 -->
 
-## Status Cards (`#i`, `#a`, `#s`)
+## Status Cards (`#i`, `#a`, `#s`, `#d`)
 
 > [](#i) **Information (`#i`)**
-> Neutral notice on ochre card stock.
+> Neutral notice on orange card stock.
 
 > [](#a) **Alert (`#a`)**
 > Warning on accent-coloured card stock.
 
 > [](#s) **Success (`#s`)**
 > Verified result on forest-green card stock.
+
+> [](#d) **Dark (`#d`)**
+> Neutral **emphasis** on charcoal card stock.
 
 ![split]()
 
@@ -321,32 +324,6 @@ Cards always fill the column; the suffix only aligns the content.
 
 > [](#s-r) **Success Right (`#s-r`)**
 > Right-aligned content.
-
----
-
-<!-- _class: cols-2 -->
-
-## Dark Module (`#d`)
-
-> [](#d) **The Axiom of Form & Content**
-> *"Design is the method of putting form and content together."*
-> — Paul Rand
->
-> Inline `grid_ratio = 1.618` in a dark pill; **bold** takes the accent.
-
-![split]()
-
-### Syntax
-
-```markdown
-> [](#d) **Module Title**
-> Body with `code` and **accent bold**.
-```
-
-> [TIP](#card) **One Per Slide**
-> Use at most one `#d` module per slide to keep visual weight.
-
-Paragraph after a card, to check spacing after blockquotes.
 
 ---
 
@@ -533,7 +510,7 @@ style: ":root { --accent: #0066CC; }"
 
 ![split]()
 
-> [](#d) **Dark Module on Dark**
+> [](#d) **Dark Card on Dark**
 > Must stay distinguishable from the ground.
 
 | Key | Value |
@@ -553,8 +530,7 @@ style: ":root { --accent: #0066CC; }"
 | **Asymmetric** | `cols-2-a`, `cols-3-a` |
 | **Card** | `> [TAG](#card)` + `### <!-- fit -->` |
 | **Alignment** | `#card-c`, `#card-r`, `#i-r` |
-| **Status** | `> [](#i)`, `[](#a)`, `[](#s)` |
-| **Dark Module** | `> [](#d) **Title**` |
+| **Status** | `> [](#i)`, `[](#a)`, `[](#s)`, `[](#d)` |
 | **Variants** | `stat`, `invert`, `--accent` |
 
 ![split]()
