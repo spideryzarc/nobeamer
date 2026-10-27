@@ -299,13 +299,13 @@ Cards always fill the column; the suffix only aligns the content.
 ## Status Cards (`#i`, `#a`, `#s`)
 
 > [](#i) **Information (`#i`)**
-> Neutral notice as a translucent carbon ink wash.
+> Neutral notice on ochre card stock.
 
 > [](#a) **Alert (`#a`)**
-> Warning as a translucent accent ink wash.
+> Warning on accent-coloured card stock.
 
 > [](#s) **Success (`#s`)**
-> Verified result as a translucent forest ink wash.
+> Verified result on forest-green card stock.
 
 ![split]()
 
@@ -562,7 +562,7 @@ style: ":root { --accent: #0066CC; }"
 ### Design Rules
 
 - **No icons or emojis**: Typography and numeric identifiers only.
-- **No rounded corners or shadows**: Flat geometry.
+- **Flat geometry**: Square corners, no shadows. Status cards are the exception: coloured paper stock.
 - **No centered body text**: Flush-left, ragged-right.
 - **Controlled bold**: Contrast comes from scale.
 

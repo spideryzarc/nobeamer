@@ -250,7 +250,7 @@ section:not(.invert) :is(h1, .metric) {
 
 /* 3. Exempt white text and inverted components from multiply */
 section.invert *,
-section:not(.invert) :is(.card-dark, blockquote:has(a[href="#d"])) *,
+section:not(.invert) :is(.card-dark, .card-info, .card-alert, .card-success, blockquote:has(a[href="#d"]), blockquote:has(a[href^="#i"]), blockquote:has(a[href^="#a"]), blockquote:has(a[href^="#s"])) *,
 section:not(.invert) blockquote a[href^="#card"]:not(:empty),
 section.lead :is(h2, h3, p, h2 *, h3 *, p *) {
     mix-blend-mode: normal !important;
@@ -309,9 +309,6 @@ blockquote p {
 blockquote:has(a[href^="#i"]),
 blockquote:has(a[href^="#a"]),
 blockquote:has(a[href^="#s"]) {
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    background-image: none !important;
     border: none !important;
     padding: 10px 14px;
     font-family: var(--font-sans);
@@ -347,37 +344,57 @@ blockquote:is(:has(a[href="#i-r"]), :has(a[href="#a-r"]), :has(a[href="#s-r"]), 
     text-align: right;
 }
 
-/* Card Themes: translucent ink washes, no borders.
-   A solid tint with alpha reads as ink soaked into paper; the grain beneath stays visible. */
-/* Info Card: carbon ink wash */
+/* Card Themes: coloured paper stock.
+   Each card is a sheet of strong-coloured card paper: a diagonal gradient fakes the
+   pulp (light corner, deep corner), a fine fibre grain sits on top, the corners are
+   rounded and a soft drop-shadow lifts the sheet off the page. */
+blockquote:is(:has(a[href^="#i"]), :has(a[href^="#a"]), :has(a[href^="#s"])),
+.card-info,
+.card-alert,
+.card-success {
+    --paper-hi: var(--swiss-gray-800);
+    --paper-lo: #1a1918;
+    background-color: var(--paper-lo);
+    background-image:
+        repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 3px),
+        linear-gradient(145deg, var(--paper-hi) 0%, color-mix(in srgb, var(--paper-hi) 45%, var(--paper-lo)) 55%, var(--paper-lo) 100%);
+    color: var(--swiss-white);
+    border-radius: 10px;
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.25),
+        0 8px 18px -4px rgba(0, 0, 0, 0.35);
+}
+
+/* Info: ochre / pumpkin card stock */
 blockquote:has(a[href^="#i"]),
 .card-info {
-    background-color: color-mix(in srgb, var(--swiss-black) 9%, transparent);
-    color: var(--swiss-black);
+    --paper-hi: #f2a33a;
+    --paper-lo: #c2620f;
 }
 
-/* Alert Card: accent ink wash */
+/* Alert: accent card stock */
 blockquote:has(a[href^="#a"]),
 .card-alert {
-    background-color: color-mix(in srgb, var(--accent) 14%, transparent);
-    color: var(--swiss-black);
+    --paper-hi: color-mix(in srgb, var(--accent) 80%, #ff8a80);
+    --paper-lo: color-mix(in srgb, var(--accent) 70%, #000000);
 }
 
-blockquote:has(a[href^="#a"]) strong,
-.card-alert strong {
-    color: var(--swiss-red);
-}
-
-/* Success Card: forest ink wash */
+/* Success: forest card stock */
 blockquote:has(a[href^="#s"]),
 .card-success {
-    background-color: rgba(15, 81, 50, 0.14);
-    color: var(--swiss-black);
+    --paper-hi: #2f8f5b;
+    --paper-lo: #0c3d24;
 }
 
-blockquote:has(a[href^="#s"]) strong,
-.card-success strong {
-    color: #0F5132;
+blockquote:is(:has(a[href^="#i"]), :has(a[href^="#a"]), :has(a[href^="#s"])) :is(strong, em, p),
+:is(.card-info, .card-alert, .card-success) :is(strong, em, p) {
+    color: var(--swiss-white);
+}
+
+blockquote:is(:has(a[href^="#i"]), :has(a[href^="#a"]), :has(a[href^="#s"])) code {
+    background: rgba(0, 0, 0, 0.28);
+    color: var(--swiss-white);
+    border-color: transparent;
 }
 
 /* ==========================================================================
@@ -1247,7 +1264,7 @@ section.invert code {
     border-color: #444444;
 }
 
-section.invert blockquote {
+section.invert blockquote:not(:is(:has(a[href^="#i"]), :has(a[href^="#a"]), :has(a[href^="#s"]))) {
     background: #1C1C1C !important;
     border-left-color: var(--swiss-red) !important;
     color: var(--swiss-white) !important;
@@ -1267,18 +1284,6 @@ section.invert blockquote:has(a[href^="#card"]) strong {
 
 section.invert blockquote em {
     color: #DDDDDD !important;
-}
-
-section.invert blockquote:has(a[href^="#i"]) {
-    background-color: rgba(255, 255, 255, 0.10);
-}
-
-section.invert blockquote:has(a[href^="#s"]) {
-    background-color: rgba(60, 190, 120, 0.18);
-}
-
-section.invert blockquote:has(a[href^="#s"]) strong {
-    color: #6fdba0 !important;
 }
 
 section.invert blockquote:has(a[href="#d"]) {
