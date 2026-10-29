@@ -406,15 +406,6 @@ $$
 
 ---
 
-<!-- _class: stat -->
-
-<div class="metric">4.2×</div>
-<div class="metric-label">STAT SLIDE</div>
-
-`<!-- _class: stat -->` centers a single massive figure.
-
----
-
 <!-- _class: cols-2 -->
 
 ## Figures & Specs
@@ -508,7 +499,7 @@ style: ":root { --accent: #0066CC; }"
 | **Card** | `> [TAG](#card)` + `### <!-- fit -->` |
 | **Alignment** | `#card-c`, `#card-r`, `#i-r` |
 | **Status** | `> [](#i)`, `[](#a)`, `[](#s)`, `[](#d)` |
-| **Variants** | `stat`, `invert`, `--accent` |
+| **Variants** | `invert`, `--accent` |
 
 ![split]()
 

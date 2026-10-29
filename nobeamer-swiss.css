@@ -18,7 +18,7 @@
    10. Images & figures
    11. Multi-column grids
    12. Lead / title slide
-   13. Stat & invert slides
+   13. Invert slides
    14. Transitions
    ========================================================================== */
 
@@ -1168,32 +1168,8 @@ section.lead ul li em {
 }
 
 /* ==========================================================================
-   13. STAT & INVERT SLIDES
+   13. INVERT SLIDES
    ========================================================================== */
-
-/* Stat: one giant figure (.metric) and its red label (.metric-label), only inside section.stat */
-section.stat .metric {
-    font-family: var(--font-heading);
-    font-size: 130px;
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    line-height: 0.85;
-    color: var(--swiss-black);
-    margin: 0;
-    font-variant-numeric: tabular-nums lining-nums;
-}
-
-section.stat .metric-label {
-    background: var(--swiss-red);
-    color: var(--swiss-white);
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 900;
-    letter-spacing: 0.06em;
-    padding: 6px 14px;
-    display: inline-block;
-    margin-top: 14px;
-}
 
 /* Invert: stark black modernist slide */
 section.invert {
