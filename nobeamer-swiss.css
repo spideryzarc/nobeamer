@@ -557,8 +557,8 @@ table {
     margin: var(--block-margin-y) 0 var(--block-margin-y) calc((var(--table-from) + var(--table-to)) / 2);
     transform: translateX(-50%);
     font-size: 0.85em;
-    border-top: 2.5px solid var(--swiss-black);
-    border-bottom: 2.5px solid var(--swiss-black);
+    border-top: 2.5px solid var(--accent);
+    border-bottom: 2.5px solid var(--accent);
     box-shadow: none;
 }
 
@@ -583,8 +583,14 @@ td {
     font-variant-numeric: tabular-nums lining-nums;
 }
 
-tr:nth-child(even) {
-    background-color: var(--swiss-gray-50);
+/* No row fill (the default theme paints rows white): the table prints straight on the paper,
+   with a soft accent zebra on even rows. Selectors match the default theme's specificity to win. */
+section table tr {
+    background-color: transparent;
+}
+
+section table tr:nth-child(even) {
+    background-color: color-mix(in srgb, var(--accent) 8%, transparent);
 }
 
 /* ==========================================================================
@@ -1235,7 +1241,7 @@ section.invert h2 {
 }
 
 section.invert table {
-    border-color: var(--swiss-white);
+    border-color: var(--accent);
 }
 
 section.invert th {
@@ -1249,7 +1255,7 @@ section.invert td {
 }
 
 section.invert tr:nth-child(even) {
-    background-color: #1a1a1a;
+    background-color: color-mix(in srgb, var(--accent) 14%, transparent);
 }
 
 /* On the charcoal ground, lift the code card a step, like #d */
