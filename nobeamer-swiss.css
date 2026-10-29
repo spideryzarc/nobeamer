@@ -589,6 +589,20 @@ section table tr {
     background-color: transparent;
 }
 
+/* Bold text in cells takes the accent; the outer vertical edges are dropped so only the
+   horizontal rules frame the table (inner column separators stay) */
+section table :is(th, td) strong {
+    color: var(--accent);
+}
+
+section table :is(th, td):first-child {
+    border-left: none;
+}
+
+section table :is(th, td):last-child {
+    border-right: none;
+}
+
 section table tr:nth-child(even) {
     background-color: color-mix(in srgb, var(--accent) 8%, transparent);
 }
