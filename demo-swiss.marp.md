@@ -76,6 +76,8 @@ Running text with **bold**, *italic*, `inline code`, and a [link](https://exampl
 1. Ordered step one
 2. Ordered step two
 
+> A plain quote: just `>`, with the red margin line.
+
 ![split]()
 
 ### Syntax
@@ -87,6 +89,8 @@ Text with **bold**, *italic*, `code`, [link](url).
   - Nested item
 
 1. Ordered step
+
+> Plain quote
 ```
 
 ---
