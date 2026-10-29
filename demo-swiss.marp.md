@@ -45,7 +45,7 @@ transition: swiss
 
 > [04](#card)
 > ### <!--fit--> Data & Variants
-> Tables, code, math, metrics, figures, accent, and invert.
+> Tables, code, math, figures, accent, and invert.
 
 ---
 
@@ -403,29 +403,6 @@ Plain display math stays unframed:
 $$
 x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 $$
-
----
-
-<!-- _class: cols-2 -->
-
-## Metrics
-
-<div class="metric">99.4%</div>
-<div class="metric-label">READABILITY INDEX</div>
-
-Monumental numbers inside a standard slide.
-
-```html
-<div class="metric">99.4%</div>
-<div class="metric-label">INDEX</div>
-```
-
-![split]()
-
-<div class="metric">4.2×</div>
-<div class="metric-label">THROUGHPUT RATIO</div>
-
-For a full-slide figure, use `<!-- _class: stat -->` (next slide).
 
 ---
 

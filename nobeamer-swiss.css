@@ -17,10 +17,9 @@
     9. Code blocks
    10. Images & figures
    11. Multi-column grids
-   12. Metric component
-   13. Lead / title slide
-   14. Stat & invert slides
-   15. Transitions
+   12. Lead / title slide
+   13. Stat & invert slides
+   14. Transitions
    ========================================================================== */
 
 /* ==========================================================================
@@ -923,37 +922,7 @@ section img[alt="split"] {
 }
 
 /* ==========================================================================
-   12. METRIC COMPONENT
-   ========================================================================== */
-.metric {
-    font-family: var(--font-heading);
-    font-size: 110px;
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    line-height: 0.85;
-    color: var(--swiss-black);
-    margin: 0;
-    font-variant-numeric: tabular-nums lining-nums;
-}
-
-.metric-label {
-    background: var(--swiss-red);
-    color: var(--swiss-white);
-    font-family: var(--font-heading);
-    font-size: 1.15rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    padding: 6px 14px;
-    display: inline-block;
-    margin-top: 12px;
-}
-
-section.invert .metric {
-    color: var(--swiss-white);
-}
-
-/* ==========================================================================
-   13. LEAD / TITLE SLIDE (Swiss duotone photomontage)
+   12. LEAD / TITLE SLIDE (Swiss duotone photomontage)
    ========================================================================== */
 /* Layout contract (robust to any title/subtitle size or length):
      - Row 1 (title zone) ends exactly at --lead-split-y; h1 is bottom-anchored in it.
@@ -1199,19 +1168,30 @@ section.lead ul li em {
 }
 
 /* ==========================================================================
-   14. STAT & INVERT SLIDES
+   13. STAT & INVERT SLIDES
    ========================================================================== */
 
-/* Stat: giant metric. Only the deltas from section 13; color is restated
-   so a stat slide keeps black digits over `section.invert .metric`. */
+/* Stat: one giant figure (.metric) and its red label (.metric-label), only inside section.stat */
 section.stat .metric {
+    font-family: var(--font-heading);
     font-size: 130px;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 0.85;
     color: var(--swiss-black);
+    margin: 0;
+    font-variant-numeric: tabular-nums lining-nums;
 }
 
 section.stat .metric-label {
+    background: var(--swiss-red);
+    color: var(--swiss-white);
+    font-family: var(--font-heading);
     font-size: 1.25rem;
+    font-weight: 900;
     letter-spacing: 0.06em;
+    padding: 6px 14px;
+    display: inline-block;
     margin-top: 14px;
 }
 
@@ -1307,7 +1287,7 @@ section.invert blockquote em {
 }
 
 /* ==========================================================================
-   15. TRANSITIONS (`transition: swiss`)
+   14. TRANSITIONS (`transition: swiss`)
    ========================================================================== */
 @keyframes marp-outgoing-transition-swiss {
     from { opacity: 1; }
