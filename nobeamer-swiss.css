@@ -9,19 +9,18 @@
     1. Design tokens
     2. Slide base & structural grid
     3. Typography
-    4. Ink & paper texture
-    5. Blockquotes & cards (#i / #a / #s)
-    6. Dark card (#d)
-    7. Structural cards (#card)
-    8. Math resolution block
-    9. Tables
-   10. Code blocks
-   11. Images & figures
-   12. Multi-column grids
-   13. Metric component
-   14. Lead / title slide
-   15. Stat & invert slides
-   16. Transitions
+    4. Blockquotes & cards (#i / #a / #s)
+    5. Dark card (#d)
+    6. Structural cards (#card)
+    7. Math resolution block
+    8. Tables
+    9. Code blocks
+   10. Images & figures
+   11. Multi-column grids
+   12. Metric component
+   13. Lead / title slide
+   14. Stat & invert slides
+   15. Transitions
    ========================================================================== */
 
 /* ==========================================================================
@@ -34,7 +33,8 @@
 
     /* Palette: authentic International Typographic Style */
     --swiss-red: var(--accent);
-    --swiss-black: #2b2927df;        /* Warm carbon print black */
+    --swiss-black: #43413E;        /* Warm carbon print ink, as printed on the paper */
+    --swiss-ink-ground: #262422;   /* Invert slide stock */
     --swiss-gray-800: #363433;
     --swiss-gray-600: #686563;     /* Neutral secondary / captions */
     --swiss-gray-400: #9c9996;
@@ -96,21 +96,6 @@ section {
     line-height: 1.28;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-}
-
-/* Structural Top Hairline Rule (Swiss Architectural Grid) */
-section:not(.invert):not(.lead)::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(to right, transparent var(--padding-general), rgba(22, 21, 20, 0.15) var(--padding-general), rgba(22, 21, 20, 0.15) calc(100% - var(--padding-general)), transparent calc(100% - var(--padding-general)));
-    background-size: 100% 1px;
-    background-position: center 48px;
-    background-repeat: no-repeat;
-    mix-blend-mode: multiply;
-    opacity: 0.28;
-    pointer-events: none;
-    z-index: 20;
 }
 
 /* Clean, Discrete Technical Pagination (01 / 24) */
@@ -234,41 +219,7 @@ ol li::marker {
 }
 
 /* ==========================================================================
-   4. INK & PAPER TEXTURE SYNTHESIS
-   ========================================================================== */
-
-/* 1. Multiply blend mode: ink absorbs and interacts with paper fibers */
-section:not(.invert) :is(
-    h1, h2, h3, h4,
-    p, li,
-    td, th,
-    strong, em,
-    .metric, .metric-label,
-    .callout-specs,
-    .badge
-) {
-    mix-blend-mode: multiply;
-}
-
-section:not(.invert)::after {
-    mix-blend-mode: multiply;
-}
-
-/* 2. Micro ink bleed (capillary diffusion into cotton fibers) */
-section:not(.invert) :is(h1, .metric) {
-    text-shadow: 0 0 0.35px rgba(43, 41, 39, 0.4);
-}
-
-/* 3. Exempt white text and inverted components from multiply */
-section.invert *,
-section:not(.invert) :is(.card-dark, .card-info, .card-alert, .card-success, blockquote:has(a[href^="#d"]), blockquote:has(a[href^="#i"]), blockquote:has(a[href^="#a"]), blockquote:has(a[href^="#s"])) *,
-section:not(.invert) blockquote a[href^="#card"]:not(:empty),
-section.lead :is(h2, h3, p, h2 *, h3 *, p *) {
-    mix-blend-mode: normal !important;
-}
-
-/* ==========================================================================
-   5. BLOCKQUOTES & CARDS (#i / #a / #s)
+   4. BLOCKQUOTES & CARDS (#i / #a / #s)
    ========================================================================== */
 
 /* Standard Quote Block: Minimalist Red Margin Line */
@@ -416,7 +367,7 @@ blockquote:is(:has(a[href^="#i"]), :has(a[href^="#a"]), :has(a[href^="#s"]), :ha
 }
 
 /* ==========================================================================
-   6. DARK CARD (#d)
+   5. DARK CARD (#d)
    A status card on charcoal stock (--card-charcoal, the section 5 default paper):
    everything else comes from section 5.
    ========================================================================== */
@@ -427,7 +378,7 @@ section.invert :is(blockquote:has(a[href^="#d"]), .card-dark) {
 }
 
 /* ==========================================================================
-   7. STRUCTURAL CARDS (#card)
+   6. STRUCTURAL CARDS (#card)
    Flexible unified card container (theorems, steps, syllabus, modules)
    ========================================================================== */
 
@@ -562,7 +513,7 @@ blockquote:has(a[href="#card-c"]) p {
 }
 
 /* ==========================================================================
-   8. MATH RESOLUTION BLOCK (.math-resolution)
+   7. MATH RESOLUTION BLOCK (.math-resolution)
    ========================================================================== */
 .math-resolution {
     background: var(--swiss-white);
@@ -589,7 +540,7 @@ blockquote:has(a[href="#card-c"]) p {
 }
 
 /* ==========================================================================
-   9. TABLES (Swiss grid precision)
+   8. TABLES (Swiss grid precision)
    ========================================================================== */
 table {
     border-collapse: collapse;
@@ -627,7 +578,7 @@ tr:nth-child(even) {
 }
 
 /* ==========================================================================
-   10. CODE BLOCKS & MONOSPACE
+   9. CODE BLOCKS & MONOSPACE
    ========================================================================== */
 pre {
     background: var(--swiss-gray-50);
@@ -701,7 +652,7 @@ code {
 }
 
 /* ==========================================================================
-   11. IMAGES & FIGURES
+   10. IMAGES & FIGURES
    ========================================================================== */
 /* Square corners always: also neutralizes nobeamer's rounded/circle alt modifiers */
 img:not(.emoji) {
@@ -745,7 +696,7 @@ figcaption {
 }
 
 /* ==========================================================================
-   12. MULTI-COLUMN & ASYMMETRIC MODULAR GRIDS
+   11. MULTI-COLUMN & ASYMMETRIC MODULAR GRIDS
    ========================================================================== */
 /* Symmetric grids: cols-2, cols-3. Asymmetric grids: cols-2-a (2:3), cols-3-a (3:4:5).
    The -a variants are standalone classes sharing the same multi-column base. */
@@ -879,7 +830,7 @@ section img[alt="split"] {
 }
 
 /* ==========================================================================
-   13. METRIC COMPONENT
+   12. METRIC COMPONENT
    ========================================================================== */
 .metric {
     font-family: var(--font-heading);
@@ -909,7 +860,7 @@ section.invert .metric {
 }
 
 /* ==========================================================================
-   14. LEAD / TITLE SLIDE (Swiss duotone photomontage)
+   13. LEAD / TITLE SLIDE (Swiss duotone photomontage)
    ========================================================================== */
 /* Layout contract (robust to any title/subtitle size or length):
      - Row 1 (title zone) ends exactly at --lead-split-y; h1 is bottom-anchored in it.
@@ -1000,8 +951,7 @@ section.lead:not([data-marpit-advanced-background])::after {
     bottom: 52px;
     left: var(--lead-pad-left);
     right: 0;
-    background-color: var(--accent);
-    opacity: 0.92;
+    background-color: color-mix(in srgb, var(--accent) 92%, #f5f4f1);
     pointer-events: none;
     z-index: -1;
 }
@@ -1091,8 +1041,7 @@ section.lead h3 em,
 section.lead p em {
     font-style: italic;
     font-weight: 400;
-    color: var(--swiss-white);
-    opacity: 0.88;
+    color: color-mix(in srgb, var(--swiss-white) 88%, var(--accent));
 }
 
 /* Breathing room between the split line and the first subtitle element.
@@ -1157,7 +1106,7 @@ section.lead ul li em {
 }
 
 /* ==========================================================================
-   15. STAT & INVERT SLIDES
+   14. STAT & INVERT SLIDES
    ========================================================================== */
 
 /* Stat: giant metric. Only the deltas from section 13; color is restated
@@ -1175,7 +1124,7 @@ section.stat .metric-label {
 
 /* Invert: stark black modernist slide */
 section.invert {
-    background: var(--swiss-black) !important;
+    background: var(--swiss-ink-ground) !important;
     color: var(--swiss-white) !important;
 }
 
@@ -1186,8 +1135,7 @@ section.invert::before {
     left: var(--padding-general);
     right: var(--padding-general);
     height: 1px;
-    background: var(--swiss-white);
-    opacity: 0.2;
+    background: color-mix(in srgb, var(--swiss-white) 20%, var(--swiss-ink-ground));
     pointer-events: none;
 }
 
@@ -1265,7 +1213,7 @@ section.invert blockquote em {
 }
 
 /* ==========================================================================
-   16. TRANSITIONS (`transition: swiss`)
+   15. TRANSITIONS (`transition: swiss`)
    ========================================================================== */
 @keyframes marp-outgoing-transition-swiss {
     from { opacity: 1; }
