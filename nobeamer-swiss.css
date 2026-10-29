@@ -78,11 +78,11 @@
    2. SLIDE BASE & STRUCTURAL GRID
    ========================================================================== */
 section {
-    background-color: #ffffff;
-    background-image: url('nb_img/paper4.jpg');
-    background-size: cover;
-    background-position: center;
-    background-blend-mode: multiply;
+    /* Pure-CSS paper: warm off-white stock with a barely-there fibre grain (tileable SVG noise) */
+    background-color: #f5f4f1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.15 0 0 0 0 0.14 0.1 0 0 0 -0.035'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 240px 240px;
+    background-repeat: repeat;
     color: var(--text);
     font-family: var(--font-sans);
     padding: var(--padding-general);
@@ -98,17 +98,15 @@ section {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Structural Top Hairline Rule & Surface Paper Grain Overlay (Swiss Architectural Grid) */
+/* Structural Top Hairline Rule (Swiss Architectural Grid) */
 section:not(.invert):not(.lead)::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: 
-        linear-gradient(to right, transparent var(--padding-general), rgba(22, 21, 20, 0.15) var(--padding-general), rgba(22, 21, 20, 0.15) calc(100% - var(--padding-general)), transparent calc(100% - var(--padding-general))),
-        url('nb_img/paper2.jpg');
-    background-size: 100% 1px, cover;
-    background-position: center 48px, center;
-    background-repeat: no-repeat, no-repeat;
+    background-image: linear-gradient(to right, transparent var(--padding-general), rgba(22, 21, 20, 0.15) var(--padding-general), rgba(22, 21, 20, 0.15) calc(100% - var(--padding-general)), transparent calc(100% - var(--padding-general)));
+    background-size: 100% 1px;
+    background-position: center 48px;
+    background-repeat: no-repeat;
     mix-blend-mode: multiply;
     opacity: 0.28;
     pointer-events: none;
