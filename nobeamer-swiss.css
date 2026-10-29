@@ -755,7 +755,25 @@ figure {
     text-align: left;
 }
 
-figcaption {
+/* Markdown figure: an image paragraph, sized with Marp's own keywords. An italic line right
+   under the image (no blank line, so it stays in the same paragraph) is its caption:
+       ![w:560 h:220](image.jpg)
+       *FIG. 01 / CAPTION*                                                                   */
+p:has(> img:not([alt="split"]):not(.emoji)) {
+    margin: 16px 0;
+}
+
+p:has(> img:not([alt="split"]):not(.emoji)) > br {
+    display: none;
+}
+
+p:has(> img:not([alt="split"]):not(.emoji)) > em:last-child {
+    display: block;
+    font-style: normal;
+}
+
+figcaption,
+p:has(> img:not([alt="split"]):not(.emoji)) > em:last-child {
     font-family: var(--font-mono);
     font-size: 0.68rem;
     font-weight: 600;

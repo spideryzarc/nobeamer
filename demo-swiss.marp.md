@@ -410,21 +410,19 @@ $$
 
 ## Figures & Specs
 
-<figure>
-  <img src="images/helvetica_poster.jpg" alt="Helvetica Specimen" style="height: 220px; width: 100%; object-fit: cover;">
-  <figcaption>FIG. 01 / HELVETICA SPECIMEN</figcaption>
-</figure>
+![w:560 h:220](images/helvetica_poster.jpg)
+*FIG. 01 / HELVETICA SPECIMEN*
 
 ![split]()
 
 ### Syntax
 
-```html
-<figure>
-  <img src="image.jpg" alt="...">
-  <figcaption>FIG. 01 / CAPTION</figcaption>
-</figure>
+```markdown
+![w:560 h:220](image.jpg)
+*FIG. 01 / CAPTION*
 ```
+
+Size with Marp's `w:` / `h:`; the italic line under the image is the caption.
 
 <div class="callout-specs">
 ASPECT: 16:9 RATIO<br>
