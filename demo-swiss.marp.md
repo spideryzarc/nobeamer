@@ -408,7 +408,7 @@ $$
 
 <!-- _class: cols-2 -->
 
-## Figures & Specs
+## Figures
 
 ![w:560 h:220](images/helvetica_poster.jpg)
 *FIG. 01 / HELVETICA SPECIMEN*
@@ -423,12 +423,6 @@ $$
 ```
 
 Size with Marp's `w:` / `h:`; the italic line under the image is the caption.
-
-<div class="callout-specs">
-ASPECT: 16:9 RATIO<br>
-GRID: 12-UNIT MODULE<br>
-CLASS: CALLOUT-SPECS
-</div>
 
 ---
 
