@@ -221,12 +221,46 @@ ol li::marker {
    4. BLOCKQUOTES & CARDS (#i / #a / #s)
    ========================================================================== */
 
-/* Standard Quote Block: Minimalist Red Margin Line */
+/* Standard quote: a plain `>` is an editorial pull quote. Literata italic, no frame, with a large
+   accent opening mark hanging in the left gutter (a zero-size float: an absolutely positioned mark
+   escaped its column inside the multi-column cols-* layouts). Cards (any blockquote with a #marker link) share
+   only the block geometry below. */
+blockquote:not(:has(a[href^="#"])) {
+    background: transparent !important;
+    border: none !important;
+    padding: 2px 0 2px 66px !important;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.22em;
+    line-height: 1.38;
+    letter-spacing: -0.005em;
+    color: var(--swiss-black);
+}
+
+blockquote:not(:has(a[href^="#"]))::before {
+    content: "\201C";
+    float: left;
+    width: 0;
+    height: 0;
+    margin: -0.12em 0 0 -66px;
+    overflow: visible;
+    font-family: var(--font-serif);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3.6em;
+    line-height: 1;
+    color: var(--accent);
+}
+
+blockquote:not(:has(a[href^="#"])) p {
+    color: inherit;
+}
+
 blockquote {
-    background: var(--swiss-gray-50);
     border: none;
-    border-left: 4px solid var(--swiss-red);
     padding: 12px 16px;
+    position: relative;
     margin: var(--block-margin-y) 0;
     border-radius: 0;
     box-shadow: none;
@@ -1208,7 +1242,11 @@ section.invert code {
     border-color: #444444;
 }
 
-section.invert blockquote:not(:is(:has(a[href^="#i"]), :has(a[href^="#a"]), :has(a[href^="#s"]), :has(a[href^="#d"]))) {
+section.invert blockquote:not(:has(a[href^="#"])) {
+    color: var(--swiss-white) !important;
+}
+
+section.invert blockquote:has(a[href^="#card"]) {
     background: #1C1C1C !important;
     border-left-color: var(--swiss-red) !important;
     color: var(--swiss-white) !important;
