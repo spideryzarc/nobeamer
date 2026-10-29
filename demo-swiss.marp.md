@@ -538,7 +538,7 @@ style: ":root { --accent: #0066CC; }"
 ### Design Rules
 
 - **No icons or emojis**: Typography and numeric identifiers only.
-- **Flat geometry**: Square corners, no shadows. Status cards are the exception: coloured paper stock.
+- **Flat geometry**: Square corners, no shadows. Status cards and code blocks are the exception: paper card stock.
 - **No centered body text**: Flush-left, ragged-right.
 - **Controlled bold**: Contrast comes from scale.
 

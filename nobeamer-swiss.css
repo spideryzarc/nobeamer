@@ -580,12 +580,29 @@ tr:nth-child(even) {
 /* ==========================================================================
    9. CODE BLOCKS & MONOSPACE
    ========================================================================== */
+/* Code blocks print on the #d charcoal card stock (same corners and cast shadow), with a
+   restrained syntax palette drawn from the theme: accent keywords, forest strings, amber
+   literals, one blue for built-ins and tags, cream identifiers. The palette is set through
+   the default theme's highlight.js colour variables. */
 pre {
-    background: var(--swiss-gray-50);
+    --color-prettylights-syntax-storage-modifier-import: #ece5d6;
+    --color-prettylights-syntax-keyword: #ff7d70;
+    --color-prettylights-syntax-entity: #fff7e8;
+    --color-prettylights-syntax-constant: #f6b552;
+    --color-prettylights-syntax-string: #93d6a9;
+    --color-prettylights-syntax-variable: #93bdf0;
+    --color-prettylights-syntax-entity-tag: #93bdf0;
+    --color-prettylights-syntax-comment: #a9a39b;
+    --color-prettylights-syntax-markup-heading: #ff7d70;
+    --color-prettylights-syntax-markup-list: #ff7d70;
+    --color-prettylights-syntax-markup-bold: #fff7e8;
+    --color-prettylights-syntax-markup-italic: #ece5d6;
+    background: var(--card-charcoal);
+    color: #ece5d6;
     border: none;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 12px 16px;
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    padding: 16px 16px 12px;
     margin: var(--block-margin-y) 0;
     position: relative;
     overflow: hidden;
@@ -600,10 +617,49 @@ pre code {
     font-family: var(--font-mono);
     font-size: 0.85em;
     line-height: 1.55;
+    color: #ece5d6;
     background: transparent !important;
     border: none !important;
     padding: 0 !important;
 }
+
+pre :is(.hljs-title, .hljs-section, .hljs-keyword, .hljs-built_in) {
+    font-weight: 600;
+}
+
+pre :is(.hljs-comment, .hljs-quote) {
+    font-style: italic;
+}
+
+/* Language label, top-right: ```python prints PYTHON */
+pre::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 7px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    color: #a9a39b;
+    pointer-events: none;
+}
+
+pre:has(> code.language-python)::before { content: "PYTHON"; }
+pre:has(> code.language-markdown)::before { content: "MARKDOWN"; }
+pre:has(> code.language-html)::before { content: "HTML"; }
+pre:has(> code.language-css)::before { content: "CSS"; }
+pre:has(> code:is(.language-js, .language-javascript))::before { content: "JS"; }
+pre:has(> code:is(.language-ts, .language-typescript))::before { content: "TS"; }
+pre:has(> code:is(.language-bash, .language-sh, .language-shell))::before { content: "BASH"; }
+pre:has(> code.language-json)::before { content: "JSON"; }
+pre:has(> code.language-yaml)::before { content: "YAML"; }
+pre:has(> code.language-sql)::before { content: "SQL"; }
+pre:has(> code.language-r)::before { content: "R"; }
+pre:has(> code.language-julia)::before { content: "JULIA"; }
+pre:has(> code:is(.language-c, .language-cpp))::before { content: "C/C++"; }
+pre:has(> code.language-java)::before { content: "JAVA"; }
 
 /* Inline Code */
 code {
@@ -621,10 +677,10 @@ code {
     max-height: 440px;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    background: var(--swiss-gray-50);
+    background: var(--card-charcoal);
     border: none;
-    border-radius: 0;
-    box-shadow: none;
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
     margin: var(--block-margin-y) 0;
     position: relative;
     box-sizing: border-box;
@@ -634,7 +690,7 @@ code {
 .code-scroll pre {
     background: transparent !important;
     border: none !important;
-    padding: 12px 16px !important;
+    padding: 16px 16px 12px !important;
     margin: 0 !important;
     overflow: visible !important;
     width: 100% !important;
@@ -1180,8 +1236,9 @@ section.invert tr:nth-child(even) {
     background-color: #1a1a1a;
 }
 
-section.invert pre {
-    background: #1a1a1a;
+/* On the charcoal ground, lift the code card a step, like #d */
+section.invert :is(pre, .code-scroll) {
+    background: #45413d;
 }
 
 section.invert code {
