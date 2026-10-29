@@ -557,8 +557,8 @@ table {
     margin: var(--block-margin-y) 0 var(--block-margin-y) calc((var(--table-from) + var(--table-to)) / 2);
     transform: translateX(-50%);
     font-size: 0.85em;
-    border-top: 2.5px solid var(--accent);
-    border-bottom: 2.5px solid var(--accent);
+    border-top: 4px solid var(--accent);
+    border-bottom: 4px solid var(--accent);
     box-shadow: none;
 }
 
@@ -593,6 +593,7 @@ section table tr {
    horizontal rules frame the table (inner column separators stay) */
 section table :is(th, td) strong {
     color: var(--accent);
+    font-weight: 700;
 }
 
 section table :is(th, td):first-child {
