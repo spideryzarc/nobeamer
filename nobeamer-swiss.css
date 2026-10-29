@@ -97,17 +97,26 @@ section {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Clean, Discrete Technical Pagination (01 / 24) */
+/* Pagination: vertical marginalia hugging the right edge, "7 / 26" read top to bottom in the thin
+   tech face. The accent tick above the figures is a gradient on the same pseudo-element, so it
+   travels with the text on every slide type (invert and lead included). Anchored by its top edge:
+   the tick and the figures keep the same distance whatever the page number's width. */
 section::after {
-    font-family: var(--font-mono);
-    font-weight: 600;
-    font-size: 13px;
-    color: var(--swiss-gray-600);
-    letter-spacing: 0.08em;
+    content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
+    font-family: var(--font-tech);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.2;
+    color: var(--swiss-black);
+    letter-spacing: 0.16em;
     font-variant-numeric: tabular-nums;
+    writing-mode: vertical-rl;
     position: absolute;
-    bottom: 24px;
-    right: var(--padding-general);
+    top: calc(100% - 150px);
+    right: 10px;
+    bottom: auto;
+    padding-top: 22px;
+    background: linear-gradient(var(--accent), var(--accent)) top center / 3px 12px no-repeat;
 }
 
 /* ==========================================================================
@@ -1196,7 +1205,11 @@ section.invert::before {
 }
 
 section.invert::after {
-    color: var(--swiss-gray-400);
+    color: var(--swiss-gray-200);
+}
+
+section.lead::after {
+    color: var(--swiss-white);
 }
 
 section.invert h1,
