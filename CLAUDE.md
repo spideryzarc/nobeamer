@@ -21,3 +21,5 @@ After every change to `nobeamer-swiss.css` or `demo-swiss.marp.md`:
 
 - marp-cli is not preinstalled in cloud sessions: `npm i -g @marp-team/marp-cli`.
 - The lab finds Chrome at `/usr/bin/google-chrome` or `/opt/pw-browsers/chromium`; override with `NOBEAMER_CHROME`.
+- Comparison pages (variant CSS injected into the compiled HTML, toggled by buttons) bypass Marp's CSS processing:
+  code blocks are `<marp-pre>` at runtime there, so write `:is(pre, marp-pre)`, never bare `pre`.
