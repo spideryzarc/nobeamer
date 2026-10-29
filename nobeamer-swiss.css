@@ -49,7 +49,7 @@
     /* Spatial & modular rhythm */
     --padding-general: 56px;
     --block-margin-y: 18px;
-    --gutter: 48px;
+    --gutter: 24px;
 
     /* Filled cards: corner shape and a cast drop shadow.
        Light comes from above-left (~20° off vertical), the same direction as the card's interior
@@ -795,7 +795,7 @@ p:has(> img:not([alt="split"]):not(.emoji)) > em:last-child {
    ========================================================================== */
 /* Symmetric grids: cols-2, cols-3. Asymmetric grids: cols-2-a (2:3), cols-3-a (3:4:5).
    The -a variants are standalone classes sharing the same multi-column base. */
-/* // math-verified: W_usable=1168px; cols-2 (G=48px): 560.00px x2, sum=1168.00px; cols-3 (G=36px): 365.33px x3, sum=1168.00px; cols-2-a (ratio=2:3, shift=20%): col1=448.00px, col2=672.00px, sum=1168.00px; cols-3-a (ratio=3:4:5, shift=25%): col1=274.00px, col2=365.33px, col3=456.67px, sum=1168.00px */
+/* // math-verified: W_usable=1168px; cols-2 (G=24px): 572.00px x2, sum+G=1168.00px; cols-3 (G=18px): 377.33px x3, sum+2G=1168.00px; cols-2-a (ratio=2:3, shift=20%): col1=457.60px, col2=686.40px, sum+G=1168.00px; cols-3-a (ratio=3:4:5, shift=25%): col1=283.00px, col2=377.33px, col3=471.67px, sum+2G=1168.00px */
 /* Overflow-safe columns: auto height + balance makes each ![split]() segment exactly one column,
    so excess content spills downward (visible, clipped at the slide edge) instead of creating
    invisible overflow columns off the right edge. min-height keeps the slide frame for pagination;
@@ -815,7 +815,7 @@ section:is(.cols-2, .cols-2-a) {
 
 section:is(.cols-3, .cols-3-a) {
     columns: 3;
-    column-gap: 36px;
+    column-gap: 18px;
 }
 
 section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) :is(h1, h2) {
@@ -843,7 +843,7 @@ section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) :is(blockquote, pre, .math-re
 
 /* Asymmetric column geometry for cols-2-a (Column 1 vs Column 2 after ![split]()) */
 section.cols-2-a {
-    --cols2-shift: 20%;          /* 2:3 asymmetric split (40% : 60%, 448px : 672px) */
+    --cols2-shift: 20%;          /* 2:3 asymmetric split (40% : 60%, 457.6px : 686.4px) */
 }
 
 section.cols-2-a > :not(h1):not(h2):not(table):not(p:has(> img[alt="split"])) {
@@ -868,7 +868,7 @@ section.cols-2-a > p:has(> img[alt="split"]) ~ table {
 
 /* Asymmetric column geometry for cols-3-a (Columns 1, 2, 3 separated by ![split]()) */
 section.cols-3-a {
-    --cols3-s1: 25%;             /* 3:4:5 asymmetric progression on 12-unit grid (274px : 365.33px : 456.67px) */
+    --cols3-s1: 25%;             /* 3:4:5 asymmetric progression on 12-unit grid (283px : 377.33px : 471.67px) */
     --cols3-s3: 25%;
 }
 

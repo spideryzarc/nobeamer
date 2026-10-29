@@ -109,7 +109,7 @@ Text with **bold**, *italic*, `code`, [link](url).
 
 ## Two Columns (`cols-2`)
 
-Equal columns of **560px** with a **48px** gutter. Headings `h1` and `h2` span all columns.
+Equal columns of **572px** with a **24px** gutter. Headings `h1` and `h2` span all columns.
 
 Each `![split]()` starts the next column. Content that is too tall spills **downward**, never into a hidden column.
 
@@ -137,7 +137,7 @@ Right column...
 
 > [01](#card)
 > ### Column One
-> Equal columns of 365.33px with a 36px gutter.
+> Equal columns of 377.33px with an 18px gutter.
 
 ![split]()
 
@@ -171,8 +171,8 @@ Room for tables, code, and denser running text.
 
 | Column | Ratio | Width |
 | :--- | ---: | ---: |
-| **1** | 2 | 448px |
-| **2** | 3 | 672px |
+| **1** | 2 | 457.6px |
+| **2** | 3 | 686.4px |
 
 ---
 
@@ -182,19 +182,19 @@ Room for tables, code, and denser running text.
 
 > [3 PARTS](#card)
 > ### Narrow
-> 274px.
+> 283px.
 
 ![split]()
 
 > [4 PARTS](#card)
 > ### Medium
-> 365.33px.
+> 377.33px.
 
 ![split]()
 
 > [5 PARTS](#card)
 > ### Wide
-> 456.67px: the widest module, for the main content.
+> 471.67px: the widest module, for the main content.
 
 `<!-- _class: cols-3-a -->`
 
