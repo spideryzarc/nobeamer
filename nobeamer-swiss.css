@@ -542,13 +542,20 @@ blockquote:has(a[href="#card-c"]) p {
 /* ==========================================================================
    8. TABLES (Swiss grid precision)
    ========================================================================== */
-/* display: table overrides the default theme's display: block, whose box spans the full width
-   while the cell grid stays narrower: the top and bottom rules overshot the cells */
+/* Compact tables, centred in their space (the slide, or the module of a cols-* layout).
+   display: table replaces the default theme's display: block, whose box would carry the top and
+   bottom rules past the cell grid. The space is [--table-from, --table-to] in % of the container:
+   the left margin lands on its centre and translateX(-50%) pulls the table back by half its width,
+   so a table sits centred even in the shifted modules of cols-2-a / cols-3-a. */
 table {
+    --table-from: 0%;
+    --table-to: 100%;
     display: table;
     border-collapse: collapse;
-    width: 100%;
-    margin: var(--block-margin-y) 0;
+    width: max-content;
+    max-width: calc(var(--table-to) - var(--table-from));
+    margin: var(--block-margin-y) 0 var(--block-margin-y) calc((var(--table-from) + var(--table-to)) / 2);
+    transform: translateX(-50%);
     font-size: 0.85em;
     border-top: 2.5px solid var(--swiss-black);
     border-bottom: 2.5px solid var(--swiss-black);
@@ -794,7 +801,11 @@ section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) h2 {
     margin-bottom: 16px;
 }
 
-section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) :is(blockquote, pre, table, .math-resolution, .code-scroll) {
+section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) table {
+    margin-block: 12px;
+}
+
+section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) :is(blockquote, pre, .math-resolution, .code-scroll) {
     width: auto;
     max-width: 100%;
     margin-block: 12px;
@@ -806,24 +817,24 @@ section.cols-2-a {
     --cols2-shift: 20%;          /* 2:3 asymmetric split (40% : 60%, 448px : 672px) */
 }
 
-section.cols-2-a > :not(h1):not(h2):not(p:has(> img[alt="split"])) {
+section.cols-2-a > :not(h1):not(h2):not(table):not(p:has(> img[alt="split"])) {
     margin-left: 0 !important;
     margin-right: var(--cols2-shift) !important;
     max-width: none !important;
 }
 
 section.cols-2-a > table:not(p:has(> img[alt="split"]) ~ *) {
-    width: calc(100% - var(--cols2-shift)) !important;
+    --table-to: calc(100% - var(--cols2-shift));
 }
 
-section.cols-2-a > p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(p:has(> img[alt="split"])) {
+section.cols-2-a > p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(table):not(p:has(> img[alt="split"])) {
     margin-left: calc(-1 * var(--cols2-shift)) !important;
     margin-right: 0 !important;
     max-width: none !important;
 }
 
 section.cols-2-a > p:has(> img[alt="split"]) ~ table {
-    width: calc(100% + var(--cols2-shift)) !important;
+    --table-from: calc(-1 * var(--cols2-shift));
 }
 
 /* Asymmetric column geometry for cols-3-a (Columns 1, 2, 3 separated by ![split]()) */
@@ -832,34 +843,36 @@ section.cols-3-a {
     --cols3-s3: 25%;
 }
 
-section.cols-3-a > :not(h1):not(h2):not(p:has(> img[alt="split"])) {
+section.cols-3-a > :not(h1):not(h2):not(table):not(p:has(> img[alt="split"])) {
     margin-left: 0 !important;
     margin-right: var(--cols3-s1) !important;
     max-width: none !important;
 }
 
 section.cols-3-a > table:not(p:has(> img[alt="split"]) ~ *) {
-    width: calc(100% - var(--cols3-s1)) !important;
+    --table-to: calc(100% - var(--cols3-s1));
 }
 
-section.cols-3-a > p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(p:has(> img[alt="split"])) {
+section.cols-3-a > p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(table):not(p:has(> img[alt="split"])) {
     margin-left: calc(-1 * var(--cols3-s1)) !important;
     margin-right: var(--cols3-s3) !important;
     max-width: none !important;
 }
 
 section.cols-3-a > p:has(> img[alt="split"]) ~ table {
-    width: calc(100% + var(--cols3-s1) - var(--cols3-s3)) !important;
+    --table-from: calc(-1 * var(--cols3-s1));
+    --table-to: calc(100% - var(--cols3-s3));
 }
 
-section.cols-3-a > p:has(> img[alt="split"]) ~ p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(p:has(> img[alt="split"])) {
+section.cols-3-a > p:has(> img[alt="split"]) ~ p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(table):not(p:has(> img[alt="split"])) {
     margin-left: calc(-1 * var(--cols3-s3)) !important;
     margin-right: 0 !important;
     max-width: none !important;
 }
 
 section.cols-3-a > p:has(> img[alt="split"]) ~ p:has(> img[alt="split"]) ~ table {
-    width: calc(100% + var(--cols3-s3)) !important;
+    --table-from: calc(-1 * var(--cols3-s3));
+    --table-to: 100%;
 }
 
 /* Prevent unwanted fragmentation across columns */
