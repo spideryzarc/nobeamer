@@ -542,7 +542,10 @@ blockquote:has(a[href="#card-c"]) p {
 /* ==========================================================================
    8. TABLES (Swiss grid precision)
    ========================================================================== */
+/* display: table overrides the default theme's display: block, whose box spans the full width
+   while the cell grid stays narrower: the top and bottom rules overshot the cells */
 table {
+    display: table;
     border-collapse: collapse;
     width: 100%;
     margin: var(--block-margin-y) 0;
