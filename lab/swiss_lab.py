@@ -19,6 +19,7 @@ Outputs go to lab/out/<deck>/ and baselines to lab/baseline/<deck>/ (both git-ig
 
 import argparse
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -30,7 +31,10 @@ from playwright.sync_api import TimeoutError as PlaywrightTimeout, sync_playwrig
 
 ROOT = Path(__file__).resolve().parent.parent
 LAB = ROOT / "lab"
-CHROME = "/usr/bin/google-chrome"
+# Chrome binary: $NOBEAMER_CHROME, else the first existing candidate (local install, cloud sandbox)
+CHROME = os.environ.get("NOBEAMER_CHROME") or next(
+    (c for c in ("/usr/bin/google-chrome", "/opt/pw-browsers/chromium") if Path(c).exists()), "/usr/bin/google-chrome"
+)
 W, H = 1280, 720
 
 LINT_JS = """
