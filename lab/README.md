@@ -1,6 +1,8 @@
 # Theme Design Lab
 
-Fast feedback loop for refining `nobeamer-swiss.css` without manual screenshot hunting.
+Fast feedback loop for refining the family's themes without manual screenshot hunting. It defaults to
+`nobeamer-swiss.css` and its demo; point it at the original with `--deck demo.marp.md --theme nobeamer.css`
+(there, bleeding blocks report 32-40px `overflow-left/right` by design).
 
 ```bash
 uv run lab/swiss_lab.py sheet       # render deck + lint + contact sheet -> lab/out/<deck>/sheet.png
