@@ -1,7 +1,7 @@
 # nobeamer — working notes for Claude
 
 Two Marp themes live here: `nobeamer.css` (original, skeuomorphic) and `nobeamer-swiss.css` (Swiss design,
-under development on branch `dev`). `demo-swiss.marp.md` is both the Swiss feature guide and the test deck.
+under development on branch `feat-swiss`). `demo-swiss.marp.md` is both the Swiss feature guide and the test deck.
 
 ## Default review loop (Swiss theme)
 

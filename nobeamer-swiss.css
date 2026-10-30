@@ -18,7 +18,7 @@
    10. Images & figures
    11. Multi-column grids
    12. Lead / title slide
-   13. Invert slides
+   13. Invert & accent slides
    14. Transitions
    ========================================================================== */
 
@@ -1184,7 +1184,7 @@ section.lead ul li em {
 }
 
 /* ==========================================================================
-   13. INVERT SLIDES
+   13. INVERT & ACCENT SLIDES
    ========================================================================== */
 
 /* Invert: stark black modernist slide */
@@ -1212,73 +1212,155 @@ section.lead::after {
     color: var(--swiss-white);
 }
 
-section.invert h1,
-section.invert h2,
-section.invert h3,
-section.invert h4,
-section.invert strong,
-section.invert p,
-section.invert li {
+section:is(.invert, .accent) h1,
+section:is(.invert, .accent) h2,
+section:is(.invert, .accent) h3,
+section:is(.invert, .accent) h4,
+section:is(.invert, .accent) strong,
+section:is(.invert, .accent) p,
+section:is(.invert, .accent) li {
     color: var(--swiss-white);
 }
 
-section.invert h2 {
+section:is(.invert, .accent) h2 {
     border-bottom-color: var(--swiss-white);
 }
 
-section.invert table {
+section:is(.invert, .accent) table {
     border-color: var(--accent);
 }
 
-section.invert th {
+section:is(.invert, .accent) th {
     color: var(--swiss-white);
     border-bottom-color: var(--swiss-white);
 }
 
-section.invert td {
+section:is(.invert, .accent) td {
     color: var(--swiss-white);
     border-bottom-color: #333333;
 }
 
-section.invert tr:nth-child(even) {
+section:is(.invert, .accent) tr:nth-child(even) {
     background-color: color-mix(in srgb, var(--accent) 14%, transparent);
 }
 
 /* On the charcoal ground, lift the code card a step, like #d */
-section.invert :is(pre, .code-scroll) {
+section:is(.invert, .accent) :is(pre, .code-scroll) {
     background: #45413d;
 }
 
-section.invert code {
+section:is(.invert, .accent) code {
     background: #262626;
     color: var(--swiss-white);
     border-color: #444444;
 }
 
-section.invert blockquote:not(:has(a[href^="#"])) {
+section:is(.invert, .accent) blockquote:not(:has(a[href^="#"])) {
     color: var(--swiss-white) !important;
 }
 
-section.invert blockquote:has(a[href^="#card"]) {
+section:is(.invert, .accent) blockquote:has(a[href^="#card"]) {
     background: #1C1C1C !important;
     border-left-color: var(--swiss-red) !important;
     color: var(--swiss-white) !important;
 }
 
-section.invert blockquote strong {
+section:is(.invert, .accent) blockquote strong {
     color: var(--swiss-white) !important;
 }
 
-section.invert blockquote:has(a[href^="#card"]) {
+section:is(.invert, .accent) blockquote:has(a[href^="#card"]) {
     border: none !important;
 }
 
-section.invert blockquote:has(a[href^="#card"]) strong {
+section:is(.invert, .accent) blockquote:has(a[href^="#card"]) strong {
     border-bottom-color: #333333 !important;
 }
 
-section.invert blockquote em {
+section:is(.invert, .accent) blockquote em {
     color: #DDDDDD !important;
+}
+
+/* Accent: the whole slide printed in the accent colour, with white type like invert. The ground
+   carries a visible soft-light grain. The noise filter runs in sRGB (the default linearRGB turns
+   mid-gray into a light overlay and tints the field pink) and is centred on mid-gray, so the
+   average colour stays within a few levels of the accent. Everything that is accent-coloured elsewhere (rules, ticks, marks, bold
+   in tables) turns white so it stays visible on the field. */
+section.accent {
+    background-color: var(--accent) !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0.7 0.7 0.7 0 -0.55 0.7 0.7 0.7 0 -0.55 0.7 0.7 0.7 0 -0.55 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") !important;
+    background-size: 180px 180px !important;
+    background-blend-mode: soft-light !important;
+    color: var(--swiss-white) !important;
+}
+
+section.accent::before {
+    content: '';
+    position: absolute;
+    top: 48px;
+    left: var(--padding-general);
+    right: var(--padding-general);
+    height: 1px;
+    background: rgb(255 255 255 / 0.4);
+    pointer-events: none;
+}
+
+section.accent::after {
+    color: var(--swiss-white);
+    background: linear-gradient(var(--swiss-white), var(--swiss-white)) top center / 3px 12px no-repeat;
+}
+
+section.accent :is(a, a:link, a:visited) {
+    color: var(--swiss-white);
+    text-decoration: underline;
+}
+
+section.accent ul li::marker {
+    color: var(--swiss-white);
+}
+
+section.accent ol li::marker {
+    color: var(--swiss-white);
+}
+
+section.accent table {
+    border-color: var(--swiss-white);
+}
+
+section.accent td {
+    border-bottom-color: rgb(255 255 255 / 0.35);
+}
+
+section.accent tr:nth-child(even) {
+    background-color: rgb(255 255 255 / 0.12);
+}
+
+section.accent table :is(th, td) strong {
+    color: var(--swiss-white);
+}
+
+section.accent :is(pre, .code-scroll) {
+    background: var(--card-charcoal);
+}
+
+section.accent code {
+    background: rgb(0 0 0 / 0.22);
+    color: var(--swiss-white);
+    border-color: rgb(255 255 255 / 0.25);
+}
+
+section.accent blockquote:not(:has(a[href^="#"]))::before {
+    color: var(--swiss-white);
+}
+
+section.accent blockquote:has(a[href^="#card"]) {
+    background: rgb(0 0 0 / 0.28) !important;
+    border-left-color: var(--swiss-white) !important;
+}
+
+/* An alert card is accent stock: on an accent field, step it down so the sheet stays visible */
+section.accent blockquote:has(a[href^="#a"]) {
+    --paper: color-mix(in srgb, var(--accent) 62%, #000000);
 }
 
 /* ==========================================================================

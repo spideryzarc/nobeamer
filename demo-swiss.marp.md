@@ -483,6 +483,32 @@ style: ":root { --accent: #0066CC; }"
 
 ---
 
+<!-- _class: accent cols-2 -->
+
+## Accent Field (`accent`)
+
+### Subsection on Accent
+
+- White type on the accent colour, with fibre noise.
+- `inline code`, **bold** and [links](https://example.com) stay readable.
+
+> A plain quote keeps its mark, now white.
+
+![split]()
+
+> [TAG](#card)
+> ### Card on Accent
+> Rules and cards adapt to the field.
+
+> [](#d) **Dark Card on Accent**
+> Charcoal stock stays distinguishable.
+
+| Key | Value |
+| :--- | ---: |
+| **class** | `accent cols-2` |
+
+---
+
 <!-- _class: cols-2 -->
 
 ## Quick Reference
@@ -495,7 +521,7 @@ style: ":root { --accent: #0066CC; }"
 | **Card** | `> [TAG](#card)` + `### <!-- fit -->` |
 | **Alignment** | `#card-c`, `#card-r`, `#i-r` |
 | **Status** | `> [](#i)`, `[](#a)`, `[](#s)`, `[](#d)` |
-| **Variants** | `invert`, `--accent` |
+| **Variants** | `invert`, `accent`, `--accent` |
 
 ![split]()
 
