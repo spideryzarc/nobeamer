@@ -614,11 +614,11 @@ Must stay in place next to the first one. `lab-expect` tells the lab that the ov
 
 ---
 
-<!-- _class: grid -->
+<!-- _class: accent grid -->
 
-## Overlay: Grid
+## Overlay: Grid (`grid` on `accent`)
 
-A block of square dots, white and lighter than the paper, on the bottom-right modules of the 12-column grid, under the content.
+An irregular skyline of square dots on the bottom-right modules of the 12-column grid, under the content. It also works with `invert` and on plain paper.
 
 | Module | Width |
 | :--- | ---: |
