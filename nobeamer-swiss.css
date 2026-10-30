@@ -1376,32 +1376,17 @@ section.accent blockquote:has(a[href^="#a"]) {
 }
 
 /* ==========================================================================
-   15. OVERLAY PATTERNS (`_class: grid | arc | band`)
-   Each pattern is an extra background layer over the paper, so it never touches ::before/::after
-   (those belong to the top hairline, the accent field and the pagination). The paper grain stays
-   underneath as the last layer.
+   15. OVERLAY PATTERN (`_class: grid`)
+   A registration-cross field lighter than the paper (white marks, never darker), one cross on every
+   module corner of the 12-column grid inside the 56px margins. It is an extra background layer over
+   the paper, so ::before and ::after stay free for the hairline, the accent field and the pagination.
+   The paper grain stays underneath as the last layer. 97.333px = (1280 - 2 * 56) / 12.
    ========================================================================== */
-
-/* 12-column guide: hairlines on the module edges of the 56px-margin content box */
 section.grid {
-    background-image: linear-gradient(to right, rgb(43 41 39 / 0.07) 1px, transparent 1px), var(--paper-grain);
-    background-size: calc((100% - 112px) / 12) 100%, 240px 240px;
-    background-position: 56px 0, 0 0;
-    background-repeat: repeat-x, repeat;
-}
-
-/* Quarter arc of accent tint, anchored to the bottom-right corner, behind the content */
-section.arc {
-    background-image: radial-gradient(circle at 100% 100%, rgb(245 54 48 / 0.14) 0 340px, transparent 341px), var(--paper-grain);
-    background-size: 100% 100%, 240px 240px;
-    background-repeat: no-repeat, repeat;
-}
-
-/* Right-hand module in a light grey band, like a column of the grid left unprinted */
-section.band {
-    background-image: linear-gradient(to right, transparent 0 75%, var(--swiss-gray-100) 75%), var(--paper-grain);
-    background-size: 100% 100%, 240px 240px;
-    background-repeat: no-repeat, repeat;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 42v16M42 50h16' stroke='%23ffffff' stroke-width='3'/%3E%3C/svg%3E"), var(--paper-grain);
+    background-size: 97.333px 97.333px, 240px 240px;
+    background-position: 7.333px 7.333px, 0 0;
+    background-repeat: repeat, repeat;
 }
 
 /* ==========================================================================

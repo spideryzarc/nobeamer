@@ -618,28 +618,8 @@ Must stay in place next to the first one. `lab-expect` tells the lab that the ov
 
 ## Overlay: Grid
 
-Twelve module edges on the 56px margins, drawn as hairlines under the content.
+Light registration crosses on the module corners of the 12-column grid, under the content.
 
 | Module | Width |
 | :--- | ---: |
 | **A** | 1 |
-
----
-
-<!-- _class: arc -->
-
-## Overlay: Arc
-
-A quarter arc in accent tint sits behind the bottom-right corner. Body text stays readable over it.
-
-> A plain quote on the arc.
-
----
-
-<!-- _class: band -->
-
-## Overlay: Band
-
-The right quarter is a light grey band, like an unprinted column of the grid.
-
-- Bullets and body text cross the band boundary without losing contrast.
