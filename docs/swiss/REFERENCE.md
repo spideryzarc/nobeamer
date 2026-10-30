@@ -81,8 +81,8 @@ The first line after the marker is the title; the next lines are the body.
 ```
 
 No sheet: the card sits on the paper, with a red tag (`[TAG](#card)`, or `[](#card)` for none), a title with a
-hairline and a justified Literata body; display math is centred. `### <!-- fit -->` makes the title fill the width up to the tag; a
-`**Title**` on the first line is the static fallback.
+hairline and a justified Literata body; display math is centred. `### <!-- fit -->` makes the title fill the width up to the tag.
+The title is optional: without a `###` heading the card has none, and **bold** is just bold (`> [TAG](#card) body text`).
 
 ### Alignment
 

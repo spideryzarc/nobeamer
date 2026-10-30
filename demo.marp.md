@@ -24,18 +24,22 @@ Follow these rules to create beautiful, handwritten-style presentations.
 
 Overview of what we'll cover in this demo:
 
-> [01](#card) **📝 Typography & Cards**
+> [01](#card)
+> ### 📝 Typography & Cards
 > Fonts, lists, standard blockquotes, and specialized cards.
 
-> [02](#card) **📊 Data & Code**
+> [02](#card)
+> ### 📊 Data & Code
 > Tables, technical code blocks, and mathematical formulas.
 
 ![split]()
 
-> [03](#card) **🖼️ Imagery Guidelines**
+> [03](#card)
+> ### 🖼️ Imagery Guidelines
 > Backgrounds, inline figures, framing, and native CSS image filters.
 
-> [04](#card) **📐 Layout & Utilities**
+> [04](#card)
+> ### 📐 Layout & Utilities
 > Multi-column grids and proto-bento layouts for complex content.
 
 ---
@@ -83,6 +87,11 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 ```markdown
 > This is the standard style...
 ```
+
+>[](#card) Este é um card sem título, apenas com conteúdo.
+> Com mais de uma linha de conteúdo para demonstrar o comportamento do card.
+
+>[minha tag](#card) agora uma **com** tag e conteúdo, mas sem título.
 
 ---
 
@@ -145,7 +154,8 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 > ### Algorithm
 > A finite sequence of well-defined instructions to solve a class of problems or perform a computation.
 
-> [STEP 2](#card-r) **🎨 Planning**
+> [STEP 2](#card-r)
+> ### 🎨 Planning
 > Use cards for **definitions**, *steps*, theorems and `syllabus` items.
 
 ```markdown
@@ -321,7 +331,9 @@ Easy way to layout a figure that doesn't fit as a borderless figure.
 ![h:200 w:800 drop-shadow](nb_img/paper2.jpg)
 
 ---
+
 <!-- _class: cols-2 -->
+
 ### Image Filters & Modifiers
 
 - **Native Filters**: `opacity:50%`, `sepia`, `saturate:200%`, `grayscale`, `blur:5px`, `brightness:150%`, `contrast:150%`
@@ -335,6 +347,7 @@ Easy way to layout a figure that doesn't fit as a borderless figure.
 ```
 
 ![w:200 rounded drop-shadow](images/dark_keyboard.jpg)
+
 ![w:200 h:200 circle drop-shadow](images/pexels-hikaique-775201.jpg)
 
 
@@ -453,7 +466,8 @@ int main() {
 
 ![split]()
 
-> [STEP](#card) **Step**
+> [STEP](#card)
+> ### Step
 > you don't need to use
 > dark blocks, just for fun.
 
@@ -474,7 +488,8 @@ What a mess!
 
 I could kill minutes in this single slide.
 
-> [](#card) **Bento**
+> [](#card)
+> ### Bento
 > As long as you keep the blocks **misaligned**, it will look less like a grid.
 
 ---

@@ -91,9 +91,9 @@ Post-its are attached to the slide edge and slide in when the slide appears. Ali
 > A finite sequence of well-defined instructions…
 ```
 
-A ruled index card with a red header rule; the tag (`[TAG](#card)`, or `[](#card)` for none) is a slightly crooked
-gold sticker. The title is a `###` heading (`### <!-- fit -->` fills the width up to the tag) or a `**Title**` on the
-first line. `#card-c` centres the content; `#card-r` aligns it right and moves the sticker to the left. Use it for
+A plain cream index card with softly rounded corners and a red header rule; the tag (`[TAG](#card)`, or `[](#card)` for none) is a slightly crooked
+gold sticker. The title is an optional `###` heading (`### <!-- fit -->` fills the width up to the tag); without it the card
+has no title and **bold** is just bold (`> [TAG](#card) body text`). `#card-c` centres the content; `#card-r` aligns it right and moves the sticker to the left. Use it for
 definitions, theorems, steps and syllabus items.
 
 ## Columns

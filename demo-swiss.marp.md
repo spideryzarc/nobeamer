@@ -245,9 +245,8 @@ Room for tables, code, and denser running text.
 > ### <!-- fit --> Auto-Scaling Header
 > `### <!-- fit -->` title with a hairline underneath.
 
-> [DEF 03](#card)
-> **Static Bold Header**
-> `**Title**` fallback: tag, title, and body in one paragraph.
+> [DEF 03](#card) A card without a title: tag and body only.
+> Only a `###` heading is a title, **bold** is just bold.
 
 ![split]()
 
@@ -258,9 +257,8 @@ Room for tables, code, and denser running text.
 > ### <!-- fit --> Auto-Scaling Header
 > Body text.
 
-> [DEF 03](#card)
-> **Static Bold Header**
-> Body text.
+> [DEF 03](#card) Tag and body, no title.
+> **Bold** stays bold.
 ```
 
 ---
@@ -278,7 +276,7 @@ Room for tables, code, and denser running text.
 > Centered header and last line.
 
 > [RIGHT](#card-r)
-> **Right, Mirrored**
+> ### Right, Mirrored
 > Right-aligned header, tag on the left.
 
 ![split]()

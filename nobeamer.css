@@ -825,14 +825,15 @@ section[data-marpit-advanced-background="background"] div[data-marpit-advanced-b
    ========================================================================== */
 /* Overflow-safe columns (as in nobeamer-swiss): auto height + balance makes each ![split]() segment
    exactly one column, so excess content spills downward (visible) instead of creating invisible
-   overflow columns off the right edge. min-height keeps the slide frame for pagination;
-   align-content: start cancels the vertical centring of the shorter balanced columns. */
+   overflow columns off the right edge. min-height keeps the slide frame for pagination, and
+   align-content: center centres the whole column block in it like any other nobeamer slide (the swiss theme
+   starts at the top instead). Content taller than the frame leaves no free space, so it still grows downward. */
 section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) {
     --block-margin-y: 18px;
     height: auto !important;
     min-height: 100%;
     column-fill: balance;
-    align-content: start;
+    align-content: center;
 }
 
 section:is(.cols-2, .cols-2-a) {
@@ -996,16 +997,18 @@ section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) img[alt="split"] {
 /* ==========================================================================
    15. INDEX CARD (#card) — definitions, theorems, steps, syllabus items
    > [DEF 01](#card)          tag (optional; [](#card) for none)
-   > ### Title                (or ### <!-- fit --> Title, or **Title** on the first line)
+   > ### Title                (or ### <!-- fit --> Title; optional: a card without ### has no title)
    > Body text.
-   A ruled index card with a red header rule; the tag is a slightly crooked sticker.
+   Only a ### heading is a title. **Bold** inside a card is just bold.
+   A plain cream index card with softly rounded corners and a red header rule; the tag is a slightly crooked sticker.
    -c / -r align the content. Must stay after section 14 (see cascade note at the top).
    ========================================================================== */
 blockquote:has(a[href^="#card"]) {
     background-color: #fffdf6;
-    background-image: repeating-linear-gradient(to bottom, transparent 0 calc(1.35em - 1px), rgba(7, 132, 186, 0.16) calc(1.35em - 1px) 1.35em);
+    /* Cancels the paper texture inherited from the plain blockquote */
+    background-image: none;
     border: none;
-    border-radius: 3px;
+    border-radius: 10px;
     box-shadow: var(--shadow-external);
     padding: var(--block-padding-y) 24px;
     margin: var(--block-margin-y) 0;
@@ -1022,13 +1025,14 @@ blockquote a[href^="#card"]:empty {
     display: none;
 }
 
-/* A tag alone on its line (before a ### title): float its paragraph, not the link inside it */
-blockquote:has(a[href^="#card"]) p:has(> a[href^="#card"]:not(:empty)):not(:has(> strong)) {
+/* A tag alone on its line (the paragraph right before a ### title): float its paragraph, not the link inside it.
+   A tag followed by text on the same line stays in that paragraph and floats on its own (rule below). */
+blockquote:has(a[href^="#card"]) p:has(> a[href^="#card"]:not(:empty)):has(+ :is(h3, marp-h3)) {
     float: right;
     margin: 0 0 6px 12px;
 }
 
-blockquote:has(a[href="#card-r"]) p:has(> a[href^="#card"]:not(:empty)):not(:has(> strong)) {
+blockquote:has(a[href="#card-r"]) p:has(> a[href^="#card"]:not(:empty)):has(+ :is(h3, marp-h3)) {
     float: left;
     margin: 0 12px 6px 0;
 }
@@ -1051,9 +1055,8 @@ blockquote a[href^="#card"]:not(:empty) {
     transform: rotate(2.5deg);
 }
 
-/* Title: heading or first bold line, over the red header rule of the card */
-blockquote:has(a[href^="#card"]) :is(h3, marp-h3),
-blockquote:has(a[href^="#card"]) p > strong:first-of-type {
+/* Title: the ### heading, over the red header rule of the card */
+blockquote:has(a[href^="#card"]) :is(h3, marp-h3) {
     display: block;
     margin: 0 0 0.3em;
     padding-bottom: 0.15em;
@@ -1073,11 +1076,6 @@ blockquote:has(a[href^="#card"]) :is(h3, marp-h3) {
 /* A ### <!-- fit --> title fills the width but never grows past a large heading on the card */
 blockquote:has(a[href^="#card"]) :is(h3, marp-h3)::part(auto-scaling) {
     max-height: 72px;
-}
-
-blockquote:has(a[href^="#card"]) a[href^="#card"] + br,
-blockquote:has(a[href^="#card"]) strong + br {
-    display: none;
 }
 
 blockquote:has(a[href^="#card"]) p {

@@ -45,6 +45,8 @@ Both themes live in this repository, share one installation and are named `nobea
     (the original: the teacher's voice; Swiss: an editorial pull quote).
 15. **Swiss is not a live show**: whatever matters must survive the PDF export.
 16. **Order of the refactor**: documents first, then the CSS.
+17. **Card title**: in `#card`, only a `###` heading is a title; the title is optional. **Bold** inside a card is just
+    bold (the `**Title**` fallback was removed). A tag followed by text on the same line is a title-less card.
 
 ## The shared grammar (contract)
 
@@ -55,7 +57,7 @@ Everything below works in both themes. A new element is added to both themes or 
 | Slide classes | `lead`, `invert`, `accent`, `cols-2`, `cols-3`, `cols-2-a`, `cols-3-a`, `grid`, `tiles` (combinable with `<!-- _class: a b -->`) |
 | Column break | `![split]()` |
 | Status cards | `> [](#i)`, `> [](#a)`, `> [](#s)`, `> [](#d)` |
-| Structural card | `> [TAG](#card)` + `### Title` (or `### <!-- fit --> Title`, or `**Title**`) + body |
+| Structural card | `> [TAG](#card)` + optional `### Title` (or `### <!-- fit --> Title`) + body; without `###` the card has no title |
 | Card alignment | suffix `-c` (centre) or `-r` (right) on any marker: `#i-c`, `#card-r`; `-l` is the default |
 | Plain quote | `> text` (meaning defined per theme) |
 | Figure | `![w:560 h:220](image.jpg)` followed on the next line by `*Caption*` |
