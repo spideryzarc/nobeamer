@@ -21,7 +21,7 @@
    13. Background image modifiers
    14. Multi-column layouts
    15. Step (#step) & definition (#def) cards
-   16. View transitions
+   16. Slide transition
    17. Print / PDF export
 
    Cascade note: sections 14 and 15 must stay in this order. The column
@@ -83,7 +83,6 @@ section::after {
     font-weight: 500;
     color: var(--primary);
     font-size: 14px;
-    view-transition-name: nb-page;
 }
 
 /* ==========================================================================
@@ -1088,120 +1087,64 @@ blockquote:has(a:is([href="#step"], [href="#def"])) p {
 }
 
 /* ==========================================================================
-   16. VIEW TRANSITIONS — per-element morphing ("magic move")
-   Named components (title, cards, code, tables, lists) morph between
-   slides; Marp's bespoke runtime animates them with its own crossfade.
-   Works with any `transition:` directive; optimized for `transition: nobeamer`.
+   16. SLIDE TRANSITION — "nobeamer" dissolve
+   Usage: `transition: nobeamer` in the frontmatter.
+   Only the root snapshot is animated: the old slide stays put and opaque
+   while the new one fades in on top and settles into place from slightly
+   larger (forward) or smaller (backward). Keeping the old slide opaque
+   avoids a dark dip mid-fade and black edges in fullscreen. Content life
+   comes from the entrance keyframes (section 4).
+
+   No element gets a view-transition-name on purpose. Per-element morphing
+   froze browsers in fullscreen: in cols-2/cols-3 a named card that overflows
+   its column is fragmented across columns, which view transitions can't
+   capture reliably.
 
    Note: Marpit scopes every theme selector under `section`, so
    ::view-transition-old/new(...) rules in a theme never match (those
-   pseudo-elements live on the document root). Don't add them here.
+   pseudo-elements live on the document root). Only these keyframes work.
    ========================================================================== */
-
-/* --- 16a. Custom transition "nobeamer": fast root crossfade ---
-   The root handles non-named content (background, misc text).
-   Keep it fast so named elements steal the show. */
-@keyframes marp-outgoing-transition-nobeamer {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
-}
-
 @keyframes marp-incoming-transition-nobeamer {
     from {
         opacity: 0;
+        transform: scale(1.015);
+        animation-timing-function: cubic-bezier(0.25, 0.6, 0.3, 1);
     }
 
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes marp-outgoing-transition-nobeamer {
+
+    from,
     to {
         opacity: 1;
     }
 }
 
-/* --- 16b. View transition names ---
-   Each named element is extracted from the root snapshot and transitions
-   independently. Names MUST be unique per slide. (nb-page is set in section 2.) */
-section h1 {
-    view-transition-name: nb-hero;
+/* Backward (previous slide): settles from slightly smaller */
+@keyframes marp-incoming-transition-backward-nobeamer {
+    from {
+        opacity: 0;
+        transform: scale(0.985);
+        animation-timing-function: cubic-bezier(0.25, 0.6, 0.3, 1);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-section h2 {
-    view-transition-name: nb-title;
-}
+@keyframes marp-outgoing-transition-backward-nobeamer {
 
-section h3:nth-of-type(1) {
-    view-transition-name: nb-sub-1;
-}
-
-section h3:nth-of-type(2) {
-    view-transition-name: nb-sub-2;
-}
-
-section h3:nth-of-type(3) {
-    view-transition-name: nb-sub-3;
-}
-
-section > blockquote:nth-of-type(1) {
-    view-transition-name: nb-card-1;
-}
-
-section > blockquote:nth-of-type(2) {
-    view-transition-name: nb-card-2;
-}
-
-section > blockquote:nth-of-type(3) {
-    view-transition-name: nb-card-3;
-}
-
-section > blockquote:nth-of-type(4) {
-    view-transition-name: nb-card-4;
-}
-
-section > pre:nth-of-type(1) {
-    view-transition-name: nb-code-1;
-}
-
-section > pre:nth-of-type(2) {
-    view-transition-name: nb-code-2;
-}
-
-section > table:nth-of-type(1) {
-    view-transition-name: nb-table-1;
-}
-
-section > ul:nth-of-type(1) {
-    view-transition-name: nb-list-1;
-}
-
-section > ul:nth-of-type(2) {
-    view-transition-name: nb-list-2;
-}
-
-section > ol:nth-of-type(1) {
-    view-transition-name: nb-olist-1;
-}
-
-section > .math-resolution:nth-of-type(1) {
-    view-transition-name: nb-math-1;
-}
-
-section > p:not(:has(> img:not(.emoji))):nth-of-type(1) {
-    view-transition-name: nb-text-1;
-}
-
-section > p:not(:has(> img:not(.emoji))):nth-of-type(2) {
-    view-transition-name: nb-text-2;
-}
-
-section > p:not(:has(> img:not(.emoji))):nth-of-type(3) {
-    view-transition-name: nb-text-3;
-}
-
-section > p:has(> img[alt="split"]) {
-    view-transition-name: none !important;
+    from,
+    to {
+        opacity: 1;
+    }
 }
 
 /* ==========================================================================
