@@ -1087,11 +1087,13 @@ blockquote:has(a:is([href="#step"], [href="#def"])) p {
 }
 
 /* ==========================================================================
-   16. SLIDE TRANSITION — "nobeamer" parallax push
+   16. SLIDE TRANSITION — "nobeamer" dissolve
    Usage: `transition: nobeamer` in the frontmatter.
-   Only the root snapshot is animated: the new slide slides in opaque from
-   the navigation side while the old one drifts back and dims, like a stack
-   of sheets. Content life comes from the entrance keyframes (section 4).
+   Only the root snapshot is animated: the old slide stays put and opaque
+   while the new one fades in on top and settles into place from slightly
+   larger (forward) or smaller (backward). Keeping the old slide opaque
+   avoids a dark dip mid-fade and black edges in fullscreen. Content life
+   comes from the entrance keyframes (section 4).
 
    No element gets a view-transition-name on purpose. Per-element morphing
    froze browsers in fullscreen: in cols-2/cols-3 a named card that overflows
@@ -1104,50 +1106,44 @@ blockquote:has(a:is([href="#step"], [href="#def"])) p {
    ========================================================================== */
 @keyframes marp-incoming-transition-nobeamer {
     from {
-        transform: translateX(100%);
-        animation-timing-function: cubic-bezier(0.22, 0.8, 0.3, 1);
+        opacity: 0;
+        transform: scale(1.015);
+        animation-timing-function: cubic-bezier(0.25, 0.6, 0.3, 1);
     }
 
     to {
-        transform: translateX(0);
+        opacity: 1;
+        transform: scale(1);
     }
 }
 
 @keyframes marp-outgoing-transition-nobeamer {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-        animation-timing-function: cubic-bezier(0.22, 0.8, 0.3, 1);
-    }
 
+    from,
     to {
-        transform: translateX(-30%);
-        opacity: 0.4;
+        opacity: 1;
     }
 }
 
-/* Backward (previous slide): mirrored */
+/* Backward (previous slide): settles from slightly smaller */
 @keyframes marp-incoming-transition-backward-nobeamer {
     from {
-        transform: translateX(-100%);
-        animation-timing-function: cubic-bezier(0.22, 0.8, 0.3, 1);
+        opacity: 0;
+        transform: scale(0.985);
+        animation-timing-function: cubic-bezier(0.25, 0.6, 0.3, 1);
     }
 
     to {
-        transform: translateX(0);
+        opacity: 1;
+        transform: scale(1);
     }
 }
 
 @keyframes marp-outgoing-transition-backward-nobeamer {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-        animation-timing-function: cubic-bezier(0.22, 0.8, 0.3, 1);
-    }
 
+    from,
     to {
-        transform: translateX(30%);
-        opacity: 0.4;
+        opacity: 1;
     }
 }
 

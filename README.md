@@ -192,9 +192,9 @@ def process_data(records: list[dict]) -> dict:
 
 All theme animations (code blocks, tables, dark blocks, lateral cards) are **automatically disabled** when exporting to PDF or printing. No manual class or configuration is needed — the theme uses `@media print` to strip animations, transitions, transforms, filters, and `backdrop-filter` globally, ensuring a clean static output.
 
-### Slide Transitions — Parallax Push
+### Slide Transitions — Dissolve
 
-The theme provides a custom `nobeamer` transition: the next slide slides in from the navigation side while the current one drifts back and dims, like a stack of sheets. Going back mirrors the motion. Inside each slide, cards, tables and code blocks still play their own entrance animations.
+The theme provides a custom `nobeamer` transition: a quiet dissolve where the next slide fades in over the current one and settles into place from slightly larger going forward, slightly smaller going back. Inside each slide, cards, tables and code blocks still play their own entrance animations.
 
 Enable it by adding `transition: nobeamer` to your frontmatter (or per-slide with `<!-- _transition: nobeamer -->`). The duration can be tuned per directive, e.g. `transition: nobeamer 0.4s`.
 
