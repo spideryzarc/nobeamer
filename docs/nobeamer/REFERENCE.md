@@ -119,7 +119,8 @@ Column 2
 Column 3
 ```
 
-`cols-2-a` gives the first column 2/5 of the width and the second 3/5; `cols-3-a` splits 3:4:5.
+`cols-2-a` gives the first column 2/5 of the width and the second 3/5; `cols-3-a` splits 3:4:5. Content that is
+too tall spills downward (visible), never into a hidden column; blocks sit closer together inside columns.
 
 ## Images and figures
 

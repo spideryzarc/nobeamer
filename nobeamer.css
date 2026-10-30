@@ -823,6 +823,18 @@ section[data-marpit-advanced-background="background"] div[data-marpit-advanced-b
    cols-2-a splits 2:3 and cols-3-a splits 3:4:5: the multi-column boxes stay equal and
    each segment is shifted by margins (the same geometry as nobeamer-swiss).
    ========================================================================== */
+/* Overflow-safe columns (as in nobeamer-swiss): auto height + balance makes each ![split]() segment
+   exactly one column, so excess content spills downward (visible) instead of creating invisible
+   overflow columns off the right edge. min-height keeps the slide frame for pagination;
+   align-content: start cancels the vertical centring of the shorter balanced columns. */
+section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) {
+    --block-margin-y: 18px;
+    height: auto !important;
+    min-height: 100%;
+    column-fill: balance;
+    align-content: start;
+}
+
 section:is(.cols-2, .cols-2-a) {
     display: block;
     columns: 2;
@@ -1056,6 +1068,11 @@ blockquote:has(a[href^="#card"]) p > strong:first-of-type {
 /* A ### title sits beside the floated tag (its own block formatting context) */
 blockquote:has(a[href^="#card"]) :is(h3, marp-h3) {
     overflow: hidden;
+}
+
+/* A ### <!-- fit --> title fills the width but never grows past a large heading on the card */
+blockquote:has(a[href^="#card"]) :is(h3, marp-h3)::part(auto-scaling) {
+    max-height: 72px;
 }
 
 blockquote:has(a[href^="#card"]) a[href^="#card"] + br,

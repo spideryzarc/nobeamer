@@ -29,6 +29,10 @@ After every change to a theme or a demo:
    - Swiss (default deck/theme): lint must be clean.
    - Original: `--deck demo.marp.md --theme nobeamer.css` (and `bhaskara.marp.md`). Its bleeding blocks report
      `overflow-left/right` of 32-40px and code reports `clipped`: those are by design; look for anything else.
+   - Cross-render (the shared-grammar promise: switching `theme:` loses nothing): copy each demo with its
+     `theme:`/`transition:` swapped (e.g. `sed 's/^theme: nobeamer-swiss$/theme: nobeamer/'`) and lint it with
+     the other theme. Passing only `--theme` is not enough: Marp falls back to the default theme when the deck
+     asks for a theme that is not loaded.
 2. Rebuild the compiled demos (stdin must be closed, or marp-cli waits on it forever):
    `marp demo-swiss.marp.md --html --theme-set nobeamer-swiss.css -o demo-swiss.marp.html < /dev/null`
    `marp demo.marp.md --html --theme-set nobeamer.css -o demo.marp.html < /dev/null` (same for `bhaskara`)
