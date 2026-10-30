@@ -76,7 +76,7 @@ Running text with **bold**, *italic*, `inline code`, and a [link](https://exampl
 1. Ordered step one
 2. Ordered step two
 
-> A plain quote: just `>`, with the red margin line.
+> A plain quote: just `>`, set as an editorial pull quote.
 
 ![split]()
 
@@ -516,19 +516,19 @@ style: ":root { --accent: #0066CC; }"
 | Feature | Syntax |
 | :--- | :--- |
 | **Title / Divider** | `_class: lead` (+ `![bg right:46%]`) |
-| **Columns** | `cols-2`, `cols-3` + `![split]()` |
-| **Asymmetric** | `cols-2-a`, `cols-3-a` |
+| **Columns** | `cols-2`, `cols-3`, `cols-2-a`, `cols-3-a` + `![split]()` |
 | **Card** | `> [TAG](#card)` + `### <!-- fit -->` |
 | **Alignment** | `#card-c`, `#card-r`, `#i-r` |
 | **Status** | `> [](#i)`, `[](#a)`, `[](#s)`, `[](#d)` |
-| **Variants** | `invert`, `accent`, `--accent` |
+| **Variants** | `invert`, `accent`, `grid`, `tiles`, `--accent` |
+| **Images** | `rounded`, `circle`, `*Caption*` |
 
 ![split]()
 
 ### Design Rules
 
 - **No icons or emojis**: Typography and numeric identifiers only.
-- **Flat geometry**: Square corners, no shadows. Status cards and code blocks are the exception: paper card stock.
+- **Flat geometry**: Square corners and no shadows by default; cards and code are paper card stock.
 - **No centered body text**: Flush-left, ragged-right.
 - **Controlled bold**: Contrast comes from scale.
 
@@ -638,3 +638,36 @@ A field of modular rounded tiles fills the slide as a watermark: pills, quarter-
 | Module | Width |
 | :--- | ---: |
 | **A** | 1 |
+
+---
+
+<!-- _class: cols-2 -->
+
+## Image Modifiers
+
+Words in the alt text round an image: `rounded`, `rounded-sm`, `rounded-lg`, `circle`. Square corners stay the default.
+
+```markdown
+![w:240 h:160 rounded](image.jpg)
+![w:160 h:160 circle](image.jpg)
+```
+
+![split]()
+
+![w:240 h:160 rounded](images/helvetica_poster.jpg)
+*FIG. 02 / ROUNDED*
+
+![w:160 h:160 circle](images/scholar_portrait.jpg)
+*FIG. 03 / CIRCLE*
+
+---
+
+## Framed Background
+
+Any word in the alt text of a background image frames it with rounded corners; with a size, the frame follows the image.
+
+```markdown
+![bg right:45% 80% framed](image.jpg)
+```
+
+![bg right:45% 80% framed](images/light_desk.jpg)

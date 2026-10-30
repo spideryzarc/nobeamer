@@ -19,7 +19,8 @@
    11. Multi-column grids
    12. Lead / title slide
    13. Invert & accent slides
-   14. Transitions
+   14. Overlay patterns
+   15. Transitions
    ========================================================================== */
 
 /* ==========================================================================
@@ -763,15 +764,96 @@ code {
 /* ==========================================================================
    10. IMAGES & FIGURES
    ========================================================================== */
-/* Square corners always: also neutralizes nobeamer's rounded/circle alt modifiers */
+/* Square corners by default; the family's alt-text modifiers round them on request */
 img:not(.emoji) {
     display: block;
     margin: 0 auto;
-    border-radius: 0 !important;
-    box-shadow: none !important;
     max-width: 100%;
     object-fit: cover;
 }
+
+img[alt~="rounded"] {
+    border-radius: 16px;
+}
+
+img[alt~="rounded-sm"] {
+    border-radius: 8px;
+}
+
+img[alt~="rounded-lg"] {
+    border-radius: 28px;
+}
+
+img[alt~="circle"] {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Framed background: any word in the alt text of a bg image becomes a <figcaption>, which marks the
+   figure as modified. Lead photos are excluded: their duotone field is drawn over the container.
+   With a percentage or fit/contain the image doesn't touch the figure's edges, so border-radius
+   alone is invisible: clip the figure at the image's bounds instead. Inset = (100 - percentage) / 2 */
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure figcaption {
+    display: none !important;
+}
+
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption) {
+    border-radius: 16px !important;
+    overflow: hidden !important;
+}
+
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:95%"], [style*="background-size: 95%"]) {
+    clip-path: inset(2.5% round 16px) !important;
+}
+
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:90%"], [style*="background-size: 90%"]) {
+    clip-path: inset(5% round 16px) !important;
+}
+
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:85%"], [style*="background-size: 85%"]) {
+    clip-path: inset(7.5% round 16px) !important;
+}
+
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:80%"], [style*="background-size: 80%"]) {
+    clip-path: inset(10% round 16px) !important;
+}
+
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:75%"], [style*="background-size: 75%"]) {
+    clip-path: inset(12.5% round 16px) !important;
+}
+
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:70%"], [style*="background-size: 70%"]) {
+    clip-path: inset(15% round 16px) !important;
+}
+
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:65%"], [style*="background-size: 65%"]) {
+    clip-path: inset(17.5% round 16px) !important;
+}
+
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:60%"], [style*="background-size: 60%"]) {
+    clip-path: inset(20% round 16px) !important;
+}
+
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:50%"], [style*="background-size: 50%"]) {
+    clip-path: inset(25% round 16px) !important;
+}
+
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:40%"], [style*="background-size: 40%"]) {
+    clip-path: inset(30% round 16px) !important;
+}
+
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:30%"], [style*="background-size: 30%"]) {
+    clip-path: inset(35% round 16px) !important;
+}
+
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:25%"], [style*="background-size: 25%"]) {
+    clip-path: inset(37.5% round 16px) !important;
+}
+
+section:not(.lead)[data-marpit-advanced-background="background"] div[data-marpit-advanced-background-container] figure:has(figcaption):is([style*="background-size:contain"], [style*="background-size: contain"]) {
+    clip-path: inset(5% round 16px) !important;
+}
+
 
 figure {
     margin: 16px 0;
@@ -1383,7 +1465,7 @@ section.accent blockquote:has(a[href^="#a"]) {
 }
 
 /* ==========================================================================
-   15. OVERLAY PATTERNS (`_class: grid` or `tiles`, also with `accent` or `invert`)
+   14. OVERLAY PATTERNS (`_class: grid` or `tiles`, also with `accent` or `invert`)
    A skyline of square dots on a 24.333px pitch (a quarter of a 97.333px module) that bleeds off the
    slide: the last column of dots is centred on the right edge and the last row on the bottom edge,
    so both are cut in half and the pattern reads as part of the ground, not as a figure sitting on
@@ -1445,7 +1527,7 @@ section.invert.tiles {
 }
 
 /* ==========================================================================
-   16. TRANSITIONS (`transition: swiss`)
+   15. TRANSITIONS (`transition: swiss`)
    ========================================================================== */
 @keyframes marp-outgoing-transition-swiss {
     from { opacity: 1; }
