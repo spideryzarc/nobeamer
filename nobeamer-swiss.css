@@ -1353,9 +1353,18 @@ section.accent blockquote:not(:has(a[href^="#"]))::before {
     color: var(--swiss-white);
 }
 
+/* #card on the accent field: no sheet, and an inverted tag (white badge, accent text) */
 section.accent blockquote:has(a[href^="#card"]) {
-    background: rgb(0 0 0 / 0.28) !important;
-    border-left-color: var(--swiss-white) !important;
+    background: transparent !important;
+}
+
+section.accent blockquote:has(a[href^="#card"]) a[href^="#card"]:not(:empty) {
+    background: var(--swiss-white);
+    color: var(--accent) !important;
+}
+
+section.accent blockquote:has(a[href^="#card"]) strong {
+    border-bottom-color: rgb(255 255 255 / 0.4) !important;
 }
 
 /* An alert card is accent stock: on an accent field, step it down so the sheet stays visible */
