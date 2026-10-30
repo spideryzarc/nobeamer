@@ -26,9 +26,9 @@
    1. DESIGN TOKENS (Swiss Modernism)
    ========================================================================== */
 :root {
-    /* Modular rounded tiles overlay (section 15): charcoal, and a lifted charcoal for invert */
-    --tiles: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 291.999 389.332'%3E%3Cpath d='M48.666 2.0H48.667A46.666 46.666 0 0 1 95.333 48.666V146.0A46.666 46.666 0 0 1 48.667 192.666H48.666A46.666 46.666 0 0 1 2.0 146.0V48.666A46.666 46.666 0 0 1 48.666 2.0ZM145.999 2.0H146.0A46.666 46.666 0 0 1 192.666 48.666V48.667A46.666 46.666 0 0 1 146.0 95.333H99.333V48.666A46.666 46.666 0 0 1 145.999 2.0ZM243.332 2.0H289.999V95.333H196.666V48.666A46.666 46.666 0 0 1 243.332 2.0ZM145.999 99.333H192.666V192.666H99.333V145.999A46.666 46.666 0 0 1 145.999 99.333ZM196.666 99.333H289.999V289.999H196.666V99.333ZM99.333 196.666H146.0A46.666 46.666 0 0 1 192.666 243.332V289.999H99.333V196.666ZM48.666 293.999H48.667A46.666 46.666 0 0 1 95.333 340.665V387.332H2.0V340.665A46.666 46.666 0 0 1 48.666 293.999ZM145.999 293.999H146.0A46.666 46.666 0 0 1 192.666 340.665V387.332H99.333V340.665A46.666 46.666 0 0 1 145.999 293.999ZM243.332 293.999H243.333A46.666 46.666 0 0 1 289.999 340.665V387.332H196.666V340.665A46.666 46.666 0 0 1 243.332 293.999Z' fill='%232a2826'/%3E%3C/svg%3E");
-    --tiles-lift: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 291.999 389.332'%3E%3Cpath d='M48.666 2.0H48.667A46.666 46.666 0 0 1 95.333 48.666V146.0A46.666 46.666 0 0 1 48.667 192.666H48.666A46.666 46.666 0 0 1 2.0 146.0V48.666A46.666 46.666 0 0 1 48.666 2.0ZM145.999 2.0H146.0A46.666 46.666 0 0 1 192.666 48.666V48.667A46.666 46.666 0 0 1 146.0 95.333H99.333V48.666A46.666 46.666 0 0 1 145.999 2.0ZM243.332 2.0H289.999V95.333H196.666V48.666A46.666 46.666 0 0 1 243.332 2.0ZM145.999 99.333H192.666V192.666H99.333V145.999A46.666 46.666 0 0 1 145.999 99.333ZM196.666 99.333H289.999V289.999H196.666V99.333ZM99.333 196.666H146.0A46.666 46.666 0 0 1 192.666 243.332V289.999H99.333V196.666ZM48.666 293.999H48.667A46.666 46.666 0 0 1 95.333 340.665V387.332H2.0V340.665A46.666 46.666 0 0 1 48.666 293.999ZM145.999 293.999H146.0A46.666 46.666 0 0 1 192.666 340.665V387.332H99.333V340.665A46.666 46.666 0 0 1 145.999 293.999ZM243.332 293.999H243.333A46.666 46.666 0 0 1 289.999 340.665V387.332H196.666V340.665A46.666 46.666 0 0 1 243.332 293.999Z' fill='%2345413d'/%3E%3C/svg%3E");
+    /* Modular rounded tiles watermark (section 15): charcoal at 5.5 percent on paper, white at 7 percent on the accent and invert fields */
+    --tiles: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1362.669 778.668'%3E%3Cpath d='M97.334 3.0H191.667V386.334H3.0V97.334A94.334 94.334 0 0 1 97.334 3.0ZM197.667 3.0H486.667A94.334 94.334 0 0 1 581.001 97.334V97.333A94.334 94.334 0 0 1 486.667 191.667H292.001A94.334 94.334 0 0 1 197.667 97.333V3.0ZM587.001 3.0H681.334A94.334 94.334 0 0 1 775.668 97.334V97.333A94.334 94.334 0 0 1 681.334 191.667H681.335A94.334 94.334 0 0 1 587.001 97.333V3.0ZM876.002 3.0H1070.668A94.334 94.334 0 0 1 1165.002 97.334V191.667H876.002A94.334 94.334 0 0 1 781.668 97.333V97.334A94.334 94.334 0 0 1 876.002 3.0ZM1265.336 3.0H1359.669V292.0A94.334 94.334 0 0 1 1265.335 386.334H1265.336A94.334 94.334 0 0 1 1171.002 292.0V97.334A94.334 94.334 0 0 1 1265.336 3.0ZM292.001 197.667H581.001V581.001H292.001A94.334 94.334 0 0 1 197.667 486.667V292.001A94.334 94.334 0 0 1 292.001 197.667ZM681.335 197.667H681.334A94.334 94.334 0 0 1 775.668 292.001V386.334H587.001V292.001A94.334 94.334 0 0 1 681.335 197.667ZM1070.669 197.667H1165.002V292.0A94.334 94.334 0 0 1 1070.668 386.334H1070.669A94.334 94.334 0 0 1 976.335 292.0V292.001A94.334 94.334 0 0 1 1070.669 197.667ZM3.0 392.334H191.667V775.668H97.334A94.334 94.334 0 0 1 3.0 681.334V392.334ZM681.335 392.334H775.668V486.667A94.334 94.334 0 0 1 681.334 581.001H681.335A94.334 94.334 0 0 1 587.001 486.667V486.668A94.334 94.334 0 0 1 681.335 392.334ZM876.002 392.334H970.335V581.001H876.002A94.334 94.334 0 0 1 781.668 486.667V486.668A94.334 94.334 0 0 1 876.002 392.334ZM976.335 392.334H1070.668A94.334 94.334 0 0 1 1165.002 486.668V486.667A94.334 94.334 0 0 1 1070.668 581.001H976.335V392.334ZM197.667 587.001H292.0A94.334 94.334 0 0 1 386.334 681.335V775.668H197.667V587.001ZM681.335 587.001H775.668V681.334A94.334 94.334 0 0 1 681.334 775.668H587.001V681.335A94.334 94.334 0 0 1 681.335 587.001ZM876.002 587.001H876.001A94.334 94.334 0 0 1 970.335 681.335V775.668H876.002A94.334 94.334 0 0 1 781.668 681.334V681.335A94.334 94.334 0 0 1 876.002 587.001ZM1070.669 587.001H1359.669V775.668H976.335V681.335A94.334 94.334 0 0 1 1070.669 587.001Z' fill='%232a2826' fill-opacity='0.055'/%3E%3C/svg%3E");
+    --tiles-field: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1362.669 778.668'%3E%3Cpath d='M97.334 3.0H191.667V386.334H3.0V97.334A94.334 94.334 0 0 1 97.334 3.0ZM197.667 3.0H486.667A94.334 94.334 0 0 1 581.001 97.334V97.333A94.334 94.334 0 0 1 486.667 191.667H292.001A94.334 94.334 0 0 1 197.667 97.333V3.0ZM587.001 3.0H681.334A94.334 94.334 0 0 1 775.668 97.334V97.333A94.334 94.334 0 0 1 681.334 191.667H681.335A94.334 94.334 0 0 1 587.001 97.333V3.0ZM876.002 3.0H1070.668A94.334 94.334 0 0 1 1165.002 97.334V191.667H876.002A94.334 94.334 0 0 1 781.668 97.333V97.334A94.334 94.334 0 0 1 876.002 3.0ZM1265.336 3.0H1359.669V292.0A94.334 94.334 0 0 1 1265.335 386.334H1265.336A94.334 94.334 0 0 1 1171.002 292.0V97.334A94.334 94.334 0 0 1 1265.336 3.0ZM292.001 197.667H581.001V581.001H292.001A94.334 94.334 0 0 1 197.667 486.667V292.001A94.334 94.334 0 0 1 292.001 197.667ZM681.335 197.667H681.334A94.334 94.334 0 0 1 775.668 292.001V386.334H587.001V292.001A94.334 94.334 0 0 1 681.335 197.667ZM1070.669 197.667H1165.002V292.0A94.334 94.334 0 0 1 1070.668 386.334H1070.669A94.334 94.334 0 0 1 976.335 292.0V292.001A94.334 94.334 0 0 1 1070.669 197.667ZM3.0 392.334H191.667V775.668H97.334A94.334 94.334 0 0 1 3.0 681.334V392.334ZM681.335 392.334H775.668V486.667A94.334 94.334 0 0 1 681.334 581.001H681.335A94.334 94.334 0 0 1 587.001 486.667V486.668A94.334 94.334 0 0 1 681.335 392.334ZM876.002 392.334H970.335V581.001H876.002A94.334 94.334 0 0 1 781.668 486.667V486.668A94.334 94.334 0 0 1 876.002 392.334ZM976.335 392.334H1070.668A94.334 94.334 0 0 1 1165.002 486.668V486.667A94.334 94.334 0 0 1 1070.668 581.001H976.335V392.334ZM197.667 587.001H292.0A94.334 94.334 0 0 1 386.334 681.335V775.668H197.667V587.001ZM681.335 587.001H775.668V681.334A94.334 94.334 0 0 1 681.334 775.668H587.001V681.335A94.334 94.334 0 0 1 681.335 587.001ZM876.002 587.001H876.001A94.334 94.334 0 0 1 970.335 681.335V775.668H876.002A94.334 94.334 0 0 1 781.668 681.334V681.335A94.334 94.334 0 0 1 876.002 587.001ZM1070.669 587.001H1359.669V775.668H976.335V681.335A94.334 94.334 0 0 1 1070.669 587.001Z' fill='%23ffffff' fill-opacity='0.07'/%3E%3C/svg%3E");
     /* Accent field grain and the grid overlay dots (sections 13 and 15) */
     --accent-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0.22 0.22 0.22 0 0.17 0.22 0.22 0.22 0 0.17 0.22 0.22 0.22 0 0.17 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     --grid-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 827.322 486.66'%3E%3Cdefs%3E%3Cpattern id='p' width='24.333' height='24.333' patternUnits='userSpaceOnUse'%3E%3Crect x='10.1665' y='10.1665' width='4' height='4' fill='%23ffffff'/%3E%3C/pattern%3E%3CclipPath id='c'%3E%3Cpath d='M0 486.66V389.328H97.332V389.328H194.664V194.664H291.996V194.664H389.328V291.996H486.66V97.332H583.992V97.332H681.324V340.662H827.322V486.66Z'/%3E%3C/clipPath%3E%3C/defs%3E%3Crect width='827.322' height='486.66' fill='url(%23p)' clip-path='url(%23c)'/%3E%3C/svg%3E");
@@ -1416,34 +1416,32 @@ section.invert.grid {
     background-repeat: no-repeat !important;
 }
 
-/* Tiles: a cluster of modular rounded tiles (pills, quarter-rounds, square blocks, one circle) on a
-   3 x 4 module grid with 4px joints, bleeding off the bottom-right corner. The tiles are one SVG layer
-   (--tiles); the circle is a separate gradient layer because an SVG background cannot read --accent,
-   and the circle must follow the slide's accent colour. The pagination turns white: it sits on a tile. */
+/* Tiles: a modular rounded-tile field used as a watermark that fills most of the slide. 7 x 4 cells of
+   2 modules (194.667px, 6px joints), a seeded layout of pills, quarter-rounds and blocks with three
+   circles, bleeding off every edge (the layer is 1362.669 x 778.668px at (-40.0, -30.0), cropped by the slide).
+   Tiles are one SVG layer (--tiles, 5.5 percent charcoal); the circles are separate gradient layers
+   because an SVG background cannot read --accent and the circles must follow the slide's accent.
+   Kept so faint that text over it stays fully legible. */
 section.tiles {
-    background-image: radial-gradient(circle 46.666px at 1076.668px 624.0px, var(--accent) 0 46.166px, transparent 46.666px), var(--tiles), var(--paper-grain);
-    background-size: 100% 100%, 291.999px 389.332px, 240px 240px;
-    background-position: 0 0, 1028.001px 380.668px, 0 0;
-    background-repeat: no-repeat, no-repeat, repeat;
-}
-
-section.tiles::after {
-    color: var(--swiss-white);
+    background-image: radial-gradient(circle 94.334px at 836.001px 262.0px, color-mix(in srgb, var(--accent) 12%, transparent) 0 93.834px, transparent 94.334px), radial-gradient(circle 94.334px at 1225.335px 456.668px, color-mix(in srgb, var(--accent) 12%, transparent) 0 93.834px, transparent 94.334px), radial-gradient(circle 94.334px at 446.668px 651.335px, color-mix(in srgb, var(--accent) 12%, transparent) 0 93.834px, transparent 94.334px), var(--tiles), var(--paper-grain);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 1362.669px 778.668px, 240px 240px;
+    background-position: 0 0, 0 0, 0 0, -40.0px -30.0px, 0 0;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
 }
 
 section.accent.tiles {
-    background-image: radial-gradient(circle 46.666px at 1076.668px 624.0px, var(--swiss-white) 0 46.166px, transparent 46.666px), var(--tiles), var(--accent-grain) !important;
-    background-size: 100% 100%, 291.999px 389.332px, 180px 180px !important;
-    background-position: 0 0, 1028.001px 380.668px, 0 0 !important;
-    background-repeat: no-repeat, no-repeat, repeat !important;
-    background-blend-mode: normal, normal, soft-light !important;
+    background-image: radial-gradient(circle 94.334px at 836.001px 262.0px, rgb(255 255 255 / 0.12) 0 93.834px, transparent 94.334px), radial-gradient(circle 94.334px at 1225.335px 456.668px, rgb(255 255 255 / 0.12) 0 93.834px, transparent 94.334px), radial-gradient(circle 94.334px at 446.668px 651.335px, rgb(255 255 255 / 0.12) 0 93.834px, transparent 94.334px), var(--tiles-field), var(--accent-grain) !important;
+    background-size: 100% 100%, 100% 100%, 100% 100%, 1362.669px 778.668px, 180px 180px !important;
+    background-position: 0 0, 0 0, 0 0, -40.0px -30.0px, 0 0 !important;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat !important;
+    background-blend-mode: normal, normal, normal, normal, soft-light !important;
 }
 
 section.invert.tiles {
-    background-image: radial-gradient(circle 46.666px at 1076.668px 624.0px, var(--accent) 0 46.166px, transparent 46.666px), var(--tiles-lift) !important;
-    background-size: 100% 100%, 291.999px 389.332px !important;
-    background-position: 0 0, 1028.001px 380.668px !important;
-    background-repeat: no-repeat !important;
+    background-image: radial-gradient(circle 94.334px at 836.001px 262.0px, color-mix(in srgb, var(--accent) 30%, transparent) 0 93.834px, transparent 94.334px), radial-gradient(circle 94.334px at 1225.335px 456.668px, color-mix(in srgb, var(--accent) 30%, transparent) 0 93.834px, transparent 94.334px), radial-gradient(circle 94.334px at 446.668px 651.335px, color-mix(in srgb, var(--accent) 30%, transparent) 0 93.834px, transparent 94.334px), var(--tiles-field) !important;
+    background-size: 100% 100%, 100% 100%, 100% 100%, 1362.669px 778.668px !important;
+    background-position: 0 0, 0 0, 0 0, -40.0px -30.0px !important;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat !important;
 }
 
 /* ==========================================================================

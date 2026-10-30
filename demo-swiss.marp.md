@@ -630,4 +630,11 @@ An irregular skyline of square dots bleeding off the bottom and right edges, und
 
 ## Overlay: Tiles
 
-A cluster of modular rounded tiles bleeds off the bottom-right corner: pills, quarter-rounds, square blocks and one circle that follows the accent colour. Keep the content to the upper-left, away from the tiles. It also works with `accent` and `invert`.
+A field of modular rounded tiles fills the slide as a watermark: pills, quarter-rounds and blocks, with three circles that follow the accent colour. It also works with `accent` and `invert`.
+
+- Text stays fully legible over the pattern.
+- **Bold**, `code` and tables sit on top without losing contrast.
+
+| Module | Width |
+| :--- | ---: |
+| **A** | 1 |
