@@ -1,78 +1,94 @@
 # Marp Project Initialization (`/marp-init`)
 
-**Role**: Marp Environment & Architecture Specialist  
-**Objective**: Scaffold or initialize a standardized Marp presentation environment in the active project directory, ensuring `marp/` folder structure, theme assets, and native IDE configuration are ready.
+**Role**: Marp Environment & Architecture Specialist
+**Objective**: Scaffold or initialize a standardized Marp presentation environment in the active project directory
+with one (or both) themes of the nobeamer family, ensuring the `marp/` folder structure, theme assets and native IDE
+configuration are ready.
+
+---
+
+## 0. Choose the theme
+
+Ask the user which theme to install (default: `nobeamer`):
+
+| Theme | Use case | Assets |
+| :--- | :--- | :--- |
+| `nobeamer` | Long live teaching sessions on a projector | `nobeamer.css` + `nb_img/` (paper textures) |
+| `nobeamer-swiss` | Study material, read later as PDF | `nobeamer-swiss.css` only |
+| both | Teach with `nobeamer`, hand out with `nobeamer-swiss` | all of the above |
+
+Both themes read the same Markdown, so installing both lets the user switch with `theme:`.
 
 ---
 
 ## 1. Directory Structure
 
-Ensure the following directory structure exists in the project root:
-
 ```text
 <project-root>/
 ├── .vscode/
-│   ├── settings.json       # VS Code / IDE settings for Marp extension
-│   └── tasks.json          # Optional: Native IDE build tasks using npx @marp-team/marp-cli
-├── marp.config.js          # Marp CLI configuration (theme & engine options)
+│   ├── settings.json         # VS Code / IDE settings for the Marp extension
+│   └── tasks.json            # Optional: native IDE build tasks using npx @marp-team/marp-cli
+├── marp.config.js            # Marp CLI configuration (themes & engine options)
 ├── marp/
-│   ├── nobeamer.css        # nobeamer custom theme stylesheet
-│   ├── README_nobeamer.md  # nobeamer documentation & reference (avoids conflict with project README)
-│   ├── nb_img/             # Theme texture assets (paper.jpg, paper2.jpg)
-│   │   ├── paper.jpg
-│   │   └── paper2.jpg
-│   ├── images/             # Presentation image assets directory
-│   └── starter.marp.md     # Initial slide deck template (if no slide deck exists)
+│   ├── nobeamer.css          # if nobeamer is installed
+│   ├── nb_img/               # if nobeamer is installed (paper.jpg, paper2.jpg)
+│   ├── nobeamer-swiss.css    # if nobeamer-swiss is installed
+│   ├── REFERENCE_<theme>.md  # syntax reference of each installed theme
+│   ├── images/               # presentation image assets
+│   └── starter.marp.md       # initial slide deck template (if no slide deck exists)
 ```
 
 ---
 
 ## 2. Theme & Asset Setup
 
-Execute or automate the asset retrieval using `marp_init_theme.py` (or fetching from GitHub if local cache is absent):
+Fetch from GitHub (`spideryzarc/nobeamer`, branch `main`) only what the chosen theme needs:
+
+**`nobeamer`**
+- `https://raw.githubusercontent.com/spideryzarc/nobeamer/main/nobeamer.css` → `marp/nobeamer.css`
+- `https://raw.githubusercontent.com/spideryzarc/nobeamer/main/nb_img/paper.jpg` → `marp/nb_img/paper.jpg`
+- `https://raw.githubusercontent.com/spideryzarc/nobeamer/main/nb_img/paper2.jpg` → `marp/nb_img/paper2.jpg`
+- `https://raw.githubusercontent.com/spideryzarc/nobeamer/main/docs/nobeamer/REFERENCE.md` → `marp/REFERENCE_nobeamer.md`
+
+**`nobeamer-swiss`**
+- `https://raw.githubusercontent.com/spideryzarc/nobeamer/main/nobeamer-swiss.css` → `marp/nobeamer-swiss.css`
+- `https://raw.githubusercontent.com/spideryzarc/nobeamer/main/docs/swiss/REFERENCE.md` → `marp/REFERENCE_nobeamer-swiss.md`
+
+Create `marp/images/` for presentation graphics. If a local helper is available, it may be used instead:
 
 ```bash
 uv run ~/.agents/shared/scripts/marp_init_theme.py marp/ --no-vscode
 ```
 
-Or manually ensure files are downloaded from GitHub (`spideryzarc/nobeamer`):
-- `https://raw.githubusercontent.com/spideryzarc/nobeamer/main/nobeamer.css` -> `marp/nobeamer.css`
-- `https://raw.githubusercontent.com/spideryzarc/nobeamer/main/README.md` -> `marp/README_nobeamer.md`
-- `https://raw.githubusercontent.com/spideryzarc/nobeamer/main/nb_img/paper.jpg` -> `marp/nb_img/paper.jpg`
-- `https://raw.githubusercontent.com/spideryzarc/nobeamer/main/nb_img/paper2.jpg` -> `marp/nb_img/paper2.jpg`
-
-Ensure directory `marp/images/` is created for presentation graphics.
-
 ---
 
 ## 3. Configuration Files
 
+List only the installed theme files in the settings below.
+
 ### A. `.vscode/settings.json`
-Configure the Marp IDE extension to recognize the theme:
 
 ```json
 {
   "markdown.marp.themes": [
     "marp/nobeamer.css",
-    "nobeamer.css"
+    "marp/nobeamer-swiss.css"
   ],
   "markdown.marp.enableHtml": true
 }
 ```
 
 ### B. `marp.config.js`
-Provide root CLI configuration for Marp:
 
 ```javascript
 module.exports = {
-  themeSet: ['./marp/nobeamer.css', './nobeamer.css'],
+  themeSet: ['./marp/nobeamer.css', './marp/nobeamer-swiss.css'],
   html: true,
   allowLocalFiles: true
 };
 ```
 
 ### C. `.vscode/tasks.json` (Native IDE Tasks)
-Configure native build tasks invoking standard Marp CLI directly without custom wrappers:
 
 ```json
 {
@@ -115,13 +131,13 @@ Configure native build tasks invoking standard Marp CLI directly without custom 
 
 ## 4. Starter Presentation
 
-Scaffold a starter presentation in `marp/starter.marp.md`:
+Scaffold `marp/starter.marp.md` with the chosen theme (`nobeamer` + `transition: nobeamer`, or `nobeamer-swiss` +
+`transition: swiss`):
 
 ```markdown
 ---
 marp: true
 theme: nobeamer
-class: lead
 paginate: true
 size: 16:9
 title: "Presentation Title"
@@ -130,18 +146,22 @@ description: "Presentation description"
 transition: nobeamer
 ---
 
+<!-- _class: lead -->
+
 # Presentation Title
 ## Subtitle or Topic
 
-- Key Objective 1
-- Key Objective 2
+- **Author**: Name
+- **Course**: Topic
 ```
 
 ---
 
 ## 5. Execution Summary
+
 When invoked:
-1. Create `marp/`, `marp/images/`, `marp/nb_img/` and `.vscode/` if missing.
-2. Ensure `nobeamer.css` and background textures (`paper.jpg`, `paper2.jpg`) are placed inside `marp/`.
-3. Create/update `.vscode/settings.json`, `marp.config.js`, and `.vscode/tasks.json`.
-4. Inform the user that the environment is ready for slide authoring and native compilation via IDE shortcuts (`Ctrl+Shift+B` or Marp extension).
+1. Ask which theme to install (`nobeamer`, `nobeamer-swiss` or both).
+2. Create `marp/`, `marp/images/` and `.vscode/` (and `marp/nb_img/` for `nobeamer`) if missing.
+3. Download the chosen theme files and their references into `marp/`.
+4. Create/update `.vscode/settings.json`, `marp.config.js` and `.vscode/tasks.json` with the installed themes.
+5. Tell the user the environment is ready, and point to the reference of the installed theme(s).
