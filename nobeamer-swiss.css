@@ -26,6 +26,8 @@
    1. DESIGN TOKENS (Swiss Modernism)
    ========================================================================== */
 :root {
+    /* Paper fibre grain: one tileable layer, reused by overlay classes (section 15) */
+    --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.15 0 0 0 0 0.14 0.1 0 0 0 -0.035'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     /* Theme parameter: accent color (default: Swiss red #E30613).
        Override per slide with <!-- _style: "--accent: #0066CC;" --> */
     --accent: #F53630;
@@ -79,7 +81,7 @@
 section {
     /* Pure-CSS paper: warm off-white stock with a barely-there fibre grain (tileable SVG noise) */
     background-color: #f5f4f1;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.15 0 0 0 0 0.14 0.1 0 0 0 -0.035'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-image: var(--paper-grain);
     background-size: 240px 240px;
     background-repeat: repeat;
     color: var(--text);
@@ -1374,7 +1376,36 @@ section.accent blockquote:has(a[href^="#a"]) {
 }
 
 /* ==========================================================================
-   14. TRANSITIONS (`transition: swiss`)
+   15. OVERLAY PATTERNS (`_class: grid | arc | band`)
+   Each pattern is an extra background layer over the paper, so it never touches ::before/::after
+   (those belong to the top hairline, the accent field and the pagination). The paper grain stays
+   underneath as the last layer.
+   ========================================================================== */
+
+/* 12-column guide: hairlines on the module edges of the 56px-margin content box */
+section.grid {
+    background-image: linear-gradient(to right, rgb(43 41 39 / 0.07) 1px, transparent 1px), var(--paper-grain);
+    background-size: calc((100% - 112px) / 12) 100%, 240px 240px;
+    background-position: 56px 0, 0 0;
+    background-repeat: repeat-x, repeat;
+}
+
+/* Quarter arc of accent tint, anchored to the bottom-right corner, behind the content */
+section.arc {
+    background-image: radial-gradient(circle at 100% 100%, rgb(245 54 48 / 0.14) 0 340px, transparent 341px), var(--paper-grain);
+    background-size: 100% 100%, 240px 240px;
+    background-repeat: no-repeat, repeat;
+}
+
+/* Right-hand module in a light grey band, like a column of the grid left unprinted */
+section.band {
+    background-image: linear-gradient(to right, transparent 0 75%, var(--swiss-gray-100) 75%), var(--paper-grain);
+    background-size: 100% 100%, 240px 240px;
+    background-repeat: no-repeat, repeat;
+}
+
+/* ==========================================================================
+   16. TRANSITIONS (`transition: swiss`)
    ========================================================================== */
 @keyframes marp-outgoing-transition-swiss {
     from { opacity: 1; }
