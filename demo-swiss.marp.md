@@ -618,7 +618,7 @@ Must stay in place next to the first one. `lab-expect` tells the lab that the ov
 
 ## Overlay: Grid (`grid` on `accent`)
 
-An irregular skyline of square dots on the bottom-right modules of the 12-column grid, under the content. It also works with `invert` and on plain paper.
+An irregular skyline of square dots bleeding off the bottom and right edges, under the content. It also works with `invert` and on plain paper.
 
 | Module | Width |
 | :--- | ---: |

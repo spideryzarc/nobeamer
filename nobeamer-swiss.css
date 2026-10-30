@@ -28,8 +28,8 @@
 :root {
     /* Accent field grain and the grid overlay dots (sections 13 and 15) */
     --accent-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0.22 0.22 0.22 0 0.17 0.22 0.22 0.22 0 0.17 0.22 0.22 0.22 0 0.17 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    --grid-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 778.664 389.328'%3E%3Cdefs%3E%3Cpattern id='p' width='24.333' height='24.333' patternUnits='userSpaceOnUse'%3E%3Crect x='10.1665' y='10.1665' width='4' height='4' fill='%23ffffff'/%3E%3C/pattern%3E%3CclipPath id='c'%3E%3Cpath d='M0 389.328V291.996H97.333V291.996H194.666V97.332H291.999V97.332H389.332V194.664H486.665V0.0H583.998V0.0H681.331V243.33H778.664V389.328Z'/%3E%3C/clipPath%3E%3C/defs%3E%3Crect width='778.664' height='389.328' fill='url(%23p)' clip-path='url(%23c)'/%3E%3C/svg%3E");
-    --grid-dots-field: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 778.664 389.328'%3E%3Cdefs%3E%3Cpattern id='p' width='24.333' height='24.333' patternUnits='userSpaceOnUse'%3E%3Crect x='10.1665' y='10.1665' width='4' height='4' fill='%23ffffff' fill-opacity='0.32'/%3E%3C/pattern%3E%3CclipPath id='c'%3E%3Cpath d='M0 389.328V291.996H97.333V291.996H194.666V97.332H291.999V97.332H389.332V194.664H486.665V0.0H583.998V0.0H681.331V243.33H778.664V389.328Z'/%3E%3C/clipPath%3E%3C/defs%3E%3Crect width='778.664' height='389.328' fill='url(%23p)' clip-path='url(%23c)'/%3E%3C/svg%3E");
+    --grid-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 827.322 486.66'%3E%3Cdefs%3E%3Cpattern id='p' width='24.333' height='24.333' patternUnits='userSpaceOnUse'%3E%3Crect x='10.1665' y='10.1665' width='4' height='4' fill='%23ffffff'/%3E%3C/pattern%3E%3CclipPath id='c'%3E%3Cpath d='M0 486.66V389.328H97.332V389.328H194.664V194.664H291.996V194.664H389.328V291.996H486.66V97.332H583.992V97.332H681.324V340.662H827.322V486.66Z'/%3E%3C/clipPath%3E%3C/defs%3E%3Crect width='827.322' height='486.66' fill='url(%23p)' clip-path='url(%23c)'/%3E%3C/svg%3E");
+    --grid-dots-field: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 827.322 486.66'%3E%3Cdefs%3E%3Cpattern id='p' width='24.333' height='24.333' patternUnits='userSpaceOnUse'%3E%3Crect x='10.1665' y='10.1665' width='4' height='4' fill='%23ffffff' fill-opacity='0.32'/%3E%3C/pattern%3E%3CclipPath id='c'%3E%3Cpath d='M0 486.66V389.328H97.332V389.328H194.664V194.664H291.996V194.664H389.328V291.996H486.66V97.332H583.992V97.332H681.324V340.662H827.322V486.66Z'/%3E%3C/clipPath%3E%3C/defs%3E%3Crect width='827.322' height='486.66' fill='url(%23p)' clip-path='url(%23c)'/%3E%3C/svg%3E");
     /* Paper fibre grain: one tileable layer, reused by overlay classes (section 15) */
     --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.15 0 0 0 0 0.14 0.1 0 0 0 -0.035'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     /* Theme parameter: accent color (default: Swiss red #E30613).
@@ -1381,33 +1381,35 @@ section.accent blockquote:has(a[href^="#a"]) {
 
 /* ==========================================================================
    15. OVERLAY PATTERN (`_class: grid`, also with `accent` or `invert`)
-   A skyline of square dots on a 24.333px pitch (a quarter of a 97.333px module). It spans 8 modules
-   at the bottom-right of the content box, its edges on module lines (x = 445.333, y = 250.667), and
-   each module column rises to a different height (4, 4, 12, 12, 8, 16, 16, 6 dot rows), so the block
-   is deliberately irregular. The silhouette is a clipPath inside one non-repeating background layer
-   (--grid-dots), so the rest of the slide stays clean and ::before / ::after stay free for the
-   hairline, the accent field and the pagination. On paper the dots are white (lighter than the
-   paper, never darker); on the accent and invert fields they are white at 32 percent (--grid-dots-field).
+   A skyline of square dots on a 24.333px pitch (a quarter of a 97.333px module) that bleeds off the
+   slide: the last column of dots is centred on the right edge and the last row on the bottom edge,
+   so both are cut in half and the pattern reads as part of the ground, not as a figure sitting on
+   it. Module columns rise to different heights from the bottom (4, 4, 12, 12, 8, 16, 16, 6 dot
+   rows), so the silhouette is deliberately irregular. The silhouette is a clipPath inside one
+   non-repeating background layer (--grid-dots); ::before / ::after stay free for the hairline, the
+   accent field and the pagination. On paper the dots are white (lighter than the paper, never
+   darker); on the accent and invert fields they are white at 32 percent (--grid-dots-field).
+   The layer is 827.322 x 486.66px, placed at (464.844, 245.506) and cropped by the slide.
    ========================================================================== */
 section.grid {
     background-image: var(--grid-dots), var(--paper-grain);
-    background-size: 778.664px 389.328px, 240px 240px;
-    background-position: 445.333px 250.667px, 0 0;
+    background-size: 827.322px 486.66px, 240px 240px;
+    background-position: 464.844px 245.506px, 0 0;
     background-repeat: no-repeat, repeat;
 }
 
 section.accent.grid {
     background-image: var(--grid-dots-field), var(--accent-grain) !important;
-    background-size: 778.664px 389.328px, 180px 180px !important;
-    background-position: 445.333px 250.667px, 0 0 !important;
+    background-size: 827.322px 486.66px, 180px 180px !important;
+    background-position: 464.844px 245.506px, 0 0 !important;
     background-repeat: no-repeat, repeat !important;
     background-blend-mode: normal, soft-light !important;
 }
 
 section.invert.grid {
     background-image: var(--grid-dots-field) !important;
-    background-size: 778.664px 389.328px !important;
-    background-position: 445.333px 250.667px !important;
+    background-size: 827.322px 486.66px !important;
+    background-position: 464.844px 245.506px !important;
     background-repeat: no-repeat !important;
 }
 
