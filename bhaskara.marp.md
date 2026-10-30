@@ -1,12 +1,13 @@
 ---
 marp: true
 theme: nobeamer
-class: lead
 paginate: true
 size: 16:9
 title: "The Quadratic Formula"
 transition: nobeamer
 ---
+
+<!-- _class: lead -->
 
 # The Quadratic Formula
 ## Making the Boring Beautiful

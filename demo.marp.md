@@ -1,12 +1,13 @@
 ---
 marp: true
 theme: nobeamer
-class: lead
 paginate: true
 size: 16:9
 title: "Theme Demo: nobeamer"
 transition: nobeamer
 ---
+
+<!-- _class: lead -->
 
 # NOBEAMER GUIDELINES
 
@@ -23,18 +24,18 @@ Follow these rules to create beautiful, handwritten-style presentations.
 
 Overview of what we'll cover in this demo:
 
-> [](#step) 📝 **Typography & Cards**
+> [01](#card) **📝 Typography & Cards**
 > Fonts, lists, standard blockquotes, and specialized cards.
 
-> [](#step) 📊 **Data & Code**
+> [02](#card) **📊 Data & Code**
 > Tables, technical code blocks, and mathematical formulas.
 
 ![split]()
 
-> [](#step) 🖼️ **Imagery Guidelines**
+> [03](#card) **🖼️ Imagery Guidelines**
 > Backgrounds, inline figures, framing, and native CSS image filters.
 
-> [](#step) 📐 **Layout & Utilities**
+> [04](#card) **📐 Layout & Utilities**
 > Multi-column grids and proto-bento layouts for complex content.
 
 ---
@@ -138,35 +139,18 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ---
 
-### Step Cards
+### Index Cards (`#card`)
 
-> [](#step) 🎨 **Planning**
-> Use the **Step Block** for timelines, processes, or syllabus elements.
-
-> [](#step) 🚀 **Text**
-> This is a **bold** text.
-> This is an *italic* text.
-> This is a `code` text.
-
-```markdown
-> [](#step) 🎨 **Planning**
-> Content...
-```
-
----
-
-### Definition Cards
-
-> [](#def) 📖 **Algorithm**
+> [DEF 01](#card)
+> ### Algorithm
 > A finite sequence of well-defined instructions to solve a class of problems or perform a computation.
 
-> [](#def) 📖 **Text**
-> This is a **bold** text.
-> This is an *italic* text.
-> This is a `code` text.
+> [STEP 2](#card-r) **🎨 Planning**
+> Use cards for **definitions**, *steps*, theorems and `syllabus` items.
 
 ```markdown
-> [](#def) 📖 **Term**
+> [DEF 01](#card)
+> ### Algorithm
 > Definition content...
 ```
 
@@ -469,7 +453,7 @@ int main() {
 
 ![split]()
 
-> [](#step) **Step**
+> [STEP](#card) **Step**
 > you don't need to use
 > dark blocks, just for fun.
 
@@ -490,5 +474,58 @@ What a mess!
 
 I could kill minutes in this single slide.
 
-> [](#def) **Bento**
->As long as you keep the blocks **misaligned**, it will look less like a grid.
+> [](#card) **Bento**
+> As long as you keep the blocks **misaligned**, it will look less like a grid.
+
+---
+
+<!-- _class: cols-2-a -->
+
+## Asymmetric Columns (`cols-2-a`)
+
+> [](#i) **Narrow column**
+> Two parts of five: a framing note.
+
+![split]()
+
+The wide column takes three parts: room for the main explanation, a table or a figure.
+
+![w:420 h:200 rounded](images/light_desk.jpg)
+*A figure with a handwritten caption*
+
+---
+
+<!-- _class: invert -->
+
+## Chalkboard (`invert`)
+
+The **invert** slide is a chalkboard: use it to break a long session into chapters.
+
+- Chalk-white text, *yellow chalk* for **bold** in titles
+- Post-its and paper notes stick to the board
+
+> A note pinned to the board.
+
+---
+
+<!-- _class: accent grid -->
+
+## Construction Paper (`accent`) on Graph Paper (`grid`)
+
+`accent` is a sheet of coloured construction paper; `grid` lays notebook graph paper under any slide. `nobeamer` keeps its own palette: `--accent` is ignored.
+
+| Class | Look |
+| :--- | :--- |
+| `accent` | blue construction paper |
+| `grid` | graph paper with a red margin |
+
+---
+
+<!-- _class: tiles -->
+
+## Tiles Watermark (`tiles`)
+
+A field of modular rounded tiles fills the slide as a faint watermark, in `nobeamer`'s own colours.
+
+> [](#d-c) **Dark block, centred content**
+> The `-c` and `-r` suffixes align the content of dark blocks.
