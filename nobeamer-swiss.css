@@ -1287,7 +1287,8 @@ section:is(.invert, .accent) blockquote em {
    average colour stays within a few levels of the accent. Everything that is accent-coloured elsewhere (rules, ticks, marks, bold
    in tables) turns white so it stays visible on the field. */
 section.accent {
-    background-color: var(--accent) !important;
+    /* The field is the accent stepped down toward black: white type on the raw accent only reaches 3.9:1 */
+    background-color: color-mix(in srgb, var(--accent) 84%, #000000) !important;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0.22 0.22 0.22 0 0.17 0.22 0.22 0.22 0 0.17 0.22 0.22 0.22 0 0.17 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") !important;
     background-size: 180px 180px !important;
     background-blend-mode: soft-light !important;
