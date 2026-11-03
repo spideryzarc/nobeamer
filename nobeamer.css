@@ -1100,20 +1100,12 @@ blockquote:has(a[href="#card-r"]) a[href^="#card"]:not(:empty) {
 
 /* ==========================================================================
    16. LEAD (title slide) — <!-- _class: lead -->
-   Centered title, handwritten subtitle; a Markdown list becomes the metadata line at the bottom:
+   Large title, handwritten subtitle, all flush left like any other slide; a Markdown list becomes the
+   metadata line at the bottom:
    - **Author**: Name
    ========================================================================== */
-section.lead {
-    text-align: center;
-    align-items: center;
-}
-
 section.lead h1 {
     font-size: 96px;
-}
-
-section.lead h1::after {
-    margin: -10px auto 0;
 }
 
 section.lead h2 {
@@ -1129,7 +1121,7 @@ section.lead ul {
     right: var(--padding-general);
     bottom: 24px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 6px 28px;
     margin: 0;

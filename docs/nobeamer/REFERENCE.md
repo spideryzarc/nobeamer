@@ -25,7 +25,7 @@ Set per slide with `<!-- _class: name -->`; combine with spaces (`<!-- _class: a
 
 | Class | Look in `nobeamer` |
 | :--- | :--- |
-| `lead` | Title slide: centred, large title with its gold bar, handwritten subtitle; a Markdown list becomes the metadata line at the bottom. Works with side backgrounds (`![bg left:50%](…)`). |
+| `lead` | Title slide: flush-left, large title with its gold bar, handwritten subtitle; a Markdown list becomes the metadata line at the bottom. Works with side backgrounds (`![bg left:50%](…)`). |
 | `invert` | A chalkboard: dark slate with chalk dust, chalk-white text, yellow chalk for bold in titles. Paper notes and post-its stick to it. |
 | `accent` | A sheet of blue construction paper with white text. `nobeamer` keeps its own palette: `--accent` is ignored. |
 | `cols-2`, `cols-3` | Columns; `![split]()` starts the next one. Post-its bleed to the slide edges, dark blocks stay misaligned on purpose. |
