@@ -14,7 +14,7 @@ transition: nobeamer
 This document serves as both a demo and a guideline for the `nobeamer` theme.
 Follow these rules to create beautiful, handwritten-style presentations.
 
-![bg left:56%](images/pexels-pixabay-257092.jpg)
+![bg left:45%](images/pexels-pixabay-257092.jpg)
 
 ---
 
@@ -39,8 +39,10 @@ Overview of what we'll cover in this demo:
 > Backgrounds, inline figures, framing, and native CSS image filters.
 
 > [04](#card)
-> ### 📐 Layout & Utilities
+> #### 📐 Layout & Utilities
 > Multi-column grids and proto-bento layouts for complex content.
+
+
 
 ---
 
