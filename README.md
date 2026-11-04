@@ -27,6 +27,7 @@ Since the grammar is shared, you can teach with `nobeamer` and hand out the same
 - **[`nobeamer` features tour](https://spideryzarc.github.io/nobeamer/demo.marp.html)** ([source](demo.marp.md))
 - **[`nobeamer` applied: the quadratic formula](https://spideryzarc.github.io/nobeamer/bhaskara.marp.html)** ([source](bhaskara.marp.md))
 - **[`nobeamer-swiss` feature guide](https://spideryzarc.github.io/nobeamer/demo-swiss.marp.html)** ([source](demo-swiss.marp.md))
+- **[`nobeamer-swiss` applied: production planning](production.swiss.marp.md)** — a worked linear programming case study in English.
 
 ## Documentation
 
