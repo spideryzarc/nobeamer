@@ -510,6 +510,34 @@ The wide column takes three parts: room for the main explanation, a table or a f
 
 ---
 
+<!-- _class: cols-2-a -->
+
+## Table in Asymmetric Columns
+
+> [](#i) **Narrow column**
+> Keep the context short.
+
+| Element | Role | Style | Position | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| Note | Context | Post-it | Above | Ready |
+| Table | Summary | Compact | Below | Ready |
+
+Use `![split]()` to move to the wider column.
+
+![split]()
+
+### Layout Reference
+
+| Content | Placement | Purpose | Style | Alignment | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Note | Narrow column | Introduce the topic | Post-it | Left | Ready |
+| Table | Wide column | Compare details | Compact | Center | Ready |
+| Caption | Below the table | Explain the comparison | Italic | Left | Ready |
+
+*Give detailed comparisons room to breathe.*
+
+---
+
 <!-- _class: invert -->
 
 ## Chalkboard (`invert`)
