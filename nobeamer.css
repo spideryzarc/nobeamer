@@ -1051,7 +1051,7 @@ section:is(.cols-2, .cols-3, .cols-2-a, .cols-3-a) img[alt="split"] {
    > [DEF 01](#card)          tag (optional; [](#card) for none)
    > ### Title                (or ### <!-- fit --> Title; optional: a card without ### has no title)
    > Body text.
-   Only a ### heading is a title. **Bold** inside a card is just bold.
+   Any heading level (h1–h6) is a title. **Bold** inside a card is just bold.
    A plain cream index card with softly rounded corners and a red header rule; the tag is a slightly crooked sticker.
    -c / -r align the content. Must stay after section 14 (see cascade note at the top).
    ========================================================================== */
@@ -1077,14 +1077,14 @@ blockquote a[href^="#card"]:empty {
     display: none;
 }
 
-/* A tag alone on its line (the paragraph right before a ### title): float its paragraph, not the link inside it.
+/* A tag alone on its line (the paragraph right before a heading): float its paragraph, not the link inside it.
    A tag followed by text on the same line stays in that paragraph and floats on its own (rule below). */
-blockquote:has(a[href^="#card"]) p:has(> a[href^="#card"]:not(:empty)):has(+ :is(h3, marp-h3)) {
+blockquote:has(a[href^="#card"]) p:has(> a[href^="#card"]:not(:empty)):has(+ :is(h1, h2, h3, h4, h5, h6, marp-h1, marp-h2, marp-h3, marp-h4, marp-h5, marp-h6)) {
     float: right;
     margin: 0 0 6px 12px;
 }
 
-blockquote:has(a[href="#card-r"]) p:has(> a[href^="#card"]:not(:empty)):has(+ :is(h3, marp-h3)) {
+blockquote:has(a[href="#card-r"]) p:has(> a[href^="#card"]:not(:empty)):has(+ :is(h1, h2, h3, h4, h5, h6, marp-h1, marp-h2, marp-h3, marp-h4, marp-h5, marp-h6)) {
     float: left;
     margin: 0 12px 6px 0;
 }
@@ -1107,8 +1107,8 @@ blockquote a[href^="#card"]:not(:empty) {
     transform: rotate(2.5deg);
 }
 
-/* Title: the ### heading, over the red header rule of the card */
-blockquote:has(a[href^="#card"]) :is(h3, marp-h3) {
+/* Title: any heading level, over the red header rule of the card */
+blockquote:has(a[href^="#card"]) :is(h1, h2, h3, h4, h5, h6, marp-h1, marp-h2, marp-h3, marp-h4, marp-h5, marp-h6) {
     display: block;
     margin: 0 0 0.3em;
     padding-bottom: 0.15em;
@@ -1120,13 +1120,13 @@ blockquote:has(a[href^="#card"]) :is(h3, marp-h3) {
     color: var(--primary);
 }
 
-/* A ### title sits beside the floated tag (its own block formatting context) */
-blockquote:has(a[href^="#card"]) :is(h3, marp-h3) {
+/* A heading sits beside the floated tag (its own block formatting context) */
+blockquote:has(a[href^="#card"]) :is(h1, h2, h3, h4, h5, h6, marp-h1, marp-h2, marp-h3, marp-h4, marp-h5, marp-h6) {
     overflow: hidden;
 }
 
-/* A ### <!-- fit --> title fills the width but never grows past a large heading on the card */
-blockquote:has(a[href^="#card"]) :is(h3, marp-h3)::part(auto-scaling) {
+/* A <!-- fit --> heading fills the width but never grows past a large heading on the card */
+blockquote:has(a[href^="#card"]) :is(h1, h2, h3, h4, h5, h6, marp-h1, marp-h2, marp-h3, marp-h4, marp-h5, marp-h6)::part(auto-scaling) {
     max-height: 72px;
 }
 
