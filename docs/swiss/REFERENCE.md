@@ -29,6 +29,7 @@ Set per slide with `<!-- _class: name -->`; combine with spaces (`<!-- _class: a
 | `accent` | The slide printed in the accent colour (stepped toward black for contrast), with paper grain and white type. The `#card` tag turns white with accent text. |
 | `cols-2`, `cols-3` | Equal columns (24px / 18px gutter); `![split]()` starts the next column. |
 | `cols-2-a`, `cols-3-a` | Asymmetric columns, 2:3 and 3:4:5. |
+| `editorial cols-2-a` | Publication-style brief: an oversized headline in the narrow module and a full-width data module. Supports `#metrics`, `_header`, and `_footer`. |
 | `grid` | A skyline of white square dots bleeding off the bottom-right corner. |
 | `tiles` | A full-slide watermark of modular rounded tiles with three accent circles. |
 
@@ -105,6 +106,41 @@ Right column…
 
 Content that is too tall spills downward (visible), never into a hidden column. `cols-2-a` gives the first column 2/5
 of the width and the second 3/5; `cols-3-a` splits 3:4:5.
+
+### Editorial brief
+
+Use `editorial cols-2-a` when one short argument frames a table or another structured dataset. The `#metrics`
+marker turns a two-item Markdown list into a large numeric strip in the wide module. `_header` and `_footer` use
+Marp's native running-matter directives.
+
+```markdown
+<!-- _class: editorial cols-2-a -->
+<!-- _header: "PRODUCTION PLANNING / THE BRIEF" -->
+<!-- _footer: "Contribution = revenue minus variable costs." -->
+
+# The **decision.**
+
+Short framing text.
+
+### One weekly plan
+
+Choose the best product mix.
+
+![split]()
+
+### Production data
+
+| Per lamp | Standard | Studio |
+| :--- | ---: | ---: |
+| Machining (h) | 2 | 1 |
+| Assembly (h) | 1 | 2 |
+
+> [Weekly capacity](#metrics)
+> - **100** *h*
+>   - Machining
+> - **80** *h*
+>   - Assembly
+```
 
 ## Images and figures
 

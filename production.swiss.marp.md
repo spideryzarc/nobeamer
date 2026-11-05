@@ -14,15 +14,13 @@ transition: swiss
      Monetary amounts are USD; production quantities and capacities are weekly. -->
 
 <!-- _class: lead -->
-<!-- math-verified: image panel=35%; text width=1280*(1-0.35)=832px; image width=1200px; verified by scratch/verify_production_cover.py -->
-<!-- _style: "--lead-text-w: 832px;" -->
 
 ![bg right:55% saturate:0](images/production-planning/jielde_lamp_1200.jpg)
 
 <!-- Cover photograph: Steffen Petermann / Unsplash.
      https://unsplash.com/photos/a-black-lamp-on-a-white-table-next-to-a-green-wall-cGcFrQTQ3Jo -->
 
-# <!--fit--> PRODUCTION<br>**PLANNING**
+# <!--fit--> PRODUCTION <br> **PLANNING**
 
 ### *A linear programming case study*
 
@@ -32,33 +30,35 @@ transition: swiss
 
 ---
 
-<!-- _class: cols-2-a -->
+<!-- _class: editorial cols-2-a -->
+<!-- _header: "PRODUCTION PLANNING / THE BRIEF" -->
+<!-- _footer: "Contribution = sales revenue minus variable costs. Fixed costs are excluded." -->
 
-## The **Decision**
+# The **decision.**
 
 A workshop makes **Standard** and **Studio** lamps using shared machining and assembly time.
 
-<br>
+### One weekly plan
 
-> [BRIEF](#card)
-> ### <!--fit--> One weekly plan
-> Choose the product mix that earns the highest contribution within the available hours.
+Choose the product mix with the highest contribution within the available hours.
 
 ![split]()
 
-### Production Data
+### Production data
 
 <!-- math-verified: machining coefficients=[2,1], capacity=100; assembly coefficients=[1,2], capacity=80; contribution coefficients=[40,50] USD/unit; verified by lab/production_planning.py -->
 
 | Per lamp | Standard | Studio |
 | :--- | ---: | ---: |
-| Machining (hours) | 2 | 1 |
-| Assembly (hours) | 1 | 2 |
+| Machining (h) | 2 | 1 |
+| Assembly (h) | 1 | 2 |
 | Contribution (USD) | 40 | 50 |
 
-**Weekly capacity:** 100 machining hours; 80 assembly hours.
-
-*Contribution = sales revenue minus variable costs. Fixed costs are excluded.*
+> [Weekly capacity](#metrics)
+> - **100** *h*
+>   - Machining
+> - **80** *h*
+>   - Assembly
 
 ---
 

@@ -36,9 +36,9 @@
     --grid-dots-field: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 827.322 486.66'%3E%3Cdefs%3E%3Cpattern id='p' width='24.333' height='24.333' patternUnits='userSpaceOnUse'%3E%3Crect x='10.1665' y='10.1665' width='4' height='4' fill='%23ffffff' fill-opacity='0.32'/%3E%3C/pattern%3E%3CclipPath id='c'%3E%3Cpath d='M0 486.66V389.328H97.332V389.328H194.664V194.664H291.996V194.664H389.328V291.996H486.66V97.332H583.992V97.332H681.324V340.662H827.322V486.66Z'/%3E%3C/clipPath%3E%3C/defs%3E%3Crect width='827.322' height='486.66' fill='url(%23p)' clip-path='url(%23c)'/%3E%3C/svg%3E");
     /* Paper fibre grain: one tileable layer, reused by overlay classes (section 15) */
     --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.15 0 0 0 0 0.14 0.1 0 0 0 -0.035'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    /* Theme parameter: accent color (default: Swiss red #E30613).
+    /* Theme parameter: accent color (default: Swiss red #EE1C12).
        Override per slide with <!-- _style: "--accent: #0066CC;" --> */
-    --accent: #F53630;
+    --accent: #EE1C12;
 
     /* Palette: authentic International Typographic Style */
     --swiss-red: var(--accent);
@@ -924,7 +924,7 @@ section.cols-2-a {
     --cols2-shift: 20%;          /* 2:3 asymmetric split (40% : 60%, 457.6px : 686.4px) */
 }
 
-section.cols-2-a > :not(h1):not(h2):not(table):not(p:has(> img[alt="split"])) {
+section.cols-2-a > :not(h1):not(h2):not(header):not(footer):not(table):not(p:has(> img[alt="split"])) {
     margin-left: 0 !important;
     margin-right: var(--cols2-shift) !important;
     max-width: none !important;
@@ -934,7 +934,7 @@ section.cols-2-a > table:not(p:has(> img[alt="split"]) ~ *) {
     --table-to: calc(100% - var(--cols2-shift));
 }
 
-section.cols-2-a > p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(table):not(p:has(> img[alt="split"])) {
+section.cols-2-a > p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(header):not(footer):not(table):not(p:has(> img[alt="split"])) {
     margin-left: calc(-1 * var(--cols2-shift)) !important;
     margin-right: 0 !important;
     max-width: none !important;
@@ -950,7 +950,7 @@ section.cols-3-a {
     --cols3-s3: 25%;
 }
 
-section.cols-3-a > :not(h1):not(h2):not(table):not(p:has(> img[alt="split"])) {
+section.cols-3-a > :not(h1):not(h2):not(header):not(footer):not(table):not(p:has(> img[alt="split"])) {
     margin-left: 0 !important;
     margin-right: var(--cols3-s1) !important;
     max-width: none !important;
@@ -960,7 +960,7 @@ section.cols-3-a > table:not(p:has(> img[alt="split"]) ~ *) {
     --table-to: calc(100% - var(--cols3-s1));
 }
 
-section.cols-3-a > p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(table):not(p:has(> img[alt="split"])) {
+section.cols-3-a > p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(header):not(footer):not(table):not(p:has(> img[alt="split"])) {
     margin-left: calc(-1 * var(--cols3-s1)) !important;
     margin-right: var(--cols3-s3) !important;
     max-width: none !important;
@@ -971,7 +971,7 @@ section.cols-3-a > p:has(> img[alt="split"]) ~ table {
     --table-to: calc(100% - var(--cols3-s3));
 }
 
-section.cols-3-a > p:has(> img[alt="split"]) ~ p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(table):not(p:has(> img[alt="split"])) {
+section.cols-3-a > p:has(> img[alt="split"]) ~ p:has(> img[alt="split"]) ~ :not(h1):not(h2):not(header):not(footer):not(table):not(p:has(> img[alt="split"])) {
     margin-left: calc(-1 * var(--cols3-s3)) !important;
     margin-right: 0 !important;
     max-width: none !important;
@@ -1006,6 +1006,283 @@ section img[alt="split"] {
     margin: 0 !important;
     padding: 0 !important;
     visibility: hidden !important;
+}
+
+/* ==========================================================================
+   11B. EDITORIAL BRIEF (<!-- _class: editorial cols-2-a -->)
+   A Swiss publication spread: the headline lives in the narrow module, while
+   data and #metrics occupy the wide module. The deck supplies only Markdown.
+   ========================================================================== */
+section.editorial.cols-2-a {
+    --cols2-shift: 22%;
+    --swiss-black: #11100f;
+    --text: var(--swiss-black);
+    --primary: var(--swiss-black);
+    background-color: #f5f2eb;
+    padding-top: 56px;
+    padding-right: 40px;
+    padding-bottom: 68px;
+    padding-left: 40px;
+}
+
+/* Running matter uses Marp's native _header / _footer directives. */
+section.editorial.cols-2-a > header,
+section.editorial.cols-2-a > footer {
+    column-span: all;
+    position: absolute;
+    left: 40px;
+    right: 40px;
+    margin: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: none !important;
+    padding: 0;
+    font-family: var(--font-tech);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--swiss-black);
+}
+
+section.editorial > header {
+    top: 24px;
+}
+
+section.editorial > footer {
+    bottom: 43px;
+    padding-top: 16px;
+    border-top: 2px solid var(--swiss-black);
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+section.editorial.cols-2-a > footer {
+    font-size: 18px;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+/* // math-verified: usable=1200px; gap=24px; base-column=588px;
+   editorial-left=588*0.78=458.64px; editorial-right=588*1.22=717.36px;
+   right-column-x=40+588+24-(588*0.22)=522.64px. */
+section.editorial.cols-2-a > h1 {
+    column-span: none;
+    width: calc(100% - var(--cols2-shift));
+    margin: 24px var(--cols2-shift) 24px 0;
+    font-size: 112px;
+    font-weight: 900;
+    line-height: 0.82;
+    letter-spacing: -0.06em;
+}
+
+section.editorial > h1::after {
+    display: none;
+}
+
+section.editorial > h1 strong {
+    color: var(--accent);
+}
+
+section.editorial h3 {
+    margin-top: 24px;
+    margin-bottom: 10px;
+    font-family: var(--font-tech);
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+section.editorial > p:not(:has(> img[alt="split"])) {
+    font-size: 31px;
+    line-height: 1.16;
+}
+
+/* The data table becomes the principal object in the wide module. */
+section.editorial.cols-2-a > table {
+    display: table;
+    width: calc(100% + var(--cols2-shift));
+    max-width: calc(100% + var(--cols2-shift));
+    table-layout: fixed;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 1.05em;
+    border-top-width: 7px;
+    border-bottom: 2px solid var(--swiss-black);
+}
+
+section.editorial table :is(th, td) {
+    background: transparent;
+    border-right: 0;
+    border-left: 0;
+}
+
+section.editorial table th {
+    padding: 10px;
+}
+
+section.editorial table td {
+    padding: 11px 10px;
+}
+
+section.editorial table :is(th, td):first-child {
+    width: 50%;
+}
+
+section.editorial table th {
+    font-family: var(--font-sans);
+    font-size: 1em;
+    letter-spacing: -0.01em;
+}
+
+section.editorial table td {
+    font-family: var(--font-sans);
+    font-size: 1em;
+    font-variant-numeric: tabular-nums lining-nums;
+}
+
+section.editorial table td:not(:first-child) {
+    font-size: 34px;
+    font-weight: 600;
+}
+
+section.editorial table tr:nth-child(even) {
+    background: transparent;
+}
+
+section.editorial table :is(th, td) {
+    border-bottom-color: var(--swiss-black);
+    border-bottom-width: 2px;
+}
+
+/* Metric strip: > [LABEL](#metrics), followed by a two-item Markdown list. */
+section.editorial blockquote:has(a[href="#metrics"]) {
+    width: auto;
+    max-width: none;
+    margin-top: 43px !important;
+    margin-bottom: 0 !important;
+    padding: 0;
+    border: none;
+    border-top: 2px solid var(--swiss-black);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: var(--swiss-black);
+    font-family: var(--font-sans);
+}
+
+section.editorial blockquote:has(a[href="#metrics"]) > p:has(> a[href="#metrics"]) {
+    margin: 0 0 22px;
+    line-height: 1;
+}
+
+section.editorial blockquote a[href="#metrics"] {
+    color: var(--swiss-black);
+    font-family: var(--font-tech);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+section.editorial blockquote:has(a[href="#metrics"]) > ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 72px;
+    margin: 0;
+    padding: 0;
+}
+
+section.editorial blockquote:has(a[href="#metrics"]) > ul > li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+section.editorial blockquote:has(a[href="#metrics"]) > ul > li::before {
+    content: none;
+}
+
+section.editorial blockquote:has(a[href="#metrics"]) > ul > li {
+    font-family: var(--font-tech);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+section.editorial blockquote:has(a[href="#metrics"]) > ul > li > strong {
+    display: inline-block;
+    color: var(--swiss-black);
+    font-family: var(--font-heading);
+    font-size: 125px;
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.06em;
+}
+
+section.editorial blockquote:has(a[href="#metrics"]) > ul > li > em {
+    display: inline-block;
+    color: var(--accent);
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+section.editorial blockquote:has(a[href="#metrics"]) > ul > li > ul {
+    display: block;
+    margin: 6px 0 0;
+    padding: 0;
+}
+
+section.editorial::after {
+    right: 40px;
+    bottom: 18px;
+    top: auto;
+    padding: 0;
+    background: none;
+    writing-mode: horizontal-tb;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+section.editorial[data-marpit-pagination="1"]::after { content: "01" !important; }
+section.editorial[data-marpit-pagination="2"]::after { content: "02" !important; }
+section.editorial[data-marpit-pagination="3"]::after { content: "03" !important; }
+section.editorial[data-marpit-pagination="4"]::after { content: "04" !important; }
+section.editorial[data-marpit-pagination="5"]::after { content: "05" !important; }
+section.editorial[data-marpit-pagination="6"]::after { content: "06" !important; }
+section.editorial[data-marpit-pagination="7"]::after { content: "07" !important; }
+section.editorial[data-marpit-pagination="8"]::after { content: "08" !important; }
+section.editorial[data-marpit-pagination="9"]::after { content: "09" !important; }
+
+section.editorial blockquote:has(a[href="#metrics"]) > ul > li > ul > li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--font-tech);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+section.editorial blockquote:has(a[href="#metrics"]) > ul > li > ul > li::before {
+    content: none;
 }
 
 /* ==========================================================================

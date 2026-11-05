@@ -669,3 +669,35 @@ Any word in the alt text of a background image frames it with rounded corners; w
 ```
 
 ![bg right:45% 80% framed](images/light_desk.jpg)
+
+---
+
+<!-- _class: editorial cols-2-a -->
+<!-- _header: "PRODUCTION PLANNING / THE BRIEF" -->
+<!-- _footer: "Contribution = sales revenue minus variable costs. Fixed costs are excluded." -->
+
+# The **decision.**
+
+A workshop makes **Standard** and **Studio** lamps using shared machining and assembly time.
+
+### One weekly plan
+
+Choose the product mix with the highest contribution within the available hours.
+
+![split]()
+
+### Production data
+
+<!-- math-verified: machining coefficients=[2,1], capacity=100; assembly coefficients=[1,2], capacity=80; contribution coefficients=[40,50] USD/unit; verified by lab/production_planning.py -->
+
+| Per lamp | Standard | Studio |
+| :--- | ---: | ---: |
+| Machining (h) | 2 | 1 |
+| Assembly (h) | 1 | 2 |
+| Contribution (USD) | 40 | 50 |
+
+> [Weekly capacity](#metrics)
+> - **100** *h*
+>   - Machining
+> - **80** *h*
+>   - Assembly
