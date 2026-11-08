@@ -25,21 +25,23 @@ Follow these rules to create beautiful, handwritten-style presentations.
 Overview of what we'll cover in this demo:
 
 > [01](#card)
-> ### 📝 Typography & Cards
+> ### <!--fit--> 📝 Typography & Cards
 > Fonts, lists, standard blockquotes, and specialized cards.
 
 > [02](#card)
-> ### 📊 Data & Code
+> ### <!--fit--> 📊 Data & Code
 > Tables, technical code blocks, and mathematical formulas.
 
 ![split]()
 
+<br> 
+
 > [03](#card)
-> ### 🖼️ Imagery Guidelines
+> ### <!--fit-->🖼️ Imagery Guidelines
 > Backgrounds, inline figures, framing, and native CSS image filters.
 
 > [04](#card)
-> #### 📐 Layout & Utilities
+> #### <!--fit-->📐 Layout & Utilities
 > Multi-column grids and proto-bento layouts for complex content.
 
 
@@ -469,7 +471,7 @@ int main() {
 ![split]()
 
 > [STEP](#card)
-> ### Step
+> ### <!--fit--> Step
 > you don't need to use
 > dark blocks, just for fun.
 
@@ -491,7 +493,7 @@ What a mess!
 I could kill minutes in this single slide.
 
 > [](#card)
-> ### Bento
+> ### <!--fit-->Bento
 > As long as you keep the blocks **misaligned**, it will look less like a grid.
 
 ---
@@ -563,6 +565,8 @@ The **invert** slide is a chalkboard: use it to break a long session into chapte
 | :--- | :--- |
 | `accent` | blue construction paper |
 | `grid` | graph paper with a red margin |
+
+
 
 ---
 
