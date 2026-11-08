@@ -63,54 +63,88 @@ transition: nobeamer
 
 ## Usage Guide
 
+### Slide Classes
+
+Set per slide with `<!-- _class: name -->`; combine with spaces (`<!-- _class: accent grid -->`).
+
+| Class | Look |
+| :--- | :--- |
+| `lead` | Title slide: flush-left, large title with its gold bar, handwritten subtitle; a Markdown list becomes the metadata line at the bottom. Works with side backgrounds (`![bg left:50%](…)`). |
+| `invert` | A chalkboard: dark slate with chalk dust, chalk-white text, yellow chalk for bold in titles. Paper notes and post-its stick to it. |
+| `accent` | A sheet of blue construction paper with white text. |
+| `cols-2`, `cols-3` | Columns; `![split]()` starts the next one. |
+| `cols-2-a`, `cols-3-a` | Asymmetric columns, 2:3 and 3:4:5. |
+| `grid` | Notebook graph paper with a red margin line under the content. |
+| `tiles` | A faint watermark of modular rounded tiles with three gold circles. |
+
+`grid` and `tiles` also work with `invert` (chalk lines) and `accent`.
+
+`lead` is a title slide: set it per slide (`<!-- _class: lead -->`), not for the whole deck in the front matter.
+
+```markdown
+<!-- _class: lead -->
+
+# The Quadratic Formula
+## Making the Boring Beautiful
+
+- **Course**: Algebra I
+- **Date**: 2026-10-30
+
+![bg left:50%](images/parabola_arch.png)
+```
+
 ### Specialized Cards (Blockquotes)
 
-Use specific links in standard blockquotes to trigger specialized card styles. Post-it cards (`#i`, `#a`, `#s`) can be aligned to the **left edge (default)**, **centered**, or **right edge**.
+Use specific links in standard blockquotes to trigger specialized card styles.
 
-| Type | Alignment | Syntax | Description |
-| :--- | :--- | :--- | :--- |
-| **Info** | Left *(default)* | `> [](#i)` *(or `#i-l`)* | Yellow post-it attached to left margin. |
-| | Center | `> [](#i-c)` *(or `#ic`)* | Centered yellow post-it card. |
-| | Right | `> [](#i-r)` *(or `#ir`)* | Yellow post-it attached to right margin. |
-| **Alert** | Left *(default)* | `> [](#a)` *(or `#a-l`)* | Red post-it attached to left margin. |
-| | Center | `> [](#a-c)` *(or `#ac`)* | Centered red post-it card. |
-| | Right | `> [](#a-r)` *(or `#ar`)* | Red post-it attached to right margin. |
-| **Success** | Left *(default)* | `> [](#s)` *(or `#s-l`)* | Green post-it attached to left margin. |
-| | Center | `> [](#s-c)` *(or `#sc`)* | Centered green post-it card. |
-| | Right | `> [](#s-r)` *(or `#sr`)* | Green post-it attached to right margin. |
-| **Bento** | Full / Auto | `> [](#d) **Title**` | Dark, digital style. Great for grids. |
-| **Step** | Full / Auto | `> [](#step) **Title**` | Clean modern card with top accent for timelines/syllabus. |
-| **Definition** | Full / Auto | `> [](#def) **Title**` | Clean modern card with gradient accent for definitions. |
+| Syntax | Card |
+| :--- | :--- |
+| `> [](#i) **Title**` | Information — yellow post-it |
+| `> [](#a) **Title**` | Alert — red post-it |
+| `> [](#s) **Title**` | Success — green post-it |
+| `> [](#d) **Title**` | Dark block — glossy, rounded, for "proto-bento" grids |
+| `> [TAG](#card)` | Index card — definitions, theorems, steps, syllabus items |
 
-**Examples:**
+Post-its are attached to the slide edge and slide in when the slide appears. Alignment suffixes position them:
+
+| Suffix | Post-it | Dark block |
+| :--- | :--- | :--- |
+| none or `-l` (`#i`, `#i-l`) | attached to the left edge | content left |
+| `-c` (`#i-c`) | floating in the centre | content centred |
+| `-r` (`#i-r`) | attached to the right edge | content right |
 
 ```markdown
 > [](#i) **Left Post-it**
 > Stuck to the left margin.
 
-> [](#i-c) **Centered Post-it**
-> Floating in the center.
-
-> [](#i-r) **Right Post-it**
+> [](#a-r) **Right Alert**
 > Stuck to the right margin.
+```
+
+**Index card (`#card`):** a plain cream card with softly rounded corners and a red header rule. The tag (`[TAG](#card)`, or `[](#card)` for none) is a slightly crooked gold sticker. The title is an optional `###` heading (`### <!--fit-->` fills the width up to the tag); without it the card has no title and **bold** is just bold. `#card-c` centres the content; `#card-r` aligns it right and moves the sticker to the left.
+
+```markdown
+> [DEF 01](#card)
+> ### Algorithm
+> A finite sequence of well-defined instructions…
 ```
 
 ### Multi-Column Layouts
 
-You can create 2 or 3 column layouts using section classes. Use the special image tag `![split]()` to force content into the next column.
+You can create 2 or 3 column layouts using section classes. Use the special image tag `![split]()` to force content into the next column. The slide title spans all columns.
 
 **2 Columns:**
 
 ```markdown
 <!-- _class: cols-2 -->
 
-# Left Column
-Content...
+## Title (spans all columns)
+
+Left column…
 
 ![split]()
 
-# Right Column
-Content...
+Right column…
 ```
 
 **3 Columns:**
@@ -124,6 +158,8 @@ Column 2
 Column 3
 ```
 
+**Asymmetric columns:** `cols-2-a` gives the first column 2/5 of the width and the second 3/5; `cols-3-a` splits 3:4:5. Content that is too tall spills downward (visible), never into a hidden column.
+
 ### Image Modifiers & Formatting
 
 `nobeamer` supports Marp's native CSS filters alongside custom theme keywords for corner rounding within image tags (`![...]`).
@@ -135,6 +171,8 @@ Column 3
 | **Large Round** | `![w:300 rounded-lg](image.jpg)` | Pronounced rounded corners (`28px`). |
 | **Circle** | `![w:200 circle](image.jpg)` | Circular crop (`50%` border-radius). |
 | **Native Filters** | `![w:300 opacity:80% sepia:50%](image.jpg)` | Native Marp CSS filters (`opacity`, `sepia`, `saturate`, `grayscale`, `blur`, `brightness`, `contrast`). |
+| **Caption** | `![w:420 h:200](image.jpg)` + `*Caption*` on the next line | Figure with a handwritten caption under it. |
+| **Framed Background** | `![bg left:45% 85% rounded](image.jpg)` | Rounded side background; with a size, the clip follows the image. |
 
 **Example:**
 
@@ -185,9 +223,6 @@ def process_data(records: list[dict]) -> dict:
 
 </div>
 ```
-
-*(Tip: Add class `dark` — `<div class="code-scroll dark">` — for a dark terminal-style card).*
-
 ### Print / PDF Export
 
 All theme animations (code blocks, tables, dark blocks, lateral cards) are **automatically disabled** when exporting to PDF or printing. No manual class or configuration is needed — the theme uses `@media print` to strip animations, transitions, transforms, filters, and `backdrop-filter` globally, ensuring a clean static output.

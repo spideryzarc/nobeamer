@@ -1,19 +1,20 @@
 ---
 marp: true
 theme: nobeamer
-class: lead
 paginate: true
 size: 16:9
 title: "Theme Demo: nobeamer"
 transition: nobeamer
 ---
 
+<!-- _class: lead -->
+
 # NOBEAMER GUIDELINES
 
 This document serves as both a demo and a guideline for the `nobeamer` theme.
 Follow these rules to create beautiful, handwritten-style presentations.
 
-![bg left:56%](images/pexels-pixabay-257092.jpg)
+![bg left:45%](images/pexels-pixabay-257092.jpg)
 
 ---
 
@@ -23,19 +24,27 @@ Follow these rules to create beautiful, handwritten-style presentations.
 
 Overview of what we'll cover in this demo:
 
-> [](#step) 📝 **Typography & Cards**
+> [01](#card)
+> ### <!--fit--> 📝 Typography & Cards
 > Fonts, lists, standard blockquotes, and specialized cards.
 
-> [](#step) 📊 **Data & Code**
+> [02](#card)
+> ### <!--fit--> 📊 Data & Code
 > Tables, technical code blocks, and mathematical formulas.
 
 ![split]()
 
-> [](#step) 🖼️ **Imagery Guidelines**
+<br> 
+
+> [03](#card)
+> ### <!--fit-->🖼️ Imagery Guidelines
 > Backgrounds, inline figures, framing, and native CSS image filters.
 
-> [](#step) 📐 **Layout & Utilities**
+> [04](#card)
+> #### <!--fit-->📐 Layout & Utilities
 > Multi-column grids and proto-bento layouts for complex content.
+
+
 
 ---
 
@@ -82,6 +91,11 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 ```markdown
 > This is the standard style...
 ```
+
+>[](#card) Este é um card sem título, apenas com conteúdo.
+> Com mais de uma linha de conteúdo para demonstrar o comportamento do card.
+
+>[minha tag](#card) agora uma **com** tag e conteúdo, mas sem título.
 
 ---
 
@@ -138,35 +152,19 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ---
 
-### Step Cards
+### Index Cards (`#card`)
 
-> [](#step) 🎨 **Planning**
-> Use the **Step Block** for timelines, processes, or syllabus elements.
-
-> [](#step) 🚀 **Text**
-> This is a **bold** text.
-> This is an *italic* text.
-> This is a `code` text.
-
-```markdown
-> [](#step) 🎨 **Planning**
-> Content...
-```
-
----
-
-### Definition Cards
-
-> [](#def) 📖 **Algorithm**
+> [DEF 01](#card)
+> ### Algorithm
 > A finite sequence of well-defined instructions to solve a class of problems or perform a computation.
 
-> [](#def) 📖 **Text**
-> This is a **bold** text.
-> This is an *italic* text.
-> This is a `code` text.
+> [STEP 2](#card-r)
+> ### 🎨 Planning
+> Use cards for **definitions**, *steps*, theorems and `syllabus` items.
 
 ```markdown
-> [](#def) 📖 **Term**
+> [DEF 01](#card)
+> ### Algorithm
 > Definition content...
 ```
 
@@ -337,7 +335,9 @@ Easy way to layout a figure that doesn't fit as a borderless figure.
 ![h:200 w:800 drop-shadow](nb_img/paper2.jpg)
 
 ---
+
 <!-- _class: cols-2 -->
+
 ### Image Filters & Modifiers
 
 - **Native Filters**: `opacity:50%`, `sepia`, `saturate:200%`, `grayscale`, `blur:5px`, `brightness:150%`, `contrast:150%`
@@ -351,6 +351,7 @@ Easy way to layout a figure that doesn't fit as a borderless figure.
 ```
 
 ![w:200 rounded drop-shadow](images/dark_keyboard.jpg)
+
 ![w:200 h:200 circle drop-shadow](images/pexels-hikaique-775201.jpg)
 
 
@@ -469,7 +470,8 @@ int main() {
 
 ![split]()
 
-> [](#step) **Step**
+> [STEP](#card)
+> ### <!--fit--> Step
 > you don't need to use
 > dark blocks, just for fun.
 
@@ -490,5 +492,89 @@ What a mess!
 
 I could kill minutes in this single slide.
 
-> [](#def) **Bento**
->As long as you keep the blocks **misaligned**, it will look less like a grid.
+> [](#card)
+> ### <!--fit-->Bento
+> As long as you keep the blocks **misaligned**, it will look less like a grid.
+
+---
+
+<!-- _class: cols-2-a -->
+
+## Asymmetric Columns (`cols-2-a`)
+
+> [](#i) **Narrow column**
+> Two parts of five: a framing note.
+
+![split]()
+
+The wide column takes three parts: room for the main explanation, a table or a figure.
+
+![w:420 h:200 rounded](images/light_desk.jpg)
+*A figure with a handwritten caption*
+
+---
+
+<!-- _class: cols-2-a -->
+
+## Table in Asymmetric Columns
+
+> [](#i) **Narrow column**
+> Keep the context short.
+
+| Element | Role | Style | Position | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| Note | Context | Post-it | Above | Ready |
+| Table | Summary | Compact | Below | Ready |
+
+Use `![split]()` to move to the wider column.
+
+![split]()
+
+### Layout Reference
+
+| Content | Placement | Purpose | Style | Alignment | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Note | Narrow column | Introduce the topic | Post-it | Left | Ready |
+| Table | Wide column | Compare details | Compact | Center | Ready |
+| Caption | Below the table | Explain the comparison | Italic | Left | Ready |
+
+*Give detailed comparisons room to breathe.*
+
+---
+
+<!-- _class: invert -->
+
+## Chalkboard (`invert`)
+
+The **invert** slide is a chalkboard: use it to break a long session into chapters.
+
+- Chalk-white text, *yellow chalk* for **bold** in titles
+- Post-its and paper notes stick to the board
+
+> A note pinned to the board.
+
+---
+
+<!-- _class: accent grid -->
+
+## Construction Paper (`accent`) on Graph Paper (`grid`)
+
+`accent` is a sheet of coloured construction paper; `grid` lays notebook graph paper under any slide. `nobeamer` keeps its own palette: `--accent` is ignored.
+
+| Class | Look |
+| :--- | :--- |
+| `accent` | blue construction paper |
+| `grid` | graph paper with a red margin |
+
+
+
+---
+
+<!-- _class: tiles -->
+
+## Tiles Watermark (`tiles`)
+
+A field of modular rounded tiles fills the slide as a faint watermark, in `nobeamer`'s own colours.
+
+> [](#d-c) **Dark block, centred content**
+> The `-c` and `-r` suffixes align the content of dark blocks.

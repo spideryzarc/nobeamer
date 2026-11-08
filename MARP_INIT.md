@@ -121,7 +121,6 @@ Scaffold a starter presentation in `marp/starter.marp.md`:
 ---
 marp: true
 theme: nobeamer
-class: lead
 paginate: true
 size: 16:9
 title: "Presentation Title"
@@ -129,6 +128,8 @@ author: "Author"
 description: "Presentation description"
 transition: nobeamer
 ---
+
+<!-- _class: lead -->
 
 # Presentation Title
 ## Subtitle or Topic
