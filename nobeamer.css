@@ -1210,6 +1210,8 @@ section.accent {
     background-size: cover;
     background-blend-mode: multiply;
     color: #ffffff;
+    /* Dark surface: switch the default theme's light-dark() colours, as it does for .invert */
+    color-scheme: dark;
 }
 
 section:is(.invert, .accent) :is(h1, h2, h3, h4, p, li, th, td) {
@@ -1240,6 +1242,12 @@ section:is(.invert, .accent) table {
 
 section:is(.invert, .accent) :is(td, tr:first-of-type) {
     border-color: rgba(244, 244, 239, 0.5);
+}
+
+/* Rows sit on the board: drop the default theme's canvas fill (white unless the default theme
+   swaps its own variables, which it does for .invert but not for .accent) */
+section:is(.invert, .accent) tr {
+    background-color: transparent;
 }
 
 section:is(.invert, .accent) tr:nth-child(even) {
