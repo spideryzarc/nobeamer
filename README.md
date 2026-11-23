@@ -171,7 +171,7 @@ Column 3
 | **Large Round** | `![w:300 rounded-lg](image.jpg)` | Pronounced rounded corners (`28px`). |
 | **Circle** | `![w:200 circle](image.jpg)` | Circular crop (`50%` border-radius). |
 | **Native Filters** | `![w:300 opacity:80% sepia:50%](image.jpg)` | Native Marp CSS filters (`opacity`, `sepia`, `saturate`, `grayscale`, `blur`, `brightness`, `contrast`). |
-| **Caption** | `![w:420 h:200](image.jpg)` + `*Caption*` on the next line | Figure with a handwritten caption under it. |
+| **Caption** | `[](#cap) Caption` in the paragraph right after an image (or table) | Small caption, centred under the figure. See [Captions](#captions). |
 | **Framed Background** | `![bg left:45% 85% rounded](image.jpg)` | Rounded side background; with a size, the clip follows the image. |
 
 **Example:**
@@ -198,6 +198,25 @@ $$
 ### Scientific Tables
 
 Tables are automatically styled to resemble APA/Scientific publication standards—minimal vertical lines, strong horizontal delimiters, and monospaced data for precision.
+
+### Captions
+
+Start a paragraph with the empty link `[](#cap)` right after a table or an image and the theme turns it into a caption: centred, small, close to the element. It uses the same marker convention as the cards (`[](#d)`, `[](#i)`...), so italics and bold stay free for the caption text.
+
+```markdown
+| Statistic | Value(g) |
+| :--- | ---: |
+| Mean | 100.0 |
+
+[](#cap) Table 1 — Summary statistics of the sample
+
+![w:420 h:200](image.jpg)
+
+[](#cap) Figure 1 — A figure with its caption
+```
+
+- **Blank line required**: the caption must be its own paragraph, separated from the table or image by a blank line.
+- **Marker is invisible**: `[](#cap)` is hidden; only the caption text shows.
 
 ### Visual Code Blocks
 

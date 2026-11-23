@@ -172,13 +172,23 @@ Normal text for reading. The design focuses on **contrast** and _readability_.
 
 ## Data Presentation
 
-The standard boring table...
+The standard boring table, now with a caption.
 
 | Statistic | Value(g) | Description |
 | :--- | ---: | :--- |
 | Mean | 100.0 | Expected value |
 | Deviation | 10.0 | Dispersion |
 | Z-Score | 2.5 | Significant |
+
+[](#cap) **Table 1** — Summary statistics of the sample
+
+```markdown
+| Statistic | Value(g) |
+| :--- | ---: |
+| Mean | 100.0 |
+
+[](#cap) **Table 1** — Summary statistics of the sample
+```
 
 ---
 
@@ -510,7 +520,8 @@ I could kill minutes in this single slide.
 The wide column takes three parts: room for the main explanation, a table or a figure.
 
 ![w:420 h:200 rounded](images/light_desk.jpg)
-*A figure with a handwritten caption*
+
+[](#cap) **Figure 1** — A figure with a caption
 
 ---
 
@@ -536,9 +547,9 @@ Use `![split]()` to move to the wider column.
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | Note | Narrow column | Introduce the topic | Post-it | Left | Ready |
 | Table | Wide column | Compare details | Compact | Center | Ready |
-| Caption | Below the table | Explain the comparison | Italic | Left | Ready |
+| Caption | Below the table | Explain the comparison | Small | Center | Ready |
 
-*Give detailed comparisons room to breathe.*
+[](#cap) Give detailed comparisons room to breathe.
 
 ---
 

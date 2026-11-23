@@ -730,21 +730,35 @@ img[alt~="circle"] {
     object-fit: cover;
 }
 
-/* Figure caption: an italic line right under the image (same paragraph), written by hand
-       ![w:560 h:220](image.jpg)
-       *Fig. 1 — caption*                                                                    */
+/* Soft line breaks next to an inline image are not rendered. */
 p:has(> img:not([alt="split"]):not(.emoji)) > br {
     display: none;
 }
 
-p:has(> img:not([alt="split"]):not(.emoji)) > em:last-child {
-    display: block;
-    margin-top: 6px;
+/* Caption: a paragraph that starts with the empty link [](#cap), under a table or an image.
+       | A | B |
+       [](#cap) Table 1 — caption
+   Same marker convention as the cards ([](#d), [](#i)...); no italic needed.            */
+p:has(> a[href="#cap"]) {
+    line-height: 1.2;
     text-align: center;
-    font-family: var(--font-hand);
-    font-size: 1.1em;
-    font-style: normal;
-    color: hsla(230, 90%, 30%, 0.85);
+    font-family: var(--font-body);
+    font-size: 0.75em;
+    opacity: 0.8;
+}
+
+p > a[href="#cap"] {
+    display: none;
+}
+
+/* Tables carry a bottom margin: pull the caption up under them. */
+table + p:has(> a[href="#cap"]) {
+    margin-top: calc(var(--block-margin-y) * -1 + 8px);
+}
+
+/* Images have no bottom margin: just a small gap. */
+p:has(> img:not([alt="split"]):not(.emoji)) + p:has(> a[href="#cap"]) {
+    margin-top: 6px;
 }
 
 /* ==========================================================================
