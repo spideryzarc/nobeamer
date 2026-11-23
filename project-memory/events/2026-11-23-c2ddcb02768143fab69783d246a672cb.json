@@ -1,0 +1,10 @@
+{
+  "id": "c2ddcb02768143fab69783d246a672cb",
+  "date": "2026-11-23T16:42:59-03:00",
+  "kind": "decision",
+  "summary": "Legendas de tabela e imagem usam uma única sintaxe: parágrafo iniciado por [](#cap), no mesmo padrão de marcador dos cards. A legenda manuscrita baseada em *itálico* colado à imagem foi removida; itálico, negrito e links ficam livres dentro da legenda.",
+  "sources": [
+    "user choice in this session; nobeamer.css; README.md#captions"
+  ],
+  "task": "captions"
+}
