@@ -1,0 +1,9 @@
+{
+  "id": "66c9ceb985de444d9dd5d1d313feb948",
+  "date": "2026-11-23T16:12:17-03:00",
+  "kind": "decision",
+  "summary": "Todos os testes e arquivos temporários devem ficar na subpasta scratch/, assumidos como descartáveis ou fora do escopo de publicação do projeto.",
+  "sources": [
+    "user instruction; removal of lab/ in this session"
+  ]
+}
