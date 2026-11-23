@@ -562,11 +562,11 @@ The **invert** slide is a chalkboard: use it to break a long session into chapte
 - Chalk-white text, *yellow chalk* for **bold** in titles
 - Post-its and paper notes stick to the board
 
-> A note in invert classe
+> A note in the invert class
 
-> [card](#card) a card in invert class
+> [card](#card) A card in the invert class
 
-> [](#i) infor card in insvert mode 
+> [](#i) An info card in invert mode
 
 ---
 
